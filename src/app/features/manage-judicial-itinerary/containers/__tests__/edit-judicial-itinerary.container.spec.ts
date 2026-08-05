@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, input, output, signal } from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { provideRouter, ActivatedRoute, Router } from '@angular/router';
@@ -13,8 +13,9 @@ import { ValidationError } from '@cpp/pdk';
 import { EditJudicialItineraryRoutes } from '../edit-judicial-itinerary/edit-judicial-itinerary.routes';
 import { CourtSchedulerRoutes } from '../../../../app-routes';
 import { JudicialItineraryRoutes } from '../../manage-judicial-itinerary.routes';
-import { JudicialMemberNamePipe } from '@cpp/reference-data';
-import { Specialism } from '../../model/specialism.enum';
+import { JudiciaryTypePayload, JudicialMemberNamePipe } from '@cpp/reference-data';
+import { Specialism } from '@cpp/reference-data';
+import { ExtendedJudicialMember } from '../../../../shared/model';
 
 @Component({
   selector: 'judiciary-details',
@@ -47,13 +48,17 @@ class MockEditJudicialItineraryFormComponent {
 }
 
 class MockManageJudicialItineraryStore {
-  readonly selectedType = signal<string | null>('Circuit Judge');
-  readonly selectedJudiciary = signal<any>({
-    id: 'judge-1',
-    surname: 'Smith',
-    forenames: 'John'
-  });
-  readonly selectedJudiciarySpecialisms = signal<any[]>([]);
+  readonly selectedJudiciaries = signal<ExtendedJudicialMember[] | null>([
+    {
+      id: 'judge-1',
+      surname: 'Smith',
+      forenames: 'John',
+      judiciaryType: 'Circuit Judge'
+    } as ExtendedJudicialMember
+  ]);
+  readonly selectedJudiciaryTypes = signal<JudiciaryTypePayload[] | null>(['Judge']);
+  readonly firstSelectedJudiciary = computed(() => this.selectedJudiciaries()?.[0] ?? null);
+  readonly firstSelectedJudiciaryType = computed(() => this.selectedJudiciaryTypes()?.[0] ?? null);
   readonly selectedItinerary = signal<any>({
     id: 'itinerary-1'
   });
@@ -400,7 +405,16 @@ describe('EditJudicialItineraryContainer', () => {
   it('should pass hideSpecialismsAction true to judiciary-details component', () => {
     expect.assertions(1);
 
-    store.selectedJudiciarySpecialisms.set(Object.values(Specialism) as Specialism[]);
+    store.selectedJudiciaries.set([
+      {
+        id: 'judge-1',
+        surname: 'Smith',
+        forenames: 'John',
+        judiciaryType: 'Circuit Judge',
+        specialisms: Object.values(Specialism) as Specialism[]
+      } as ExtendedJudicialMember
+    ]);
+    store.selectedJudiciaryTypes.set(['Judge']);
     fixture.detectChanges();
 
     const detailsComponent = fixture.debugElement.query((el) => el.name === 'judiciary-details')
@@ -412,14 +426,20 @@ describe('EditJudicialItineraryContainer', () => {
   it('should pass selectedType and selectedJudiciary to judiciary-details component', () => {
     expect.assertions(2);
 
-    store.selectedType.set('Circuit Judge');
-    store.selectedJudiciary.set({ id: 'judge-1', surname: 'Smith' });
+    const jud = {
+      id: 'judge-1',
+      surname: 'Smith',
+      forenames: '',
+      judiciaryType: 'Circuit Judge'
+    } as ExtendedJudicialMember;
+    store.selectedJudiciaries.set([jud]);
+    store.selectedJudiciaryTypes.set(['Judge']);
     fixture.detectChanges();
 
     const detailsComponent = fixture.debugElement.query((el) => el.name === 'judiciary-details')
       ?.componentInstance as MockJudiciaryDetailsComponent;
 
-    expect(detailsComponent.selectedType()).toBe('Circuit Judge');
-    expect(detailsComponent.selectedJudiciary()).toEqual({ id: 'judge-1', surname: 'Smith' });
+    expect(detailsComponent.selectedType()).toBe('Judge');
+    expect(detailsComponent.selectedJudiciary()).toEqual(jud);
   });
 });

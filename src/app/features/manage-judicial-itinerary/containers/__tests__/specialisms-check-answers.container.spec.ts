@@ -12,7 +12,7 @@ import {
   SpecialismAddedConfirmationFormComponent,
   SpecialismAddedConfirmationFormValues
 } from '../../components/specialism-added-confirmation-form/specialism-added-confirmation-form.component';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 import { ValidationError } from '@cpp/pdk';
 import { CourtSchedulerRoutes } from '../../../../app-routes';
 import { JudicialItineraryRoutes } from '../../manage-judicial-itinerary.routes';
@@ -65,15 +65,14 @@ const mockRoutes: Routes = [
   selector: 'judiciary-details',
   template: `<div>
     Mock Judiciary Details - Type: {{ selectedType() | json }}, Judiciary:
-    {{ selectedJudiciary() | json }}, Specialisms: {{ existingSpecialisms() | json }}
+    {{ selectedJudiciary() | json }}
   </div>`,
   imports: [JsonPipe]
 })
 class MockJudiciaryDetailsComponent {
   readonly selectedType = input.required<any>();
   readonly selectedJudiciary = input.required<any>();
-  readonly existingSpecialisms = input.required<Specialism[]>();
-  readonly hideSpecialismsAction = input<boolean>(false);
+  readonly hideSpecialismsAction = input<boolean>(true);
 }
 
 @Component({
@@ -103,13 +102,13 @@ const mockJudiciary = {
   id: 'judge-1',
   surname: 'Smith',
   forenames: 'John',
-  judiciaryType: 'Circuit Judge'
+  judiciaryType: 'Circuit Judge',
+  specialisms: [] as Specialism[]
 };
 
 class MockManageJudicialItineraryStore {
-  readonly selectedType = signal<string | null>(null);
-  readonly selectedJudiciary = signal<any>(null);
-  readonly selectedJudiciarySpecialisms = signal<Specialism[]>([]);
+  readonly firstSelectedJudiciaryType = signal<string | null>(null);
+  readonly firstSelectedJudiciary = signal<any>(null);
   readonly draftSpecialisms = signal<Specialism[]>([]);
   readonly setDraftSpecialisms = jest.fn();
   readonly addSpecialisms = jest.fn();
@@ -170,9 +169,11 @@ describe('SpecialismsCheckAnswersContainer', () => {
   });
 
   it('should render correctly', () => {
-    store.selectedType.set('Circuit Judge');
-    store.selectedJudiciary.set(mockJudiciary);
-    store.selectedJudiciarySpecialisms.set([Specialism.MURDER, Specialism.ATTEMPTEDMURDER]);
+    store.firstSelectedJudiciaryType.set('Judge');
+    store.firstSelectedJudiciary.set({
+      ...mockJudiciary,
+      specialisms: [Specialism.MURDER, Specialism.ATTEMPTEDMURDER]
+    });
     store.draftSpecialisms.set([Specialism.MURDER, Specialism.SEXUALOFFENCE]);
     fixture.detectChanges();
 

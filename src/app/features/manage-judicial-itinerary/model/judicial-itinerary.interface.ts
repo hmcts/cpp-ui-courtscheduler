@@ -1,12 +1,5 @@
-import { JudicialMember } from '@cpp/reference-data';
-import { Specialism } from './specialism.enum';
-import { SessionType } from '../../../shared/model/session';
+import { DayOfWeek, ExtendedJudicialMember, SessionType } from '../../../shared/model';
 import { Unavailability } from './unavailability.interface';
-import { DayOfWeek } from '../../../shared/model/days';
-
-export interface JudiciaryWithSpecialisms extends JudicialMember {
-  specialisms?: Specialism[];
-}
 
 export interface RuleDto {
   id: string;
@@ -26,14 +19,14 @@ export interface SpecialismDto {
 
 export interface FindAvailabilityDtoResponse {
   rules: RuleDto[];
-  judiciaries: JudiciaryWithSpecialisms[];
+  judiciaries: ExtendedJudicialMember[];
   totalCount: number;
   pageNumber: number;
   pageSize: number;
 }
 
 export interface Itinerary extends Omit<RuleDto, 'judiciaryId'> {
-  judiciaryMember: JudiciaryWithSpecialisms;
+  judiciaryMember: ExtendedJudicialMember;
 }
 
 export interface FindAvailabilityVM {

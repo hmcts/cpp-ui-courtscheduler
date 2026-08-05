@@ -15,9 +15,6 @@ import {
   searchSchedules,
   searchSchedulesSuccess,
   setActiveCourtroomsIndexes,
-  setSessionToEdit,
-  updateSession,
-  updateSessionSuccess,
   setViewSessionsToRemove,
   setViewSessionsToAssign,
   clearViewSessionsToRemove,
@@ -57,7 +54,7 @@ describe('ViewSchedule actions', () => {
   });
 
   it('should create remove sessions success action', () => {
-    const action = removeSessionsSuccess();
+    const action = removeSessionsSuccess({});
 
     expect(action.type).toBe('REMOVE_SESSIONS_SUCCESS');
   });
@@ -69,14 +66,6 @@ describe('ViewSchedule actions', () => {
 
     expect(action.type).toBe('SET_ACTIVE_COURTROOMS_INDEXES');
     expect(action.activeCourtroomsIndexes).toEqual(activeCourtroomsIndexes);
-  });
-
-  it('should create set session to edit', () => {
-    const session = mockCourtScheduleSession;
-    const action = setSessionToEdit({ session });
-
-    expect(action.type).toBe('SET_SESSION_TO_EDIT');
-    expect(action.session).toEqual(session);
   });
 
   it('should create set sessions to remove action', () => {
@@ -107,20 +96,6 @@ describe('ViewSchedule actions', () => {
     const action = clearViewSessionsToAssign();
 
     expect(action.type).toBe('CLEAR_VIEW_SESSIONS_TO_ASSIGN');
-  });
-
-  it('should create update session', () => {
-    const session = mockCourtScheduleSession;
-    const action = updateSession({ session });
-
-    expect(action.type).toBe('UPDATE_SESSION');
-    expect(action.session).toEqual(session);
-  });
-
-  it('should create update session success action', () => {
-    const action = updateSessionSuccess();
-
-    expect(action.type).toBe('UPDATE_SESSION_SUCCESS');
   });
 
   it('should create set errors', () => {

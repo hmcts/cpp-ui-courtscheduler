@@ -1,7 +1,7 @@
 import { ItineraryTypePipe } from '../itinerary-type.pipe';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 import { Itinerary } from '../../model/judicial-itinerary.interface';
-import { JudiciaryWithSpecialisms } from '../../model/judicial-itinerary.interface';
+import { ExtendedJudicialMember } from '../../../../shared/model';
 
 describe('ItineraryTypePipe', () => {
   let pipe: ItineraryTypePipe;
@@ -69,7 +69,7 @@ describe('ItineraryTypePipe', () => {
         forenames: 'John',
         emailAddress: 'john.smith@example.com',
         specialisms: [Specialism.MURDER]
-      } as unknown as JudiciaryWithSpecialisms
+      } as unknown as ExtendedJudicialMember
     };
 
     const result = pipe.transform(itinerary);
@@ -95,7 +95,7 @@ describe('ItineraryTypePipe', () => {
         judiciaryType: 'Circuit Judge',
         emailAddress: 'john.smith@example.com',
         specialisms: [Specialism.MURDER]
-      } as unknown as JudiciaryWithSpecialisms
+      } as unknown as ExtendedJudicialMember
     };
 
     const result = pipe.transform(itinerary);
@@ -117,7 +117,7 @@ describe('ItineraryTypePipe', () => {
         id: 'judge-unknown',
         judiciaryType: 'Unknown Type',
         specialisms: [Specialism.MURDER]
-      } as unknown as JudiciaryWithSpecialisms
+      } as unknown as ExtendedJudicialMember
     };
 
     const result = pipe.transform(itinerary);
@@ -141,7 +141,7 @@ describe('ItineraryTypePipe', () => {
         surname: 'Smith',
         forenames: 'John',
         emailAddress: 'john.smith@example.com'
-      } as unknown as JudiciaryWithSpecialisms
+      } as unknown as ExtendedJudicialMember
     };
 
     const result = pipe.transform(itinerary);

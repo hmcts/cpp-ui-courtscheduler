@@ -111,7 +111,7 @@ describe('CourtScheduleDraft Reducer', () => {
     expect(state.repeatPattern).toEqual(mockRepeatPattern);
   });
 
-  it('should set the isPersisted flag', () => {
+  it('should set isPersisted on createCourtScheduleSuccess', () => {
     const action = CreateScheduleActions.createCourtScheduleSuccess({ isPersisted: true });
     const state = createScheduleReducer(initialState, action);
 

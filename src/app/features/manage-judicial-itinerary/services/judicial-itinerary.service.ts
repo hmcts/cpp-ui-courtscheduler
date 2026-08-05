@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { CppHttp, mapObjectToHttpParams } from '@cpp/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Specialism } from '../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 import {
   FindAvailabilityDtoResponse,
   FindAvailabilityVM,
@@ -10,9 +10,9 @@ import {
   Itinerary,
   AddAvailabilityPayload,
   UpdateAvailabilityPayload,
-  JudiciaryWithSpecialisms,
   RuleDto
 } from '../model/judicial-itinerary.interface';
+import { ExtendedJudicialMember } from '../../../shared/model';
 @Injectable({ providedIn: 'root' })
 export class JudicialItineraryService {
   readonly cppHttp = inject(CppHttp);
@@ -44,7 +44,7 @@ export class JudicialItineraryService {
     return this.cppHttp
       .query<{
         rule: RuleDto;
-        judiciary: JudiciaryWithSpecialisms;
+        judiciary: ExtendedJudicialMember;
       }>({
         url: `/listingcourtscheduler-api/rest/courtscheduler/judiciaries/availability-rules/${ruleId}`,
         requestType: 'application/json'

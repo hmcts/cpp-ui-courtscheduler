@@ -119,7 +119,8 @@ describe('AssignCourtroomContainer', () => {
     expect(mockStore.dispatch).toHaveBeenCalledWith(
       ViewScheduleActions.assignCourtroom({
         sessionsToAssign: mockSessions,
-        courtroomId: 'courtroom-1'
+        courtroomId: 'courtroom-1',
+        courtRoomName: ''
       })
     );
   });

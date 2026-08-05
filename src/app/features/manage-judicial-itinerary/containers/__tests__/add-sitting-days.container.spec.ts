@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, input, output, signal } from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { provideRouter, Routes } from '@angular/router';
@@ -14,11 +14,11 @@ import { SelectedCourtAndJudiciaryDetailsComponent } from '../../components/sele
 import { CourtSchedulerRoutes } from '../../../../app-routes';
 import { JudicialItineraryRoutes } from '../../manage-judicial-itinerary.routes';
 import { AddSittingDaysRoutes } from '../add-sitting-days/add-sitting-days.routes';
-import { DayOfWeek } from '../../../../shared/model/days';
-import { SessionType } from '../../../../shared/model/session';
-import { OrganisationUnit } from '@cpp/reference-data';
+import { DayOfWeek, SessionType } from '../../../../shared/model';
+import { JudiciaryTypePayload, OrganisationUnit } from '@cpp/reference-data';
+import { ExtendedJudicialMember } from '../../../../shared/model';
 import { ValidationError } from '@cpp/pdk';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 
 @Component({
   selector: 'app-mock-route',
@@ -62,16 +62,14 @@ class MockAddSittingDaysFormComponent {
   selector: 'selected-court-and-judiciary-details',
   template: `<div>
     Mock Selected Court Details - Court: {{ courtCentre() | json }}, Type:
-    {{ selectedType() | json }}, Judiciary: {{ selectedJudiciary() | json }}, Specialisms:
-    {{ existingSpecialisms() | json }}
+    {{ selectedType() | json }}, Judiciary: {{ selectedJudiciary() | json }}
   </div>`,
   imports: [JsonPipe]
 })
 class MockSelectedCourtAndJudiciaryDetailsComponent {
   readonly courtCentre = input<OrganisationUnit | null>(null);
-  readonly selectedType = input<string | null>(null);
-  readonly selectedJudiciary = input<any>(null);
-  readonly existingSpecialisms = input<Specialism[]>([]);
+  readonly selectedType = input<JudiciaryTypePayload | null>(null);
+  readonly selectedJudiciary = input<ExtendedJudicialMember | null>(null);
 }
 
 @Component({
@@ -107,9 +105,10 @@ class MockManageJudicialItineraryStore {
     startDate: signal<string | null>(null),
     endDate: signal<string | null>(null)
   };
-  readonly selectedType = signal<string | null>(null);
-  readonly selectedJudiciary = signal<any>(null);
-  readonly selectedJudiciarySpecialisms = signal<Specialism[]>([]);
+  readonly selectedJudiciaries = signal<ExtendedJudicialMember[] | null>(null);
+  readonly selectedJudiciaryTypes = signal<JudiciaryTypePayload[] | null>(null);
+  readonly firstSelectedJudiciary = computed(() => this.selectedJudiciaries()?.[0] ?? null);
+  readonly firstSelectedJudiciaryType = computed(() => this.selectedJudiciaryTypes()?.[0] ?? null);
   readonly draftItinerary = signal({
     availability: {
       startDate: null as string | null,
@@ -181,9 +180,13 @@ describe('AddSittingDaysContainer', () => {
 
   it('should render correctly', () => {
     store.searchParams.courtCentre.set(mockCourtCentre);
-    store.selectedType.set('Circuit Judge');
-    store.selectedJudiciary.set(mockJudiciary);
-    store.selectedJudiciarySpecialisms.set([Specialism.MURDER, Specialism.ATTEMPTEDMURDER]);
+    store.selectedJudiciaries.set([
+      {
+        ...mockJudiciary,
+        specialisms: [Specialism.MURDER, Specialism.ATTEMPTEDMURDER]
+      } as ExtendedJudicialMember
+    ]);
+    store.selectedJudiciaryTypes.set(['Judge']);
     store.draftItinerary.set({
       availability: {
         startDate: '2026-01-01',

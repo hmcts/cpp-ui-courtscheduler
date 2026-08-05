@@ -1,0 +1,60 @@
+<pdk-grid container pdk-margin-top="4" pdk-margin-bottom="4">
+  <pdk-grid full>
+    <h2 pdk-typography="heading-medium">Selected court and judiciary</h2>
+    <dl pdk-summary-list pdk-margin-top="2">
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Court name</dt>
+        <dd pdk-summary-list-value>{{ courtName() }}</dd>
+      </div>
+
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Judiciary assigned</dt>
+        <dd pdk-summary-list-value>
+          @if (hasAssignedJudiciary()) {
+            @for (member of assignedJudiciary(); track member.id; let last = $last) {
+              <span>{{ member | judicialMemberName }}</span>
+              @if (!$last) {
+                <span>, </span>
+              }
+            }
+          } @else {
+            No judiciary assigned
+          }
+        </dd>
+        <dd pdk-summary-list-action>
+          @if (hasAssignedJudiciary()) {
+            <a
+              href="javascript:void(0);"
+              pdk-link
+              unvisited
+              (click)="assignJudiciary.emit()"
+              data-test-id="change-judiciary-link"
+              pdk-margin-right="2"
+            >
+              Change
+            </a>
+            <a
+              href="javascript:void(0);"
+              pdk-link
+              unvisited
+              (click)="removeAllJudiciary.emit()"
+              data-test-id="remove-all-judiciary-link"
+            >
+              Remove all
+            </a>
+          } @else {
+            <a
+              href="javascript:void(0);"
+              pdk-link
+              unvisited
+              (click)="assignJudiciary.emit()"
+              data-test-id="add-judiciary-link"
+            >
+              Add judiciary
+            </a>
+          }
+        </dd>
+      </div>
+    </dl>
+  </pdk-grid>
+</pdk-grid>

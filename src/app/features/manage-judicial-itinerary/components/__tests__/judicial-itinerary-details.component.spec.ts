@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, input } from '@angular/core';
 import { RemoveJudiciaryItineraryDetailsComponent } from '../remove-judiciary-itinerary-details/remove-judiciary-itinerary-details.component';
 import { Itinerary } from '../../model/judicial-itinerary.interface';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 import { JudicialMember, OrganisationUnit, JudiciaryTypePayload } from '@cpp/reference-data';
 import { NonSittingDaysDisplayComponent } from '../../../../shared/components/non-sitting-days-display/non-sitting-days-display.component';
 

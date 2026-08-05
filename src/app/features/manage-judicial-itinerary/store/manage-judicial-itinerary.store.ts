@@ -1,12 +1,14 @@
 import { signalStore, withState, withMethods } from '@ngrx/signals';
 import { patchState } from '@ngrx/signals';
 import { ValidationError } from '@cpp/pdk';
-import { withErrorHandlerAdapter } from './with-error-handler-adapter.feature';
-import { withJudiciarySelection } from './with-judiciary-selection.feature';
+import {
+  withErrorHandlerAdapter,
+  withJudiciarySelection,
+  withStoreRouter
+} from '../../../shared/signal-store';
 import { withJudiciarySpecialisms } from './with-judiciary-specialisms.feature';
 import { withJudicialItineraryList } from './with-judiciary-itinerary-list.feature';
 import { withUpsertJudiciaryItinerary } from './with-upsert-judiciary-itinerary.feature';
-import { withStoreRouter } from './with-store-router.feature';
 import {
   ServerSubmissionError,
   ServerSubmissionErrorDTO

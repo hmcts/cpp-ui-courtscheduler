@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import {
   PdkGrid,
   PdkLinkDirective,
@@ -8,9 +8,8 @@ import {
   PdkTypographyDirective
 } from '@cpp/pdk';
 import { JudicialMemberNamePipe, JudiciaryTypePayload } from '@cpp/reference-data';
-import { Specialism } from '../../model/specialism.enum';
 import { SpecialismFormatPipe } from '../../pipes/specialism-format.pipe';
-import { JudiciaryWithSpecialisms } from '../../model/judicial-itinerary.interface';
+import { ExtendedJudicialMember } from '../../../../shared/model';
 import { Router } from '@angular/router';
 import { CourtSchedulerRoutes } from '../../../../app-routes';
 import { JudicialItineraryRoutes } from '../../manage-judicial-itinerary.routes';
@@ -80,9 +79,12 @@ import { JudicialItineraryRoutes } from '../../manage-judicial-itinerary.routes'
 export class JudiciaryDetailsComponent {
   readonly router = inject(Router);
   readonly selectedType = input.required<JudiciaryTypePayload | null>();
-  readonly selectedJudiciary = input.required<JudiciaryWithSpecialisms | null>();
-  readonly existingSpecialisms = input<Specialism[]>([]);
+  readonly selectedJudiciary = input.required<ExtendedJudicialMember | null>();
   readonly hideSpecialismsAction = input<boolean>(true);
+  existingSpecialisms = computed(() => {
+    const selectedJudiciary = this.selectedJudiciary();
+    return selectedJudiciary?.specialisms ?? [];
+  });
 
   handleAddSpecialism(): void {
     const currentUrl = this.router.url;

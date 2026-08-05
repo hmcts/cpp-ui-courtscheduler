@@ -5,7 +5,7 @@ import { ActivatedRoute, NavigationEnd, NavigationStart, RouterOutlet } from '@a
 import { DETECT_NETWORK } from '@cpp/core';
 import { CppApplicationLayoutComponent, HeaderNavItem } from '@cpp/application';
 import { PdkPaddingDirective } from '@cpp/pdk';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { createRouterSignals } from '../shared-signals/router-signals';
 import { AppConfigService } from './config';
 import { AppState } from './core/reducers';
@@ -23,7 +23,7 @@ export class AppComponent {
   readonly titleService = inject(Title);
   readonly detectNetwork = inject(DETECT_NETWORK);
   readonly routerSignal = createRouterSignals();
-  readonly hasApiActivity = toSignal(this.store.pipe(select(getHasApiActivity)));
+  readonly hasApiActivity = this.store.selectSignal(getHasApiActivity);
   readonly online = toSignal(this.detectNetwork(), { requireSync: true });
   readonly hasNavigationActivity = linkedSignal({
     source: computed(() => this.routerSignal.navigationEvent()),

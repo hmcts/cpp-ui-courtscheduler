@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RotaBusinessTypeCode } from '@cpp/reference-data';
+import { RotaBusinessType, RotaBusinessTypeCode } from '@cpp/reference-data';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import {
   mockBusinessType,
@@ -15,6 +15,16 @@ import { CreateScheduleState } from '../../state/create-schedule.state';
 import { CreateScheduleActions } from '../../state/actions';
 import { SelectBusinessTypeContainer } from './select-business-type.container';
 import { JurisdictionType } from '../../../../shared/model/jurisdiction';
+
+jest.mock('@cpp/reference-data', () => ({
+  ...jest.requireActual('@cpp/reference-data'),
+  getRotaBusinessTypesByJurisdiction: (jurisdiction: JurisdictionType) => {
+    return (state: CreateScheduleState): RotaBusinessType[] => {
+      const businessTypes = state.referenceData?.rotaBusinessTypes || [];
+      return businessTypes.filter((bt) => bt.jurisdiction === jurisdiction);
+    };
+  }
+}));
 
 describe('SelectBusinessTypeContainer', () => {
   let component: SelectBusinessTypeContainer;
@@ -36,7 +46,7 @@ describe('SelectBusinessTypeContainer', () => {
     referenceData: {
       rotaBusinessTypes: mockMagistratesBusinessTypes
     }
-  } as unknown as CreateScheduleState;
+  } as CreateScheduleState;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

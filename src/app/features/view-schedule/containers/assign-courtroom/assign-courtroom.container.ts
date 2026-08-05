@@ -144,7 +144,8 @@ export class AssignCourtroomContainer implements OnInit, OnDestroy {
     this.viewScheduleStore.dispatch(
       ViewScheduleActions.assignCourtroom({
         sessionsToAssign: this.assignableSessions,
-        courtroomId
+        courtroomId,
+        courtRoomName: this.courtrooms.find((courtroom) => courtroom.id === courtroomId)?.name || ''
       })
     );
   }

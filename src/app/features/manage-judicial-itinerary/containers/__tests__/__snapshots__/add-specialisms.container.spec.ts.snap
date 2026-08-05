@@ -21,15 +21,16 @@ exports[`AddSpecialismsContainer should render correctly 1`] = `
     </h1>
     <judiciary-details>
       <div>
-         Mock Judiciary Details - Type: "Circuit Judge", Judiciary: {
+         Mock Judiciary Details - Type: "Judge", Judiciary: {
     "id": "judge-1",
     "surname": "Smith",
     "forenames": "John",
-    "judiciaryType": "Circuit Judge"
-  }, Specialisms: [
-    "MURDER",
-    "ATTEMPTED_MURDER"
-  ] 
+    "judiciaryType": "Circuit Judge",
+    "specialisms": [
+      "MURDER",
+      "ATTEMPTED_MURDER"
+    ]
+  } 
       </div>
     </judiciary-details>
     <add-specialisms-form>

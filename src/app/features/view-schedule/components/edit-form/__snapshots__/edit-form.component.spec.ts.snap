@@ -5,29 +5,30 @@ exports[`EditSessionComponent should create 1`] = `
   CUSTOM_SESSION_TIME_LIMITS={[Function Object]}
   JurisdictionType={[Function Object]}
   VALIDATION={[Function Object]}
-  afternoonDurationErrorMessages={[Function Array]}
-  canBeAssigned="false"
+  afternoonDurationErrorMessages={[Function Function]}
+  canBeAssigned={[Function Function]}
   courtCentres={[Function Function]}
   courtroomAssignmentOptions={[Function Array]}
-  courtroomOptions={[Function Array]}
-  durationErrorMessages={[Function Array]}
+  courtroomOptions={[Function Function]}
+  durationErrorMessages={[Function Function]}
   endTimeErrorMessages={[Function Array]}
   errors={[Function OutputEmitterRef]}
-  formValues={[Function Object]}
+  formValues={[Function Function]}
   formatTimePipe={[Function FormatTimePipe]}
   handleBackNav={[Function OutputEmitterRef]}
-  hasHearingsBooked="false"
-  ineligiblePastSessions={[Function Array]}
-  isPastDate="false"
+  hasHearingsBooked={[Function Function]}
+  isPastDate={[Function Function]}
   jurisdiction={[Function Function]}
-  morningDurationErrorMessages={[Function Array]}
+  morningDurationErrorMessages={[Function Function]}
   panelOptions={[Function Array]}
+  selectedCourtSession={[Function Function]}
   sessionToEdit={[Function Function]}
-  showAD={[Function Boolean]}
-  showAM={[Function Boolean]}
-  showPM={[Function Boolean]}
+  showAD={[Function Function]}
+  showAM={[Function Function]}
+  showPM={[Function Function]}
   startTimeErrorMessages={[Function Array]}
   submitForm={[Function OutputEmitterRef]}
+  timeRange={[Function Function]}
 >
   <div
     class="govuk-!-margin-bottom-8"
@@ -314,12 +315,10 @@ exports[`EditSessionComponent should create 1`] = `
                      Start time 
                   </legend>
                   <pdk-time-input
-                    autoshift=""
                     class="ng-untouched ng-pristine ng-valid"
                     labelhidden="false"
                     name="sessionStartTime"
                     required=""
-                    timerangevalidator=""
                   >
                     <div
                       class="pdk-time-input ng-untouched ng-pristine ng-invalid"
@@ -391,12 +390,10 @@ exports[`EditSessionComponent should create 1`] = `
                      End time 
                   </legend>
                   <pdk-time-input
-                    autoshift=""
                     class="ng-untouched ng-pristine ng-valid"
                     labelhidden="false"
                     name="sessionEndTime"
                     required=""
-                    timerangevalidator=""
                   >
                     <div
                       class="pdk-time-input ng-untouched ng-pristine ng-invalid"

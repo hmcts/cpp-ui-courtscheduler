@@ -1,19 +1,15 @@
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
 import { withUpsertJudiciaryItinerary } from '../with-upsert-judiciary-itinerary.feature';
-import {
-  DraftItinerary,
-  Itinerary,
-  JudiciaryWithSpecialisms
-} from '../../model/judicial-itinerary.interface';
-import { SessionType } from '../../../../shared/model/session';
-import { DayOfWeek } from '../../../../shared/model/days';
+import { DraftItinerary, Itinerary } from '../../model/judicial-itinerary.interface';
+import { DayOfWeek, ExtendedJudicialMember, SessionType } from '../../../../shared/model';
 import { JudicialMember, OrganisationUnit } from '@cpp/reference-data';
 import { HttpErrorResponse } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
 import { JudicialItineraryService } from '../../services/judicial-itinerary.service';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 import { ItinerarySearchParams } from '../manage-judiciary-itinerary.store.interfaces';
+import { withJudiciarySelection } from '../../../../shared/signal-store';
 
 const mockJudiciary: JudicialMember = {
   id: 'judge-1',
@@ -30,10 +26,10 @@ const mockCourtCentre: OrganisationUnit = {
   oucodeL3Name: 'Test Court'
 } as unknown as OrganisationUnit;
 
-const mockJudiciaryWithSpecialisms = {
+const mockExtendedJudicialMember = {
   ...mockJudiciary,
   specialisms: [Specialism.MURDER]
-} as JudiciaryWithSpecialisms;
+} as ExtendedJudicialMember;
 
 const mockItinerary: Itinerary = {
   id: 'itinerary-1',
@@ -43,7 +39,7 @@ const mockItinerary: Itinerary = {
   sessionType: 'AD' as SessionType,
   repeatDays: ['Monday', 'Tuesday'],
   unavailabilities: [],
-  judiciaryMember: mockJudiciaryWithSpecialisms
+  judiciaryMember: mockExtendedJudicialMember
 };
 
 const mockSearchParams: ItinerarySearchParams = {
@@ -56,24 +52,23 @@ const mockSearchParams: ItinerarySearchParams = {
 
 const TestStore = signalStore(
   withState({
-    selectedJudiciary: mockJudiciary as unknown as JudiciaryWithSpecialisms | null,
     searchParams: mockSearchParams,
     selectedItinerary: null as Itinerary | null
   }),
+  withJudiciarySelection(),
   withMethods((store) => {
     const handleError = jest.fn();
-    const clearJudiciarySelection = jest.fn();
     const setSelectedItinerary = jest.fn((it: Itinerary | null) =>
       patchState(store, { selectedItinerary: it })
     );
     const clearServerSubmissionError = jest.fn();
     return {
       handleError,
-      clearJudiciarySelection,
       setSelectedItinerary,
       clearServerSubmissionError,
-      setSelectedJudiciaryForTest: (j: JudiciaryWithSpecialisms | null) =>
-        patchState(store, { selectedJudiciary: j })
+      setSelectedJudiciaryForTest: (j: ExtendedJudicialMember | null) => {
+        store.setSelectedJudiciary(j);
+      }
     };
   }),
   withUpsertJudiciaryItinerary()
@@ -106,6 +101,7 @@ describe('withUpsertJudiciaryItinerary', () => {
 
     store = TestBed.inject(TestStore);
     service = TestBed.inject(JudicialItineraryService) as jest.Mocked<JudicialItineraryService>;
+    store.setSelectedJudiciaryForTest(mockExtendedJudicialMember);
   });
 
   afterEach(() => {
@@ -152,7 +148,7 @@ describe('withUpsertJudiciaryItinerary', () => {
       expect.assertions(5);
 
       store.setSelectedItinerary(mockItinerary);
-      store.setSelectedJudiciaryForTest(mockJudiciary as unknown as JudiciaryWithSpecialisms);
+      store.setSelectedJudiciaryForTest(mockJudiciary as unknown as ExtendedJudicialMember);
 
       const itineraryToUpdate = store.editItinerary();
 
@@ -172,7 +168,7 @@ describe('withUpsertJudiciaryItinerary', () => {
       };
 
       store.setSelectedItinerary(itineraryWithoutUnavailabilities);
-      store.setSelectedJudiciaryForTest(mockJudiciary as unknown as JudiciaryWithSpecialisms);
+      store.setSelectedJudiciaryForTest(mockJudiciary as unknown as ExtendedJudicialMember);
 
       const itineraryToUpdate = store.editItinerary();
 
@@ -188,7 +184,7 @@ describe('withUpsertJudiciaryItinerary', () => {
       };
 
       store.setSelectedItinerary(itineraryWithoutUnavailabilities);
-      store.setSelectedJudiciaryForTest(mockJudiciary as unknown as JudiciaryWithSpecialisms);
+      store.setSelectedJudiciaryForTest(mockJudiciary as unknown as ExtendedJudicialMember);
 
       const itineraryToUpdate = store.editItinerary();
 
@@ -358,17 +354,18 @@ describe('withUpsertJudiciaryItinerary', () => {
 
     const TestStoreNoHandler = signalStore(
       withState({
-        selectedJudiciary: mockJudiciary as unknown as JudiciaryWithSpecialisms | null,
         searchParams: mockSearchParams,
         selectedItinerary: null as Itinerary | null
       }),
+      withJudiciarySelection(),
       withMethods((store) => ({
-        clearJudiciarySelection: jest.fn(),
         setSelectedItinerary: jest.fn((it: Itinerary | null) =>
           patchState(store, { selectedItinerary: it })
         ),
         clearServerSubmissionError: jest.fn(),
-        setSelectedJudiciaryForTest: jest.fn()
+        setSelectedJudiciaryForTest: (j: ExtendedJudicialMember | null) => {
+          store.setSelectedJudiciary(j);
+        }
       })),
       withUpsertJudiciaryItinerary()
     );
@@ -385,6 +382,7 @@ describe('withUpsertJudiciaryItinerary', () => {
         teardown: { destroyAfterEach: false }
       });
       storeNoHandler = TestBed.inject(TestStoreNoHandler) as unknown as UpsertTestStore;
+      storeNoHandler.setSelectedJudiciaryForTest(mockExtendedJudicialMember);
     });
 
     it('should throw error when neither onError nor handleError are provided', fakeAsync(() => {
@@ -576,7 +574,7 @@ describe('withUpsertJudiciaryItinerary', () => {
 
       store.clearUpsertItinerary();
 
-      expect(store.clearJudiciarySelection).toHaveBeenCalled();
+      expect(store.firstSelectedJudiciary()).toBeNull();
       expect(store.setSelectedItinerary).toHaveBeenCalledWith(null);
       const draftItinerary = store.draftItinerary();
       expect(draftItinerary.availability.startDate).toBeNull();

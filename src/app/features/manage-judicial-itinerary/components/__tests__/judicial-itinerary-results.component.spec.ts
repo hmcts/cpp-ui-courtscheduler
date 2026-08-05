@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { JudicialItineraryResultsComponent } from '../judicial-itinerary-results/judicial-itinerary-results.component';
 import { Itinerary } from '../../model/judicial-itinerary.interface';
-import { JudiciaryWithSpecialisms } from '../../model/judicial-itinerary.interface';
-import { Specialism } from '../../model/specialism.enum';
+import { ExtendedJudicialMember } from '../../../../shared/model';
+import { Specialism } from '@cpp/reference-data';
 import { SortOrder } from '@cpp/pdk';
 import { ItinerarySortField } from '../../store/manage-judiciary-itinerary.store.interfaces';
 import { Component } from '@angular/core';
@@ -60,7 +60,7 @@ describe('JudicialItineraryResultsComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testHost: TestHostComponent;
 
-  const mockJudiciaryMember: JudiciaryWithSpecialisms = {
+  const mockJudiciaryMember: ExtendedJudicialMember = {
     id: 'judge-1',
     seqId: 1,
     surname: 'Smith',
@@ -68,7 +68,7 @@ describe('JudicialItineraryResultsComponent', () => {
     judiciaryType: 'Circuit Judge',
     emailAddress: 'john.smith@example.com',
     specialisms: [Specialism.MURDER]
-  } as unknown as JudiciaryWithSpecialisms;
+  } as unknown as ExtendedJudicialMember;
 
   const mockItinerary: Itinerary = {
     id: 'rule-1',

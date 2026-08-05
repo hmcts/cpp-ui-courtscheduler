@@ -35,7 +35,7 @@ describe('RepeatPatternOnceFormComponent', () => {
       fixture.componentRef.setInput('initialValues', mockRepeatPattern);
       fixture.detectChanges();
 
-      expect(component.startDate()).toEqual(new Date(mockRepeatPattern.startDate));
+      expect(component.startDate()).toEqual(mockRepeatPattern.startDate);
     });
 
     it('should return null for startDate when initialValues is null', () => {
@@ -88,7 +88,7 @@ describe('RepeatPatternOnceFormComponent', () => {
       const newDate = '2023-02-15';
       component.handleStartDateChange(newDate);
 
-      expect(component.startDate()).toEqual(new Date(newDate));
+      expect(component.startDate()).toEqual(newDate);
     });
 
     it('should set startDate to null when handleStartDateChange is called with empty string', () => {
@@ -106,7 +106,7 @@ describe('RepeatPatternOnceFormComponent', () => {
       component.handleStartDateChange('2023-03-01');
       component.resetForm();
 
-      expect(component.startDate()).toEqual(new Date(mockRepeatPattern.startDate));
+      expect(component.startDate()).toEqual(mockRepeatPattern.startDate);
     });
 
     it('should reset form to null when initialValues is null', () => {

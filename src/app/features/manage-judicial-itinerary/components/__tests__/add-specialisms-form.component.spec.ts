@@ -5,7 +5,7 @@ import {
   AddSpecialismsFormComponent,
   AddSpecialismsFormValues
 } from '../add-specialisms-form/add-specialisms-form.component';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 
 @Component({
   selector: 'app-test-host',

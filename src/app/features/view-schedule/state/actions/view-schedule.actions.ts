@@ -28,14 +28,11 @@ export const removeSessions = createAction(
   }>()
 );
 
-export const removeSessionsSuccess = createAction('REMOVE_SESSIONS_SUCCESS');
-
-export const setSessionToEdit = createAction(
-  'SET_SESSION_TO_EDIT',
-  props<{
-    session: CourtScheduleSession;
-  }>()
+export const removeSessionsSuccess = createAction(
+  'REMOVE_SESSIONS_SUCCESS',
+  props<{ courtRoomName?: string }>()
 );
+
 export const setViewSessionsToRemove = createAction(
   'SET_VIEW_SESSION_TO_REMOVE',
   props<{
@@ -54,20 +51,12 @@ export const clearViewSessionsToAssign = createAction('CLEAR_VIEW_SESSIONS_TO_AS
 
 export const clearViewSessionsToRemove = createAction('CLEAR_VIEW_SESSIONS_TO_REMOVE');
 
-export const updateSession = createAction(
-  'UPDATE_SESSION',
-  props<{
-    session: CourtScheduleSession;
-  }>()
-);
-
-export const updateSessionSuccess = createAction('UPDATE_SESSION_SUCCESS');
-
 export const setViewBanner = createAction(
   'SET_VIEW_BANNER',
   props<{
     message: string;
     bannerType: string;
+    courtRoomName?: string;
   }>()
 );
 
@@ -99,7 +88,11 @@ export const assignCourtroom = createAction(
   props<{
     sessionsToAssign: CourtScheduleSession[];
     courtroomId: string;
+    courtRoomName: string;
   }>()
 );
 
-export const assignCourtroomSuccess = createAction('ASSIGN_COURTROOM_SUCCESS');
+export const assignCourtroomSuccess = createAction(
+  'ASSIGN_COURTROOM_SUCCESS',
+  props<{ courtRoomName?: string }>()
+);

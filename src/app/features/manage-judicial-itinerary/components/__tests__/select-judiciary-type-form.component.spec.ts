@@ -1,19 +1,19 @@
-import { ComponentFixture, TestBed, fakeAsync, tick, flush } from '@angular/core/testing';
+import { JsonPipe } from '@angular/common';
+import { ComponentFixture, TestBed, fakeAsync, flush, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { Component, forwardRef, input, output, signal } from '@angular/core';
 import { of, throwError } from 'rxjs';
-import {
-  SelectJudiciaryTypeFormComponent,
-  SelectJudiciaryTypeFormValues
-} from '../select-judiciary-type-form/select-judiciary-type-form.component';
-import { ReferenceDataService, JudiciaryTypePayload } from '@cpp/reference-data';
-import { JudiciaryWithSpecialisms } from '../../model/judicial-itinerary.interface';
-import { Specialism } from '../../model/specialism.enum';
-import { JudiciaryAutosuggestControlComponent } from '../../../../shared/components/judiciary-autosuggest-control/judiciary-autosuggest-control.component';
-import { JsonPipe } from '@angular/common';
+import { SelectJudiciaryTypeFormComponent } from '../select-judiciary-type-form/select-judiciary-type-form.component';
+import { ReferenceDataService, JudiciaryTypePayload, Specialism } from '@cpp/reference-data';
+import { coerceBooleanProperty } from '@cpp/pdk';
+import { ExtendedJudicialMember, JudiciarySelectionValue } from '../../../../shared/model';
+import { JudiciarySelectionInputComponent } from '../../../../shared/components/judiciary-selection-input/judiciary-selection-input.component';
+
+type SelectJudiciaryTypeInitialValues = {
+  judiciarySelection: JudiciarySelectionValue;
+  selectedJudiciaryTypes: (keyof JudiciarySelectionValue)[];
+};
 
 @Component({
   selector: 'app-test-host',
@@ -22,19 +22,66 @@ import { JsonPipe } from '@angular/common';
       [initialValues]="initialValues"
       (submitForm)="handleSubmitForm($event)"
       (errors)="handleErrors($event)"
-      (addSpecialism)="handleAddSpecialism()"
+      (addSpecialism)="handleAddSpecialism($event)"
     ></select-judiciary-type-form>
   `,
   imports: [SelectJudiciaryTypeFormComponent]
 })
 class TestHostComponent {
-  initialValues?: SelectJudiciaryTypeFormValues | null;
+  initialValues: SelectJudiciaryTypeInitialValues | null = null;
 
-  handleSubmitForm(_values: SelectJudiciaryTypeFormValues): void {}
+  handleSubmitForm(_values: { judiciary: ExtendedJudicialMember | null }): void {}
 
   handleErrors(_errors: unknown): void {}
 
-  handleAddSpecialism(): void {}
+  handleAddSpecialism(_event: unknown): void {}
+}
+
+type SuggestionsBundle = {
+  type: JudiciaryTypePayload | null;
+  judicialMembers: ExtendedJudicialMember[];
+};
+
+@Component({
+  selector: 'judiciary-selection-input',
+  template: `
+    <div data-test-id="mock-judiciary-selection-input">
+      <span class="mock-judiciary-required">{{ required() }}</span>
+      <span class="mock-judiciary-selected-types">{{ selectedJudiciaryTypes() | json }}</span>
+      <span class="mock-judiciary-suggestions">{{ suggestions() | json }}</span>
+      <span class="mock-judiciary-ng-model">{{ ngModelValue() | json }}</span>
+    </div>
+  `,
+  imports: [JsonPipe],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MockJudiciarySelectionInputComponent),
+      multi: true
+    }
+  ]
+})
+class MockJudiciarySelectionInputComponent implements ControlValueAccessor {
+  readonly required = input(false, {
+    transform: (value: boolean | string) => coerceBooleanProperty(value)
+  });
+  readonly suggestions = input<SuggestionsBundle | null | undefined>(undefined);
+  readonly selectedJudiciaryTypes = input<(keyof JudiciarySelectionValue)[]>([]);
+  readonly onAddSpecialism = output<{
+    judiciary: ExtendedJudicialMember | null;
+    type: JudiciaryTypePayload | null;
+  }>();
+  readonly inputText = output<{ type: JudiciaryTypePayload; searchText: string }>();
+
+  readonly ngModelValue = signal<JudiciarySelectionValue | null>(null);
+
+  writeValue(value: JudiciarySelectionValue | null): void {
+    this.ngModelValue.set(value);
+  }
+
+  registerOnChange(): void {}
+
+  registerOnTouched(): void {}
 }
 
 describe('SelectJudiciaryTypeFormComponent', () => {
@@ -43,7 +90,7 @@ describe('SelectJudiciaryTypeFormComponent', () => {
   let testHost: TestHostComponent;
   let referenceDataService: jest.Mocked<ReferenceDataService>;
 
-  const mockJudiciary: JudiciaryWithSpecialisms = {
+  const mockJudiciary: ExtendedJudicialMember = {
     id: 'judge-1',
     seqId: 1,
     surname: 'Smith',
@@ -51,9 +98,9 @@ describe('SelectJudiciaryTypeFormComponent', () => {
     judiciaryType: 'Circuit Judge',
     emailAddress: 'john.smith@example.com',
     specialisms: [Specialism.MURDER, Specialism.SEXUALOFFENCE]
-  } as unknown as JudiciaryWithSpecialisms;
+  } as unknown as ExtendedJudicialMember;
 
-  const mockSuggestions: JudiciaryWithSpecialisms[] = [
+  const mockSuggestions: ExtendedJudicialMember[] = [
     mockJudiciary,
     {
       id: 'judge-2',
@@ -63,8 +110,13 @@ describe('SelectJudiciaryTypeFormComponent', () => {
       judiciaryType: 'District Judge',
       emailAddress: 'jane.doe@example.com',
       specialisms: [Specialism.SEXUALOFFENCE]
-    } as unknown as JudiciaryWithSpecialisms
+    } as unknown as ExtendedJudicialMember
   ];
+
+  const defaultInitial: SelectJudiciaryTypeInitialValues = {
+    judiciarySelection: { Judge: mockJudiciary },
+    selectedJudiciaryTypes: ['Judge']
+  };
 
   beforeEach(() => {
     const mockService = {
@@ -76,19 +128,17 @@ describe('SelectJudiciaryTypeFormComponent', () => {
         {
           provide: ReferenceDataService,
           useValue: mockService
-        },
-        provideHttpClient(),
-        provideHttpClientTesting()
+        }
       ],
       teardown: { destroyAfterEach: false }
     });
 
     TestBed.overrideComponent(SelectJudiciaryTypeFormComponent, {
       remove: {
-        imports: [JudiciaryAutosuggestControlComponent]
+        imports: [JudiciarySelectionInputComponent]
       },
       add: {
-        imports: [MockJudiciaryAutosuggestControlComponent]
+        imports: [MockJudiciarySelectionInputComponent]
       }
     });
 
@@ -100,6 +150,7 @@ describe('SelectJudiciaryTypeFormComponent', () => {
     referenceDataService = TestBed.inject(
       ReferenceDataService
     ) as jest.Mocked<ReferenceDataService>;
+    testHost.initialValues = defaultInitial;
     fixture.detectChanges();
   });
 
@@ -108,72 +159,27 @@ describe('SelectJudiciaryTypeFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render correctly', () => {
+  it('should render correctly', async () => {
     expect.assertions(1);
+    await fixture.whenStable();
+    fixture.detectChanges();
     expect(fixture).toMatchSnapshot();
   });
 
   it('should initialize with initial values', () => {
     expect.assertions(1);
-    const initialValues: SelectJudiciaryTypeFormValues = {
-      judiciaryType: 'Judge',
-      judiciary: mockJudiciary
-    };
-    testHost.initialValues = initialValues;
-    fixture.detectChanges();
-    expect(component.initialValues()).toEqual(initialValues);
+    expect(component.initialValues()).toEqual(defaultInitial);
   });
 
-  it('should get judiciary value for matching type', () => {
+  it('should render correctly with Judge type selected', fakeAsync(() => {
     expect.assertions(1);
-    const initialValues: SelectJudiciaryTypeFormValues = {
-      judiciaryType: 'Judge',
-      judiciary: mockJudiciary
-    };
-    testHost.initialValues = initialValues;
+    component.handleInputText({ type: 'Judge', searchText: 'John' });
     fixture.detectChanges();
-
-    const value = component.getJudiciaryValueForType('Judge');
-    expect(value).toEqual(mockJudiciary);
-  });
-
-  it('should render correctly with Judge type selected showing autosuggest', async () => {
-    expect.assertions(1);
-    const initialValues: SelectJudiciaryTypeFormValues = {
-      judiciaryType: 'Judge',
-      judiciary: mockJudiciary
-    };
-    testHost.initialValues = initialValues;
+    flush();
+    tick();
     fixture.detectChanges();
-    await fixture.whenStable();
-    fixture.detectChanges();
-    await fixture.whenStable();
-    fixture.detectChanges();
-
     expect(fixture).toMatchSnapshot();
-  });
-
-  it('should return null when type does not match initial values', () => {
-    expect.assertions(1);
-    const initialValues: SelectJudiciaryTypeFormValues = {
-      judiciaryType: 'Judge',
-      judiciary: mockJudiciary
-    };
-    testHost.initialValues = initialValues;
-    fixture.detectChanges();
-
-    const value = component.getJudiciaryValueForType('Recorder');
-    expect(value).toBeNull();
-  });
-
-  it('should return null when no initial values', () => {
-    expect.assertions(1);
-    testHost.initialValues = null;
-    fixture.detectChanges();
-
-    const value = component.getJudiciaryValueForType('Judge');
-    expect(value).toBeNull();
-  });
+  }));
 
   it('should update querySignal when handleInputText is called', () => {
     expect.assertions(1);
@@ -181,34 +187,26 @@ describe('SelectJudiciaryTypeFormComponent', () => {
     expect(component.querySignal()).toEqual({ type: 'Judge', searchText: 'John' });
   });
 
-  it('should emit submitForm with form values', () => {
+  it('should emit submitForm with judiciary from selection', () => {
     expect.assertions(1);
     const emitSpy = jest.spyOn(component.submitForm, 'emit');
-    const formValues = {
-      judiciaryType: 'Judge',
-      judiciary: mockJudiciary
-    };
-
-    component.handleSubmitForm(formValues);
-    expect(emitSpy).toHaveBeenCalledWith({
-      judiciaryType: 'Judge',
-      judiciary: mockJudiciary
-    });
+    const judiciarySelection: JudiciarySelectionValue = { Judge: mockJudiciary };
+    component.handleSubmitForm({ judiciarySelection });
+    expect(emitSpy).toHaveBeenCalledWith({ judiciary: mockJudiciary });
   });
 
-  it('should emit addSpecialism output', () => {
-    expect.assertions(2);
+  it('should forward onAddSpecialism from judiciary-selection-input', () => {
+    expect.assertions(1);
     const emitSpy = jest.spyOn(component.addSpecialism, 'emit');
+    const mockInput = fixture.debugElement.query(
+      By.directive(MockJudiciarySelectionInputComponent)
+    ).componentInstance;
     const event = {
       judiciary: mockJudiciary,
       type: 'Judge' as JudiciaryTypePayload
     };
-    component.handleAddSpecialism(event);
-    expect(emitSpy).toHaveBeenCalled();
-    expect(emitSpy).toHaveBeenCalledWith({
-      judiciaryType: 'Judge',
-      judiciary: mockJudiciary
-    });
+    mockInput.onAddSpecialism.emit(event);
+    expect(emitSpy).toHaveBeenCalledWith(event);
   });
 
   it('should fetch suggestions via rxResource when querySignal is set', fakeAsync(() => {
@@ -226,94 +224,42 @@ describe('SelectJudiciaryTypeFormComponent', () => {
       withSpecialism: true
     });
 
-    const suggestions = component.suggestionsResource.value() ?? [];
-    expect(suggestions).toBeDefined();
+    expect(component.suggestionsResource.value()).toEqual({
+      type: 'Judge',
+      judicialMembers: mockSuggestions
+    });
   }));
 
-  it('should return empty array when querySignal has no type', fakeAsync(() => {
+  it('should return empty judicialMembers when querySignal has no type', fakeAsync(() => {
     expect.assertions(1);
-    component.handleInputText({ type: null, searchText: 'John' });
-
-    tick(100);
+    component.querySignal.set({ type: null, searchText: 'John' });
     fixture.detectChanges();
-
-    const suggestions = component.suggestionsResource.value() ?? [];
-    expect(suggestions).toEqual([]);
-  }));
-
-  it('should return empty array when querySignal has no searchText', fakeAsync(() => {
-    expect.assertions(1);
-    component.handleInputText({ type: 'Judge', searchText: '' });
-
-    tick(100);
-    fixture.detectChanges();
-
-    const suggestions = component.suggestionsResource.value() ?? [];
-    expect(suggestions).toEqual([]);
-  }));
-
-  it('should filter specialisms to valid enum values', fakeAsync(() => {
-    expect.assertions(2);
-    const judiciariesWithInvalidSpecialisms: JudiciaryWithSpecialisms[] = [
-      {
-        ...mockJudiciary,
-        specialisms: [Specialism.MURDER, 'INVALID_SPECIALISM' as any, Specialism.SEXUALOFFENCE]
-      } as JudiciaryWithSpecialisms
-    ];
-
-    referenceDataService.fetchJudicialMembers.mockReturnValue(
-      of(judiciariesWithInvalidSpecialisms)
-    );
-
-    component.querySignal.set({ type: 'Judge', searchText: 'John' });
-    fixture.detectChanges();
-
     flush();
     fixture.detectChanges();
-
-    const suggestions = component.suggestionsResource.value() ?? [];
-    expect(suggestions.length).toBeGreaterThan(0);
-    expect(suggestions[0].specialisms).toEqual([Specialism.MURDER, Specialism.SEXUALOFFENCE]);
+    expect(component.suggestionsResource.value()?.judicialMembers).toEqual([]);
   }));
 
-  it('should return null when initialValues has judiciaryType but judiciary is null', () => {
+  it('should return empty judicialMembers when querySignal has no searchText', fakeAsync(() => {
     expect.assertions(1);
-    const initialValues: SelectJudiciaryTypeFormValues = {
-      judiciaryType: 'Judge',
-      judiciary: null
-    };
-    testHost.initialValues = initialValues;
+    component.querySignal.set({ type: 'Judge', searchText: '' });
     fixture.detectChanges();
-
-    const value = component.getJudiciaryValueForType('Judge');
-    expect(value).toBeNull();
-  });
-
-  it('should return null when initialValues has different judiciaryType', () => {
-    expect.assertions(1);
-    const initialValues: SelectJudiciaryTypeFormValues = {
-      judiciaryType: 'Recorder',
-      judiciary: mockJudiciary
-    };
-    testHost.initialValues = initialValues;
+    flush();
     fixture.detectChanges();
-
-    const value = component.getJudiciaryValueForType('Judge');
-    expect(value).toBeNull();
-  });
+    expect(component.suggestionsResource.value()?.judicialMembers).toEqual([]);
+  }));
 
   it('should handle multiple querySignal updates', fakeAsync(() => {
     expect.assertions(4);
 
     component.handleInputText({ type: 'Judge', searchText: 'John' });
-    tick(100);
+    flush();
     fixture.detectChanges();
 
     expect(component.querySignal().type).toBe('Judge');
     expect(component.querySignal().searchText).toBe('John');
 
     component.handleInputText({ type: 'Recorder', searchText: 'Jane' });
-    tick(100);
+    flush();
     fixture.detectChanges();
 
     expect(component.querySignal().type).toBe('Recorder');
@@ -338,40 +284,6 @@ describe('SelectJudiciaryTypeFormComponent', () => {
     flush();
     fixture.detectChanges();
 
-    const suggestions = component.suggestionsResource.value() ?? [];
-    expect(suggestions).toEqual([]);
+    expect(component.suggestionsResource.value()?.judicialMembers).toEqual([]);
   }));
 });
-
-@Component({
-  selector: 'judiciary-autosuggest-control',
-  template: `<div>{{ name }} - {{ label }} - {{ selectedJudiciary | json }}</div>`,
-  imports: [JsonPipe],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => MockJudiciaryAutosuggestControlComponent),
-      multi: true
-    }
-  ]
-})
-class MockJudiciaryAutosuggestControlComponent implements ControlValueAccessor {
-  @Input() name!: string;
-  @Input() label!: string;
-  @Input() judiciaryType!: string | null;
-  @Input() suggestions!: JudiciaryWithSpecialisms[];
-  @Input() required!: boolean;
-  @Input() errorMessagesInput!: Array<{ rule: string; message: string }>;
-  @Output() inputText = new EventEmitter<{ type: string; searchText: string }>();
-  @Output() onAddSpecialism = new EventEmitter<void>();
-
-  selectedJudiciary: JudiciaryWithSpecialisms | null = null;
-
-  writeValue(value: JudiciaryWithSpecialisms | null): void {
-    this.selectedJudiciary = value;
-  }
-
-  registerOnChange(_fn: (value: JudiciaryWithSpecialisms | null) => void): void {}
-
-  registerOnTouched(_fn: () => void): void {}
-}

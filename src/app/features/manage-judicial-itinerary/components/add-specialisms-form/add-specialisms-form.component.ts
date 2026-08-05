@@ -9,7 +9,7 @@ import {
   PdkMarginDirective,
   ValidationError
 } from '@cpp/pdk';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 import { SpecialismsSelectorComponent } from '../../../../shared/components/specialisms-selector/specialisms-selector.component';
 
 export interface AddSpecialismsFormValues {
@@ -61,7 +61,7 @@ export interface AddSpecialismsFormValues {
   ]
 })
 export class AddSpecialismsFormComponent {
-  readonly existingSpecialisms = input.required<Specialism[]>();
+  readonly existingSpecialisms = input<Specialism[]>([]);
   readonly initialValues = input<AddSpecialismsFormValues | null>(null);
   readonly submitForm = output<AddSpecialismsFormValues>();
   readonly errors = output<ValidationError[] | null>();

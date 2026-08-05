@@ -5,6 +5,7 @@ import {
   ElementRef,
   OnChanges,
   SimpleChanges,
+  afterRenderEffect,
   inject,
   input,
   output,
@@ -36,18 +37,10 @@ import {
 @Component({
   selector: 'courtroom-list',
   template: `
+    @let banner = bannerMessage();
     <div pdk-grid container pdk-margin-bottom="4">
       <pdk-grid full>
         <h2 pdk-typography="heading-medium" pdk-margin-bottom="0">List of sessions</h2>
-        <div #banner>
-          @if (!!bannerMessage()?.message) {
-            <div pdk-margin-vertical="4">
-              <pdk-alert icon="true" type="{{ bannerMessage().bannerType }}">{{
-                bannerMessage().message
-              }}</pdk-alert>
-            </div>
-          }
-        </div>
         <pdk-divider></pdk-divider>
         <pdk-accordion [open]="openAccordionsIndexes" (openChange)="handleOpenChange($event)">
           @for (courtSchedule of courtSchedules(); let i = $index; track i) {
@@ -56,6 +49,13 @@ import {
               [id]="i"
               data-test-id="courtroomListItem"
             >
+              @if (!!banner?.message && banner.courtRoomName === courtSchedule.courtRoomName) {
+                <div pdk-margin-vertical="4" #bannerElement class="banner-alert">
+                  <pdk-alert icon="true" type="{{ banner.bannerType }}">{{
+                    banner.message
+                  }}</pdk-alert>
+                </div>
+              }
               <sessions-list
                 [sessions]="courtSchedule.sessions"
                 [jurisdiction]="jurisdiction()"
@@ -78,6 +78,11 @@ import {
     PdkTypographyDirective,
     SessionsListComponent
   ],
+  styles: `
+    .banner-alert {
+      scroll-margin-top: 150px;
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourtroomListComponent implements OnChanges {
@@ -93,11 +98,20 @@ export class CourtroomListComponent implements OnChanges {
   readonly setActiveCourtroomsIndexes = output<number[]>();
   readonly validationErrors = output<ValidationError[]>();
 
-  readonly banner = viewChild<ElementRef<HTMLDivElement>>('banner');
+  readonly banner = viewChild<ElementRef<HTMLDivElement>>('bannerElement');
   readonly accordion = viewChild(PdkAccordionComponent);
   readonly accordionItems = viewChildren(PdkAccordionItemComponent, { read: ElementRef });
 
   openAccordionsIndexes: number[] = [];
+
+  constructor() {
+    afterRenderEffect(() => {
+      const banner = this.banner();
+      if (banner && banner.nativeElement) {
+        banner.nativeElement.scrollIntoView();
+      }
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['courtSchedules']) {

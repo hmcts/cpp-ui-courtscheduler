@@ -13,8 +13,7 @@ import { ViewScheduleEffects } from './view-schedule.effect';
 import {
   mockCourtScheduleResponse,
   mockCourtScheduleSession,
-  mockSearchFormValues,
-  mockUpdateSessionPayload
+  mockSearchFormValues
 } from '../../../../shared';
 import { Router } from '@angular/router';
 import { CourtSchedulerRoutes } from '../../../../app-routes';
@@ -113,7 +112,9 @@ describe('ViewScheduleEffects', () => {
         { courtScheduleId: 'id', courtRoomId: '1' }
       ] as CourtScheduleSession[];
       const action = ViewScheduleActions.removeSessions({ sessionsToRemove });
-      const completion = ViewScheduleActions.removeSessionsSuccess();
+      const completion = ViewScheduleActions.removeSessionsSuccess({
+        courtRoomName: sessionsToRemove[0].courtRoomName
+      });
 
       actions$ = hot('-a-', { a: action });
       const response$ = cold('-a|', { a: { sessions: [] } });
@@ -188,10 +189,11 @@ describe('ViewScheduleEffects', () => {
 
   describe('removeSessionsSuccess$', () => {
     it('should return clearViewSessionsToRemove and setSuccessBanner actions on success and navigate to VIEW_SCHEDULE page', () => {
-      const action = ViewScheduleActions.removeSessionsSuccess();
+      const action = ViewScheduleActions.removeSessionsSuccess({});
       const banner = {
         message: 'Sessions removed successfully',
-        bannerType: 'success'
+        bannerType: 'success',
+        courtRoomName: undefined as string | undefined
       };
       const clearAction = ViewScheduleActions.clearViewSessionsToRemove();
       const successBannerAction = ViewScheduleActions.setViewBanner(banner);
@@ -208,98 +210,19 @@ describe('ViewScheduleEffects', () => {
     });
   });
 
-  describe('updateSchedules$', () => {
-    it('should return updateSessionSuccess action on success', () => {
-      const session = { ...mockUpdateSessionPayload } as CourtScheduleSession;
-      const action = ViewScheduleActions.updateSession({ session });
-      const completion = ViewScheduleActions.updateSessionSuccess();
-
-      actions$ = hot('-a-', { a: action });
-      const response$ = cold('-a|', { a: {} });
-
-      viewScheduleService.updateSession = jest.fn().mockReturnValueOnce(response$);
-
-      const expected$ = cold('--b', { b: completion });
-
-      expect(effects.updateSchedules$).toBeObservable(expected$);
-      expect(viewScheduleService.updateSession).toHaveBeenCalledWith(session);
-    });
-
-    it('should dispatch setErrors with sessionDuplicated message on 400 error from API', () => {
-      const session = { ...mockUpdateSessionPayload } as CourtScheduleSession;
-      const action = ViewScheduleActions.updateSession({ session });
-
-      const httpError = new HttpErrorResponse({
-        status: 400,
-        error: JSON.stringify({
-          error: 'Session to be added has a duplicate'
-        })
-      });
-
-      const completion = ViewScheduleActions.setErrors({
-        errors: [
-          {
-            id: 'backendError',
-            message: 'Session to be added has a duplicate'
-          }
-        ]
-      });
-
-      actions$ = hot('-a-', { a: action });
-      const response$ = cold('-#|', null, httpError);
-
-      viewScheduleService.updateSession = jest.fn().mockReturnValueOnce(response$);
-
-      const expected$ = cold('--b', { b: completion });
-
-      expect(effects.updateSchedules$).toBeObservable(expected$);
-      expect(viewScheduleService.updateSession).toHaveBeenCalledWith(session);
-    });
-
-    it('should return apiError on failure', () => {
-      const session = { courtScheduleId: 'id', courtRoomId: '1' } as CourtScheduleSession;
-      const action = ViewScheduleActions.updateSession({ session });
-      const error = new HttpErrorResponse({ error: 'Error' });
-      const completion = apiError({ error });
-
-      actions$ = hot('-a-', { a: action });
-      const response$ = cold('-#|', {}, error);
-
-      viewScheduleService.updateSession = jest.fn().mockReturnValueOnce(response$);
-
-      const expected$ = cold('--b', { b: completion });
-
-      expect(effects.updateSchedules$).toBeObservable(expected$);
-      expect(viewScheduleService.updateSession).toHaveBeenCalled();
-    });
-  });
-
-  describe('updateSchedulesSuccess$', () => {
-    it('should return setSuccessBanner action on success and navigate to VIEW_SCHEDULE page', () => {
-      const action = ViewScheduleActions.updateSessionSuccess();
-      const banner = {
-        message: 'Sessions updated successfully',
-        bannerType: 'success'
-      };
-      const successBannerAction = ViewScheduleActions.setViewBanner(banner);
-
-      actions$ = hot('-a-', { a: action });
-
-      const expected$ = cold('-b', { b: successBannerAction });
-
-      expect(effects.updateSchedulesSuccess$).toBeObservable(expected$);
-      expect(router.navigate).toHaveBeenCalledWith([CourtSchedulerRoutes.VIEW_SCHEDULE]);
-    });
-  });
-
   describe('assignCourtroom$', () => {
     it('should return assignCourtroomSuccess action when errorGroups is empty', () => {
       const sessionsToAssign = [
         { courtScheduleId: 'id1', courtRoomId: '1' }
       ] as CourtScheduleSession[];
       const courtroomId = 'courtroom-1';
-      const action = ViewScheduleActions.assignCourtroom({ sessionsToAssign, courtroomId });
-      const completion = ViewScheduleActions.assignCourtroomSuccess();
+      const courtRoomName = 'Courtroom A';
+      const action = ViewScheduleActions.assignCourtroom({
+        sessionsToAssign,
+        courtroomId,
+        courtRoomName
+      });
+      const completion = ViewScheduleActions.assignCourtroomSuccess({ courtRoomName });
 
       actions$ = hot('-a-', { a: action });
       const response$ = cold('-a|', { a: { errorGroups: [] } });
@@ -322,7 +245,11 @@ describe('ViewScheduleEffects', () => {
         { courtScheduleId: 'id1', courtRoomId: '1' }
       ] as CourtScheduleSession[];
       const courtroomId = 'courtroom-1';
-      const action = ViewScheduleActions.assignCourtroom({ sessionsToAssign, courtroomId });
+      const action = ViewScheduleActions.assignCourtroom({
+        sessionsToAssign,
+        courtroomId,
+        courtRoomName: 'Courtroom A'
+      });
 
       actions$ = hot('-a-', { a: action });
 
@@ -358,7 +285,11 @@ describe('ViewScheduleEffects', () => {
         { courtScheduleId: 'id1', courtRoomId: '1' }
       ] as CourtScheduleSession[];
       const courtroomId = 'courtroom-1';
-      const action = ViewScheduleActions.assignCourtroom({ sessionsToAssign, courtroomId });
+      const action = ViewScheduleActions.assignCourtroom({
+        sessionsToAssign,
+        courtroomId,
+        courtRoomName: 'Courtroom A'
+      });
       const error = new HttpErrorResponse({ error: 'Error' });
       const completion = apiError({ error });
 
@@ -376,10 +307,11 @@ describe('ViewScheduleEffects', () => {
 
   describe('assignCourtroomSuccess$', () => {
     it('should return clearViewSessionsToAssign and setViewBanner actions on success and navigate to VIEW_SCHEDULE page', () => {
-      const action = ViewScheduleActions.assignCourtroomSuccess();
+      const action = ViewScheduleActions.assignCourtroomSuccess({});
       const banner = {
         message: 'Courtroom assigned successfully',
-        bannerType: 'success'
+        bannerType: 'success',
+        courtRoomName: undefined as string | undefined
       };
       const clearAction = ViewScheduleActions.clearViewSessionsToAssign();
       const successBannerAction = ViewScheduleActions.setViewBanner(banner);

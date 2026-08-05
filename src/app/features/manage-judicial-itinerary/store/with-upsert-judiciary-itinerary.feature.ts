@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { computed, inject } from '@angular/core';
+import { computed, inject, Signal } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import {
   patchState,
@@ -11,28 +11,27 @@ import {
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap } from 'rxjs';
-import { DayOfWeek } from '../../../shared/model/days';
+import { DayOfWeek } from '../../../shared/model';
 import { getDaysOfWeek } from '../../../shared/utils/date-utils';
-import {
-  DraftItinerary,
-  Itinerary,
-  JudiciaryWithSpecialisms
-} from '../model/judicial-itinerary.interface';
+import { DraftItinerary, Itinerary } from '../model/judicial-itinerary.interface';
+import { ExtendedJudicialMember } from '../../../shared/model';
 import { JudicialItineraryService } from '../services/judicial-itinerary.service';
 import { ItinerarySearchParams } from './manage-judiciary-itinerary.store.interfaces';
-import { MethodsDictionary } from '@ngrx/signals/src/signal-store-models';
 
 export interface UpsertJudiciaryItineraryState {
   draftItinerary: DraftItinerary;
 }
 
 interface BaseDependencyState {
-  selectedJudiciary: JudiciaryWithSpecialisms | null;
   searchParams: ItinerarySearchParams;
   selectedItinerary: Itinerary | null;
 }
 
-interface BaseDependencyMethods extends MethodsDictionary {
+interface BaseDependencyProps {
+  firstSelectedJudiciary: Signal<ExtendedJudicialMember | null>;
+}
+
+interface BaseDependencyMethods extends Record<string, Function> {
   handleError?: (error: HttpErrorResponse) => void;
   clearJudiciarySelection: () => void;
   setSelectedItinerary: (itinerary: Itinerary | null) => void;
@@ -57,10 +56,11 @@ export function withUpsertJudiciaryItinerary<_>() {
   return signalStoreFeature(
     {
       state: type<BaseDependencyState>(),
+      props: type<BaseDependencyProps>(),
       methods: type<BaseDependencyMethods>()
     },
     withState<UpsertJudiciaryItineraryState>(initialState),
-    withComputed(({ draftItinerary, selectedJudiciary, searchParams, selectedItinerary }) => ({
+    withComputed(({ draftItinerary, firstSelectedJudiciary, searchParams, selectedItinerary }) => ({
       normalisedSittingDays: computed(() => {
         const { sittingDays } = draftItinerary();
         return sittingDays.length > 0
@@ -76,7 +76,7 @@ export function withUpsertJudiciaryItinerary<_>() {
 
       editItinerary: computed(() => {
         const itinerary = selectedItinerary();
-        const judiciary = selectedJudiciary();
+        const judiciary = firstSelectedJudiciary();
         if (!itinerary || !judiciary) {
           return null;
         }
@@ -93,7 +93,7 @@ export function withUpsertJudiciaryItinerary<_>() {
       }),
 
       upsertPayload: computed(() => {
-        const judiciary = selectedJudiciary();
+        const judiciary = firstSelectedJudiciary();
         const courtCentre = searchParams()?.courtCentre;
         const { id: ruleId, courtHouseId } = selectedItinerary() ?? {
           id: null,

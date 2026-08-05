@@ -29,7 +29,7 @@ export class RemoveJudicialItineraryContainer implements OnDestroy {
   readonly location = inject(Location);
   readonly judicialMemberNamePipe = inject(JudicialMemberNamePipe);
   readonly judiciaryName = computed(() =>
-    this.judicialMemberNamePipe.transform(this.store.selectedJudiciary())
+    this.judicialMemberNamePipe.transform(this.store.firstSelectedJudiciary())
   );
   readonly courtName = computed(
     () => this.store.searchParams.courtCentre()?.oucodeL3Name || 'court'

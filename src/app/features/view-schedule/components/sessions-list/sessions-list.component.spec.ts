@@ -172,7 +172,8 @@ describe('SessionsListComponent', () => {
     fixture.detectChanges();
     expect(component.actionOptions()).toEqual([
       { value: BulkActionType.REMOVE, label: 'Remove' },
-      { value: BulkActionType.ASSIGN, label: 'Assign courtroom' }
+      { value: BulkActionType.ASSIGN, label: 'Assign courtroom' },
+      { value: BulkActionType.ASSIGN_JUDICIARY, label: 'Assign judiciary' }
     ]);
   });
 

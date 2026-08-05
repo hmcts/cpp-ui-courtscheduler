@@ -113,7 +113,7 @@
               </details>
               <pdk-radio-group
                 [(ngModel)]="formModel.sessionType"
-                (ngModelChange)="onSessionTypeChange($event)"
+                (ngModelChange)="formModel.duration = null"
                 name="sessionType"
                 required
               >
@@ -384,12 +384,12 @@
                         [errorMessages]="startTimeErrorMessages"
                       >
                         <pdk-time-input
+                          #startTimeModel="ngModel"
                           name="sessionStartTime"
                           [(ngModel)]="formModel.sessionStartTime"
                           [ngModelOptions]="{ updateOn: 'change' }"
                           [autoShift]="false"
                           labelHidden="false"
-                          timeRangeValidator
                           [timeRange]="timeRange"
                           [required]="formModel.customTimes && formModel.sessionType"
                         >
@@ -406,9 +406,8 @@
                           [ngModelOptions]="{ updateOn: 'change' }"
                           [autoShift]="false"
                           labelHidden="false"
-                          timeRangeValidator
                           [timeRange]="timeRange"
-                          [startTime]="formModel.sessionStartTime"
+                          [benchMarkTime]="startTimeModel.value"
                           [required]="formModel.customTimes && formModel.sessionType"
                         >
                         </pdk-time-input>

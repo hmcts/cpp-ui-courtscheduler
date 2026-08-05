@@ -5,9 +5,8 @@
 <h1 pdk-typography="heading-large">Edit Judiciary availability details</h1>
 
 <judiciary-details
-  [selectedType]="store.selectedType()"
-  [selectedJudiciary]="store.selectedJudiciary()"
-  [existingSpecialisms]="store.selectedJudiciarySpecialisms()"
+  [selectedType]="store.firstSelectedJudiciaryType()"
+  [selectedJudiciary]="store.firstSelectedJudiciary()"
   [hideSpecialismsAction]="allSpecialismsSelected()"
 />
 

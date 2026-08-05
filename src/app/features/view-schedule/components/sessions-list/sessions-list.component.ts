@@ -101,6 +101,7 @@ export class SessionsListComponent {
 
     if (this.isCrownCourt()) {
       options.push({ value: BulkActionType.ASSIGN, label: 'Assign courtroom' });
+      options.push({ value: BulkActionType.ASSIGN_JUDICIARY, label: 'Assign judiciary' });
     }
 
     return options;

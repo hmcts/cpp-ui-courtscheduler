@@ -14,7 +14,7 @@ import {
 import { JudicialItineraryResultsComponent } from '../../components/judicial-itinerary-results/judicial-itinerary-results.component';
 import { OrganisationUnit } from '@cpp/reference-data';
 import { Itinerary } from '../../model/judicial-itinerary.interface';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 import { SortOrder, ValidationError } from '@cpp/pdk';
 import { JudicialMember } from '@cpp/reference-data';
 import { CourtSchedulerRoutes } from '../../../../app-routes';
@@ -254,7 +254,7 @@ describe('ManageJudicialItineraryContainer', () => {
     component.handleEdit({ itinerary: mockItinerary });
 
     expect(store.setSelectedItinerary).toHaveBeenCalledWith(mockItinerary);
-    expect(store.setSelectedJudiciary).toHaveBeenCalledWith(mockJudiciaryMember);
+    expect(store.setSelectedJudiciary).toHaveBeenCalledWith([mockJudiciaryMember]);
     expect(navigateSpy).toHaveBeenCalledWith([
       CourtSchedulerRoutes.MANAGE_JUDICIAL_ITINERARY,
       JudicialItineraryRoutes.EDIT,

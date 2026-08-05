@@ -2,7 +2,7 @@
 
 exports[`SelectJudiciaryTypeFormComponent should render correctly 1`] = `
 <app-test-host
-  initialValues="undefined"
+  initialValues={[Function Object]}
 >
   <select-judiciary-type-form>
     <form
@@ -25,102 +25,55 @@ exports[`SelectJudiciaryTypeFormComponent should render correctly 1`] = `
           class="govuk-grid-column-two-thirds"
           two-thirds=""
         >
-          <pdk-form-field
-            label="Select judiciary type and name"
-            labeltype="small"
+          <judiciary-selection-input
+            class="ng-untouched ng-pristine ng-valid"
+            data-test-id="judiciary-selection-input"
+            name="judiciarySelection"
+            required=""
           >
-            <pdk-form-group
-              class="pdk-form-group"
+            <div
+              data-test-id="mock-judiciary-selection-input"
             >
-              <fieldset
-                class="govuk-fieldset"
-                pdk-fieldset=""
+              <span
+                class="mock-judiciary-required"
               >
-                <legend
-                  class="govuk-fieldset__legend govuk-fieldset__legend--s"
-                >
-                   Select judiciary type and name 
-                </legend>
-                <pdk-radio-group
-                  class="ng-untouched ng-pristine ng-valid"
-                  data-test-id="judiciary-type-radio"
-                  name="judiciaryType"
-                  required=""
-                >
-                  <div
-                    class="govuk-radios"
-                  >
-                    <pdk-radio-button
-                      value="Judge"
-                    >
-                      <div
-                        class="govuk-radios__item"
-                      >
-                        <input
-                          class="govuk-radios__input"
-                          id="pdk-radio-GENERATED_ID"
-                          name="pdk-radio-group-GENERATED_ID"
-                          type="radio"
-                          value="Judge"
-                        />
-                        <label
-                          class="govuk-radios__label govuk-label"
-                          for="pdk-radio-GENERATED_ID"
-                          pdk-label=""
-                        >
-                          Judge
-                        </label>
-                      </div>
-                    </pdk-radio-button>
-                    <pdk-radio-button
-                      value="Recorder"
-                    >
-                      <div
-                        class="govuk-radios__item"
-                      >
-                        <input
-                          class="govuk-radios__input"
-                          id="pdk-radio-GENERATED_ID"
-                          name="pdk-radio-group-GENERATED_ID"
-                          type="radio"
-                          value="Recorder"
-                        />
-                        <label
-                          class="govuk-radios__label govuk-label"
-                          for="pdk-radio-GENERATED_ID"
-                          pdk-label=""
-                        >
-                          Recorder
-                        </label>
-                      </div>
-                    </pdk-radio-button>
-                    <pdk-radio-button
-                      value="Magistrate"
-                    >
-                      <div
-                        class="govuk-radios__item"
-                      >
-                        <input
-                          class="govuk-radios__input"
-                          id="pdk-radio-GENERATED_ID"
-                          name="pdk-radio-group-GENERATED_ID"
-                          type="radio"
-                          value="Magistrate"
-                        />
-                        <label
-                          class="govuk-radios__label govuk-label"
-                          for="pdk-radio-GENERATED_ID"
-                          pdk-label=""
-                        >
-                          Magistrate
-                        </label>
-                      </div>
-                    </pdk-radio-button>
-                  </div>
-                </pdk-radio-group>
-              </fieldset>
-            </pdk-form-group>
-          </pdk-form-field>
+                true
+              </span>
+              <span
+                class="mock-judiciary-selected-types"
+              >
+                [
+    "Judge"
+  ]
+              </span>
+              <span
+                class="mock-judiciary-suggestions"
+              >
+                {
+    "type": null,
+    "judicialMembers": []
+  }
+              </span>
+              <span
+                class="mock-judiciary-ng-model"
+              >
+                {
+    "Judge": {
+      "id": "judge-1",
+      "seqId": 1,
+      "surname": "Smith",
+      "forenames": "John",
+      "judiciaryType": "Circuit Judge",
+      "emailAddress": "john.smith@example.com",
+      "specialisms": [
+        "MURDER",
+        "SEXUAL_OFFENCE"
+      ]
+    }
+  }
+              </span>
+            </div>
+          </judiciary-selection-input>
         </pdk-grid>
         <pdk-grid
           class="govuk-grid-column-full"
@@ -156,7 +109,7 @@ exports[`SelectJudiciaryTypeFormComponent should render correctly 1`] = `
 </app-test-host>
 `;
 
-exports[`SelectJudiciaryTypeFormComponent should render correctly with Judge type selected showing autosuggest 1`] = `
+exports[`SelectJudiciaryTypeFormComponent should render correctly with Judge type selected 1`] = `
 <app-test-host
   initialValues={[Function Object]}
 >
@@ -181,130 +134,79 @@ exports[`SelectJudiciaryTypeFormComponent should render correctly with Judge typ
           class="govuk-grid-column-two-thirds"
           two-thirds=""
         >
-          <pdk-form-field
-            label="Select judiciary type and name"
-            labeltype="small"
+          <judiciary-selection-input
+            class="ng-untouched ng-pristine ng-valid"
+            data-test-id="judiciary-selection-input"
+            name="judiciarySelection"
+            required=""
           >
-            <pdk-form-group
-              class="pdk-form-group"
+            <div
+              data-test-id="mock-judiciary-selection-input"
             >
-              <fieldset
-                class="govuk-fieldset"
-                pdk-fieldset=""
+              <span
+                class="mock-judiciary-required"
               >
-                <legend
-                  class="govuk-fieldset__legend govuk-fieldset__legend--s"
-                >
-                   Select judiciary type and name 
-                </legend>
-                <pdk-radio-group
-                  class="ng-untouched ng-pristine ng-valid"
-                  data-test-id="judiciary-type-radio"
-                  name="judiciaryType"
-                  required=""
-                >
-                  <div
-                    class="govuk-radios"
-                  >
-                    <pdk-radio-button
-                      value="Judge"
-                    >
-                      <div
-                        class="govuk-radios__item"
-                      >
-                        <input
-                          class="govuk-radios__input"
-                          id="pdk-radio-GENERATED_ID"
-                          name="pdk-radio-group-GENERATED_ID"
-                          type="radio"
-                          value="Judge"
-                        />
-                        <label
-                          class="govuk-radios__label govuk-label"
-                          for="pdk-radio-GENERATED_ID"
-                          pdk-label=""
-                        >
-                          Judge
-                        </label>
-                      </div>
-                    </pdk-radio-button>
-                    <pdk-radio-conditional>
-                      <div
-                        class="govuk-radios__conditional"
-                      >
-                        <judiciary-autosuggest-control
-                          class="ng-untouched ng-pristine ng-valid"
-                          data-test-id="judiciary-name-input"
-                          label="Name"
-                          name="judiciary"
-                          required=""
-                        >
-                          <div>
-                            judiciary - Name - {
-    "id": "judge-1",
-    "seqId": 1,
-    "surname": "Smith",
-    "forenames": "John",
-    "judiciaryType": "Circuit Judge",
-    "emailAddress": "john.smith@example.com",
-    "specialisms": [
-      "MURDER",
-      "SEXUAL_OFFENCE"
+                true
+              </span>
+              <span
+                class="mock-judiciary-selected-types"
+              >
+                [
+    "Judge"
+  ]
+              </span>
+              <span
+                class="mock-judiciary-suggestions"
+              >
+                {
+    "type": "Judge",
+    "judicialMembers": [
+      {
+        "id": "judge-1",
+        "seqId": 1,
+        "surname": "Smith",
+        "forenames": "John",
+        "judiciaryType": "Circuit Judge",
+        "emailAddress": "john.smith@example.com",
+        "specialisms": [
+          "MURDER",
+          "SEXUAL_OFFENCE"
+        ]
+      },
+      {
+        "id": "judge-2",
+        "seqId": 2,
+        "surname": "Doe",
+        "forenames": "Jane",
+        "judiciaryType": "District Judge",
+        "emailAddress": "jane.doe@example.com",
+        "specialisms": [
+          "SEXUAL_OFFENCE"
+        ]
+      }
     ]
   }
-                          </div>
-                        </judiciary-autosuggest-control>
-                      </div>
-                    </pdk-radio-conditional>
-                    <pdk-radio-button
-                      value="Recorder"
-                    >
-                      <div
-                        class="govuk-radios__item"
-                      >
-                        <input
-                          class="govuk-radios__input"
-                          id="pdk-radio-GENERATED_ID"
-                          name="pdk-radio-group-GENERATED_ID"
-                          type="radio"
-                          value="Recorder"
-                        />
-                        <label
-                          class="govuk-radios__label govuk-label"
-                          for="pdk-radio-GENERATED_ID"
-                          pdk-label=""
-                        >
-                          Recorder
-                        </label>
-                      </div>
-                    </pdk-radio-button>
-                    <pdk-radio-button
-                      value="Magistrate"
-                    >
-                      <div
-                        class="govuk-radios__item"
-                      >
-                        <input
-                          class="govuk-radios__input"
-                          id="pdk-radio-GENERATED_ID"
-                          name="pdk-radio-group-GENERATED_ID"
-                          type="radio"
-                          value="Magistrate"
-                        />
-                        <label
-                          class="govuk-radios__label govuk-label"
-                          for="pdk-radio-GENERATED_ID"
-                          pdk-label=""
-                        >
-                          Magistrate
-                        </label>
-                      </div>
-                    </pdk-radio-button>
-                  </div>
-                </pdk-radio-group>
-              </fieldset>
-            </pdk-form-group>
-          </pdk-form-field>
+              </span>
+              <span
+                class="mock-judiciary-ng-model"
+              >
+                {
+    "Judge": {
+      "id": "judge-1",
+      "seqId": 1,
+      "surname": "Smith",
+      "forenames": "John",
+      "judiciaryType": "Circuit Judge",
+      "emailAddress": "john.smith@example.com",
+      "specialisms": [
+        "MURDER",
+        "SEXUAL_OFFENCE"
+      ]
+    }
+  }
+              </span>
+            </div>
+          </judiciary-selection-input>
         </pdk-grid>
         <pdk-grid
           class="govuk-grid-column-full"

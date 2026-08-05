@@ -3,6 +3,8 @@
 # local only
 app.override.config.json
 .npmrc
+CLAUDE.md
+settings.local.json
 
 # Compiled output
 /dist

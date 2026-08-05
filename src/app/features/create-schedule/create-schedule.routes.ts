@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { OrganisationUnitsGuard, RotaBusinessTypesGuard } from '@cpp/reference-data';
+import { confirmationActionDeactivateGuard } from './guards/confirmation-action-deactivate.guard';
 
 export enum CreateScheduleRoutes {
   SELECT_COURT = 'select-court',
@@ -8,6 +9,7 @@ export enum CreateScheduleRoutes {
   COPY_SESSIONS = 'copy-sessions',
   REPEAT_PATTERN = 'repeat-pattern',
   SUMMARY = 'summary',
+  SUCCESS = 'success',
   REMOVE_SESSIONS = 'remove-sessions'
 }
 
@@ -75,6 +77,17 @@ export const createScheduleRoutes: Routes = [
       import('./containers/summary/summary.container').then((c) => c.SummaryContainer),
     data: {
       title: 'Summary sessions | Common Platform'
+    }
+  },
+  {
+    path: CreateScheduleRoutes.SUCCESS,
+    loadComponent: () =>
+      import('./containers/confirmation-action/confirmation-action.container').then(
+        (c) => c.ConfirmationActionContainer
+      ),
+    canDeactivate: [confirmationActionDeactivateGuard],
+    data: {
+      title: 'Sessions created | Common Platform'
     }
   },
   {

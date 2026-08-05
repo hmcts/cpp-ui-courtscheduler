@@ -3,6 +3,7 @@ import { CppHttp } from '@cpp/core';
 import { Observable } from 'rxjs';
 import {
   AssignCourtroomErrorGroup,
+  CourtSchedule,
   CourtScheduleSession,
   SearchSchedulesPayload,
   ViewCourtSchedule
@@ -72,6 +73,17 @@ export class ViewScheduleService {
           return { errorGroups };
         })
       );
+  };
+
+  searchCourtSchedulesById = (courtScheduleId: string): Observable<CourtSchedule[]> => {
+    const params = new HttpParams().set('courtScheduleIds', courtScheduleId);
+    return this.api
+      .query<{ courtSchedules: CourtSchedule[] }>({
+        url: '/listingcourtscheduler-api/rest/courtscheduler/courtschedule/search.court-schedules-by-id',
+        requestType: 'application/vnd.courtscheduler.search.court-schedules-by-id+json',
+        params
+      })
+      .pipe(map(({ courtSchedules }) => courtSchedules));
   };
 
   private toHttpParams(params: any): HttpParams {

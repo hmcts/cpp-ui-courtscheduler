@@ -3,48 +3,50 @@
 exports[`JudicialItinerarySuccessComponent should render correctly 1`] = `
 <app-test-host>
   <judicial-itinerary-success>
-    <pdk-grid
-      class="govuk-grid-row"
-      container=""
-    >
+    <confirmation-action-banner>
       <pdk-grid
-        class="govuk-grid-column-two-thirds"
-        two-thirds=""
+        class="govuk-grid-row"
+        container=""
       >
-        <pdk-panel
-          class="govuk-!-margin-bottom-4"
-          pdk-margin-bottom="4"
-          type="confirmation"
+        <pdk-grid
+          class="govuk-grid-column-two-thirds"
+          two-thirds=""
         >
-          <div
-            class="govuk-panel govuk-panel--confirmation"
+          <pdk-panel
+            class="govuk-!-margin-bottom-4"
+            pdk-margin-bottom="4"
+            type="confirmation"
           >
-            <h1
-              class="govuk-panel__title"
-            >
-            </h1>
             <div
-              class="govuk-panel__body"
+              class="govuk-panel govuk-panel--confirmation"
             >
-               Judiciary John Smith's availability added to Test Court 
+              <h1
+                class="govuk-panel__title"
+              >
+              </h1>
+              <div
+                class="govuk-panel__body"
+              >
+                 Judiciary John Smith's availability added to Test Court 
+              </div>
             </div>
-          </div>
-        </pdk-panel>
-        <div
-          class="govuk-!-margin-top-4"
-          pdk-margin-top="4"
-        >
-          <button
-            class="govuk-button"
-            data-test-id="go-to-manage-judiciary-itinerary-button"
-            pdk-button=""
-            type="button"
+          </pdk-panel>
+          <div
+            class="govuk-!-margin-top-4"
+            pdk-margin-top="4"
           >
-             Go to manage judiciary itinerary 
-          </button>
-        </div>
+            <button
+              class="govuk-button"
+              data-test-id="go-to-manage-judiciary-itinerary-button"
+              pdk-button=""
+              type="button"
+            >
+               Go to manage judiciary itinerary 
+            </button>
+          </div>
+        </pdk-grid>
       </pdk-grid>
-    </pdk-grid>
+    </confirmation-action-banner>
   </judicial-itinerary-success>
 </app-test-host>
 `;

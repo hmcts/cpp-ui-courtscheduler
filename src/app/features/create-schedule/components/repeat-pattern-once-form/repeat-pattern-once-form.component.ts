@@ -41,7 +41,7 @@ export class RepeatPatternOnceFormComponent {
 
   readonly startDate = linkedSignal({
     source: () => this.initialValues(),
-    computation: (initialValues) => dateUtils.parseStringToDate(initialValues?.startDate)
+    computation: (initialValues) => dateUtils.parseDateToString(initialValues?.startDate)
   });
 
   readonly endDate = computed<Date | null>(() => {
@@ -55,12 +55,12 @@ export class RepeatPatternOnceFormComponent {
   });
 
   handleStartDateChange(startDate: string) {
-    this.startDate.set(dateUtils.parseStringToDate(startDate));
+    this.startDate.set(dateUtils.parseDateToString(startDate));
   }
 
   resetForm(): void {
     const initialValues = this.initialValues();
-    this.startDate.set(dateUtils.parseStringToDate(initialValues?.startDate));
+    this.startDate.set(dateUtils.parseDateToString(initialValues?.startDate));
   }
 
   formatDisplayText = (_: never) => {

@@ -41,7 +41,7 @@ export class AddSittingDaysCheckAnswersContainer implements OnDestroy {
   readonly router = inject(Router);
   readonly location = inject(Location);
   readonly judiciaryName = computed(() =>
-    this.judicialMemberNamePipe.transform(this.store.selectedJudiciary())
+    this.judicialMemberNamePipe.transform(this.store.firstSelectedJudiciary())
   );
   readonly courtName = computed(
     () => this.store.searchParams.courtCentre()?.oucodeL3Name || 'court'

@@ -1,14 +1,14 @@
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { signal } from '@angular/core';
-import { signalStore, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
+import { signalStore, withMethods } from '@ngrx/signals';
 import { withJudiciarySpecialisms } from '../with-judiciary-specialisms.feature';
-import { JudiciaryWithSpecialisms } from '../../model/judicial-itinerary.interface';
-import { Specialism } from '../../model/specialism.enum';
+import { ExtendedJudicialMember } from '../../../../shared/model';
+import { Specialism } from '@cpp/reference-data';
 import { HttpErrorResponse } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
 import { JudicialItineraryService } from '../../services/judicial-itinerary.service';
+import { withJudiciarySelection } from '../../../../shared/signal-store';
 
-const mockJudiciary: JudiciaryWithSpecialisms = {
+const mockJudiciary: ExtendedJudicialMember = {
   id: 'judge-1',
   seqId: 1,
   surname: 'Smith',
@@ -16,34 +16,16 @@ const mockJudiciary: JudiciaryWithSpecialisms = {
   judiciaryType: 'Circuit Judge',
   emailAddress: 'john.smith@example.com',
   specialisms: [Specialism.MURDER]
-} as unknown as JudiciaryWithSpecialisms;
-
-let selectedJudiciarySpecialismsSignal = signal<Specialism[]>([Specialism.MURDER]);
+} as unknown as ExtendedJudicialMember;
 
 const TestStore = signalStore(
-  withState({
-    selectedJudiciary: mockJudiciary as JudiciaryWithSpecialisms | null
-  }),
-  withComputed(() => ({
-    selectedJudiciarySpecialisms: selectedJudiciarySpecialismsSignal
+  withJudiciarySelection(),
+  withMethods(() => ({
+    handleError: jest.fn(),
+    navigateByUrlTo: jest.fn(),
+    setSelectedItinerary: jest.fn(),
+    clearServerSubmissionError: jest.fn()
   })),
-  withMethods((store) => {
-    const setSelectedJudiciary = jest.fn((j: JudiciaryWithSpecialisms | null) =>
-      patchState(store, { selectedJudiciary: j })
-    );
-    const navigateByUrlTo = jest.fn();
-    const handleError = jest.fn();
-    return {
-      handleError,
-      setSelectedJudiciary,
-      setSelectedJudiciarySpecialisms: (s: Specialism[]) =>
-        selectedJudiciarySpecialismsSignal.set(s),
-      navigateByUrlTo,
-      clearJudiciarySelection: jest.fn(),
-      setSelectedItinerary: jest.fn(),
-      clearServerSubmissionError: jest.fn()
-    };
-  }),
   withJudiciarySpecialisms()
 );
 
@@ -57,8 +39,6 @@ describe('withJudiciarySpecialisms', () => {
     const mockService = {
       addSpecialisms: jest.fn()
     };
-    selectedJudiciarySpecialismsSignal.set([Specialism.MURDER]);
-
     TestBed.configureTestingModule({
       providers: [
         TestStore,
@@ -72,6 +52,8 @@ describe('withJudiciarySpecialisms', () => {
 
     store = TestBed.inject(TestStore);
     service = TestBed.inject(JudicialItineraryService) as jest.Mocked<JudicialItineraryService>;
+    store.setSelectedJudiciary(mockJudiciary);
+    jest.spyOn(store, 'setSelectedJudiciary');
   });
 
   afterEach(() => {
@@ -109,7 +91,6 @@ describe('withJudiciarySpecialisms', () => {
       expect.assertions(1);
 
       store.setSelectedJudiciary(null);
-      store.setSelectedJudiciarySpecialisms([]);
       store.setDraftSpecialisms([Specialism.ATTEMPTEDMURDER]);
 
       const aggregated = store.aggregatedSelectedSpecialisms();
@@ -120,7 +101,6 @@ describe('withJudiciarySpecialisms', () => {
       expect.assertions(1);
 
       store.setSelectedJudiciary(null);
-      store.setSelectedJudiciarySpecialisms([]);
       expect(store.aggregatedSelectedSpecialisms()).toEqual([]);
     });
 
@@ -130,8 +110,7 @@ describe('withJudiciarySpecialisms', () => {
       store.setSelectedJudiciary({
         ...mockJudiciary,
         specialisms: undefined
-      } as JudiciaryWithSpecialisms);
-      store.setSelectedJudiciarySpecialisms([]);
+      } as ExtendedJudicialMember);
       store.setDraftSpecialisms([Specialism.ATTEMPTEDMURDER]);
 
       const aggregated = store.aggregatedSelectedSpecialisms();
@@ -144,8 +123,7 @@ describe('withJudiciarySpecialisms', () => {
       store.setSelectedJudiciary({
         ...mockJudiciary,
         specialisms: null
-      } as unknown as JudiciaryWithSpecialisms);
-      store.setSelectedJudiciarySpecialisms([]);
+      } as unknown as ExtendedJudicialMember);
       store.setDraftSpecialisms([Specialism.ATTEMPTEDMURDER]);
 
       const aggregated = store.aggregatedSelectedSpecialisms();
@@ -212,7 +190,7 @@ describe('withJudiciarySpecialisms', () => {
       store.setSelectedJudiciary({
         ...mockJudiciary,
         id: undefined
-      } as unknown as JudiciaryWithSpecialisms);
+      } as unknown as ExtendedJudicialMember);
       service.addSpecialisms.mockReturnValue(of({ specialisms: [] }));
 
       store.addSpecialisms({});
@@ -227,7 +205,7 @@ describe('withJudiciarySpecialisms', () => {
       store.setSelectedJudiciary({
         ...mockJudiciary,
         id: null
-      } as unknown as JudiciaryWithSpecialisms);
+      } as unknown as ExtendedJudicialMember);
       service.addSpecialisms.mockReturnValue(of({ specialisms: [] }));
 
       store.addSpecialisms({});
@@ -245,7 +223,7 @@ describe('withJudiciarySpecialisms', () => {
       store.addSpecialisms({});
       tick();
 
-      expect(store.setSelectedJudiciary).toHaveBeenCalled();
+      expect(store.firstSelectedJudiciary()?.specialisms).toEqual([Specialism.ATTEMPTEDMURDER]);
       expect(store.draftSpecialisms()).toEqual([]);
     }));
 
@@ -268,6 +246,7 @@ describe('withJudiciarySpecialisms', () => {
       service.addSpecialisms.mockReturnValue(throwError(() => error));
 
       store.setDraftSpecialisms([Specialism.ATTEMPTEDMURDER]);
+      jest.mocked(store.setSelectedJudiciary).mockClear();
       store.addSpecialisms({});
       tick();
 

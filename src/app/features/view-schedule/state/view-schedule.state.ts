@@ -11,7 +11,6 @@ export const initialState: ViewCourtSchedule = {
   courtSchedules: [],
   bannerMessage: null,
   searchValues: null,
-  sessionToEdit: null,
   sessionsToRemove: [],
   sessionsToAssign: [],
   errors: [],

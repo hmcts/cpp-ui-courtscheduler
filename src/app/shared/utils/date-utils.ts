@@ -8,15 +8,15 @@ export const TWO_YEARS_IN_WEEKS = 104;
 export const TWO_YEARS_IN_MONTHS = 24;
 export const DAYS_PER_WEEK = 7;
 
-export const addDaysToDate = (date: Date, days: number): Date => {
+export const addDaysToDate = (date: Date | string, days: number): Date => {
   const resultDate = normalizeDate(date);
   resultDate.setDate(resultDate.getDate() + days);
   return resultDate;
 };
 
-export const getDisplayText = (startDate: Date, endDate: Date) =>
+export const getDisplayText = (startDate: Date | string, endDate: Date | string) =>
   startDate && endDate
-    ? `From ${formatDate(startDate, 'd MMM yyyy')} to ${formatDate(endDate, 'd MMM yyyy')}`
+    ? `From ${formatDate(new Date(startDate), 'd MMM yyyy')} to ${formatDate(new Date(endDate), 'd MMM yyyy')}`
     : '';
 
 export const isDateNotMonday = (date: Date): boolean => {
@@ -62,8 +62,9 @@ export const isDateBetweenRange = (date: Date, targetDate: string | Date): boole
   return normalizedDate >= startDate && normalizedDate <= endDate;
 };
 
-export const getInsetLabel = (date: Date) => {
-  const day = formatDate(date, 'EEEE');
+export const getInsetLabel = (date: Date | string) => {
+  const parsedDate = typeof date === 'string' ? new Date(date) : date;
+  const day = formatDate(parsedDate, 'EEEE');
   return day ? `Selected day: ${day}` : '';
 };
 
@@ -78,18 +79,16 @@ export const getSundaysAfterStartDate = (startDate: string, numWeeks: number): D
   return sundays;
 };
 
-export const parseDateToString = (date: Date | string): string => {
+export const parseDateToString = (date: Date | string | null | undefined): string | null => {
+  if (date == null || date === '') return null;
   if (typeof date === 'string') return date;
   return formatDate(date, 'yyyy-MM-dd');
 };
 
-export const parseStringToDate = (dateString?: string): Date | null => {
-  return dateString ? new Date(dateString) : null;
-};
-
 // Normalize the date to avoid timezone issues
-export const normalizeDate = (date: Date) => {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+export const normalizeDate = (date: Date | string) => {
+  const parsedDate = typeof date === 'string' ? new Date(date) : date;
+  return new Date(parsedDate.getFullYear(), parsedDate.getMonth(), parsedDate.getDate());
 };
 
 export const parseDateToLocaleString = (date: Date | string) => {

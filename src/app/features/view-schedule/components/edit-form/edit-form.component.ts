@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, input, output } from '@angular/core';
+import { Component, computed, inject, input, linkedSignal, output } from '@angular/core';
 import {
   PdkButton,
   PdkCheckBox,
@@ -18,15 +18,14 @@ import {
 } from '@cpp/pdk';
 import { RotaBusinessType, RotaBusinessTypeSelectComponent } from '@cpp/reference-data';
 import { CourtCentre } from '../../../../shared';
-import { CourtScheduleSession } from '../../model/view-schedule.model';
-
+import { CourtScheduleSession, EditSessionFormValues } from '../../model/view-schedule.model';
 import { SessionsListComponent } from '../sessions-list/sessions-list.component';
 import {
   isPastSession,
   hasHearingsBooked,
   canBeAssigned
 } from '../../../../shared/utils/session-criteria.utils';
-import { TimeRangeValidatorDirective } from '../../../../shared/pipes/time-range-validator.pipe';
+import { TimeRangeValidatorDirective } from '../../../../shared/directives/time-range-validator.directive';
 import {
   COURTROOM_ASSIGNMENT_OPTIONS,
   PANEL_OPTIONS,
@@ -35,9 +34,9 @@ import {
 import { CUSTOM_SESSION_TIME_LIMITS } from '@cpp/scheduling';
 import { SessionType } from '../../../../shared/model/session';
 import * as TimeRangeUtils from '../../../../shared/utils/time-range.utils';
-import { TimeRangeError } from '../../../../shared/utils/time-range.utils';
 import { FormatTimePipe } from '../../../../shared/pipes/format-time.pipe';
 import { FormsModule, ValidationErrors } from '@angular/forms';
+import { PanelType } from '../../../../shared/model/panel';
 import { JurisdictionType } from '../../../../shared/model/jurisdiction';
 import { CourtroomAssignmentType } from '../../../../shared/model/courtroom-assignment';
 
@@ -66,14 +65,15 @@ import { CourtroomAssignmentType } from '../../../../shared/model/courtroom-assi
   ],
   providers: [FormatTimePipe]
 })
-export class EditSessionComponent implements OnInit {
+export class EditSessionComponent {
   private formatTimePipe = inject(FormatTimePipe);
   readonly jurisdiction = input<JurisdictionType | null>();
 
   readonly courtCentres = input<CourtCentre[]>([]);
   readonly sessionToEdit = input<CourtScheduleSession>();
+
   readonly errors = output<ValidationError[] | null>();
-  readonly submitForm = output<CourtScheduleSession>();
+  readonly submitForm = output<EditSessionFormValues>();
   readonly handleBackNav = output<void>();
 
   readonly panelOptions = PANEL_OPTIONS;
@@ -81,165 +81,126 @@ export class EditSessionComponent implements OnInit {
   readonly VALIDATION = VALIDATION;
   readonly CUSTOM_SESSION_TIME_LIMITS = CUSTOM_SESSION_TIME_LIMITS;
   readonly courtroomAssignmentOptions = COURTROOM_ASSIGNMENT_OPTIONS;
+  readonly startTimeErrorMessages = TimeRangeUtils.getTimeRangeErrorMessages().start;
+  readonly endTimeErrorMessages = TimeRangeUtils.getTimeRangeErrorMessages().end;
 
-  courtroomOptions: SelectOption<string>[] = [];
+  readonly courtroomOptions = computed((): SelectOption<string>[] => {
+    const courtrooms = this.courtCentres().find(
+      (orgUnit) => orgUnit.id === this.sessionToEdit()?.courtHouseId
+    )?.courtRooms;
+    return courtrooms?.map((courtroom) => ({ value: courtroom.id, label: courtroom.name })) ?? [];
+  });
 
-  isPastDate: boolean = false;
-  hasHearingsBooked: boolean;
-  canBeAssigned: boolean;
-  showAM: boolean;
-  showPM: boolean;
-  showAD: boolean;
+  readonly isPastDate = computed(() => isPastSession(this.sessionToEdit()!));
+  readonly hasHearingsBooked = computed(() => hasHearingsBooked(this.sessionToEdit()!));
+  readonly canBeAssigned = computed(() => canBeAssigned(this.sessionToEdit()!));
 
-  startTimeErrorMessages: TimeRangeError[] = [];
-  endTimeErrorMessages: TimeRangeError[] = [];
+  readonly formValues = computed((): EditSessionFormValues => {
+    const session = this.sessionToEdit()!;
+    return {
+      courtRoomId: session.courtRoomId,
+      businessType: session.businessType,
+      courtSession: session.courtSession,
+      panel: session.panel,
+      sessionStartTime: this.formatTimePipe.transform(session.sessionStartTime, {
+        format24h: true,
+        hideMeridiem: true,
+        sessionDate: session.sessionDate
+      }),
+      sessionEndTime: this.formatTimePipe.transform(session.sessionEndTime, {
+        format24h: true,
+        hideMeridiem: true,
+        sessionDate: session.sessionDate
+      }),
+      isOverbookingAllowed: session.isOverbookingAllowed,
+      maxSlots: session.maxSlots,
+      maxDuration: session.maxDuration,
+      maxDurationForMorning: session.maxDurationForMorning,
+      maxDurationForAfternoon: session.maxDurationForAfternoon,
+      courtroomAssignment: session.isDraft
+        ? CourtroomAssignmentType.DRAFT
+        : CourtroomAssignmentType.ASSIGNED
+    };
+  });
 
-  durationErrorMessages: ValidationErrors[];
+  readonly selectedCourtSession = linkedSignal(() => this.formValues().courtSession);
 
-  morningDurationErrorMessages: ValidationErrors[] = [
-    { rule: 'required', message: VALIDATION.morningDuration }
-  ];
-  afternoonDurationErrorMessages: ValidationErrors[] = [
-    { rule: 'required', message: VALIDATION.afternoonDuration }
-  ];
-
-  formValues: CourtScheduleSession;
-  ineligiblePastSessions: CourtScheduleSession[] = [];
-
-  getMatchingSlotTypeFilter(): (businessType: RotaBusinessType) => boolean {
-    return (businessType: RotaBusinessType) => businessType.slot === this.formValues?.slotBased;
-  }
-
-  private formatHearingTime(time: string | undefined): string {
-    return this.formatTimePipe.transform(time, {
-      format24h: true,
-      hideMeridiem: true,
-      sessionDate: this.formValues.sessionDate
-    });
-  }
-
-  private createMinValidationMessage(booked: number, period?: 'AM' | 'PM'): ValidationErrors {
-    const message = period
-      ? `Maximum duration for ${period} cannot be less than total already booked of ${booked} mins`
-      : `Maximum ${
-          this.formValues.slotBased ? 'slots' : 'duration'
-        } cannot be less than total already booked of ${booked} ${
-          this.formValues.slotBased ? 'slot(s)' : 'min(s)'
-        }`;
-
-    return { rule: 'min', message };
-  }
-
-  get timeRange() {
-    const sessionTypeRange =
-      CUSTOM_SESSION_TIME_LIMITS[this.formValues?.courtSession as SessionType];
+  readonly timeRange = computed(() => {
+    const sessionTypeRange = CUSTOM_SESSION_TIME_LIMITS[this.selectedCourtSession() as SessionType];
+    const session = this.sessionToEdit();
     return {
       start: {
         min: sessionTypeRange?.min,
-        max: this.hasHearingsBooked
-          ? this.formatHearingTime(this.formValues?.minHearingTime)
+        max: this.hasHearingsBooked()
+          ? this.formatHearingTime(session?.minHearingTime)
           : sessionTypeRange?.max
       },
       end: {
-        min: this.hasHearingsBooked
-          ? this.formatHearingTime(this.formValues?.maxHearingTime)
+        min: this.hasHearingsBooked()
+          ? this.formatHearingTime(session?.maxHearingTime)
           : sessionTypeRange?.min,
         max: sessionTypeRange?.max
       }
     };
-  }
+  });
 
-  ngOnInit(): void {
-    this.formValues = {
-      ...this.sessionToEdit(),
-      sessionStartTime: this.formatTimePipe.transform(this.sessionToEdit().sessionStartTime, {
-        format24h: true,
-        hideMeridiem: true,
-        sessionDate: this.sessionToEdit().sessionDate
-      }),
-      sessionEndTime: this.formatTimePipe.transform(this.sessionToEdit().sessionEndTime, {
-        format24h: true,
-        hideMeridiem: true,
-        sessionDate: this.sessionToEdit().sessionDate
-      }),
-      courtroomAssignment: this.sessionToEdit()?.isDraft
-        ? CourtroomAssignmentType.DRAFT
-        : CourtroomAssignmentType.ASSIGNED
-    };
-
-    this.isPastDate = isPastSession(this.formValues);
-    if (!this.courtroomOptions.length) {
-      const courtrooms = this.courtCentres().find(
-        (orgUnit) => orgUnit.id === this.formValues.courtHouseId
-      )?.courtRooms;
-      this.courtroomOptions =
-        courtrooms?.map((courtroom) => ({
-          value: courtroom.id,
-          label: courtroom.name
-        })) ?? [];
-    }
-    this.hasHearingsBooked = hasHearingsBooked(this.formValues);
-    this.canBeAssigned = canBeAssigned(this.formValues);
-    this.showAM =
-      (this.formValues?.allDaySplit === false && !this.hasHearingsBooked) ||
-      (this.hasHearingsBooked && this.formValues.courtSession === 'AM');
-    this.showPM =
-      (this.formValues?.allDaySplit === false && !this.hasHearingsBooked) ||
-      (this.hasHearingsBooked && this.formValues.courtSession === 'PM');
-    this.showAD =
-      !this.hasHearingsBooked || (this.hasHearingsBooked && this.formValues.courtSession === 'AD');
-
-    this.startTimeErrorMessages = TimeRangeUtils.getTimeRangeErrorMessages(
-      this.formValues?.courtSession as SessionType,
-      this.timeRange.start
-    ).start;
-    this.endTimeErrorMessages = TimeRangeUtils.getTimeRangeErrorMessages(
-      this.formValues?.courtSession as SessionType,
-      this.timeRange.end
-    ).end;
-
-    this.durationErrorMessages = [
-      ...[
-        {
-          rule: 'required',
-          message: this.formValues.slotBased ? VALIDATION.slot : VALIDATION.duration
-        }
-      ],
-      this.createMinValidationMessage(this.formValues.totalBooked)
-    ];
-
-    this.morningDurationErrorMessages = [
-      ...this.morningDurationErrorMessages,
-      this.createMinValidationMessage(this.formValues.totalBookedForMorning, 'AM')
-    ];
-
-    this.afternoonDurationErrorMessages = [
-      ...this.afternoonDurationErrorMessages,
-      this.createMinValidationMessage(this.formValues.totalBookedForAfternoon, 'PM')
-    ];
-
-    this.ineligiblePastSessions = [this.formValues];
-  }
-
-  onCourtSessionChange(value: string) {
-    this.formValues = { ...this.formValues, courtSession: value };
-    this.handleCustomTimesErrorMessages();
-  }
-
-  handleCustomTimesErrorMessages() {
-    TimeRangeUtils.updateErrorMessages(
-      this.startTimeErrorMessages,
-      this.endTimeErrorMessages,
-      this.formValues?.courtSession as SessionType,
-      this.timeRange.start
+  readonly showAM = computed(() => {
+    const session = this.sessionToEdit();
+    return (
+      (session?.allDaySplit === false && !this.hasHearingsBooked()) ||
+      (this.hasHearingsBooked() && session?.courtSession === 'AM')
     );
+  });
+
+  readonly showPM = computed(() => {
+    const session = this.sessionToEdit();
+    return (
+      (session?.allDaySplit === false && !this.hasHearingsBooked()) ||
+      (this.hasHearingsBooked() && session?.courtSession === 'PM')
+    );
+  });
+
+  readonly showAD = computed(() => {
+    const session = this.sessionToEdit();
+    return (
+      !this.hasHearingsBooked() || (this.hasHearingsBooked() && session?.courtSession === 'AD')
+    );
+  });
+
+  readonly durationErrorMessages = computed((): ValidationErrors[] => {
+    const session = this.sessionToEdit()!;
+    return [
+      { rule: 'required', message: session.slotBased ? VALIDATION.slot : VALIDATION.duration },
+      this.createMinValidationMessage(session.totalBooked, session.slotBased)
+    ];
+  });
+
+  readonly morningDurationErrorMessages = computed((): ValidationErrors[] => {
+    const session = this.sessionToEdit()!;
+    return [
+      { rule: 'required', message: VALIDATION.morningDuration },
+      this.createMinValidationMessage(session.totalBookedForMorning, session.slotBased, 'AM')
+    ];
+  });
+
+  readonly afternoonDurationErrorMessages = computed((): ValidationErrors[] => {
+    const session = this.sessionToEdit()!;
+    return [
+      { rule: 'required', message: VALIDATION.afternoonDuration },
+      this.createMinValidationMessage(session.totalBookedForAfternoon, session.slotBased, 'PM')
+    ];
+  });
+
+  getMatchingSlotTypeFilter(): (businessType: RotaBusinessType) => boolean {
+    return (businessType: RotaBusinessType) =>
+      businessType.slot === this.sessionToEdit()?.slotBased;
   }
 
   handleSubmitForm({
-    courtSession = this.formValues.courtSession,
-    businessType = this.formValues.businessType,
-    panel = this.formValues.panel,
-    courtRoomId = this.formValues.courtRoomId,
+    courtSession = this.formValues().courtSession,
+    businessType = this.formValues().businessType,
+    panel = this.formValues().panel,
+    courtRoomId = this.formValues().courtRoomId,
     maxSlots,
     maxDuration,
     maxDurationForMorning,
@@ -247,24 +208,43 @@ export class EditSessionComponent implements OnInit {
     sessionStartTime,
     sessionEndTime,
     isOverbookingAllowed,
-    courtroomAssignment = this.formValues.courtroomAssignment
-  }: CourtScheduleSession) {
-    const { allDaySplit } = this.formValues;
-    const sessionToEdit = {
-      courtScheduleId: this.formValues.courtScheduleId,
+    courtroomAssignment = this.formValues().courtroomAssignment
+  }: EditSessionFormValues) {
+    const isCrown = this.jurisdiction() === JurisdictionType.CROWN;
+    this.submitForm.emit({
       courtRoomId,
+      courtRoomName: this.courtroomOptions().find((option) => option.value === courtRoomId)?.label,
       businessType,
       courtSession,
-      panel,
+      panel: isCrown ? PanelType.ADULT : panel,
       sessionStartTime,
       sessionEndTime,
-      isOverbookingAllowed: isOverbookingAllowed ?? false,
-      ...(maxSlots !== undefined ? { maxSlots } : { maxDuration }),
-      ...(maxDurationForMorning !== undefined && { maxDurationForMorning }),
-      ...(maxDurationForAfternoon !== undefined && { maxDurationForAfternoon }),
-      ...(allDaySplit !== undefined && { allDaySplit }),
-      courtroomAssignment
-    };
-    this.submitForm.emit(sessionToEdit as CourtScheduleSession);
+      isOverbookingAllowed: !!isOverbookingAllowed,
+      maxSlots,
+      maxDuration,
+      maxDurationForMorning,
+      maxDurationForAfternoon,
+      isDraft: isCrown ? courtroomAssignment === CourtroomAssignmentType.DRAFT : undefined,
+      courtroomAssignment: undefined
+    });
+  }
+
+  private formatHearingTime(time: string | undefined): string {
+    return this.formatTimePipe.transform(time, {
+      format24h: true,
+      hideMeridiem: true,
+      sessionDate: this.sessionToEdit()?.sessionDate
+    });
+  }
+
+  private createMinValidationMessage(
+    booked: number,
+    slotBased: boolean | undefined,
+    period?: 'AM' | 'PM'
+  ): ValidationErrors {
+    const message = period
+      ? `Maximum duration for ${period} cannot be less than total already booked of ${booked} mins`
+      : `Maximum ${slotBased ? 'slots' : 'duration'} cannot be less than total already booked of ${booked} ${slotBased ? 'slot(s)' : 'min(s)'}`;
+    return { rule: 'min', message };
   }
 }

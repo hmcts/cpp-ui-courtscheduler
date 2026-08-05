@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, input, signal } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { provideRouter, Routes } from '@angular/router';
@@ -9,13 +9,17 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AddSittingDaysCheckAnswersContainer } from '../add-sitting-days-check-answers/add-sitting-days-check-answers.container';
 import { ManageJudicialItineraryStore } from '../../store/manage-judicial-itinerary.store';
 import { SelectedCourtAndJudiciaryDetailsComponent } from '../../components/selected-court-and-judiciary-details/selected-court-and-judiciary-details.component';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 import { CourtSchedulerRoutes } from '../../../../app-routes';
 import { JudicialItineraryRoutes } from '../../manage-judicial-itinerary.routes';
 import { AddSittingDaysRoutes } from '../add-sitting-days/add-sitting-days.routes';
-import { SessionType } from '../../../../shared/model/session';
-import { DayOfWeek } from '../../../../shared/model/days';
-import { OrganisationUnit, JudicialMemberNamePipe } from '@cpp/reference-data';
+import { DayOfWeek, SessionType } from '../../../../shared/model';
+import {
+  JudiciaryTypePayload,
+  OrganisationUnit,
+  JudicialMemberNamePipe
+} from '@cpp/reference-data';
+import { ExtendedJudicialMember } from '../../../../shared/model';
 
 @Component({
   selector: 'app-mock-route',
@@ -68,9 +72,10 @@ class MockManageJudicialItineraryStore {
     startDate: signal<string | null>(null),
     endDate: signal<string | null>(null)
   };
-  readonly selectedType = signal<string | null>(null);
-  readonly selectedJudiciary = signal<any>(null);
-  readonly selectedJudiciarySpecialisms = signal<Specialism[]>([]);
+  readonly selectedJudiciaries = signal<ExtendedJudicialMember[] | null>(null);
+  readonly selectedJudiciaryTypes = signal<JudiciaryTypePayload[] | null>(null);
+  readonly firstSelectedJudiciary = computed(() => this.selectedJudiciaries()?.[0] ?? null);
+  readonly firstSelectedJudiciaryType = computed(() => this.selectedJudiciaryTypes()?.[0] ?? null);
   readonly draftItinerary = {
     availability: {
       startDate: signal<string | null>(null),
@@ -95,16 +100,14 @@ class MockManageJudicialItineraryStore {
   selector: 'selected-court-and-judiciary-details',
   template: `<div>
     Mock Selected Court Details - Court: {{ courtCentre() | json }}, Type:
-    {{ selectedType() | json }}, Judiciary: {{ selectedJudiciary() | json }}, Specialisms:
-    {{ existingSpecialisms() | json }}
+    {{ selectedType() | json }}, Judiciary: {{ selectedJudiciary() | json }}
   </div>`,
   imports: [JsonPipe]
 })
 class MockSelectedCourtAndJudiciaryDetailsComponent {
   readonly courtCentre = input<OrganisationUnit | null>(null);
-  readonly selectedType = input<string | null>(null);
-  readonly selectedJudiciary = input<any>(null);
-  readonly existingSpecialisms = input<Specialism[]>([]);
+  readonly selectedType = input<JudiciaryTypePayload | null>(null);
+  readonly selectedJudiciary = input<ExtendedJudicialMember | null>(null);
 }
 
 @Component({
@@ -165,9 +168,13 @@ describe('AddSittingDaysCheckAnswersContainer', () => {
 
   it('should render correctly', () => {
     store.searchParams.courtCentre.set(mockCourtCentre);
-    store.selectedType.set('Circuit Judge');
-    store.selectedJudiciary.set(mockJudiciary);
-    store.selectedJudiciarySpecialisms.set([Specialism.MURDER, Specialism.ATTEMPTEDMURDER]);
+    store.selectedJudiciaries.set([
+      {
+        ...mockJudiciary,
+        specialisms: [Specialism.MURDER, Specialism.ATTEMPTEDMURDER]
+      } as ExtendedJudicialMember
+    ]);
+    store.selectedJudiciaryTypes.set(['Judge']);
     store.draftItinerary.availability.startDate.set('2026-01-01');
     store.draftItinerary.availability.endDate.set('2026-01-31');
     store.draftItinerary.session.set('AD' as SessionType);

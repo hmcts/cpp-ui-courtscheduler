@@ -11,18 +11,17 @@ import {
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { Observable, of, pipe, switchMap } from 'rxjs';
-import { JudiciaryWithSpecialisms } from '../model/judicial-itinerary.interface';
-import { Specialism } from '../model/specialism.enum';
+import { ExtendedJudicialMember } from '../../../shared/model';
+import { Specialism } from '@cpp/reference-data';
 import { JudicialItineraryService } from '../services/judicial-itinerary.service';
+import { JudiciarySelectionState } from '../../../shared/signal-store';
 
-interface BaseDependencyState {
-  selectedJudiciary: JudiciaryWithSpecialisms | null;
-}
+interface BaseDependencyState extends JudiciarySelectionState {}
 interface BaseDependencyProps {
-  selectedJudiciarySpecialisms: Signal<Specialism[]>;
+  firstSelectedJudiciary: Signal<ExtendedJudicialMember | null>;
 }
 interface BaseDependencyMethods extends Record<string, Function> {
-  setSelectedJudiciary: (judiciary: JudiciaryWithSpecialisms) => void;
+  setSelectedJudiciary: (judiciary: ExtendedJudicialMember[]) => void;
   navigateByUrlTo: (url: string) => void;
   handleError?: (error: HttpErrorResponse) => void;
 }
@@ -47,9 +46,9 @@ export function withJudiciarySpecialisms<_>() {
       methods: type<BaseDependencyMethods>()
     },
     withState(initialState),
-    withComputed(({ selectedJudiciarySpecialisms, draftSpecialisms }) => ({
+    withComputed(({ firstSelectedJudiciary, draftSpecialisms }) => ({
       aggregatedSelectedSpecialisms: computed(() => {
-        const existing = selectedJudiciarySpecialisms();
+        const existing = firstSelectedJudiciary()?.specialisms ?? [];
         const draft = draftSpecialisms();
         return [...existing, ...draft];
       })
@@ -64,7 +63,7 @@ export function withJudiciarySpecialisms<_>() {
       addSpecialisms: rxMethod<{ referrer?: string }>(
         pipe(
           switchMap(({ referrer }): Observable<unknown> => {
-            const selectedJudiciary = store.selectedJudiciary();
+            const selectedJudiciary = store.firstSelectedJudiciary();
             if (!selectedJudiciary?.id) {
               return of(null);
             }
@@ -74,11 +73,11 @@ export function withJudiciarySpecialisms<_>() {
             return service.addSpecialisms(selectedJudiciary.id, specialisms).pipe(
               tapResponse({
                 next: ({ specialisms: updatedSpecialisms }) => {
-                  const updatedJudiciary: JudiciaryWithSpecialisms = {
+                  const updatedJudiciary: ExtendedJudicialMember = {
                     ...selectedJudiciary,
                     specialisms: updatedSpecialisms
                   };
-                  store.setSelectedJudiciary(updatedJudiciary);
+                  store.setSelectedJudiciary([updatedJudiciary]);
 
                   patchState(store, { draftSpecialisms: [] });
 

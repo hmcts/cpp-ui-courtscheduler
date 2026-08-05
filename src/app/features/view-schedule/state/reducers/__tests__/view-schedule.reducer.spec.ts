@@ -157,16 +157,6 @@ describe('ViewSchedule Reducer', () => {
     expect(state.searchValues).toEqual(searchFormValues);
   });
 
-  it('should set the session to edit', () => {
-    const session = mockCourtScheduleSession;
-    const action = ViewScheduleActions.setSessionToEdit({
-      session
-    });
-    const state = viewScheduleReducer(initialState, action);
-
-    expect(state.sessionToEdit).toEqual(session);
-  });
-
   it('should set setActiveCourtroomsIndexes', () => {
     const activeCourtroomsIndexes = mockActiveCourtroomIndexes;
     const action = ViewScheduleActions.setActiveCourtroomsIndexes({

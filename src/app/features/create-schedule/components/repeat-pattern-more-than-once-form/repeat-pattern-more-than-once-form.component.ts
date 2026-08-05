@@ -13,7 +13,7 @@ import {
   PdkTypographyDirective,
   ValidationError
 } from '@cpp/pdk';
-import { INTERVAL_OPTIONS } from '../../../../shared/utils/repeat-pattern.config';
+import { INTERVAL_OPTIONS } from '../../../../../app/shared/utils/repeat-pattern.config';
 import * as dateUtils from '../../../../shared/utils/date-utils';
 import { FrequencyType, FrequencyTypeUnion, RepeatPattern } from '../../model/repeat-pattern';
 
@@ -79,7 +79,7 @@ export class RepeatPatternMoreThanOnceFormComponent {
 
   readonly startDate = linkedSignal({
     source: () => this.initialValues(),
-    computation: (initialValues) => dateUtils.parseStringToDate(initialValues?.startDate)
+    computation: (initialValues) => dateUtils.parseDateToString(initialValues?.startDate)
   });
 
   readonly minEndDate = linkedSignal({
@@ -91,7 +91,7 @@ export class RepeatPatternMoreThanOnceFormComponent {
     },
     computation: ({ startDate, repeatFor, frequency }) => {
       if (!startDate || !repeatFor) return null;
-      return this.calculateEndDate(startDate, repeatFor, frequency);
+      return this.calculateEndDate(new Date(startDate), repeatFor, frequency);
     }
   });
 
@@ -106,10 +106,9 @@ export class RepeatPatternMoreThanOnceFormComponent {
       { startDate, repeatFor, frequency, initialValues },
       previous: { value: Date | null }
     ) => {
-      if (initialValues?.endDate && !previous)
-        return dateUtils.parseStringToDate(initialValues.endDate);
+      if (initialValues?.endDate && !previous) return new Date(initialValues.endDate);
       if (!startDate || !repeatFor) return null;
-      return this.calculateEndDate(startDate, repeatFor, frequency);
+      return this.calculateEndDate(new Date(startDate), repeatFor, frequency);
     }
   });
 
@@ -163,12 +162,12 @@ export class RepeatPatternMoreThanOnceFormComponent {
   }
 
   handleEndDateChange(endDate: string) {
-    this.endDate.set(dateUtils.parseStringToDate(endDate));
+    this.endDate.set(endDate ? new Date(endDate) : null);
   }
 
   handleStartDateChange(startDate: string) {
     if (startDate) {
-      this.startDate.set(dateUtils.parseStringToDate(startDate));
+      this.startDate.set(startDate);
     } else {
       this.startDate.set(null);
       this.endDate.set(null);
@@ -177,11 +176,12 @@ export class RepeatPatternMoreThanOnceFormComponent {
 
   resetForm(): void {
     const initialValues = this.initialValues();
-
     this.frequency.set(this.getFrequency(initialValues?.frequency));
     this.repeatFor.set(initialValues?.repeatFor ?? 1);
-    this.startDate.set(dateUtils.parseStringToDate(initialValues?.startDate));
-    this.endDate.set(dateUtils.parseStringToDate(initialValues?.endDate));
+    this.startDate.set(
+      initialValues?.startDate ? dateUtils.parseDateToString(initialValues.startDate) : null
+    );
+    this.endDate.set(initialValues?.endDate ? new Date(initialValues.endDate) : null);
   }
 
   private calculateEndDate(
@@ -204,8 +204,9 @@ export class RepeatPatternMoreThanOnceFormComponent {
   }
 
   private calculateMonthlyEndDate(startDate: Date, repeatFor: number): Date {
-    const year = startDate.getFullYear();
-    const month = startDate.getMonth();
+    const parsedStartDate = new Date(startDate);
+    const year = parsedStartDate.getFullYear();
+    const month = parsedStartDate.getMonth();
     const monthsToAdd = repeatFor - (repeatFor === 1 ? 1 : 0);
     const endMonth = month + monthsToAdd;
     const endYear = year + Math.floor(endMonth / 12);

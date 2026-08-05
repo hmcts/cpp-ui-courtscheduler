@@ -2,7 +2,6 @@
 
 exports[`JudiciaryDetailsComponent should render correctly 1`] = `
 <app-test-host
-  existingSpecialisms={[Function Array]}
   hideSpecialismsAction="false"
   selectedJudiciary={[Function Object]}
   selectedType={[Function String]}
@@ -112,7 +111,6 @@ exports[`JudiciaryDetailsComponent should render correctly 1`] = `
 
 exports[`JudiciaryDetailsComponent should render correctly with hideSpecialismsAction true 1`] = `
 <app-test-host
-  existingSpecialisms={[Function Array]}
   hideSpecialismsAction={[Function Boolean]}
   selectedJudiciary={[Function Object]}
   selectedType={[Function String]}

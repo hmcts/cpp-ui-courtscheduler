@@ -13,7 +13,6 @@ import {
 import { CreateScheduleState } from '../state/create-schedule.state';
 import { withLatestFrom } from 'rxjs';
 import { CreateScheduleRoutes } from '../create-schedule.routes';
-import { CreateScheduleActions } from '../state/actions';
 
 export const createScheduleNavGuard = (route: ActivatedRouteSnapshot) => {
   const store = inject(Store<CreateScheduleState>);
@@ -37,22 +36,12 @@ export const createScheduleNavGuard = (route: ActivatedRouteSnapshot) => {
         repeatPattern,
         isPersisted
       ]) => {
-        // isPersisted indicates a completed journey, so the store is cleared apart from court.
-        // After clearing a journey, navigation is restricted to SELECT_COURT and SELECT_BUSINESS_TYPE (default).
-
-        if (isPersisted) {
-          store.dispatch(CreateScheduleActions.clearJourney());
-        }
-
         switch (path) {
-          // Always allowing navigation to entry point of the journey creation process.
-          // This ensures users can always reach SELECT_COURT route.
           case CreateScheduleRoutes.SELECT_COURT:
             return true;
           case CreateScheduleRoutes.SELECT_BUSINESS_TYPE:
             return !!selectedCourt;
           case CreateScheduleRoutes.REPEAT_PATTERN:
-            return !!selectedCourt && !!selectedBusinessType;
           case CreateScheduleRoutes.SESSIONS_FORM:
           case CreateScheduleRoutes.COPY_SESSIONS:
             return !!selectedCourt && !!selectedBusinessType;
@@ -62,6 +51,8 @@ export const createScheduleNavGuard = (route: ActivatedRouteSnapshot) => {
             return (
               !!selectedCourt && !!selectedBusinessType && sessions.length > 0 && !!repeatPattern
             );
+          case CreateScheduleRoutes.SUCCESS:
+            return isPersisted;
           default:
             return false;
         }
@@ -69,7 +60,7 @@ export const createScheduleNavGuard = (route: ActivatedRouteSnapshot) => {
     ),
     map(
       (canActivate: boolean) =>
-        canActivate || createUrlTreeFromSnapshot(route, [`${CreateScheduleRoutes.SELECT_COURT}`])
+        canActivate || createUrlTreeFromSnapshot(route, [CreateScheduleRoutes.SELECT_COURT])
     ),
     take(1)
   );

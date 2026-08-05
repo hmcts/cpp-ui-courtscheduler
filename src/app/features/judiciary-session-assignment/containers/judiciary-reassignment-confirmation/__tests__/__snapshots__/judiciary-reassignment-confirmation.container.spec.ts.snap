@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JudiciaryReassignmentConfirmationContainer should match snapshot 1`] = `
+<judiciary-reassignment-confirmation-container
+  formErrors="null"
+  location={[Function Object]}
+  referrer={[Function Function]}
+  route={[Function Object]}
+  router={[Function Object]}
+  store={[Function Object]}
+>
+  <div>
+    <a
+      class="govuk-!-margin-top-0 govuk-back-link"
+      href="javascript:void(0);"
+      pdk-back-link=""
+      pdk-margin-top="0"
+    >
+      Back
+    </a>
+  </div><pdk-grid
+    class="govuk-grid-row"
+    container=""
+  >
+    <pdk-grid
+      class="govuk-grid-column-two-thirds"
+      two-thirds=""
+    >
+      <h1
+        class="govuk-heading-l"
+        pdk-typography="heading-large"
+      >
+         Are you sure you want to reassign the following session with judiciary? 
+      </h1>
+    </pdk-grid>
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <judiciary-reassignment-confirmation-form />
+    </pdk-grid>
+  </pdk-grid>
+</judiciary-reassignment-confirmation-container>
+`;

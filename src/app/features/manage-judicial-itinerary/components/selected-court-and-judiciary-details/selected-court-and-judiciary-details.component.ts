@@ -15,9 +15,9 @@ import {
 } from '@cpp/reference-data';
 import { CourtSchedulerRoutes } from '../../../../app-routes';
 import { JudicialItineraryRoutes } from '../../manage-judicial-itinerary.routes';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 import { SpecialismFormatPipe } from '../../pipes/specialism-format.pipe';
-import { JudiciaryWithSpecialisms } from '../../model/judicial-itinerary.interface';
+import { ExtendedJudicialMember } from '../../../../shared/model';
 
 @Component({
   selector: 'selected-court-and-judiciary-details',
@@ -38,8 +38,12 @@ export class SelectedCourtAndJudiciaryDetailsComponent {
   readonly router = inject(Router);
   readonly courtCentre = input<OrganisationUnit | null>(null);
   readonly selectedType = input<JudiciaryTypePayload | null>(null);
-  readonly selectedJudiciary = input<JudiciaryWithSpecialisms | null>(null);
-  readonly existingSpecialisms = input<Specialism[]>([]);
+  readonly selectedJudiciary = input<ExtendedJudicialMember | null>(null);
+
+  existingSpecialisms = computed(() => {
+    const selectedJudiciary = this.selectedJudiciary();
+    return selectedJudiciary?.specialisms ?? [];
+  });
 
   readonly allSpecialismsSelected = computed(() => {
     const allSpecialisms = Object.values(Specialism);

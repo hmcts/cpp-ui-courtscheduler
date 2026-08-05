@@ -78,7 +78,7 @@ export class ManageJudicialItineraryContainer {
 
   handleEdit = ({ itinerary }: { itinerary: Itinerary }): void => {
     this.store.setSelectedItinerary(itinerary);
-    this.store.setSelectedJudiciary(itinerary.judiciaryMember);
+    this.store.setSelectedJudiciary([itinerary.judiciaryMember]);
     this.router.navigate([
       CourtSchedulerRoutes.MANAGE_JUDICIAL_ITINERARY,
       JudicialItineraryRoutes.EDIT,
@@ -88,7 +88,7 @@ export class ManageJudicialItineraryContainer {
 
   handleRemove = (itinerary: Itinerary): void => {
     this.store.setSelectedItinerary(itinerary);
-    this.store.setSelectedJudiciary(itinerary.judiciaryMember);
+    this.store.setSelectedJudiciary([itinerary.judiciaryMember]);
     this.router.navigate([
       CourtSchedulerRoutes.MANAGE_JUDICIAL_ITINERARY,
       JudicialItineraryRoutes.REMOVE,

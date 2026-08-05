@@ -1,5 +1,5 @@
 import { SpecialismFormatPipe } from '../specialism-format.pipe';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 
 describe('SpecialismFormatPipe', () => {
   let pipe: SpecialismFormatPipe;

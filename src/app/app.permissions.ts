@@ -5,11 +5,12 @@ import {
   RequiredPermission,
   RolePermission
 } from '@cpp/users-groups';
-import { UserServiceFeature } from '@cpp/users-groups/users-groups.interfaces';
+import { UserServiceFeature } from '@cpp/users-groups';
 
 export interface CourtSchedulerUserPermissions {
   create?: RequiredPermission[];
   view: RequiredPermission[];
+  manageJudicialItinerary: RequiredPermission[];
 }
 
 export const EXPECTED_SCHEDULER_USER_PERMISSIONS =
@@ -30,6 +31,12 @@ const userPermissions: CourtSchedulerUserPermissions = {
       object: 'CourtSchedule',
       action: 'View'
     }
+  ],
+  manageJudicialItinerary: [
+    {
+      object: 'Judicial itinerary',
+      action: 'Manage'
+    }
   ]
 };
 
@@ -38,6 +45,9 @@ export const createSchedulePermissionExistsHelper = (permissions: RolePermission
 
 export const viewSchedulePermissionExistsHelper = (permissions: RolePermission[]) =>
   permissionsExist(permissions, userPermissions.view);
+
+export const manageJudicialItineraryPermissionExistsHelper = (permissions: RolePermission[]) =>
+  permissionsExist(permissions, userPermissions.manageJudicialItinerary);
 
 export function createScheduleAccessFeatureHelper() {
   return (features: UserServiceFeature[]) => {

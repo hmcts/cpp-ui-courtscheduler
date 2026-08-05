@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { JudiciaryDetailsComponent } from '../judiciary-details/judiciary-details.component';
-import { JudiciaryWithSpecialisms } from '../../model/judicial-itinerary.interface';
-import { Specialism } from '../../model/specialism.enum';
+import { ExtendedJudicialMember } from '../../../../shared/model';
+import { Specialism } from '@cpp/reference-data';
 
 @Component({
   selector: 'app-test-host',
@@ -11,7 +11,6 @@ import { Specialism } from '../../model/specialism.enum';
     <judiciary-details
       [selectedType]="selectedType"
       [selectedJudiciary]="selectedJudiciary"
-      [existingSpecialisms]="existingSpecialisms"
       [hideSpecialismsAction]="hideSpecialismsAction"
     ></judiciary-details>
   `,
@@ -19,8 +18,7 @@ import { Specialism } from '../../model/specialism.enum';
 })
 class TestHostComponent {
   selectedType: string | null = null;
-  selectedJudiciary: JudiciaryWithSpecialisms | null = null;
-  existingSpecialisms: Specialism[] = [];
+  selectedJudiciary: ExtendedJudicialMember | null = null;
   hideSpecialismsAction = false;
 }
 
@@ -29,14 +27,14 @@ describe('JudiciaryDetailsComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testHost: TestHostComponent;
 
-  const mockJudiciary: JudiciaryWithSpecialisms = {
+  const baseJudiciary: ExtendedJudicialMember = {
     id: 'judge-1',
     seqId: 1,
     surname: 'Smith',
     forenames: 'John',
     judiciaryType: 'Circuit Judge',
     emailAddress: 'john.smith@example.com'
-  } as unknown as JudiciaryWithSpecialisms;
+  } as unknown as ExtendedJudicialMember;
 
   beforeEach(async () => {
     fixture = TestBed.createComponent(TestHostComponent);
@@ -56,8 +54,10 @@ describe('JudiciaryDetailsComponent', () => {
     expect.assertions(1);
 
     testHost.selectedType = 'Judge';
-    testHost.selectedJudiciary = mockJudiciary;
-    testHost.existingSpecialisms = [Specialism.MURDER];
+    testHost.selectedJudiciary = {
+      ...baseJudiciary,
+      specialisms: [Specialism.MURDER]
+    };
     testHost.hideSpecialismsAction = false;
     fixture.detectChanges();
 
@@ -68,7 +68,7 @@ describe('JudiciaryDetailsComponent', () => {
     expect.assertions(1);
 
     testHost.selectedType = null;
-    testHost.selectedJudiciary = mockJudiciary;
+    testHost.selectedJudiciary = baseJudiciary;
     testHost.hideSpecialismsAction = false;
     fixture.detectChanges();
 
@@ -76,12 +76,11 @@ describe('JudiciaryDetailsComponent', () => {
     expect(summaryList.textContent).toContain('Not selected');
   });
 
-  it('should display "Not added" when existingSpecialisms is empty', () => {
+  it('should display "Not added" when selectedJudiciary has no specialisms', () => {
     expect.assertions(1);
 
     testHost.selectedType = 'Judge';
-    testHost.selectedJudiciary = mockJudiciary;
-    testHost.existingSpecialisms = [];
+    testHost.selectedJudiciary = { ...baseJudiciary, specialisms: [] };
     testHost.hideSpecialismsAction = false;
     fixture.detectChanges();
 
@@ -93,12 +92,10 @@ describe('JudiciaryDetailsComponent', () => {
     expect.assertions(1);
 
     testHost.selectedType = 'Judge';
-    testHost.selectedJudiciary = mockJudiciary;
-    testHost.existingSpecialisms = [
-      Specialism.MURDER,
-      Specialism.ATTEMPTEDMURDER,
-      Specialism.SEXUALOFFENCE
-    ];
+    testHost.selectedJudiciary = {
+      ...baseJudiciary,
+      specialisms: [Specialism.MURDER, Specialism.ATTEMPTEDMURDER, Specialism.SEXUALOFFENCE]
+    };
     testHost.hideSpecialismsAction = false;
     fixture.detectChanges();
 
@@ -110,8 +107,7 @@ describe('JudiciaryDetailsComponent', () => {
     expect.assertions(1);
 
     testHost.selectedType = 'Judge';
-    testHost.selectedJudiciary = mockJudiciary;
-    testHost.existingSpecialisms = [];
+    testHost.selectedJudiciary = { ...baseJudiciary, specialisms: [] };
     testHost.hideSpecialismsAction = false;
     fixture.detectChanges();
 
@@ -123,7 +119,7 @@ describe('JudiciaryDetailsComponent', () => {
     expect.assertions(1);
 
     testHost.selectedType = 'Judge';
-    testHost.selectedJudiciary = mockJudiciary;
+    testHost.selectedJudiciary = baseJudiciary;
     testHost.hideSpecialismsAction = false;
     fixture.detectChanges();
 
@@ -135,7 +131,7 @@ describe('JudiciaryDetailsComponent', () => {
     expect.assertions(1);
 
     testHost.selectedType = 'Judge';
-    testHost.selectedJudiciary = mockJudiciary;
+    testHost.selectedJudiciary = baseJudiciary;
     testHost.hideSpecialismsAction = true;
     fixture.detectChanges();
 
@@ -147,8 +143,10 @@ describe('JudiciaryDetailsComponent', () => {
     expect.assertions(1);
 
     testHost.selectedType = 'Judge';
-    testHost.selectedJudiciary = mockJudiciary;
-    testHost.existingSpecialisms = [Specialism.MURDER];
+    testHost.selectedJudiciary = {
+      ...baseJudiciary,
+      specialisms: [Specialism.MURDER]
+    };
     testHost.hideSpecialismsAction = true;
     fixture.detectChanges();
 
@@ -160,8 +158,10 @@ describe('JudiciaryDetailsComponent', () => {
     expect.assertions(1);
 
     testHost.selectedType = 'Judge';
-    testHost.selectedJudiciary = mockJudiciary;
-    testHost.existingSpecialisms = [Specialism.MURDER];
+    testHost.selectedJudiciary = {
+      ...baseJudiciary,
+      specialisms: [Specialism.MURDER]
+    };
     testHost.hideSpecialismsAction = false;
     fixture.detectChanges();
 
@@ -173,8 +173,10 @@ describe('JudiciaryDetailsComponent', () => {
     expect.assertions(1);
 
     testHost.selectedType = 'Judge';
-    testHost.selectedJudiciary = mockJudiciary;
-    testHost.existingSpecialisms = [Specialism.MURDER];
+    testHost.selectedJudiciary = {
+      ...baseJudiciary,
+      specialisms: [Specialism.MURDER]
+    };
     testHost.hideSpecialismsAction = true;
     fixture.detectChanges();
 

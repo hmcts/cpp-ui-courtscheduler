@@ -7,7 +7,6 @@ import { ManageJudicialItineraryContainer } from '../containers/manage-judicial-
 import { SelectJudiciaryTypeContainer } from '../containers/select-judiciary-type/select-judiciary-type.container';
 import { addSittingDaysRoutes } from '../containers/add-sitting-days/add-sitting-days.routes';
 import { addSpecialismsRoutes } from '../containers/add-specialisms/add-specialisms.routes';
-import { RefreshNavigatePageComponent } from '../components/refresh-navigate-page/refresh-navigate-page.component';
 import { editJudicialItineraryRoutes } from '../containers/edit-judicial-itinerary/edit-judicial-itinerary.routes';
 import { removeJudicialItineraryRoutes } from '../containers/remove-judicial-itinerary/remove-judicial-itinerary.routes';
 
@@ -22,7 +21,7 @@ describe('manageJudicialItineraryRoutes', () => {
     expect(root.children?.[0]?.path).toBe('');
     expect(root.children?.[1]?.path).toBe(JudicialItineraryRoutes.SELECT_JUDICIARY_TYPE);
     expect(root.children?.[2]?.path).toBe(JudicialItineraryRoutes.ADD_SITTING_DAYS);
-    expect(root.children?.[6]?.path).toBe(`${JudicialItineraryRoutes.REMOVE}/:id`);
+    expect(root.children?.[5]?.path).toBe(`${JudicialItineraryRoutes.REMOVE}/:id`);
   });
 
   it('should lazy load root and manage containers', async () => {
@@ -42,7 +41,7 @@ describe('manageJudicialItineraryRoutes', () => {
   });
 
   it('should lazy load child feature routes and components', async () => {
-    expect.assertions(12);
+    expect.assertions(10);
 
     const root = manageJudicialItineraryRoutes[0];
 
@@ -64,19 +63,13 @@ describe('manageJudicialItineraryRoutes', () => {
     const loadedAddSpecialisms = await addSpecialismsLoader!();
     expect(loadedAddSpecialisms).toBe(addSpecialismsRoutes);
 
-    const refreshRoute = root.children?.[4];
-    const refreshLoader = refreshRoute?.loadComponent;
-    expect(refreshLoader).toBeDefined();
-    const refreshComponent = await refreshLoader!();
-    expect(refreshComponent).toBe(RefreshNavigatePageComponent);
-
-    const editRoute = root.children?.[5];
+    const editRoute = root.children?.[4];
     const editLoader = editRoute?.loadChildren;
     expect(editLoader).toBeDefined();
     const loadedEditRoutes = await editLoader!();
     expect(loadedEditRoutes).toBe(editJudicialItineraryRoutes);
 
-    const removeRoute = root.children?.[6];
+    const removeRoute = root.children?.[5];
     const removeLoader = removeRoute?.loadChildren;
     expect(removeLoader).toBeDefined();
     const loadedRemoveRoutes = await removeLoader!();

@@ -16,6 +16,7 @@ import {
 import {
   createScheduleAccessFeatureHelper,
   createSchedulePermissionExistsHelper,
+  manageJudicialItineraryPermissionExistsHelper,
   viewScheduleAccessFeatureHelper,
   viewSchedulePermissionExistsHelper
 } from './app.permissions';
@@ -37,7 +38,9 @@ import { OrganisationUnitsGuard } from '@cpp/reference-data';
 export enum CourtSchedulerRoutes {
   CREATE_SCHEDULE = 'create',
   VIEW_SCHEDULE = 'view',
-  MANAGE_JUDICIAL_ITINERARY = 'manage-judicial-itinerary'
+  MANAGE_JUDICIAL_ITINERARY = 'manage-judicial-itinerary',
+  JUDICIARY_SESSION_ASSIGNMENT = 'judiciary-session-assignment',
+  STALE_SESSION = 'stale-session'
 }
 
 export const appRoutes: Routes = [
@@ -102,7 +105,7 @@ export const appRoutes: Routes = [
       },
       {
         path: CourtSchedulerRoutes.MANAGE_JUDICIAL_ITINERARY,
-        canActivate: [OrganisationUnitsGuard],
+        canActivate: [OrganisationUnitsGuard, UserPermissionsExistGuard],
         runGuardsAndResolvers: 'always',
         loadChildren: () =>
           import('./features/manage-judicial-itinerary/manage-judicial-itinerary.routes').then(
@@ -110,11 +113,18 @@ export const appRoutes: Routes = [
           ),
         providers: [ManageJudicialItineraryStore],
         data: {
-          userServiceExistsErrorRedirectTo: `/${ERROR_ROUTE_PATHS.unauthorised}`,
-          userPermissionsExistsErrorRedirectTo: `/${ERROR_ROUTE_PATHS.unauthorised}`
+          userPermissionsExistsErrorRedirectTo: `/${ERROR_ROUTE_PATHS.unauthorised}`,
+          userPermissionsExistsPredicate: manageJudicialItineraryPermissionExistsHelper
         }
       }
     ]
+  },
+  {
+    path: CourtSchedulerRoutes.STALE_SESSION,
+    loadComponent: () =>
+      import('./shared/components/session-entries-lost-page/session-entries-lost-page.component').then(
+        (c) => c.SessionEntriesLostPageComponent
+      )
   },
   ...SYSTEM_ANNOUNCEMENT_ROUTES,
   ...ERROR_PAGES_ROUTES

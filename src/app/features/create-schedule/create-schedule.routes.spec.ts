@@ -52,4 +52,10 @@ describe('createScheduleRoutes', () => {
     const component = await route?.loadComponent!();
     expect(component).toBeDefined();
   });
+
+  it('should have loadComponent function for SUCCESS route', async () => {
+    const route = router.config.find((r) => r.path === CreateScheduleRoutes.SUCCESS);
+    const component = await route?.loadComponent!();
+    expect(component).toBeDefined();
+  });
 });
