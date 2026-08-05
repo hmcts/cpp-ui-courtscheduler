@@ -8,7 +8,7 @@
   </parent>
   <groupId>uk.gov.moj.cpp.ui</groupId>
   <artifactId>ui-courtscheduler</artifactId>
-  <version>19.0.16-LPT2062-SNAPSHOT</version>
+  <version>19.0.17-LPT2062-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
     <protractor.baseUrl>http://localhost:4900</protractor.baseUrl>
