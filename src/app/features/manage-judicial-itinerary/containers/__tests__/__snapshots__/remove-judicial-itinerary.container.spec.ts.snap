@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RemoveJudicialItineraryContainer should render correctly 1`] = `
+<remove-judicial-itinerary-container
+  courtName={[Function Function]}
+  judicialMemberNamePipe={[Function Object]}
+  judiciaryName={[Function Function]}
+  location={[Function _Location]}
+  router={[Function _Router]}
+  store={[Function MockManageJudicialItineraryStore]}
+>
+  <div>
+    <a
+      class="govuk-!-margin-top-0 govuk-back-link"
+      href="javascript:void(0);"
+      pdk-back-link=""
+      pdk-margin-top="0"
+    >
+      Back
+    </a>
+  </div><pdk-grid
+    class="govuk-grid-row"
+    container=""
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h1
+        class="govuk-heading-l"
+        pdk-typography="heading-large"
+      >
+        Remove judicial availability details
+      </h1>
+      <remove-judiciary-itinerary-details>
+        <div>
+           Mock - Itinerary Details: {
+    "itinerary": {
+      "id": "itinerary-1",
+      "courtHouseId": "court-1",
+      "startDate": "2026-01-01",
+      "endDate": "2026-01-31",
+      "sessionType": "AD",
+      "repeatDays": [
+        "Monday",
+        "Tuesday"
+      ],
+      "unavailabilities": [],
+      "judiciaryMember": {
+        "id": "judge-1",
+        "seqId": 1,
+        "surname": "Smith",
+        "forenames": "John",
+        "judiciaryType": "Circuit Judge",
+        "emailAddress": "john.smith@example.com",
+        "specialisms": [
+          "MURDER"
+        ]
+      }
+    },
+    "courtCentre": {
+      "id": "court-1",
+      "oucode": "OU001",
+      "oucodeL3Name": "Test Court"
+    },
+    "selectedJudiciary": {
+      "id": "judge-1",
+      "seqId": 1,
+      "surname": "Smith",
+      "forenames": "John",
+      "judiciaryType": "Circuit Judge",
+      "emailAddress": "john.smith@example.com",
+      "specialisms": [
+        "MURDER"
+      ]
+    },
+    "selectedType": "Judge"
+  } 
+        </div>
+      </remove-judiciary-itinerary-details>
+      <remove-judiciary-itinerary-form>
+        <div>
+          Mock Remove Form
+        </div>
+      </remove-judiciary-itinerary-form>
+    </pdk-grid>
+  </pdk-grid>
+</remove-judicial-itinerary-container>
+`;

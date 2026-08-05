@@ -1,0 +1,60 @@
+<div
+  pdk-form
+  [formGroup]="formGroup"
+  (validSubmit)="handleSubmit(formGroup.value.unavailability)"
+  (errors)="errors.emit($event)"
+>
+  <pdk-grid container>
+    <pdk-grid full>
+      @if (unavailabilitiesForReason().length > 0) {
+        <div pdk-grid three-quarters pdk-padding-horizontal="0" role="list">
+          <dl pdk-summary-list pdk-margin-top="2" pdk-padding-horizontal="0">
+            @for (
+              unavailability of unavailabilitiesForReason();
+              track unavailability.startDate + unavailability.endDate
+            ) {
+              <div pdk-summary-list-item>
+                <dt pdk-summary-list-key pdk-visually-hidden>Dates</dt>
+                <dd pdk-summary-list-value>{{ unavailability | dateRangeFormat: ' to ' }}</dd>
+                <dd pdk-summary-list-action>
+                  <a
+                    href="javascript:void(0);"
+                    (click)="removeUnavailability(unavailability)"
+                    pdk-link
+                    unvisited
+                    pdk-text-colour="red"
+                    >Delete</a
+                  >
+                </dd>
+              </div>
+            }
+          </dl>
+        </div>
+      }
+      <div pdk-grid full pdk-padding-horizontal="0">
+        <date-range
+          label="Add {{ reason() | unavailabilityReasonFormat | lowercase }}"
+          formControlName="unavailability"
+          [minStartDate]="minStartDate()"
+          [maxStartDate]="maxEndDate()"
+          [getMinEndDate]="getMinEndDate"
+          [maxEndDate]="maxEndDate()"
+          [startDateErrorMessages]="startDateErrorMessages()"
+          [endDateErrorMessages]="endDateErrorMessages()"
+          disableWeekend
+          requiredStartDate
+        ></date-range>
+      </div>
+    </pdk-grid>
+    <pdk-grid one-third pdk-margin-top="4">
+      <button
+        pdk-margin-bottom="0"
+        type="button"
+        (click)="formDirective().onSubmit($event)"
+        pdk-button="secondary"
+      >
+        Add date
+      </button>
+    </pdk-grid>
+  </pdk-grid>
+</div>

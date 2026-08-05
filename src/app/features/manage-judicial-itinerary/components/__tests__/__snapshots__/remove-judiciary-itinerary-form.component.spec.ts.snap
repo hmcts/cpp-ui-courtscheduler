@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RemoveJudiciaryItineraryFormComponent should render correctly 1`] = `
+<app-test-host
+  errors="undefined"
+  submittedValue="undefined"
+>
+  <remove-judiciary-itinerary-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      data-test-id="removeJudiciaryItineraryForm"
+      novalidate=""
+      pdk-form=""
+    >
+      <pdk-form-field
+        label="Are you sure you want to remove this from judicial itinerary?"
+        labeltype="small"
+      >
+        <pdk-form-group
+          class="pdk-form-group"
+        >
+          <fieldset
+            class="govuk-fieldset"
+            pdk-fieldset=""
+          >
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--s"
+            >
+               Are you sure you want to remove this from judicial itinerary? 
+            </legend>
+            <pdk-radio-group
+              class="ng-untouched ng-pristine ng-valid"
+              data-test-id="removeConfirmation"
+              inline=""
+              name="removeConfirmation"
+              ngmodel=""
+              required=""
+            >
+              <div
+                class="govuk-radios govuk-radios--inline"
+              >
+                <pdk-radio-button>
+                  <div
+                    class="govuk-radios__item"
+                  >
+                    <input
+                      class="govuk-radios__input"
+                      id="pdk-radio-GENERATED_ID"
+                      name="pdk-radio-group-GENERATED_ID"
+                      type="radio"
+                      value="true"
+                    />
+                    <label
+                      class="govuk-radios__label govuk-label"
+                      for="pdk-radio-GENERATED_ID"
+                      pdk-label=""
+                    >
+                       Yes 
+                    </label>
+                  </div>
+                </pdk-radio-button>
+                <pdk-radio-button>
+                  <div
+                    class="govuk-radios__item"
+                  >
+                    <input
+                      class="govuk-radios__input"
+                      id="pdk-radio-GENERATED_ID"
+                      name="pdk-radio-group-GENERATED_ID"
+                      type="radio"
+                      value="false"
+                    />
+                    <label
+                      class="govuk-radios__label govuk-label"
+                      for="pdk-radio-GENERATED_ID"
+                      pdk-label=""
+                    >
+                       No 
+                    </label>
+                  </div>
+                </pdk-radio-button>
+              </div>
+            </pdk-radio-group>
+          </fieldset>
+        </pdk-form-group>
+      </pdk-form-field>
+      <div
+        class="actions"
+      >
+        <pdk-form-group
+          class="pdk-form-group"
+        >
+          <button
+            class="govuk-!-margin-bottom-0 govuk-button"
+            data-test-id="continue-button"
+            pdk-button=""
+            pdk-margin-bottom="0"
+            type="submit"
+          >
+             Continue 
+          </button>
+        </pdk-form-group>
+      </div>
+    </form>
+  </remove-judiciary-itinerary-form>
+</app-test-host>
+`;

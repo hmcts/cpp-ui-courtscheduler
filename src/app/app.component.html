@@ -1,0 +1,10 @@
+<cpp-application-layout
+  [activity]="hasActivity()"
+  [headerNavItems]="headerNavItems()"
+  [offline]="!online()"
+  accessibilityLink="{{ configService.appUrl }}/accessibility"
+>
+  <section pdk-padding-top="6">
+    <router-outlet></router-outlet>
+  </section>
+</cpp-application-layout>

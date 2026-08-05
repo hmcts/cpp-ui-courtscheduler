@@ -1,0 +1,144 @@
+<div pdk-grid container pdk-margin-bottom="8" data-test-id="sessionDetails">
+  <pdk-grid full>
+    <h2 pdk-typography="heading-medium" pdk-margin-bottom="0">Session details</h2>
+
+    @if (isSummary()) {
+      <div pdk-margin-bottom="4">
+        <a
+          href="javascript:void(0);"
+          pdk-link
+          unvisited
+          (click)="onNavigate.emit(routes.SESSIONS_FORM)"
+          data-test-id="changeSessionDetails"
+          >Change</a
+        >
+      </div>
+    }
+
+    <table pdk-table>
+      <thead pdk-table-head>
+        <tr pdk-table-row>
+          <th pdk-table-header pdk-sortable-header (directionChange)="sort('courtroom', $event)">
+            Courtroom
+          </th>
+          @if (isCrownCourt()) {
+            <th
+              pdk-table-header
+              pdk-sortable-header
+              (directionChange)="sort('courtroomAssignment', $event)"
+            >
+              Status
+            </th>
+          }
+          <th pdk-table-header>Time</th>
+          <th pdk-table-header pdk-sortable-header (directionChange)="sort('sessionType', $event)">
+            Session
+          </th>
+          @if (!isCrownCourt()) {
+            <th pdk-table-header pdk-sortable-header (directionChange)="sort('panelType', $event)">
+              Panel
+            </th>
+          }
+          <th pdk-table-header>Type</th>
+          <th pdk-table-header>Total capacity</th>
+          <th pdk-table-header>Repeat on</th>
+          <th pdk-table-header>Overbooking</th>
+          @if (actionsEnabled()) {
+            <th pdk-table-header>Actions</th>
+          }
+        </tr>
+      </thead>
+      <tbody pdk-table-body>
+        @for (session of sortedSessions(); track session.id) {
+          <tr pdk-table-row data-test-id="sessionDetailsTableItem">
+            <td pdk-table-cell data-test-id="courtroom">
+              {{ session.courtroom.courtroomName }}
+            </td>
+            @if (isCrownCourt()) {
+              <td pdk-table-cell data-test-id="courtroomAssignment">
+                {{ session.courtroomAssignment | titlecase }}
+              </td>
+            }
+            <td pdk-table-cell data-test-id="time">
+              @if (getSessionTimeRange(session); as timeRange) {
+                {{ timeRange.sessionStartTime | formatTime }} to
+                {{ timeRange.sessionEndTime | formatTime }}
+              }
+            </td>
+            <td pdk-table-cell data-test-id="sessionType">
+              @switch (session.sessionType) {
+                @case ('AD') {
+                  <span>All day</span>
+                }
+                @default {
+                  <span>{{ session.sessionType }}</span>
+                }
+              }
+            </td>
+            @if (!isCrownCourt()) {
+              <td pdk-table-cell data-test-id="panelType">
+                {{ session.panelType | titlecase }}
+              </td>
+            }
+            <td pdk-table-cell data-test-id="businessType">
+              {{ session.businessType.typeDescription }}
+            </td>
+            <td pdk-table-cell data-test-id="duration">
+              @if (session.duration !== null && !session.allDaySplit) {
+                <div>
+                  <span>{{ isSlot() ? 'Slots' : 'Duration' }} - </span>
+                  @if (isSlot()) {
+                    <span>{{ session.duration }}</span>
+                  } @else {
+                    <span>{{ session.duration | timeDuration }}</span>
+                  }
+                </div>
+              }
+              @if (session.duration === null || session.allDaySplit) {
+                <div>
+                  <span>AM: {{ session.maxDurationForMorning | timeDuration }}</span>
+                  <br />
+                  <span>PM: {{ session.maxDurationForAfternoon | timeDuration }}</span>
+                </div>
+              }
+            </td>
+            <td pdk-table-cell data-test-id="repeatDays">
+              @if (isMonthlyFrequency(session)) {
+                {{ getMonthlyFrequencyLabel(session) }}
+              } @else if (isAllDaysSelected(session)) {
+                Daily
+              } @else {
+                {{ session.repeatDays | daysName }}
+              }
+            </td>
+            <td pdk-table-cell data-test-id="overbooking">
+              {{ session.isOverbookingAllowed ? 'Yes' : 'No' }}
+            </td>
+            @if (actionsEnabled()) {
+              <td pdk-table-cell>
+                <div class="link-container">
+                  <a
+                    href="javascript:void(0);"
+                    pdk-link
+                    unvisited
+                    (click)="copySession(session)"
+                    data-test-id="copy-session"
+                    >Copy</a
+                  >
+                  <a
+                    href="javascript:void(0);"
+                    pdk-link
+                    unvisited
+                    (click)="removeSession(session)"
+                    data-test-id="remove-session"
+                    >Remove</a
+                  >
+                </div>
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </pdk-grid>
+</div>

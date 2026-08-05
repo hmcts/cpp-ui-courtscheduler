@@ -1,0 +1,330 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectedCourtAndJudiciaryDetailsComponent should render correctly 1`] = `
+<app-test-host
+  courtCentre={[Function Object]}
+  existingSpecialisms={[Function Array]}
+  selectedJudiciary={[Function Object]}
+  selectedType={[Function String]}
+>
+  <selected-court-and-judiciary-details>
+    <pdk-grid
+      class="govuk-!-margin-top-4 govuk-grid-row"
+      container=""
+      pdk-margin-top="4"
+    >
+      <pdk-grid
+        class="govuk-grid-column-full"
+        full=""
+      >
+        <h2
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+          Selected court and judiciary
+        </h2>
+        <dl
+          class="govuk-!-margin-top-2 pdk-summary-list"
+          pdk-margin-top="2"
+          pdk-summary-list=""
+        >
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Court name
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              Test Court
+            </dd>
+            <dd
+              class="pdk-summary-list__actions"
+              pdk-summary-list-action=""
+            >
+              <a
+                class="govuk-link govuk-link--no-visited-state"
+                data-test-id="change-court-link"
+                href="javascript:void(0);"
+                pdk-link=""
+                unvisited=""
+              >
+                 Change 
+              </a>
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Judiciary type
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              Judge
+            </dd>
+            <dd
+              class="pdk-summary-list__actions"
+              pdk-summary-list-action=""
+            >
+              <a
+                class="govuk-link govuk-link--no-visited-state"
+                data-test-id="change-judiciary-type-link"
+                href="javascript:void(0);"
+                pdk-link=""
+                unvisited=""
+              >
+                 Change 
+              </a>
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Name
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              SMITH
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Specialisms
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              <pdk-tag
+                class="govuk-!-margin-right-2 govuk-!-margin-bottom-2"
+                pdk-margin-bottom="2"
+                pdk-margin-right="2"
+              >
+                <div
+                  class="govuk-tag govuk-tag--default"
+                >
+                   Murder 
+                </div>
+              </pdk-tag>
+            </dd>
+            <dd
+              class="pdk-summary-list__actions"
+              pdk-summary-list-action=""
+            >
+              <a
+                class="govuk-link govuk-link--no-visited-state"
+                data-test-id="add-new-specialism-link"
+                href="javascript:void(0);"
+                pdk-link=""
+                unvisited=""
+              >
+                 Add new specialism 
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </pdk-grid>
+    </pdk-grid>
+  </selected-court-and-judiciary-details>
+</app-test-host>
+`;
+
+exports[`SelectedCourtAndJudiciaryDetailsComponent should render correctly when all specialisms are selected 1`] = `
+<app-test-host
+  courtCentre={[Function Object]}
+  existingSpecialisms={[Function Array]}
+  selectedJudiciary={[Function Object]}
+  selectedType={[Function String]}
+>
+  <selected-court-and-judiciary-details>
+    <pdk-grid
+      class="govuk-!-margin-top-4 govuk-grid-row"
+      container=""
+      pdk-margin-top="4"
+    >
+      <pdk-grid
+        class="govuk-grid-column-full"
+        full=""
+      >
+        <h2
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+          Selected court and judiciary
+        </h2>
+        <dl
+          class="govuk-!-margin-top-2 pdk-summary-list"
+          pdk-margin-top="2"
+          pdk-summary-list=""
+        >
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Court name
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              Test Court
+            </dd>
+            <dd
+              class="pdk-summary-list__actions"
+              pdk-summary-list-action=""
+            >
+              <a
+                class="govuk-link govuk-link--no-visited-state"
+                data-test-id="change-court-link"
+                href="javascript:void(0);"
+                pdk-link=""
+                unvisited=""
+              >
+                 Change 
+              </a>
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Judiciary type
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              Judge
+            </dd>
+            <dd
+              class="pdk-summary-list__actions"
+              pdk-summary-list-action=""
+            >
+              <a
+                class="govuk-link govuk-link--no-visited-state"
+                data-test-id="change-judiciary-type-link"
+                href="javascript:void(0);"
+                pdk-link=""
+                unvisited=""
+              >
+                 Change 
+              </a>
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Name
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              SMITH
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Specialisms
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              <pdk-tag
+                class="govuk-!-margin-right-2 govuk-!-margin-bottom-2"
+                pdk-margin-bottom="2"
+                pdk-margin-right="2"
+              >
+                <div
+                  class="govuk-tag govuk-tag--default"
+                >
+                   Murder 
+                </div>
+              </pdk-tag>
+              <pdk-tag
+                class="govuk-!-margin-right-2 govuk-!-margin-bottom-2"
+                pdk-margin-bottom="2"
+                pdk-margin-right="2"
+              >
+                <div
+                  class="govuk-tag govuk-tag--default"
+                >
+                   Attempted murder 
+                </div>
+              </pdk-tag>
+              <pdk-tag
+                class="govuk-!-margin-right-2 govuk-!-margin-bottom-2"
+                pdk-margin-bottom="2"
+                pdk-margin-right="2"
+              >
+                <div
+                  class="govuk-tag govuk-tag--default"
+                >
+                   Serious Sexual offence 
+                </div>
+              </pdk-tag>
+              <pdk-tag
+                class="govuk-!-margin-right-2 govuk-!-margin-bottom-2"
+                pdk-margin-bottom="2"
+                pdk-margin-right="2"
+              >
+                <div
+                  class="govuk-tag govuk-tag--default"
+                >
+                   Terrorism 
+                </div>
+              </pdk-tag>
+            </dd>
+          </div>
+        </dl>
+      </pdk-grid>
+    </pdk-grid>
+  </selected-court-and-judiciary-details>
+</app-test-host>
+`;

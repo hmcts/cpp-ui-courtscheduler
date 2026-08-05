@@ -1,0 +1,34 @@
+<h2 pdk-typography="heading-medium" pdk-margin-bottom="0">Once</h2>
+<p pdk-margin-top="1">Repeat for one week only</p>
+<form
+  #formOnce="ngForm"
+  data-test-id="repeatSessionsOnceForm"
+  pdk-form
+  pdk-margin-top="8"
+  (errors)="errors.emit($event)"
+  (validSubmit)="handleSubmitForm(formOnce.value)"
+>
+  <pdk-grid container>
+    <pdk-grid one-half>
+      <pdk-form-field label="Start date" labelType="small">
+        <pdk-date-picker-input
+          name="startDate"
+          required
+          [minDate]="minStartDate"
+          [isDateHighlighted]="isDateBetweenRange"
+          [isDateSelected]="isDateBetweenRange"
+          [formatDisplayText]="formatDisplayText"
+          [ngModel]="startDate()"
+          (ngModelChange)="handleStartDateChange($event)"
+        >
+        </pdk-date-picker-input>
+        @if (startDateLabel()) {
+          <pdk-inset-text>
+            {{ startDateLabel() }}
+          </pdk-inset-text>
+        }
+      </pdk-form-field>
+      <button pdk-button pdk-margin-top="2" type="submit">Continue</button>
+    </pdk-grid>
+  </pdk-grid>
+</form>

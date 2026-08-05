@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RepeatPatternSummaryComponent should create 1`] = `
+<repeat-pattern-summary
+  isMonthlyFrequency={[Function Function]}
+  repeatPattern={[Function Function]}
+  repeatPatternDates={[Function Object]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-one-half"
+      one-half=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Repeat session
+      </h2>
+      <div
+        class="govuk-!-margin-bottom-8"
+        pdk-margin-bottom="8"
+      >
+        <dl
+          class="pdk-summary-list"
+          pdk-summary-list=""
+        >
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Start date
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              data-test-id="startDate"
+              pdk-summary-list-value=""
+            >
+               01/01/2023 
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Every
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              data-test-id="repeat-for"
+              pdk-summary-list-value=""
+            >
+               1 
+              week
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              End date
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              data-test-id="end-date"
+              pdk-summary-list-value=""
+            >
+               07/01/2023 
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </pdk-grid>
+  </div>
+</repeat-pattern-summary>
+`;

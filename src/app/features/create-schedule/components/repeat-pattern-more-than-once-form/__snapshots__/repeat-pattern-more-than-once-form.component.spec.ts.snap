@@ -1,0 +1,252 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RepeatPatternMoreThanOnceFormComponent should create 1`] = `
+<repeat-pattern-more-than-once-form
+  FrequencyType={[Function Object]}
+  endDate={[Function Function]}
+  endDateLabel={[Function Function]}
+  errors={[Function OutputEmitterRef]}
+  frequency={[Function Function]}
+  getStartDateDisabledFunction={[Function Function]}
+  initialValues={[Function Function]}
+  intervalOptions={[Function Array]}
+  isDateDisabled={[Function Function]}
+  minEndDate={[Function Function]}
+  minStartDate={[Function Date]}
+  repeatFor={[Function Function]}
+  startDate={[Function Function]}
+  startDateHintText={[Function Function]}
+  startDateLabel={[Function Function]}
+  submitForm={[Function OutputEmitterRef]}
+>
+  <h2
+    class="govuk-!-margin-bottom-0 govuk-heading-m"
+    pdk-margin-bottom="0"
+    pdk-typography="heading-medium"
+  >
+    More than once
+  </h2><p
+    class="govuk-!-margin-top-1"
+    pdk-margin-top="1"
+  >
+    Repeat for more than one week
+  </p><form
+    class="govuk-!-margin-top-8 ng-untouched ng-pristine ng-valid"
+    data-test-id="repeatSessionsMoreThanOnceForm"
+    novalidate=""
+    pdk-form=""
+    pdk-margin-top="8"
+  >
+    <pdk-grid
+      class="govuk-grid-row"
+      container=""
+    >
+      <pdk-grid
+        class="govuk-grid-column-one-half"
+        one-half=""
+      >
+        <div
+          class="weeks-input-wrapper"
+        >
+          <pdk-form-field
+            label="Every"
+            labeltype="small"
+          >
+            <pdk-form-group
+              class="pdk-form-group"
+            >
+              <label
+                class="govuk-label govuk-label--s"
+                for="pdk-form-control-undefined-GENERATED_ID"
+              >
+                 Every 
+              </label>
+              <div
+                class="inputs-row"
+              >
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-2"
+                  data-test-id="repeatFor"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  max="52"
+                  min="1"
+                  name="repeatFor"
+                  pattern="[0-9]*"
+                  pdk-text-input=""
+                  required=""
+                  type="number"
+                />
+                <pdk-form-field
+                  class="interval govuk-!-margin-left-2"
+                  label="Interval"
+                  labeltype="small"
+                  pdk-margin-left="2"
+                >
+                  <pdk-form-group
+                    class="pdk-form-group"
+                  >
+                    <label
+                      class="govuk-label govuk-label--s"
+                      for="pdk-select-GENERATED_ID"
+                    >
+                       Interval 
+                    </label>
+                    <pdk-select
+                      class="ng-untouched ng-pristine ng-valid"
+                      data-test-id="interval"
+                      justified=""
+                      name="frequency"
+                      required=""
+                    >
+                      <select
+                        class="govuk-select pdk-select--justified"
+                        id="pdk-select-GENERATED_ID"
+                        name="frequency"
+                        required=""
+                      >
+                        <option
+                          value="EVERY_WEEK"
+                        >
+                           week(s) 
+                        </option>
+                        <option
+                          value="EVERY_MONTH"
+                        >
+                           month(s) 
+                        </option>
+                      </select>
+                    </pdk-select>
+                  </pdk-form-group>
+                </pdk-form-field>
+              </div>
+            </pdk-form-group>
+          </pdk-form-field>
+        </div>
+        <pdk-form-field
+          label="Start date"
+          labeltype="small"
+        >
+          <pdk-form-group
+            class="pdk-form-group"
+          >
+            <label
+              class="govuk-label govuk-label--s"
+              for="pdk-form-control-undefined-GENERATED_ID"
+            >
+               Start date 
+            </label>
+            <pdk-hint
+              class="govuk-hint"
+            >
+              <div>
+                 Start date will be from next Monday 
+              </div>
+            </pdk-hint>
+            <pdk-date-picker-input
+              class="ng-untouched ng-pristine ng-valid"
+              data-test-id="moreThanOnceStartDate"
+              name="startDate"
+              required=""
+            >
+              <pdk-interaction-container>
+                <div>
+                  <div
+                    style="position: relative;"
+                  >
+                    <div>
+                      <div
+                        class="pdk-date-picker-input__selection govuk-!-padding-0"
+                        pdk-padding="0"
+                      >
+                        <span
+                          hidden=""
+                          id="datePickerSelector-pdk-form-control-undefined-GENERATED_ID"
+                        >
+                           Select to open the date picker and choose a date.
+                        </span>
+                        <input
+                          aria-describedby="datePickerSelector-pdk-form-control-undefined-GENERATED_ID"
+                          aria-expanded="false"
+                          aria-haspopup="dialog"
+                          class="pdk-date-picker-input__selection-text govuk-!-padding-right-6 ng-untouched ng-pristine ng-valid govuk-input"
+                          id="pdk-form-control-undefined-GENERATED_ID"
+                          pdk-input=""
+                          pdk-padding-right="6"
+                          readonly="true"
+                          role="button"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </pdk-interaction-container>
+            </pdk-date-picker-input>
+          </pdk-form-group>
+        </pdk-form-field>
+        <pdk-form-field
+          label="End date"
+          labeltype="small"
+        >
+          <pdk-form-group
+            class="pdk-form-group"
+          >
+            <label
+              class="govuk-label govuk-label--s"
+              for="pdk-form-control-undefined-GENERATED_ID"
+            >
+               End date 
+            </label>
+            <pdk-date-picker-input
+              class="ng-untouched ng-pristine ng-valid"
+              data-test-id="endDate"
+              name="endDate"
+              required=""
+            >
+              <pdk-interaction-container>
+                <div>
+                  <div
+                    style="position: relative;"
+                  >
+                    <div>
+                      <div
+                        class="pdk-date-picker-input__selection govuk-!-padding-0"
+                        pdk-padding="0"
+                      >
+                        <span
+                          hidden=""
+                          id="datePickerSelector-pdk-form-control-undefined-GENERATED_ID"
+                        >
+                           Select to open the date picker and choose a date.
+                        </span>
+                        <input
+                          aria-describedby="datePickerSelector-pdk-form-control-undefined-GENERATED_ID"
+                          aria-expanded="false"
+                          aria-haspopup="dialog"
+                          class="pdk-date-picker-input__selection-text govuk-!-padding-right-6 ng-untouched ng-pristine ng-valid govuk-input"
+                          id="pdk-form-control-undefined-GENERATED_ID"
+                          pdk-input=""
+                          pdk-padding-right="6"
+                          readonly="true"
+                          role="button"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </pdk-interaction-container>
+            </pdk-date-picker-input>
+          </pdk-form-group>
+        </pdk-form-field>
+        <button
+          class="govuk-!-margin-top-2 govuk-button"
+          pdk-button=""
+          pdk-margin-top="2"
+          type="submit"
+        >
+          Continue
+        </button>
+      </pdk-grid>
+    </pdk-grid>
+  </form>
+</repeat-pattern-more-than-once-form>
+`;

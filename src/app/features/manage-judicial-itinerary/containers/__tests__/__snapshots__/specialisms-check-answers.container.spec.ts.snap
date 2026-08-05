@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SpecialismsCheckAnswersContainer should render correctly 1`] = `
+<app-test-host>
+  <specialisms-check-answers-container>
+    <div>
+      <a
+        class="govuk-!-margin-top-0 govuk-back-link"
+        href="javascript:void(0);"
+        pdk-back-link=""
+        pdk-margin-top="0"
+      >
+        Back
+      </a>
+    </div>
+    <h1
+      class="govuk-heading-l"
+      pdk-typography="heading-large"
+    >
+      Check your answers
+    </h1>
+    <judiciary-details>
+      <div>
+         Mock Judiciary Details - Type: "Circuit Judge", Judiciary: {
+    "id": "judge-1",
+    "surname": "Smith",
+    "forenames": "John",
+    "judiciaryType": "Circuit Judge"
+  }, Specialisms: [
+    "MURDER",
+    "ATTEMPTED_MURDER"
+  ] 
+      </div>
+    </judiciary-details>
+    <specialism-added-confirmation-form>
+      <div>
+         Mock Specialism Added Confirmation Form - Draft: [
+    "MURDER",
+    "SEXUAL_OFFENCE"
+  ], Initial: null 
+      </div>
+    </specialism-added-confirmation-form>
+  </specialisms-check-answers-container>
+</app-test-host>
+`;

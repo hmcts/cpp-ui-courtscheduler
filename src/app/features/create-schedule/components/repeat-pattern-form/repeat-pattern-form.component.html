@@ -1,0 +1,17 @@
+<h2 pdk-typography="heading-large">Repeat the sessions</h2>
+<pdk-tabs [selectedTabIndex]="tabOptionIndex()" (selectedTabChange)="handleTabChange($event)">
+  <pdk-tab heading="Once">
+    <repeat-pattern-once-form
+      [initialValues]="initialValuesForOnce()"
+      (submitForm)="handleFormSubmit($event)"
+      (errors)="handleErrors($event)"
+    />
+  </pdk-tab>
+  <pdk-tab heading="More than once">
+    <repeat-pattern-more-than-once-form
+      [initialValues]="initialValuesForMoreThanOnce()"
+      (submitForm)="handleFormSubmit($event)"
+      (errors)="handleErrors($event)"
+    />
+  </pdk-tab>
+</pdk-tabs>

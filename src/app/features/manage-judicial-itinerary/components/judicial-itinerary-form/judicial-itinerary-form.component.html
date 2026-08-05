@@ -1,0 +1,48 @@
+<form
+  #form="ngForm"
+  data-test-id="judicial-itinerary-form"
+  pdk-form
+  (errors)="errors.emit($event)"
+  (validSubmit)="submitForm.emit(form.value)"
+>
+  <h2 pdk-typography="heading-medium">Select court and duration</h2>
+  <pdk-grid container>
+    <pdk-grid full>
+      <pdk-form-field
+        label="Court"
+        labelType="small"
+        [errorMessages]="[
+          {
+            rule: 'required',
+            message: 'Select a court from the list'
+          }
+        ]"
+      >
+        <cpp-organisation-unit-autosuggest
+          [id]="'judicialItineraryCourt'"
+          name="courtCentre"
+          [ngModel]="initialValues()?.courtCentre"
+          jurisdictionCode="C"
+          required
+          data-role="judicial-itinerary-court-input"
+        ></cpp-organisation-unit-autosuggest>
+      </pdk-form-field>
+      <date-range
+        name="availability"
+        [ngModel]="initialValues()?.availability ?? {}"
+        [startDateErrorMessages]="startDateErrorMessages"
+        [endDateErrorMessages]="endDateErrorMessages"
+        disableWeekend
+        requiredEndDate
+        requiredStartDate
+        [minStartDate]="minStartDate"
+        [getMinEndDate]="getMinEndDate"
+      ></date-range>
+    </pdk-grid>
+  </pdk-grid>
+  <pdk-form-group pdk-margin-vertical="4">
+    <button type="submit" pdk-button data-test-id="view-judicial-itinerary">
+      View Judicial Itinerary
+    </button>
+  </pdk-form-group>
+</form>

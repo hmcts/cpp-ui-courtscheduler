@@ -1,0 +1,19 @@
+<div>
+  <a pdk-back-link pdk-margin-top="0" (click)="handleBackLink()" href="javascript:void(0);">Back</a>
+</div>
+
+<h1 pdk-typography="heading-large">Edit Judiciary availability details</h1>
+
+<judiciary-details
+  [selectedType]="store.selectedType()"
+  [selectedJudiciary]="store.selectedJudiciary()"
+  [existingSpecialisms]="store.selectedJudiciarySpecialisms()"
+  [hideSpecialismsAction]="allSpecialismsSelected()"
+/>
+
+<edit-judicial-itinerary-form
+  [initialValues]="store.editItinerary()"
+  [serverSubmissionErrorMessage]="serverSubmissionErrorMessage()"
+  (errors)="store.setFormErrors($event || [])"
+  (submitForm)="handleSubmitForm($event)"
+/>

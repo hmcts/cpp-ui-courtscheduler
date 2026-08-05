@@ -1,0 +1,175 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RemoveSessionsContainer should create create journey 1`] = `
+<remove-sessions-container
+  courtScheduleSessions$={[Function _Store]}
+  createScheduleStore={[Function _MockStore]}
+  defaultStartTime={[Function String]}
+  destroy$={[Function Subject]}
+  errors={[Function Array]}
+  errors$={[Function _Store]}
+  ineligiblePastSessions={[Function Array]}
+  ineligibleWithHearings={[Function Array]}
+  isCreateJourney={[Function Boolean]}
+  isViewJourney="false"
+  location={[Function Object]}
+  removableSessions={[Function Array]}
+  route={[Function Object]}
+  sessions$={[Function _Store]}
+  sessionsToRemove={[Function Array]}
+  sessionsToRemove$={[Function Observable]}
+  sessionsToRemoveTotal={[Function Number]}
+  viewScheduleStore={[Function _MockStore]}
+>
+  <div
+    class="govuk-!-margin-bottom-4"
+    pdk-margin-bottom="4"
+  >
+    <a
+      class="govuk-back-link"
+      href="javascript:void(0);"
+      pdk-back-link=""
+    >
+      Back
+    </a>
+  </div><pdk-grid
+    class="govuk-grid-row"
+    container=""
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h1
+        class="govuk-heading-xl"
+        pdk-typography="heading-xlarge"
+      >
+         Remove 
+         session
+      </h1>
+      <session-details>
+         sessions: [object Object] isSlot:  isSummary: false actionsEnabled: false 
+      </session-details>
+      <remove-sessions-form>
+         sessionsToRemoveTotal: 1 
+      </remove-sessions-form>
+    </pdk-grid>
+  </pdk-grid>
+</remove-sessions-container>
+`;
+
+exports[`RemoveSessionsContainer should create view journey 1`] = `
+<remove-sessions-container
+  courtScheduleSessions$={[Function _Store]}
+  createScheduleStore={[Function _MockStore]}
+  defaultStartTime={[Function String]}
+  destroy$={[Function Subject]}
+  errors={[Function Array]}
+  errors$={[Function _Store]}
+  ineligiblePastSessions={[Function Array]}
+  ineligibleWithHearings={[Function Array]}
+  isCreateJourney="false"
+  isViewJourney={[Function Boolean]}
+  location={[Function Object]}
+  removableSessions={[Function Array]}
+  route={[Function Object]}
+  sessions$={[Function _Store]}
+  sessionsToRemove={[Function Array]}
+  sessionsToRemove$={[Function Observable]}
+  sessionsToRemoveTotal={[Function Number]}
+  viewScheduleStore={[Function _MockStore]}
+>
+  <div
+    class="govuk-!-margin-bottom-4"
+    pdk-margin-bottom="4"
+  >
+    <a
+      class="govuk-back-link"
+      href="javascript:void(0);"
+      pdk-back-link=""
+    >
+      Back
+    </a>
+  </div><pdk-grid
+    class="govuk-grid-row"
+    container=""
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h1
+        class="govuk-heading-xl"
+        pdk-typography="heading-xlarge"
+      >
+         Remove 
+         session
+      </h1>
+      <sessions-list>
+         sessions: [object Object] removableSessions:  ineligibleWithHearings:  ineligiblePastSessions:  isDeleteView: true isEditView: false 
+      </sessions-list>
+      <remove-sessions-form>
+         sessionsToRemoveTotal: 1 
+      </remove-sessions-form>
+    </pdk-grid>
+  </pdk-grid>
+</remove-sessions-container>
+`;
+
+exports[`RemoveSessionsContainer should populate removable, non removable and past sessions 1`] = `
+<remove-sessions-container
+  courtScheduleSessions$={[Function _Store]}
+  createScheduleStore={[Function _MockStore]}
+  defaultStartTime="undefined"
+  destroy$={[Function Subject]}
+  errors={[Function Array]}
+  errors$={[Function _Store]}
+  ineligiblePastSessions={[Function Array]}
+  ineligibleWithHearings={[Function Array]}
+  isCreateJourney="false"
+  isViewJourney={[Function Boolean]}
+  location={[Function Object]}
+  removableSessions={[Function Array]}
+  route={[Function Object]}
+  sessions$={[Function _Store]}
+  sessionsToRemove={[Function Array]}
+  sessionsToRemove$={[Function Observable]}
+  sessionsToRemoveTotal={[Function Number]}
+  viewScheduleStore={[Function _MockStore]}
+>
+  <div
+    class="govuk-!-margin-bottom-4"
+    pdk-margin-bottom="4"
+  >
+    <a
+      class="govuk-back-link"
+      href="javascript:void(0);"
+      pdk-back-link=""
+    >
+      Back
+    </a>
+  </div><pdk-grid
+    class="govuk-grid-row"
+    container=""
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h1
+        class="govuk-heading-xl"
+        pdk-typography="heading-xlarge"
+      >
+         Remove 
+         sessions
+      </h1>
+      <sessions-list>
+         sessions: [object Object],[object Object],[object Object] removableSessions: [object Object] ineligibleWithHearings: [object Object] ineligiblePastSessions: [object Object] isDeleteView: true isEditView: false 
+      </sessions-list>
+      <remove-sessions-form>
+         sessionsToRemoveTotal: 1 
+      </remove-sessions-form>
+    </pdk-grid>
+  </pdk-grid>
+</remove-sessions-container>
+`;

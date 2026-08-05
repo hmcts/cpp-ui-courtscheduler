@@ -1,0 +1,397 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JudiciaryAutosuggestControlComponent should render correctly 1`] = `
+<app-test-host
+  errorMessages={[Function Array]}
+  judiciaryType={[Function String]}
+  label={[Function String]}
+  name={[Function String]}
+  required="false"
+  selectedJudiciary="null"
+  suggestions={[Function Array]}
+>
+  <judiciary-autosuggest-control
+    class="ng-untouched ng-pristine ng-valid"
+  >
+    <pdk-form-field
+      hinttext="Search by name"
+      labeltype="small"
+    >
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        <label
+          class="govuk-label govuk-label--s"
+          for="pdk-form-control-undefined-GENERATED_ID"
+        >
+           Judiciary name 
+        </label>
+        <pdk-hint
+          class="govuk-hint"
+        >
+          <div>
+             Search by name 
+          </div>
+        </pdk-hint>
+        <pdk-autosuggest-lite
+          class="ng-untouched ng-pristine ng-valid"
+        >
+          <pdk-autosuggest
+            highlightcolor="blue"
+          >
+            <pdk-interaction-container>
+              <div>
+                <div
+                  class="pdk-autosuggest"
+                >
+                  <input
+                    aria-autocomplete="list"
+                    aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                    aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                    aria-expanded="false"
+                    autocomplete="off"
+                    class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                    id="pdk-form-control-undefined-GENERATED_ID"
+                    role="combobox"
+                    type="text"
+                  />
+                  <span
+                    class="govuk-visually-hidden"
+                    id="pdk-autosuggest__instructions-GENERATED_ID"
+                    pdk-visually-hidden=""
+                  >
+                     When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                  </span>
+                  <span
+                    aria-live="polite"
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                    role="status"
+                  >
+                  </span>
+                  <div
+                    class="pdk-autosuggest__suggestions-container"
+                    id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                  >
+                  </div>
+                </div>
+              </div>
+            </pdk-interaction-container>
+          </pdk-autosuggest>
+        </pdk-autosuggest-lite>
+      </pdk-form-group>
+    </pdk-form-field>
+  </judiciary-autosuggest-control>
+</app-test-host>
+`;
+
+exports[`JudiciaryAutosuggestControlComponent should render correctly when judiciary is null 1`] = `
+<app-test-host
+  errorMessages={[Function Array]}
+  judiciaryType={[Function String]}
+  label={[Function String]}
+  name={[Function String]}
+  required="false"
+  selectedJudiciary="null"
+  suggestions={[Function Array]}
+>
+  <judiciary-autosuggest-control
+    class="ng-untouched ng-pristine ng-valid"
+  >
+    <pdk-form-field
+      hinttext="Search by name"
+      labeltype="small"
+    >
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        <label
+          class="govuk-label govuk-label--s"
+          for="pdk-form-control-undefined-GENERATED_ID"
+        >
+           Judiciary name 
+        </label>
+        <pdk-hint
+          class="govuk-hint"
+        >
+          <div>
+             Search by name 
+          </div>
+        </pdk-hint>
+        <pdk-autosuggest-lite
+          class="ng-untouched ng-pristine ng-valid"
+        >
+          <pdk-autosuggest
+            highlightcolor="blue"
+          >
+            <pdk-interaction-container>
+              <div>
+                <div
+                  class="pdk-autosuggest"
+                >
+                  <input
+                    aria-autocomplete="list"
+                    aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                    aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                    aria-expanded="false"
+                    autocomplete="off"
+                    class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                    id="pdk-form-control-undefined-GENERATED_ID"
+                    role="combobox"
+                    type="text"
+                  />
+                  <span
+                    class="govuk-visually-hidden"
+                    id="pdk-autosuggest__instructions-GENERATED_ID"
+                    pdk-visually-hidden=""
+                  >
+                     When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                  </span>
+                  <span
+                    aria-live="polite"
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                    role="status"
+                  >
+                  </span>
+                  <div
+                    class="pdk-autosuggest__suggestions-container"
+                    id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                  >
+                  </div>
+                </div>
+              </div>
+            </pdk-interaction-container>
+          </pdk-autosuggest>
+        </pdk-autosuggest-lite>
+      </pdk-form-group>
+    </pdk-form-field>
+  </judiciary-autosuggest-control>
+</app-test-host>
+`;
+
+exports[`JudiciaryAutosuggestControlComponent should render correctly with specialisms 1`] = `
+<app-test-host
+  errorMessages={[Function Array]}
+  judiciaryType={[Function String]}
+  label={[Function String]}
+  name={[Function String]}
+  required="false"
+  selectedJudiciary={[Function Object]}
+  suggestions={[Function Array]}
+>
+  <judiciary-autosuggest-control
+    class="ng-untouched ng-pristine ng-valid"
+  >
+    <pdk-form-field
+      hinttext="Search by name"
+      labeltype="small"
+    >
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        <label
+          class="govuk-label govuk-label--s"
+          for="pdk-form-control-undefined-GENERATED_ID"
+        >
+           Judiciary name 
+        </label>
+        <pdk-hint
+          class="govuk-hint"
+        >
+          <div>
+             Search by name 
+          </div>
+        </pdk-hint>
+        <pdk-autosuggest-lite
+          class="ng-untouched ng-pristine ng-valid"
+        >
+          <pdk-autosuggest
+            highlightcolor="blue"
+          >
+            <pdk-interaction-container>
+              <div>
+                <div
+                  class="pdk-autosuggest"
+                >
+                  <input
+                    aria-autocomplete="list"
+                    aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                    aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                    aria-expanded="false"
+                    autocomplete="off"
+                    class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                    id="pdk-form-control-undefined-GENERATED_ID"
+                    role="combobox"
+                    type="text"
+                  />
+                  <span
+                    class="govuk-visually-hidden"
+                    id="pdk-autosuggest__instructions-GENERATED_ID"
+                    pdk-visually-hidden=""
+                  >
+                     When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                  </span>
+                  <span
+                    aria-live="polite"
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                    role="status"
+                  >
+                  </span>
+                  <div
+                    class="pdk-autosuggest__suggestions-container"
+                    id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                  >
+                  </div>
+                </div>
+              </div>
+            </pdk-interaction-container>
+          </pdk-autosuggest>
+        </pdk-autosuggest-lite>
+      </pdk-form-group>
+    </pdk-form-field>
+    <pdk-grid
+      class="govuk-!-margin-top-4 govuk-grid-row"
+      container=""
+      pdk-margin-top="4"
+    >
+      <pdk-grid
+        class="govuk-grid-column-full"
+        full=""
+      >
+        <h2
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+          Judiciary Specialisms
+        </h2>
+        <div
+          class="govuk-!-margin-top-2"
+          pdk-margin-top="2"
+          role="list"
+        >
+          <pdk-tag
+            class="govuk-!-margin-right-2 govuk-!-margin-bottom-2"
+            pdk-margin-bottom="2"
+            pdk-margin-right="2"
+            role="listitem"
+          >
+            <div
+              class="govuk-tag govuk-tag--default"
+            >
+               Murder 
+            </div>
+          </pdk-tag>
+          <pdk-tag
+            class="govuk-!-margin-right-2 govuk-!-margin-bottom-2"
+            pdk-margin-bottom="2"
+            pdk-margin-right="2"
+            role="listitem"
+          >
+            <div
+              class="govuk-tag govuk-tag--default"
+            >
+               Attempted murder 
+            </div>
+          </pdk-tag>
+        </div>
+        <button
+          class="govuk-!-margin-top-2 govuk-button govuk-button--secondary"
+          data-test-id="add-specialism"
+          pdk-button="secondary"
+          pdk-margin-top="2"
+          type="button"
+        >
+           Add new specialism 
+        </button>
+      </pdk-grid>
+    </pdk-grid>
+  </judiciary-autosuggest-control>
+</app-test-host>
+`;
+
+exports[`JudiciaryAutosuggestControlComponent should render correctly without specialisms 1`] = `
+<app-test-host
+  errorMessages={[Function Array]}
+  judiciaryType={[Function String]}
+  label={[Function String]}
+  name={[Function String]}
+  required="false"
+  selectedJudiciary={[Function Object]}
+  suggestions={[Function Array]}
+>
+  <judiciary-autosuggest-control
+    class="ng-untouched ng-pristine ng-valid"
+  >
+    <pdk-form-field
+      hinttext="Search by name"
+      labeltype="small"
+    >
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        <label
+          class="govuk-label govuk-label--s"
+          for="pdk-form-control-undefined-GENERATED_ID"
+        >
+           Judiciary name 
+        </label>
+        <pdk-hint
+          class="govuk-hint"
+        >
+          <div>
+             Search by name 
+          </div>
+        </pdk-hint>
+        <pdk-autosuggest-lite
+          class="ng-untouched ng-pristine ng-valid"
+        >
+          <pdk-autosuggest
+            highlightcolor="blue"
+          >
+            <pdk-interaction-container>
+              <div>
+                <div
+                  class="pdk-autosuggest"
+                >
+                  <input
+                    aria-autocomplete="list"
+                    aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                    aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                    aria-expanded="false"
+                    autocomplete="off"
+                    class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                    id="pdk-form-control-undefined-GENERATED_ID"
+                    role="combobox"
+                    type="text"
+                  />
+                  <span
+                    class="govuk-visually-hidden"
+                    id="pdk-autosuggest__instructions-GENERATED_ID"
+                    pdk-visually-hidden=""
+                  >
+                     When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                  </span>
+                  <span
+                    aria-live="polite"
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                    role="status"
+                  >
+                  </span>
+                  <div
+                    class="pdk-autosuggest__suggestions-container"
+                    id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                  >
+                  </div>
+                </div>
+              </div>
+            </pdk-interaction-container>
+          </pdk-autosuggest>
+        </pdk-autosuggest-lite>
+      </pdk-form-group>
+    </pdk-form-field>
+  </judiciary-autosuggest-control>
+</app-test-host>
+`;

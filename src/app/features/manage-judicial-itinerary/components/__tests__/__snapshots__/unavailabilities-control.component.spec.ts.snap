@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UnavailabilitiesControlComponent should render correctly 1`] = `
+<app-test-host
+  availabilityDateRange={[Function Object]}
+  unavailabilities={[Function Array]}
+>
+  <unavailabilities-control
+    class="ng-untouched ng-dirty ng-valid"
+  >
+    <div
+      class="govuk-!-padding-top-2 govuk-!-padding-bottom-2 ng-untouched ng-pristine ng-valid"
+      pdk-padding-vertical="2"
+    >
+      <div
+        class="govuk-!-margin-bottom-2"
+        pdk-margin-bottom="2"
+      >
+        <span
+          pdk-typography="body-small"
+        >
+           Total days: 0
+        </span>
+      </div>
+      <details
+        class="govuk-details"
+        pdk-details=""
+      >
+        <summary
+          class="govuk-details__summary"
+        >
+          <span
+            class="govuk-details__summary-text"
+          >
+             Annual leave (0
+            <span
+              class="govuk-visually-hidden"
+              pdk-visually-hidden=""
+            >
+              days
+            </span>
+            ) 
+          </span>
+        </summary>
+        <pdk-details-text
+          class="govuk-details__text"
+        >
+          <unavailability-dates-input
+            class="ng-untouched ng-pristine ng-valid"
+          >
+            <div>
+               Mock - Reason: "ANNUAL_LEAVE", Min: "2026-01-01", Max: "2026-01-31" 
+            </div>
+          </unavailability-dates-input>
+        </pdk-details-text>
+      </details>
+      <details
+        class="govuk-details"
+        pdk-details=""
+      >
+        <summary
+          class="govuk-details__summary"
+        >
+          <span
+            class="govuk-details__summary-text"
+          >
+             Official business (0
+            <span
+              class="govuk-visually-hidden"
+              pdk-visually-hidden=""
+            >
+              days
+            </span>
+            ) 
+          </span>
+        </summary>
+        <pdk-details-text
+          class="govuk-details__text"
+        >
+          <unavailability-dates-input
+            class="ng-untouched ng-pristine ng-valid"
+          >
+            <div>
+               Mock - Reason: "OFFICIAL_BUSINESS", Min: "2026-01-01", Max: "2026-01-31" 
+            </div>
+          </unavailability-dates-input>
+        </pdk-details-text>
+      </details>
+      <details
+        class="govuk-details"
+        pdk-details=""
+      >
+        <summary
+          class="govuk-details__summary"
+        >
+          <span
+            class="govuk-details__summary-text"
+          >
+             Sick leave (0
+            <span
+              class="govuk-visually-hidden"
+              pdk-visually-hidden=""
+            >
+              days
+            </span>
+            ) 
+          </span>
+        </summary>
+        <pdk-details-text
+          class="govuk-details__text"
+        >
+          <unavailability-dates-input
+            class="ng-untouched ng-pristine ng-valid"
+          >
+            <div>
+               Mock - Reason: "SICK_LEAVE", Min: "2026-01-01", Max: "2026-01-31" 
+            </div>
+          </unavailability-dates-input>
+        </pdk-details-text>
+      </details>
+      <details
+        class="govuk-details"
+        pdk-details=""
+      >
+        <summary
+          class="govuk-details__summary"
+        >
+          <span
+            class="govuk-details__summary-text"
+          >
+             Training (0
+            <span
+              class="govuk-visually-hidden"
+              pdk-visually-hidden=""
+            >
+              days
+            </span>
+            ) 
+          </span>
+        </summary>
+        <pdk-details-text
+          class="govuk-details__text"
+        >
+          <unavailability-dates-input
+            class="ng-untouched ng-pristine ng-valid"
+          >
+            <div>
+               Mock - Reason: "TRAINING", Min: "2026-01-01", Max: "2026-01-31" 
+            </div>
+          </unavailability-dates-input>
+        </pdk-details-text>
+      </details>
+    </div>
+  </unavailabilities-control>
+</app-test-host>
+`;

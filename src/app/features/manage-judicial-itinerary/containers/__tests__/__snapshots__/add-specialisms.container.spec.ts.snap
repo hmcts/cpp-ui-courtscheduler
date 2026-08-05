@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddSpecialismsContainer should render correctly 1`] = `
+<app-test-host>
+  <add-specialisms-container>
+    <div>
+      <a
+        class="govuk-!-margin-top-0 govuk-back-link"
+        href="javascript:void(0);"
+        pdk-back-link=""
+        pdk-margin-top="0"
+      >
+        Back
+      </a>
+    </div>
+    <h1
+      class="govuk-heading-l"
+      pdk-typography="heading-large"
+    >
+      Add new specialism
+    </h1>
+    <judiciary-details>
+      <div>
+         Mock Judiciary Details - Type: "Circuit Judge", Judiciary: {
+    "id": "judge-1",
+    "surname": "Smith",
+    "forenames": "John",
+    "judiciaryType": "Circuit Judge"
+  }, Specialisms: [
+    "MURDER",
+    "ATTEMPTED_MURDER"
+  ] 
+      </div>
+    </judiciary-details>
+    <add-specialisms-form>
+      <div>
+         Mock Add Specialisms Form - Existing: [
+    "MURDER",
+    "ATTEMPTED_MURDER"
+  ], Initial: {
+    "selectedSpecialisms": [
+      "MURDER"
+    ]
+  } 
+      </div>
+    </add-specialisms-form>
+  </add-specialisms-container>
+</app-test-host>
+`;

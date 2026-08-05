@@ -1,0 +1,95 @@
+<div>
+  <a pdk-back-link pdk-margin-top="0" (click)="handleBackLink()" href="javascript:void(0);">Back</a>
+</div>
+
+<pdk-grid container pdk-margin-top="4">
+  <pdk-grid full>
+    <h1 pdk-typography="heading-large">Check your answers</h1>
+  </pdk-grid>
+</pdk-grid>
+
+<selected-court-and-judiciary-details
+  [courtCentre]="store.searchParams.courtCentre()"
+  [selectedType]="store.selectedType()"
+  [selectedJudiciary]="store.selectedJudiciary()"
+  [existingSpecialisms]="store.selectedJudiciarySpecialisms()"
+/>
+
+<pdk-grid container pdk-margin-top="4">
+  <pdk-grid full>
+    <h2 pdk-typography="heading-medium">Judiciary availability</h2>
+    <dl pdk-summary-list pdk-margin-top="2">
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Start date</dt>
+        <dd pdk-summary-list-value>
+          @if (store.draftItinerary.availability.startDate(); as date) { {{ date | date: 'd MMMM
+          yyyy' }} } @else { Not added }
+        </dd>
+        <dd pdk-summary-list-action>
+          <a
+            href="javascript:void(0);"
+            pdk-link
+            unvisited
+            (click)="handleNavigateToForm()"
+            data-test-id="change-start-date-link"
+          >
+            Change
+          </a>
+        </dd>
+      </div>
+
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>End date</dt>
+        <dd pdk-summary-list-value>
+          @if (store.draftItinerary.availability.endDate(); as date) { {{ date | date: 'd MMMM yyyy'
+          }} } @else { Not added }
+        </dd>
+      </div>
+
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Sitting days in a week (optional)</dt>
+        <dd pdk-summary-list-value>{{ formattedSittingDays() }}</dd>
+        <dd pdk-summary-list-action>
+          <a
+            href="javascript:void(0);"
+            pdk-link
+            unvisited
+            (click)="handleNavigateToForm()"
+            data-test-id="change-sitting-days-link"
+          >
+            Change
+          </a>
+        </dd>
+      </div>
+
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Session</dt>
+        <dd pdk-summary-list-value>{{ store.draftItinerary.session() | sessionFormat }}</dd>
+        <dd pdk-summary-list-action>
+          <a
+            href="javascript:void(0);"
+            pdk-link
+            unvisited
+            (click)="handleNavigateToForm()"
+            data-test-id="change-session-link"
+          >
+            Change
+          </a>
+        </dd>
+      </div>
+    </dl>
+  </pdk-grid>
+</pdk-grid>
+
+<pdk-grid container pdk-margin-top="5">
+  <pdk-grid two-thirds>
+    <button
+      type="button"
+      pdk-button
+      (click)="handleContinueAndAdd()"
+      data-test-id="continue-and-add-judiciary-button"
+    >
+      Continue and add Judiciary
+    </button>
+  </pdk-grid>
+</pdk-grid>

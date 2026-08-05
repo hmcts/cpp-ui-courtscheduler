@@ -1,0 +1,1316 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddSessionsFormComponent Crown Court related functionality should render with courtroom assignment field when jurisdiction is CROWN 1`] = `
+<add-sessions-form
+  CUSTOM_SESSION_TIME_LIMITS={[Function Object]}
+  NATIONAL_STANDARD_TIMES={[Function Object]}
+  VALIDATION={[Function Object]}
+  businessType={[Function Function]}
+  courtCentre={[Function Function]}
+  courtroomAssignmentOptions={[Function Array]}
+  courtroomOptions={[Function Array]}
+  endTimeErrorMessages={[Function Array]}
+  errors={[Function OutputEmitterRef]}
+  form={[Function Function]}
+  formModel={[Function Object]}
+  handleCustomTimesChange={[Function Function]}
+  handleCustomTimesErrorMessages={[Function Function]}
+  handleFormErrors={[Function Function]}
+  indexOptions={[Function Array]}
+  initialValues={[Function Function]}
+  isAllDaysSelected={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isMonthlyFrequency={[Function Function]}
+  isSlot={[Function Function]}
+  jurisdiction={[Function Function]}
+  monthlyDayOptions={[Function Function]}
+  onSessionTypeChange={[Function Function]}
+  panelOptions={[Function Array]}
+  repeatPattern={[Function Function]}
+  repeatedDaysOptions={[Function Function]}
+  selectAllDays={[Function Function]}
+  startTimeErrorMessages={[Function Array]}
+  submitForm={[Function OutputEmitterRef]}
+>
+  <pdk-grid
+    class="govuk-grid-row"
+    container=""
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <div
+        class="add-session pdk-!-border-color-mid-grey govuk-!-margin-bottom-8"
+        pdk-border-colour="mid-grey"
+        pdk-margin-bottom="8"
+      >
+        <h2
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+           Add sessions 
+        </h2>
+        <form
+          class="ng-untouched ng-pristine ng-invalid"
+          data-test-id="addSessionsForm"
+          novalidate=""
+          pdk-form=""
+        >
+          <pdk-grid
+            class="govuk-grid-row"
+            container=""
+          >
+            <pdk-grid
+              class="govuk-grid-column-full"
+              full=""
+            >
+              <h3
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                Courtroom details
+              </h3>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-one-half"
+              one-half=""
+            >
+              <pdk-form-field
+                label="Courtroom"
+                labeltype="small"
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <label
+                    class="govuk-label govuk-label--s"
+                    for="pdk-select-GENERATED_ID"
+                  >
+                     Courtroom 
+                  </label>
+                  <pdk-select
+                    class="ng-untouched ng-pristine ng-invalid"
+                    justified=""
+                    required=""
+                  >
+                    <select
+                      class="govuk-select pdk-select--justified"
+                      id="pdk-select-GENERATED_ID"
+                      name="courtroomId"
+                      required=""
+                    >
+                      <option
+                        value="1"
+                      >
+                         Courtroom 1 
+                      </option>
+                      <option
+                        value="2"
+                      >
+                         Courtroom 2 
+                      </option>
+                      <option
+                        value="3"
+                      >
+                         Courtroom 3 
+                      </option>
+                    </select>
+                  </pdk-select>
+                </pdk-form-group>
+              </pdk-form-field>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-one-half"
+              one-half=""
+            >
+              <div
+                class="courtroom-assignment-wrapper"
+              >
+                <pdk-form-field
+                  label="Courtroom assignment"
+                  labeltype="small"
+                >
+                  <pdk-form-group
+                    class="pdk-form-group"
+                  >
+                    <fieldset
+                      class="govuk-fieldset"
+                      pdk-fieldset=""
+                    >
+                      <legend
+                        class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                      >
+                         Courtroom assignment 
+                      </legend>
+                      <pdk-radio-group
+                        class="ng-untouched ng-pristine ng-valid"
+                        inline=""
+                        name="courtroomAssignment"
+                        required=""
+                        small=""
+                      >
+                        <div
+                          class="govuk-radios govuk-radios--small govuk-radios--inline"
+                        >
+                          <pdk-radio-button>
+                            <div
+                              class="govuk-radios__item"
+                            >
+                              <input
+                                class="govuk-radios__input"
+                                id="pdk-radio-GENERATED_ID"
+                                name="pdk-radio-group-GENERATED_ID"
+                                type="radio"
+                                value="ASSIGNED"
+                              />
+                              <label
+                                class="govuk-radios__label govuk-label"
+                                for="pdk-radio-GENERATED_ID"
+                                pdk-label=""
+                              >
+                                 Assigned 
+                              </label>
+                            </div>
+                          </pdk-radio-button>
+                          <pdk-radio-button>
+                            <div
+                              class="govuk-radios__item"
+                            >
+                              <input
+                                class="govuk-radios__input"
+                                id="pdk-radio-GENERATED_ID"
+                                name="pdk-radio-group-GENERATED_ID"
+                                type="radio"
+                                value="DRAFT"
+                              />
+                              <label
+                                class="govuk-radios__label govuk-label"
+                                for="pdk-radio-GENERATED_ID"
+                                pdk-label=""
+                              >
+                                 Draft 
+                              </label>
+                            </div>
+                          </pdk-radio-button>
+                        </div>
+                      </pdk-radio-group>
+                    </fieldset>
+                  </pdk-form-group>
+                </pdk-form-field>
+              </div>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-full"
+              full=""
+            />
+            <pdk-grid
+              class="govuk-grid-column-one-half"
+              one-half=""
+            >
+              <pdk-form-field
+                label="Session and duration"
+                labeltype="small"
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <fieldset
+                    class="govuk-fieldset"
+                    pdk-fieldset=""
+                  >
+                    <legend
+                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                    >
+                       Session and duration 
+                    </legend>
+                    <details
+                      class="govuk-!-margin-bottom-2 govuk-details"
+                      pdk-details=""
+                      pdk-margin-bottom="2"
+                    >
+                      <summary
+                        class="govuk-details__summary"
+                      >
+                        <span
+                          class="govuk-details__summary-text"
+                        >
+                          National standard times
+                        </span>
+                      </summary>
+                      <pdk-details-text
+                        class="govuk-details__text"
+                      >
+                        <p>
+                           AM: 10:00am to 13:00pm 
+                        </p>
+                        <p>
+                           PM: 14:00pm to 17:00pm 
+                        </p>
+                        <p>
+                           All day: 10:00am to 17:00pm 
+                        </p>
+                      </pdk-details-text>
+                    </details>
+                    <pdk-radio-group
+                      class="ng-untouched ng-pristine ng-invalid"
+                      name="sessionType"
+                      required=""
+                    >
+                      <div
+                        class="govuk-radios"
+                      >
+                        <pdk-radio-button
+                          value="AM"
+                        >
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="AM"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                              AM
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                        <pdk-radio-button
+                          value="PM"
+                        >
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="PM"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                              PM
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                        <pdk-radio-button
+                          value="AD"
+                        >
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="AD"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                              All day
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                      </div>
+                    </pdk-radio-group>
+                  </fieldset>
+                </pdk-form-group>
+              </pdk-form-field>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-full"
+              full=""
+            >
+              <pdk-divider>
+                <hr
+                  class="pdk-divider"
+                />
+              </pdk-divider>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-!-padding-left-3 govuk-grid-column-full"
+              full=""
+              pdk-padding-left="3"
+            >
+              <pdk-form-field
+                label="Additional session options"
+                labeltype="small"
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <fieldset
+                    class="govuk-fieldset"
+                    pdk-fieldset=""
+                  >
+                    <legend
+                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                    >
+                       Additional session options 
+                    </legend>
+                    <pdk-checkbox-group
+                      class="ng-untouched ng-pristine ng-valid"
+                      name="additionalSessionOptions"
+                      ngmodel=""
+                    >
+                      <div
+                        class="govuk-checkboxes"
+                      >
+                        <pdk-checkbox
+                          checkboxtype="small"
+                          class="govuk-!-padding-top-2 govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+                          name="customTimes"
+                          pdk-padding-top="2"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="customTimes"
+                              type="checkbox"
+                              value="true"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               Set custom session timings 
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          checkboxtype="small"
+                          class="govuk-!-padding-top-2 govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+                          name="isOverbookingAllowed"
+                          pdk-padding-top="2"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="isOverbookingAllowed"
+                              type="checkbox"
+                              value="true"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               Overbooking is allowed for this session 
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                      </div>
+                    </pdk-checkbox-group>
+                  </fieldset>
+                </pdk-form-group>
+              </pdk-form-field>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-full"
+              full=""
+            >
+              <pdk-divider>
+                <hr
+                  class="pdk-divider"
+                />
+              </pdk-divider>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-!-padding-left-3 govuk-grid-column-full"
+              full=""
+              pdk-padding-left="3"
+            >
+              <h3
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                Repeat sessions
+              </h3>
+              <pdk-form-field
+                label="Every"
+                labeltype="small"
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <fieldset
+                    class="govuk-fieldset"
+                    pdk-fieldset=""
+                  >
+                    <legend
+                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                    >
+                       Every 
+                    </legend>
+                    <pdk-checkbox-group
+                      checkboxtype="small"
+                      class="ng-untouched ng-pristine ng-invalid"
+                      name="repeatDays"
+                      required=""
+                    >
+                      <div
+                        class="govuk-checkboxes"
+                      >
+                        <pdk-checkbox
+                          checkboxtype="small"
+                          class="govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+                          name="selectAll"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="selectAll"
+                              type="checkbox"
+                              value="true"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              <span
+                                class="bold"
+                              >
+                                Select all
+                              </span>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="MON"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              <span>
+                                Monday
+                              </span>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="TUE"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              <span>
+                                Tuesday
+                              </span>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="WED"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              <span>
+                                Wednesday
+                              </span>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="THU"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              <span>
+                                Thursday
+                              </span>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="FRI"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              <span>
+                                Friday
+                              </span>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                      </div>
+                    </pdk-checkbox-group>
+                  </fieldset>
+                </pdk-form-group>
+              </pdk-form-field>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-full"
+              full=""
+            >
+              <pdk-divider>
+                <hr
+                  class="pdk-divider"
+                />
+              </pdk-divider>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-full"
+              full=""
+            >
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+                data-test-id="submit-sessions-form"
+                pdk-margin-bottom="0"
+              >
+                 Add session 
+              </button>
+            </pdk-grid>
+          </pdk-grid>
+        </form>
+      </div>
+    </pdk-grid>
+  </pdk-grid>
+</add-sessions-form>
+`;
+
+exports[`AddSessionsFormComponent should create 1`] = `
+<add-sessions-form
+  CUSTOM_SESSION_TIME_LIMITS={[Function Object]}
+  NATIONAL_STANDARD_TIMES={[Function Object]}
+  VALIDATION={[Function Object]}
+  businessType={[Function Function]}
+  courtCentre={[Function Function]}
+  courtroomAssignmentOptions={[Function Array]}
+  courtroomOptions={[Function Array]}
+  endTimeErrorMessages={[Function Array]}
+  errors={[Function OutputEmitterRef]}
+  form={[Function Function]}
+  formModel={[Function Object]}
+  handleCustomTimesChange={[Function Function]}
+  handleCustomTimesErrorMessages={[Function Function]}
+  handleFormErrors={[Function Function]}
+  indexOptions={[Function Array]}
+  initialValues={[Function Function]}
+  isAllDaysSelected={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isMonthlyFrequency={[Function Function]}
+  isSlot={[Function Function]}
+  jurisdiction={[Function Function]}
+  monthlyDayOptions={[Function Function]}
+  onSessionTypeChange={[Function Function]}
+  panelOptions={[Function Array]}
+  repeatPattern={[Function Function]}
+  repeatedDaysOptions={[Function Function]}
+  selectAllDays={[Function Function]}
+  startTimeErrorMessages={[Function Array]}
+  submitForm={[Function OutputEmitterRef]}
+>
+  <pdk-grid
+    class="govuk-grid-row"
+    container=""
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <div
+        class="add-session pdk-!-border-color-mid-grey govuk-!-margin-bottom-8"
+        pdk-border-colour="mid-grey"
+        pdk-margin-bottom="8"
+      >
+        <h2
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+           Add sessions 
+        </h2>
+        <form
+          class="ng-untouched ng-pristine ng-valid"
+          data-test-id="addSessionsForm"
+          novalidate=""
+          pdk-form=""
+        >
+          <pdk-grid
+            class="govuk-grid-row"
+            container=""
+          >
+            <pdk-grid
+              class="govuk-grid-column-full"
+              full=""
+            >
+              <h3
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                Courtroom details
+              </h3>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-one-half"
+              one-half=""
+            >
+              <pdk-form-field
+                label="Courtroom"
+                labeltype="small"
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <label
+                    class="govuk-label govuk-label--s"
+                    for="pdk-select-GENERATED_ID"
+                  >
+                     Courtroom 
+                  </label>
+                  <pdk-select
+                    class="ng-untouched ng-pristine ng-valid"
+                    justified=""
+                    required=""
+                  >
+                    <select
+                      class="govuk-select pdk-select--justified"
+                      id="pdk-select-GENERATED_ID"
+                      name="courtroomId"
+                      required=""
+                    >
+                      <option
+                        value="1"
+                      >
+                         Courtroom 1 
+                      </option>
+                      <option
+                        value="2"
+                      >
+                         Courtroom 2 
+                      </option>
+                      <option
+                        value="3"
+                      >
+                         Courtroom 3 
+                      </option>
+                    </select>
+                  </pdk-select>
+                </pdk-form-group>
+              </pdk-form-field>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-full"
+              full=""
+            />
+            <pdk-grid
+              class="govuk-grid-column-one-half"
+              one-half=""
+            >
+              <pdk-form-field
+                label="Session and duration"
+                labeltype="small"
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <fieldset
+                    class="govuk-fieldset"
+                    pdk-fieldset=""
+                  >
+                    <legend
+                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                    >
+                       Session and duration 
+                    </legend>
+                    <details
+                      class="govuk-!-margin-bottom-2 govuk-details"
+                      pdk-details=""
+                      pdk-margin-bottom="2"
+                    >
+                      <summary
+                        class="govuk-details__summary"
+                      >
+                        <span
+                          class="govuk-details__summary-text"
+                        >
+                          National standard times
+                        </span>
+                      </summary>
+                      <pdk-details-text
+                        class="govuk-details__text"
+                      >
+                        <p>
+                           AM: 10:00am to 13:00pm 
+                        </p>
+                        <p>
+                           PM: 14:00pm to 17:00pm 
+                        </p>
+                        <p>
+                           All day: 10:00am to 17:00pm 
+                        </p>
+                      </pdk-details-text>
+                    </details>
+                    <pdk-radio-group
+                      class="ng-untouched ng-pristine ng-valid"
+                      name="sessionType"
+                      required=""
+                    >
+                      <div
+                        class="govuk-radios"
+                      >
+                        <pdk-radio-button
+                          value="AM"
+                        >
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="AM"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                              AM
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                        <pdk-radio-button
+                          value="PM"
+                        >
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="PM"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                              PM
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                        <pdk-radio-button
+                          value="AD"
+                        >
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="AD"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                              All day
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                      </div>
+                    </pdk-radio-group>
+                  </fieldset>
+                </pdk-form-group>
+              </pdk-form-field>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-one-half"
+              one-half=""
+            >
+              <pdk-form-field
+                label="Panel"
+                labeltype="small"
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <fieldset
+                    class="govuk-fieldset"
+                    pdk-fieldset=""
+                  >
+                    <legend
+                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                    >
+                       Panel 
+                    </legend>
+                    <pdk-radio-group
+                      class="ng-untouched ng-pristine ng-valid"
+                      name="panelType"
+                      required=""
+                    >
+                      <div
+                        class="govuk-radios"
+                      >
+                        <pdk-radio-button>
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="ADULT"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                               Adult 
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                        <pdk-radio-button>
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="YOUTH"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                               Youth 
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                      </div>
+                    </pdk-radio-group>
+                  </fieldset>
+                </pdk-form-group>
+              </pdk-form-field>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-full"
+              full=""
+            >
+              <pdk-divider>
+                <hr
+                  class="pdk-divider"
+                />
+              </pdk-divider>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-!-padding-left-3 govuk-grid-column-full"
+              full=""
+              pdk-padding-left="3"
+            >
+              <pdk-form-field
+                label="Additional session options"
+                labeltype="small"
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <fieldset
+                    class="govuk-fieldset"
+                    pdk-fieldset=""
+                  >
+                    <legend
+                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                    >
+                       Additional session options 
+                    </legend>
+                    <pdk-checkbox-group
+                      class="ng-untouched ng-pristine ng-valid"
+                      name="additionalSessionOptions"
+                      ngmodel=""
+                    >
+                      <div
+                        class="govuk-checkboxes"
+                      >
+                        <pdk-checkbox
+                          checkboxtype="small"
+                          class="govuk-!-padding-top-2 govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+                          name="customTimes"
+                          pdk-padding-top="2"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="customTimes"
+                              type="checkbox"
+                              value="true"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               Set custom session timings 
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          checkboxtype="small"
+                          class="govuk-!-padding-top-2 govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+                          name="isOverbookingAllowed"
+                          pdk-padding-top="2"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="isOverbookingAllowed"
+                              type="checkbox"
+                              value="true"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               Overbooking is allowed for this session 
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                      </div>
+                    </pdk-checkbox-group>
+                  </fieldset>
+                </pdk-form-group>
+              </pdk-form-field>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-full"
+              full=""
+            >
+              <pdk-divider>
+                <hr
+                  class="pdk-divider"
+                />
+              </pdk-divider>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-!-padding-left-3 govuk-grid-column-full"
+              full=""
+              pdk-padding-left="3"
+            >
+              <h3
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                Repeat sessions
+              </h3>
+              <pdk-form-field
+                label="Every"
+                labeltype="small"
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <fieldset
+                    class="govuk-fieldset"
+                    pdk-fieldset=""
+                  >
+                    <legend
+                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                    >
+                       Every 
+                    </legend>
+                    <pdk-checkbox-group
+                      checkboxtype="small"
+                      class="ng-untouched ng-pristine ng-valid"
+                      name="repeatDays"
+                      required=""
+                    >
+                      <div
+                        class="govuk-checkboxes"
+                      >
+                        <pdk-checkbox
+                          checkboxtype="small"
+                          class="govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+                          name="selectAll"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="selectAll"
+                              type="checkbox"
+                              value="true"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              <span
+                                class="bold"
+                              >
+                                Select all
+                              </span>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="MON"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              <span>
+                                Monday
+                              </span>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="TUE"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              <span>
+                                Tuesday
+                              </span>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="WED"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              <span>
+                                Wednesday
+                              </span>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="THU"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              <span>
+                                Thursday
+                              </span>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="FRI"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              <span>
+                                Friday
+                              </span>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="SAT"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              <span>
+                                Saturday
+                              </span>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                      </div>
+                    </pdk-checkbox-group>
+                  </fieldset>
+                </pdk-form-group>
+              </pdk-form-field>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-full"
+              full=""
+            >
+              <pdk-divider>
+                <hr
+                  class="pdk-divider"
+                />
+              </pdk-divider>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-full"
+              full=""
+            >
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+                data-test-id="submit-sessions-form"
+                pdk-margin-bottom="0"
+              >
+                 Add session 
+              </button>
+            </pdk-grid>
+          </pdk-grid>
+        </form>
+      </div>
+    </pdk-grid>
+  </pdk-grid>
+</add-sessions-form>
+`;

@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddSittingDaysContainer should render correctly 1`] = `
+<app-test-host>
+  <add-sitting-days-container>
+    <div>
+      <a
+        class="govuk-!-margin-top-0 govuk-back-link"
+        href="javascript:void(0);"
+        pdk-back-link=""
+        pdk-margin-top="0"
+      >
+        Back
+      </a>
+    </div>
+    <pdk-grid
+      class="govuk-grid-row"
+      container=""
+    >
+      <pdk-grid
+        class="govuk-grid-column-full"
+        full=""
+      >
+        <h1
+          class="govuk-heading-l"
+          pdk-typography="heading-large"
+        >
+          Add sitting days and availability
+        </h1>
+      </pdk-grid>
+    </pdk-grid>
+    <selected-court-and-judiciary-details>
+      <div>
+         Mock Selected Court Details - Court: {
+    "id": "court-1",
+    "oucode": "OU001",
+    "oucodeL3Code": "L3-001",
+    "oucodeL3Name": "Test Court",
+    "oucodeL2Code": "L2-001",
+    "oucodeL2Name": "Test Region",
+    "oucodeL1Code": "L1-001",
+    "oucodeL1Name": "Test Area",
+    "region": "Test Region",
+    "emailAddress": "test@example.com"
+  }, Type: "Circuit Judge", Judiciary: {
+    "id": "judge-1",
+    "surname": "Smith",
+    "forenames": "John",
+    "judiciaryType": "Circuit Judge"
+  }, Specialisms: [
+    "MURDER",
+    "ATTEMPTED_MURDER"
+  ] 
+      </div>
+    </selected-court-and-judiciary-details>
+    <add-sitting-days-form>
+      <div>
+        Mock Add Sitting Days Form - Initial Values: {
+    "availability": {
+      "startDate": "2026-01-01",
+      "endDate": "2026-01-31"
+    },
+    "sittingDays": [
+      "MON",
+      "WED"
+    ],
+    "session": "AD"
+  }
+      </div>
+    </add-sitting-days-form>
+  </add-sitting-days-container>
+</app-test-host>
+`;

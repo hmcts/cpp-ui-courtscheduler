@@ -1,0 +1,39 @@
+@if (
+  ineligiblePastSessions().length > 0 ||
+  ineligibleWithHearings().length > 0 ||
+  ineligibleAssigned().length > 0
+) {
+  <div pdk-margin-bottom="4" pdk-margin-top="4">
+    <h2 pdk-typography="heading-medium">
+      Sessions that cannot be
+      {{ isAssignView() ? 'assigned' : isEditView() ? 'edited' : 'removed' }}
+    </h2>
+
+    @if (ineligiblePastSessions().length > 0) {
+      <ul>
+        <li>{{ ineligiblePastSessionsMessage() }}</li>
+      </ul>
+      <session-table
+        [sessions]="ineligiblePastSessions()"
+        [config]="ineligiblePastSessionsTableConfig()"
+      />
+    }
+
+    @if (ineligibleAssigned().length > 0) {
+      <ul>
+        <li>{{ ineligibleAssignedMessage() }}</li>
+      </ul>
+      <session-table [sessions]="ineligibleAssigned()" [config]="ineligibleAssignedTableConfig()" />
+    }
+
+    @if (ineligibleWithHearings().length > 0) {
+      <ul>
+        <li>{{ ineligibleWithHearingsMessage() }}</li>
+      </ul>
+      <session-table
+        [sessions]="ineligibleWithHearings()"
+        [config]="ineligibleWithHearingsTableConfig()"
+      />
+    }
+  </div>
+}

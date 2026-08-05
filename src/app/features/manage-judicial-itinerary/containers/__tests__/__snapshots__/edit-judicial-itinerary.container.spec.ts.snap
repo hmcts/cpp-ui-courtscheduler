@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditJudicialItineraryContainer should render correctly 1`] = `
+<edit-judicial-itinerary-container
+  allSpecialismsSelected={[Function Function]}
+  judicialMemberNamePipe={[Function _JudicialMemberNamePipe]}
+  judiciaryName={[Function Function]}
+  location={[Function _Location]}
+  route={[Function Object]}
+  router={[Function _Router]}
+  serverSubmissionErrorMessage={[Function Function]}
+  store={[Function MockManageJudicialItineraryStore]}
+>
+  <div>
+    <a
+      class="govuk-!-margin-top-0 govuk-back-link"
+      href="javascript:void(0);"
+      pdk-back-link=""
+      pdk-margin-top="0"
+    >
+      Back
+    </a>
+  </div><h1
+    class="govuk-heading-l"
+    pdk-typography="heading-large"
+  >
+    Edit Judiciary availability details
+  </h1><judiciary-details>
+    <div>
+       Mock - Type: "Circuit Judge", Judiciary: {
+    "id": "judge-1",
+    "surname": "Smith",
+    "forenames": "John"
+  }, HideSpecialisms: false 
+    </div>
+  </judiciary-details><edit-judicial-itinerary-form>
+    <div>
+       Mock - Initial Values: {
+    "availability": {
+      "startDate": "2026-01-01",
+      "endDate": "2026-01-31"
+    },
+    "sittingDays": [],
+    "session": "AD",
+    "unavailabilities": []
+  }, Error: null 
+    </div>
+  </edit-judicial-itinerary-form>
+</edit-judicial-itinerary-container>
+`;

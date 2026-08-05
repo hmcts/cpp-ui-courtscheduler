@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssignCourtroomFormComponent should create 1`] = `
+<assign-courtroom-form
+  cancelForm={[Function OutputEmitterRef]}
+  courtroomOptions={[Function Array]}
+  courtrooms={[Function Function]}
+  errors={[Function OutputEmitterRef]}
+  form={[Function Function]}
+  sessionsToAssignTotal={[Function Function]}
+  submitForm={[Function OutputEmitterRef]}
+>
+  <div
+    class="actions"
+  >
+    <button
+      class="govuk-!-margin-bottom-0 govuk-button"
+      data-test-id="cancel-assign-courtroom-button"
+      pdk-button=""
+      pdk-margin-bottom="0"
+    >
+       Continue 
+    </button>
+  </div>
+</assign-courtroom-form>
+`;

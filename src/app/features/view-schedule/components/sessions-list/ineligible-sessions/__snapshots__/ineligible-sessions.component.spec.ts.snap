@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IneligibleSessionsComponent should render correctly when isEditView is false 1`] = `
+<ineligible-sessions
+  ineligibleAssigned={[Function Function]}
+  ineligibleAssignedMessage={[Function Function]}
+  ineligibleAssignedTableConfig={[Function Function]}
+  ineligiblePastSessions={[Function Function]}
+  ineligiblePastSessionsMessage={[Function Function]}
+  ineligiblePastSessionsTableConfig={[Function Function]}
+  ineligibleWithHearings={[Function Function]}
+  ineligibleWithHearingsMessage={[Function Function]}
+  ineligibleWithHearingsTableConfig={[Function Function]}
+  isAssignView={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isEditView={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-4 govuk-!-margin-top-4"
+    pdk-margin-bottom="4"
+    pdk-margin-top="4"
+  >
+    <h2
+      class="govuk-heading-m"
+      pdk-typography="heading-medium"
+    >
+       Sessions that cannot be removed 
+    </h2>
+    <ul>
+      <li>
+        Past sessions can't be removed.
+      </li>
+    </ul>
+    <session-table>
+      <div>
+        Mock Session Table
+      </div>
+    </session-table>
+  </div>
+</ineligible-sessions>
+`;
+
+exports[`IneligibleSessionsComponent should render correctly when isEditView is true 1`] = `
+<ineligible-sessions
+  ineligibleAssigned={[Function Function]}
+  ineligibleAssignedMessage={[Function Function]}
+  ineligibleAssignedTableConfig={[Function Function]}
+  ineligiblePastSessions={[Function Function]}
+  ineligiblePastSessionsMessage={[Function Function]}
+  ineligiblePastSessionsTableConfig={[Function Function]}
+  ineligibleWithHearings={[Function Function]}
+  ineligibleWithHearingsMessage={[Function Function]}
+  ineligibleWithHearingsTableConfig={[Function Function]}
+  isAssignView={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isEditView={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-4 govuk-!-margin-top-4"
+    pdk-margin-bottom="4"
+    pdk-margin-top="4"
+  >
+    <h2
+      class="govuk-heading-m"
+      pdk-typography="heading-medium"
+    >
+       Sessions that cannot be edited 
+    </h2>
+    <ul>
+      <li>
+        Past sessions can't be edited.
+      </li>
+    </ul>
+    <session-table>
+      <div>
+        Mock Session Table
+      </div>
+    </session-table>
+  </div>
+</ineligible-sessions>
+`;
+
+exports[`IneligibleSessionsComponent should render when ineligible past sessions exist 1`] = `
+<ineligible-sessions
+  ineligibleAssigned={[Function Function]}
+  ineligibleAssignedMessage={[Function Function]}
+  ineligibleAssignedTableConfig={[Function Function]}
+  ineligiblePastSessions={[Function Function]}
+  ineligiblePastSessionsMessage={[Function Function]}
+  ineligiblePastSessionsTableConfig={[Function Function]}
+  ineligibleWithHearings={[Function Function]}
+  ineligibleWithHearingsMessage={[Function Function]}
+  ineligibleWithHearingsTableConfig={[Function Function]}
+  isAssignView={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isEditView={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-4 govuk-!-margin-top-4"
+    pdk-margin-bottom="4"
+    pdk-margin-top="4"
+  >
+    <h2
+      class="govuk-heading-m"
+      pdk-typography="heading-medium"
+    >
+       Sessions that cannot be removed 
+    </h2>
+    <ul>
+      <li>
+        Past sessions can't be removed.
+      </li>
+    </ul>
+    <session-table>
+      <div>
+        Mock Session Table
+      </div>
+    </session-table>
+  </div>
+</ineligible-sessions>
+`;
+
+exports[`IneligibleSessionsComponent should render when ineligible sessions with hearings exist 1`] = `
+<ineligible-sessions
+  ineligibleAssigned={[Function Function]}
+  ineligibleAssignedMessage={[Function Function]}
+  ineligibleAssignedTableConfig={[Function Function]}
+  ineligiblePastSessions={[Function Function]}
+  ineligiblePastSessionsMessage={[Function Function]}
+  ineligiblePastSessionsTableConfig={[Function Function]}
+  ineligibleWithHearings={[Function Function]}
+  ineligibleWithHearingsMessage={[Function Function]}
+  ineligibleWithHearingsTableConfig={[Function Function]}
+  isAssignView={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isEditView={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-4 govuk-!-margin-top-4"
+    pdk-margin-bottom="4"
+    pdk-margin-top="4"
+  >
+    <h2
+      class="govuk-heading-m"
+      pdk-typography="heading-medium"
+    >
+       Sessions that cannot be removed 
+    </h2>
+    <ul>
+      <li>
+        These sessions have hearings attached to them. You must move the hearings before you can remove these sessions.
+      </li>
+    </ul>
+    <session-table>
+      <div>
+        Mock Session Table
+      </div>
+    </session-table>
+  </div>
+</ineligible-sessions>
+`;

@@ -1,0 +1,158 @@
+<table pdk-table data-test-id="sessionList" aria-label="Court schedule sessions">
+  <thead pdk-table-head>
+    <tr pdk-table-row>
+      @if (config().showSelectionColumn) {
+        <th pdk-table-header *cppUserHasPermission="permissions.create">
+          <pdk-checkbox
+            name="selectAllSessions"
+            checkboxType="small"
+            [ngModel]="allSessionsSelected()"
+            [disabled]="eligibleSessionIds().length === 0"
+            (ngModelChange)="handleSelectAll($event)"
+            [ngModelOptions]="{ standalone: true }"
+          >
+            <span pdk-visually-hidden> Select all sessions </span>
+          </pdk-checkbox>
+        </th>
+      }
+      @if (config().showCourtroomAssignment) {
+        <th
+          pdk-table-header
+          pdk-sortable-header
+          class="courtroom-assignment-header"
+          (directionChange)="handleSort('isDraft', $event)"
+        >
+          Status
+        </th>
+      }
+      <th
+        pdk-table-header
+        pdk-sortable-header
+        (directionChange)="handleSort('sessionDate', $event)"
+      >
+        Date
+      </th>
+      <th
+        pdk-table-header
+        pdk-sortable-header
+        (directionChange)="handleSort('sessionDate', $event)"
+      >
+        Day
+      </th>
+      <th pdk-table-header>Time</th>
+      <th
+        pdk-table-header
+        pdk-sortable-header
+        (directionChange)="handleSort('courtSession', $event)"
+      >
+        Session
+      </th>
+      @if (config().showPanel) {
+        <th pdk-table-header pdk-sortable-header (directionChange)="handleSort('panel', $event)">
+          Panel
+        </th>
+      }
+      <th pdk-table-header>Type</th>
+      <th pdk-table-header>Total capacity</th>
+      <th pdk-table-header>Total booked</th>
+      <th pdk-table-header>Overbooking</th>
+      @if (config().showActionsColumn && config().actions?.length) {
+        <th pdk-table-header *cppUserHasPermission="permissions.create">Actions</th>
+      }
+    </tr>
+  </thead>
+  <tbody pdk-table-body>
+    @for (session of sortedSessions(); track session.courtScheduleId) {
+      <tr
+        pdk-table-row
+        data-test-id="sessionListItem"
+        [class.row-validation-error]="isIneligible(session)"
+        [attr.aria-invalid]="isIneligible(session) ? 'true' : null"
+        [attr.aria-label]="
+          isIneligible(session) ? 'Session is already assigned to a courtroom' : null
+        "
+      >
+        @if (config().showSelectionColumn) {
+          <td pdk-table-cell *cppUserHasPermission="permissions.create">
+            <pdk-checkbox
+              [attr.data-test-id]="session.courtScheduleId"
+              [value]="session.courtScheduleId"
+              [disabled]="!isSelectionEnabled(session)"
+              checkboxType="small"
+            >
+              <span pdk-visually-hidden>
+                Select {{ session.isDraft ? 'Draft' : 'Assigned' }}
+                {{ session.businessType }} session on
+                {{ session.sessionDate | date: 'EEEE d MMM yyyy' }},
+                {{ session.courtSession === 'AD' ? 'All day' : session.courtSession }},
+                {{ session.sessionStartTime | formatTime: { sessionDate: session.sessionDate } }}
+                to
+                {{ session.sessionEndTime | formatTime: { sessionDate: session.sessionDate } }}
+              </span>
+            </pdk-checkbox>
+          </td>
+        }
+        @if (config().showCourtroomAssignment) {
+          <td pdk-table-cell>{{ session.isDraft ? 'Draft' : 'Assigned' }}</td>
+        }
+        <td pdk-table-cell data-test-id="date">
+          {{ session.sessionDate | date: 'd MMM yyyy' }}
+        </td>
+        <td pdk-table-cell data-test-id="day">{{ session.sessionDate | date: 'EEEE' }}</td>
+        <td pdk-table-cell data-test-id="time">
+          {{ session.sessionStartTime | formatTime: { sessionDate: session.sessionDate } }}
+          to
+          {{ session.sessionEndTime | formatTime: { sessionDate: session.sessionDate } }}
+        </td>
+        <td pdk-table-cell data-test-id="session">
+          @switch (session.courtSession) {
+            @case ('AD') {
+              <span>All day</span>
+            }
+            @default {
+              <span>{{ session.courtSession }}</span>
+            }
+          }
+        </td>
+        @if (config().showPanel) {
+          <td pdk-table-cell data-test-id="panel">{{ session.panel | titlecase }}</td>
+        }
+        <td pdk-table-cell data-test-id="businessType">
+          {{ session.businessDescription || session.businessType }}
+        </td>
+        <td pdk-table-cell data-test-id="duration">
+          <session-duration-cell [session]="session" />
+        </td>
+        <td pdk-table-cell>{{ session.totalBooked }}</td>
+        <td pdk-table-cell data-test-id="overbooking">
+          {{ session.isOverbookingAllowed ? 'Yes' : 'No' }}
+        </td>
+        @if (config().showActionsColumn && config().actions?.length) {
+          <td pdk-table-cell *cppUserHasPermission="permissions.create">
+            <div class="link-container">
+              @for (action of config().actions; track action.action) {
+                @if (isActionVisible(session, action.action)) {
+                  <a
+                    href="javascript:void(0);"
+                    pdk-link
+                    unvisited
+                    (click)="handleAction(session, action.action)"
+                    [attr.data-test-id]="action.action"
+                    [attr.aria-label]="
+                      action.label +
+                      ' session on ' +
+                      (session.sessionDate | date: 'd MMM yyyy') +
+                      ', ' +
+                      (session.courtSession === 'AD' ? 'All day' : session.courtSession)
+                    "
+                    >{{ action.label }}</a
+                  >
+                }
+              }
+            </div>
+          </td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>

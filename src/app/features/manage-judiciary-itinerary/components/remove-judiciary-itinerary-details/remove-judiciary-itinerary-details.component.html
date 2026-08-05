@@ -1,0 +1,59 @@
+<pdk-template pageTitle="Remove judicial details">
+  <pdk-grid container>
+    <pdk-grid full>
+      <h2 pdk-typography="heading-medium">Remove judicial details</h2>
+      <dl pdk-summary-list pdk-margin-top="2">
+        <div pdk-summary-item>
+          <dt pdk-summary-key>Court</dt>
+          <dd pdk-summary-value>
+            {{ courtCentre()?.oucodeL3Name || 'Not added' }}
+          </dd>
+        </div>
+
+        <div pdk-summary-item>
+          <dt pdk-summary-key>Dates</dt>
+          <dd pdk-summary-value>
+            @if (itinerary()?.startDate && itinerary()?.endDate) {
+              {{ itinerary()?.startDate | date: 'd MMMM yyyy' }} to
+              {{ itinerary()?.endDate | date: 'd MMMM yyyy' }}
+            } @else {
+              Not added
+            }
+          </dd>
+        </div>
+
+        <div pdk-summary-item>
+          <dt pdk-summary-key>Session</dt>
+          <dd pdk-summary-value>
+            {{ itinerary()?.sessionType | sessionFormat || 'Not added' }}
+          </dd>
+        </div>
+
+        <div pdk-summary-item>
+          <dt pdk-summary-key>Judicial office holder</dt>
+          <dd pdk-summary-value>
+            @if (selectedJudiciary()) {
+              {{ selectedJudiciary() | judicialMemberName }}
+            } @else {
+              Not added
+            }
+          </dd>
+        </div>
+
+        <div pdk-summary-item>
+          <dt pdk-summary-key>Judicial role type</dt>
+          <dd pdk-summary-value>
+            {{ selectedType() || 'Not selected' }}
+          </dd>
+        </div>
+
+        <div pdk-summary-item>
+          <dt pdk-summary-key>Non-sitting days</dt>
+          <dd pdk-summary-value>
+            <non-sitting-text [unavailabilities]="itinerary()?.unavailabilities"></non-sitting-text>
+          </dd>
+        </div>
+      </dl>
+    </pdk-grid>
+  </pdk-grid>
+</pdk-template>

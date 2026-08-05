@@ -1,0 +1,31 @@
+<form
+  #form="ngForm"
+  data-test-id="selectActionForm"
+  pdk-form
+  (validSubmit)="handleSubmit(formValues.selectedAction!)"
+>
+  <div class="action-wrapper">
+    <div>
+      <pdk-form-field label="Select" labelType="small">
+        <pdk-select
+          [(ngModel)]="formValues.selectedAction"
+          [name]="'actionSelected'"
+          [options]="actionOptions()"
+          placeholder="Select action"
+          justified
+          required
+        ></pdk-select>
+      </pdk-form-field>
+    </div>
+    <div>
+      <button
+        pdk-button="secondary"
+        pdk-margin-left="2"
+        type="submit"
+        [disabled]="selectedSessionsCount() === 0"
+      >
+        Continue
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RemoveJudiciaryItineraryDetailsComponent should render correctly 1`] = `
+<app-test-host
+  courtCentre={[Function Object]}
+  itinerary={[Function Object]}
+  selectedJudiciary={[Function Object]}
+  selectedType={[Function String]}
+>
+  <remove-judiciary-itinerary-details>
+    <pdk-grid
+      class="govuk-!-margin-top-4 govuk-grid-row"
+      container=""
+      pdk-margin-top="4"
+    >
+      <pdk-grid
+        class="govuk-grid-column-full"
+        full=""
+      >
+        <dl
+          class="govuk-!-margin-top-2 pdk-summary-list"
+          pdk-margin-top="2"
+          pdk-summary-list=""
+        >
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Court
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              Test Court
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Start date
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+               1 January 2026 
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              End date
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+               31 January 2026 
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Type
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              Judge
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Name
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+               SMITH 
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Session
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              All day
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Non-sitting days
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              <non-sitting-days-display>
+                <div>
+                  Mock Non-Sitting Days
+                </div>
+              </non-sitting-days-display>
+            </dd>
+          </div>
+        </dl>
+      </pdk-grid>
+    </pdk-grid>
+  </remove-judiciary-itinerary-details>
+</app-test-host>
+`;

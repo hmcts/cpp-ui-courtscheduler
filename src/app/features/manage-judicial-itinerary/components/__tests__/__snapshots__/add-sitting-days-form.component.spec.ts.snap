@@ -1,0 +1,670 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddSittingDaysFormComponent should render correctly 1`] = `
+<app-test-host
+  clearCalled="false"
+  errors="undefined"
+  initialValues={[Function Object]}
+  submittedValues="undefined"
+>
+  <add-sitting-days-form>
+    <form
+      class="ng-untouched ng-valid ng-dirty"
+      novalidate=""
+      pdk-form=""
+    >
+      <pdk-grid
+        class="govuk-!-margin-top-2 govuk-grid-row"
+        container=""
+        pdk-margin-top="2"
+      >
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+          <pdk-grid
+            class="govuk-!-padding-left-0 govuk-grid-column-two-thirds"
+            pdk-padding-left="0"
+            two-thirds=""
+          >
+            <h2
+              class="govuk-heading-m"
+              pdk-typography="heading-medium"
+            >
+              Sitting days
+            </h2>
+            <date-range
+              class="ng-untouched ng-valid ng-dirty"
+              disableweekend=""
+              name="availability"
+              requiredenddate=""
+              requiredstartdate=""
+              style="width: 100%; display: block; box-sizing: border-box;"
+            >
+              <div
+                class="ng-untouched ng-pristine ng-invalid"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s govuk-visually-hidden"
+                  >
+                     Date range 
+                  </legend>
+                  <pdk-grid
+                    class="govuk-!-padding-left-0 govuk-grid-column-one-half"
+                    one-half=""
+                    pdk-padding-left="0"
+                  >
+                    <pdk-form-field
+                      label="Start date"
+                    >
+                      <pdk-form-group
+                        class="pdk-form-group"
+                      >
+                        <fieldset
+                          class="govuk-fieldset"
+                          pdk-fieldset=""
+                        >
+                          <legend
+                            class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                          >
+                             Start date 
+                          </legend>
+                          <pdk-date-input
+                            class="ng-untouched ng-pristine ng-invalid"
+                            data-test-id="start-date"
+                            formcontrolname="startDate"
+                            picker=""
+                            required=""
+                          >
+                            <pdk-interaction-container>
+                              <div>
+                                <div
+                                  class="pdk-date-input"
+                                >
+                                  <div
+                                    class="govuk-date-input ng-untouched ng-pristine ng-invalid"
+                                  >
+                                    <div
+                                      class="govuk-date-input__item"
+                                    >
+                                      <label
+                                        class="govuk-date-input__label govuk-label"
+                                        for="pdk-date-input-GENERATED_ID-day"
+                                        pdk-label=""
+                                      >
+                                         Day 
+                                      </label>
+                                      <input
+                                        autocomplete="off"
+                                        class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-2"
+                                        formcontrolname="day"
+                                        id="pdk-date-input-GENERATED_ID-day"
+                                        name="dateDay"
+                                        required=""
+                                        type="number"
+                                      />
+                                    </div>
+                                    <div
+                                      class="govuk-date-input__item"
+                                    >
+                                      <label
+                                        class="govuk-date-input__label govuk-label"
+                                        for="pdk-date-input-GENERATED_ID-month"
+                                        pdk-label=""
+                                      >
+                                         Month 
+                                      </label>
+                                      <input
+                                        autocomplete="off"
+                                        class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-2"
+                                        formcontrolname="month"
+                                        id="pdk-date-input-GENERATED_ID-month"
+                                        name="dateMonth"
+                                        required=""
+                                        type="number"
+                                      />
+                                    </div>
+                                    <div
+                                      class="govuk-date-input__item"
+                                    >
+                                      <label
+                                        class="govuk-date-input__label govuk-label"
+                                        for="pdk-date-input-GENERATED_ID-year"
+                                        pdk-label=""
+                                      >
+                                         Year 
+                                      </label>
+                                      <input
+                                        autocomplete="off"
+                                        class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-4"
+                                        formcontrolname="year"
+                                        id="pdk-date-input-GENERATED_ID-year"
+                                        name="dateYear"
+                                        required=""
+                                        type="number"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="pdk-!-negative-margin-left-2"
+                                    pdk-margin-left="-2"
+                                  >
+                                    <pdk-date-picker-toggle>
+                                      <pdk-interaction-container>
+                                        <div>
+                                          <div
+                                            aria-expanded="false"
+                                            aria-label="Toggle date picker"
+                                            class="pdk-date-picker__toggle"
+                                            role="button"
+                                            tabindex="0"
+                                          >
+                                            <pdk-date-picker-icon
+                                              style="margin-top: -4px; display: inline-block; vertical-align: middle;"
+                                            >
+                                              <div
+                                                style="display: flex; align-items: center; justify-content: center;"
+                                              >
+                                                <i
+                                                  style="height: 28px; width: 28px; fill: #333;"
+                                                >
+                                                  <svg
+                                                    viewBox="0 0 448 512"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                  >
+                                                    <path
+                                                      d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"
+                                                    />
+                                                  </svg>
+                                                </i>
+                                              </div>
+                                            </pdk-date-picker-icon>
+                                          </div>
+                                        </div>
+                                      </pdk-interaction-container>
+                                    </pdk-date-picker-toggle>
+                                  </div>
+                                </div>
+                              </div>
+                            </pdk-interaction-container>
+                          </pdk-date-input>
+                        </fieldset>
+                      </pdk-form-group>
+                    </pdk-form-field>
+                  </pdk-grid>
+                  <pdk-grid
+                    class="govuk-!-padding-left-0 govuk-grid-column-one-half"
+                    one-half=""
+                    pdk-padding-left="0"
+                  >
+                    <pdk-form-field>
+                      <pdk-form-group
+                        class="pdk-form-group"
+                      >
+                        <fieldset
+                          class="govuk-fieldset"
+                          pdk-fieldset=""
+                        >
+                          <legend
+                            class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                          >
+                             End date  
+                          </legend>
+                          <pdk-date-input
+                            class="ng-untouched ng-pristine ng-invalid"
+                            data-test-id="end-date"
+                            formcontrolname="endDate"
+                            picker=""
+                            required=""
+                          >
+                            <pdk-interaction-container>
+                              <div>
+                                <div
+                                  class="pdk-date-input"
+                                >
+                                  <div
+                                    class="govuk-date-input ng-untouched ng-pristine ng-invalid"
+                                  >
+                                    <div
+                                      class="govuk-date-input__item"
+                                    >
+                                      <label
+                                        class="govuk-date-input__label govuk-label"
+                                        for="pdk-date-input-GENERATED_ID-day"
+                                        pdk-label=""
+                                      >
+                                         Day 
+                                      </label>
+                                      <input
+                                        autocomplete="off"
+                                        class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-2"
+                                        formcontrolname="day"
+                                        id="pdk-date-input-GENERATED_ID-day"
+                                        name="dateDay"
+                                        required=""
+                                        type="number"
+                                      />
+                                    </div>
+                                    <div
+                                      class="govuk-date-input__item"
+                                    >
+                                      <label
+                                        class="govuk-date-input__label govuk-label"
+                                        for="pdk-date-input-GENERATED_ID-month"
+                                        pdk-label=""
+                                      >
+                                         Month 
+                                      </label>
+                                      <input
+                                        autocomplete="off"
+                                        class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-2"
+                                        formcontrolname="month"
+                                        id="pdk-date-input-GENERATED_ID-month"
+                                        name="dateMonth"
+                                        required=""
+                                        type="number"
+                                      />
+                                    </div>
+                                    <div
+                                      class="govuk-date-input__item"
+                                    >
+                                      <label
+                                        class="govuk-date-input__label govuk-label"
+                                        for="pdk-date-input-GENERATED_ID-year"
+                                        pdk-label=""
+                                      >
+                                         Year 
+                                      </label>
+                                      <input
+                                        autocomplete="off"
+                                        class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-4"
+                                        formcontrolname="year"
+                                        id="pdk-date-input-GENERATED_ID-year"
+                                        name="dateYear"
+                                        required=""
+                                        type="number"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="pdk-!-negative-margin-left-2"
+                                    pdk-margin-left="-2"
+                                  >
+                                    <pdk-date-picker-toggle>
+                                      <pdk-interaction-container>
+                                        <div>
+                                          <div
+                                            aria-expanded="false"
+                                            aria-label="Toggle date picker"
+                                            class="pdk-date-picker__toggle"
+                                            role="button"
+                                            tabindex="0"
+                                          >
+                                            <pdk-date-picker-icon
+                                              style="margin-top: -4px; display: inline-block; vertical-align: middle;"
+                                            >
+                                              <div
+                                                style="display: flex; align-items: center; justify-content: center;"
+                                              >
+                                                <i
+                                                  style="height: 28px; width: 28px; fill: #333;"
+                                                >
+                                                  <svg
+                                                    viewBox="0 0 448 512"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                  >
+                                                    <path
+                                                      d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"
+                                                    />
+                                                  </svg>
+                                                </i>
+                                              </div>
+                                            </pdk-date-picker-icon>
+                                          </div>
+                                        </div>
+                                      </pdk-interaction-container>
+                                    </pdk-date-picker-toggle>
+                                  </div>
+                                </div>
+                              </div>
+                            </pdk-interaction-container>
+                          </pdk-date-input>
+                        </fieldset>
+                      </pdk-form-group>
+                    </pdk-form-field>
+                  </pdk-grid>
+                </fieldset>
+              </div>
+            </date-range>
+          </pdk-grid>
+          <pdk-divider
+            class="govuk-!-margin-top-0"
+            pdk-margin-top="0"
+          >
+            <hr
+              class="pdk-divider"
+            />
+          </pdk-divider>
+          <pdk-grid
+            class="govuk-!-padding-left-0 govuk-grid-column-two-thirds"
+            pdk-padding-left="0"
+            two-thirds=""
+          >
+            <days-of-week-selector
+              class="ng-untouched ng-valid ng-dirty"
+              label="Sitting days in a week (optional)"
+              name="sittingDays"
+            >
+              <pdk-form-field>
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <fieldset
+                    class="govuk-fieldset"
+                    pdk-fieldset=""
+                  >
+                    <legend
+                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                    >
+                       Sitting days in a week (optional) 
+                    </legend>
+                    <pdk-checkbox-group
+                      checkboxtype="small"
+                      class="ng-untouched ng-pristine ng-valid"
+                    >
+                      <div
+                        class="govuk-checkboxes"
+                      >
+                        <pdk-checkbox
+                          checkboxtype="small"
+                          class="govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+                          data-test-id="select-all-checkbox"
+                          name="selectAll"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="selectAll"
+                              type="checkbox"
+                              value="true"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               Select all 
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          checkboxtype="small"
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="MON"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               Monday 
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          checkboxtype="small"
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="TUE"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               Tuesday 
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          checkboxtype="small"
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="WED"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               Wednesday 
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          checkboxtype="small"
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="THU"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               Thursday 
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          checkboxtype="small"
+                          class="govuk-checkboxes govuk-checkboxes--small"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="FRI"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               Friday 
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                      </div>
+                    </pdk-checkbox-group>
+                  </fieldset>
+                </pdk-form-group>
+              </pdk-form-field>
+            </days-of-week-selector>
+          </pdk-grid>
+          <pdk-divider
+            class="govuk-!-margin-top-0"
+            pdk-margin-top="0"
+          >
+            <hr
+              class="pdk-divider"
+            />
+          </pdk-divider>
+          <pdk-grid
+            class="govuk-!-padding-left-0 govuk-grid-column-two-thirds"
+            pdk-padding-left="0"
+            two-thirds=""
+          >
+            <pdk-form-field
+              label="Session"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     Session 
+                  </legend>
+                  <pdk-radio-group
+                    class="ng-untouched ng-pristine ng-valid"
+                    data-test-id="session-radio-group"
+                    name="session"
+                    required=""
+                  >
+                    <div
+                      class="govuk-radios"
+                    >
+                      <pdk-radio-button>
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="AD"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             All day 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button>
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="AM"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             AM 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button>
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="PM"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             PM 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                    </div>
+                  </pdk-radio-group>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </pdk-grid>
+          <pdk-divider
+            class="govuk-!-margin-top-0"
+            pdk-margin-top="0"
+          >
+            <hr
+              class="pdk-divider"
+            />
+          </pdk-divider>
+        </pdk-grid>
+        <pdk-grid
+          class="govuk-!-margin-top-5 govuk-grid-column-two-thirds"
+          pdk-margin-top="5"
+          two-thirds=""
+        >
+          <pdk-button-group>
+            <div
+              class="govuk-button-group"
+            >
+              <button
+                class="govuk-button"
+                data-test-id="continue-button"
+                pdk-button=""
+                type="submit"
+              >
+                Continue
+              </button>
+              <a
+                class="govuk-!-margin-left-4 govuk-link govuk-link--no-visited-state"
+                data-test-id="clear-link"
+                href="javascript:void(0);"
+                pdk-link=""
+                pdk-margin-left="4"
+                unvisited=""
+              >
+                 Clear 
+              </a>
+            </div>
+          </pdk-button-group>
+        </pdk-grid>
+      </pdk-grid>
+    </form>
+  </add-sitting-days-form>
+</app-test-host>
+`;

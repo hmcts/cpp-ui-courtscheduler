@@ -1,0 +1,88 @@
+<h2 pdk-typography="heading-medium" pdk-margin-bottom="0">More than once</h2>
+<p pdk-margin-top="1">Repeat for more than one week</p>
+<form
+  #formMoreThanOnce="ngForm"
+  data-test-id="repeatSessionsMoreThanOnceForm"
+  pdk-form
+  pdk-margin-top="8"
+  (errors)="errors.emit($event)"
+  (validSubmit)="handleSubmitForm(formMoreThanOnce.value)"
+>
+  <pdk-grid container>
+    <pdk-grid one-half>
+      <div class="weeks-input-wrapper">
+        <pdk-form-field
+          label="Every"
+          labelType="small"
+          [errorMessages]="getRepeatForErrorMessages()"
+        >
+          <div class="inputs-row">
+            <input
+              pdk-text-input
+              type="number"
+              name="repeatFor"
+              pattern="[0-9]*"
+              min="1"
+              [max]="getMaxRepeatFor()"
+              required
+              [pdk-input]="2"
+              [ngModel]="repeatFor()"
+              (ngModelChange)="handleRepeatForChange($event)"
+              data-test-id="repeatFor"
+            />
+            <pdk-form-field label="Interval" labelType="small" class="interval" pdk-margin-left="2">
+              <pdk-select
+                [ngModel]="frequency()"
+                name="frequency"
+                [options]="intervalOptions"
+                justified
+                required
+                data-test-id="interval"
+                (ngModelChange)="handleIntervalChange($event)"
+              >
+              </pdk-select>
+            </pdk-form-field>
+          </div>
+        </pdk-form-field>
+      </div>
+      <pdk-form-field label="Start date" labelType="small" [hintText]="startDateHintText()">
+        <pdk-date-picker-input
+          name="startDate"
+          required
+          [isDateDisabled]="getStartDateDisabledFunction()"
+          [minDate]="minStartDate"
+          [ngModel]="startDate()"
+          (ngModelChange)="handleStartDateChange($event)"
+          data-test-id="moreThanOnceStartDate"
+        >
+        </pdk-date-picker-input>
+
+        @if (startDateLabel()) {
+          <pdk-inset-text>
+            {{ startDateLabel() }}
+          </pdk-inset-text>
+        }
+      </pdk-form-field>
+
+      <pdk-form-field label="End date" labelType="small">
+        <pdk-date-picker-input
+          name="endDate"
+          required
+          [isDateDisabled]="isDateDisabled"
+          [minDate]="minEndDate()"
+          [ngModel]="endDate()"
+          (ngModelChange)="handleEndDateChange($event)"
+          data-test-id="endDate"
+        >
+        </pdk-date-picker-input>
+
+        @if (endDateLabel()) {
+          <pdk-inset-text>
+            {{ endDateLabel() }}
+          </pdk-inset-text>
+        }
+      </pdk-form-field>
+      <button pdk-button pdk-margin-top="2" type="submit">Continue</button>
+    </pdk-grid>
+  </pdk-grid>
+</form>

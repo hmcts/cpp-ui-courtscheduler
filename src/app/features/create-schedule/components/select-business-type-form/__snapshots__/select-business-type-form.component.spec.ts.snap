@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectBusinessTypeFormComponent should create 1`] = `
+<select-business-type-form
+  courtCentre={[Function Function]}
+  errors={[Function OutputEmitterRef]}
+  initialValueOptions={[Function Function]}
+  initialValues={[Function Function]}
+  jurisdiction={[Function Function]}
+  submitForm={[Function OutputEmitterRef]}
+>
+  <form
+    class="ng-untouched ng-pristine ng-valid"
+    data-test-id="selectBusinessType"
+    novalidate=""
+    pdk-form=""
+  >
+    <pdk-form-field
+      label="Select business type"
+      labeltype="small"
+    >
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        <label
+          class="govuk-label govuk-label--s"
+          for="pdk-form-control-undefined-GENERATED_ID"
+        >
+           Select business type 
+        </label>
+        <cpp-rota-business-type-select
+          class="ng-untouched ng-pristine ng-valid"
+          justified=""
+          required=""
+        >
+          <pdk-select>
+            <select
+              class="govuk-select pdk-select--justified"
+              id="pdk-form-control-undefined-GENERATED_ID"
+              name="rotaBusinessTypeCode"
+              required=""
+            >
+            </select>
+          </pdk-select>
+        </cpp-rota-business-type-select>
+      </pdk-form-group>
+    </pdk-form-field>
+    <div
+      class="actions"
+    >
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        <button
+          class="govuk-!-margin-bottom-0 govuk-button"
+          data-test-id="select-business-type"
+          pdk-button=""
+          pdk-margin-bottom="0"
+          type="submit"
+        >
+           Continue 
+        </button>
+      </pdk-form-group>
+      <div
+        class="govuk-!-margin-left-4"
+        pdk-margin-left="4"
+      >
+        <a
+          class="govuk-link"
+          data-test-id="clear-court"
+          href="javascript:void(0)"
+          pdk-link=""
+        >
+          Clear
+        </a>
+      </div>
+    </div>
+  </form>
+</select-business-type-form>
+`;

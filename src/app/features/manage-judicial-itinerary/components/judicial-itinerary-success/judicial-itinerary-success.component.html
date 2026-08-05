@@ -1,0 +1,17 @@
+<pdk-grid container>
+  <pdk-grid two-thirds>
+    <pdk-panel type="confirmation" pdk-margin-bottom="4">
+      {{ store.successMessage() }}
+    </pdk-panel>
+    <div pdk-margin-top="4">
+      <button
+        type="button"
+        pdk-button
+        (click)="handleGoToManageJudiciaryItinerary()"
+        data-test-id="go-to-manage-judiciary-itinerary-button"
+      >
+        Go to manage judiciary itinerary
+      </button>
+    </div>
+  </pdk-grid>
+</pdk-grid>
