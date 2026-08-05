@@ -5,6 +5,7 @@ import {
   forwardRef,
   inject,
   input,
+  model,
   output,
   signal
 } from '@angular/core';
@@ -13,16 +14,18 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 import {
   PdkButton,
   PdkFormFieldComponent,
-  PdkAutosuggestLiteComponent,
   PdkGrid,
   PdkMarginDirective,
   PdkTagComponent,
-  PdkTypographyDirective
+  PdkTypographyDirective,
+  coerceBooleanProperty,
+  PdkAutosuggestComponent,
+  PdkTextColorDirective
 } from '@cpp/pdk';
-import { JudicialMember, JudiciaryTypePayload, JudicialMemberNamePipe } from '@cpp/reference-data';
-import { JudiciaryWithSpecialisms } from '../../../features/manage-judicial-itinerary/model/judicial-itinerary.interface';
+import { JudiciaryTypePayload, JudicialMemberNamePipe } from '@cpp/reference-data';
+import { ExtendedJudicialMember } from '../../model';
 import { Subject, debounceTime } from 'rxjs';
-import { Specialism } from '../../../features/manage-judicial-itinerary/model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 import { SpecialismFormatPipe } from '../../../features/manage-judicial-itinerary/pipes/specialism-format.pipe';
 
 @Component({
@@ -37,27 +40,46 @@ import { SpecialismFormatPipe } from '../../../features/manage-judicial-itinerar
       hintText="Search by name"
       [errorMessages]="errorMessagesInput()"
     >
-      <pdk-autosuggest-lite
+      <pdk-autosuggest
         [name]="name()"
-        [suggestions]="suggestions() ?? []"
-        [mapSuggestionToTitle]="getSuggestionLabel"
-        [mapSuggestionToSubtitle]="getSuggestionSubTitle"
-        [mapSuggestionToKey]="getSuggestionKey"
         [ariaDescribedBy]="ariaDescribedByInput()"
-        [highlightMatchedText]="true"
+        [disabled]="disabled()"
+        highlightColor="blue"
         [ngModel]="selectedJudiciary()"
         [ngModelOptions]="{ standalone: true }"
-        [required]="required()"
-        (inputText)="searchSubject.next($event)"
         (ngModelChange)="handleModelChange($event)"
-      ></pdk-autosuggest-lite>
+        [highlightFirstSuggestion]="true"
+        [mapSuggestionToKey]="getKey"
+        [mapSuggestionToLabel]="getSuggestionSubTitle"
+        (inputText)="searchSubject.next($event)"
+        [suggestions]="suggestions() ?? []"
+        [suggestionTemplateRef]="suggestionTemplateRef"
+        [required]="required()"
+      >
+      </pdk-autosuggest>
+      <ng-template
+        #suggestionTemplateRef
+        let-highlighted="highlighted"
+        let-matchText="matchText"
+        let-suggestion="suggestion"
+      >
+        <span
+          pdk-typography="body-small"
+          [pdk-text-colour]="highlighted ? 'white' : 'black'"
+          [innerHtml]="getSuggestionLabel(suggestion)"
+        ></span>
+        <br />
+        <span pdk-typography="body-small" [pdk-text-colour]="highlighted ? 'white' : 'dark-grey'">
+          {{ getSuggestionSubTitle(suggestion) }}
+        </span>
+      </ng-template>
     </pdk-form-field>
 
     @if (judiciary) {
       <pdk-grid container pdk-margin-top="4">
         <pdk-grid full>
           @if (judiciary.specialisms?.length > 0) {
-            <h2 pdk-typography="heading-medium">Judiciary Specialisms</h2>
+            <h2 pdk-typography="heading-small">Judiciary Specialisms</h2>
             <div pdk-margin-top="2" role="list">
               @for (specialism of judiciary.specialisms; track specialism) {
                 <pdk-tag role="listitem" pdk-margin-right="2" pdk-margin-bottom="2">
@@ -66,7 +88,7 @@ import { SpecialismFormatPipe } from '../../../features/manage-judicial-itinerar
               }
             </div>
           }
-          @if (hasAvailableSpecialisms()) {
+          @if (canAddMoreSpecialisms() && !hideSpecialismsAction()) {
             <button
               pdk-button="secondary"
               type="button"
@@ -92,11 +114,12 @@ import { SpecialismFormatPipe } from '../../../features/manage-judicial-itinerar
     FormsModule,
     PdkButton,
     PdkFormFieldComponent,
-    PdkAutosuggestLiteComponent,
+    PdkAutosuggestComponent,
     PdkGrid,
     PdkMarginDirective,
     PdkTagComponent,
     PdkTypographyDirective,
+    PdkTextColorDirective,
     SpecialismFormatPipe
   ]
 })
@@ -105,59 +128,79 @@ export class JudiciaryAutosuggestControlComponent implements ControlValueAccesso
 
   readonly label = input<string>('Judiciary name');
   readonly name = input.required<string>();
-  readonly required = input<boolean>(false);
+  readonly required = input(false, {
+    transform: (value: boolean | string) => coerceBooleanProperty(value)
+  });
   readonly judiciaryType = input.required<JudiciaryTypePayload | null>();
-  readonly suggestions = input<JudiciaryWithSpecialisms[]>([]);
+  readonly suggestions = input<ExtendedJudicialMember[]>([]);
   readonly ariaDescribedByInput = input<string>('');
+  readonly disabled = model(false);
   readonly errorMessagesInput = input<Array<{ rule: string; message: string }>>([]);
+  readonly hideSpecialismsAction = input<boolean>(false);
 
   readonly searchSubject = new Subject<string>();
-  readonly selectedJudiciary = signal<JudiciaryWithSpecialisms | null>(null);
+  readonly selectedJudiciary = signal<ExtendedJudicialMember | null>(null);
   readonly onAddSpecialism = output<{
-    judiciary: JudiciaryWithSpecialisms | null;
+    judiciary: ExtendedJudicialMember | null;
     type: JudiciaryTypePayload | null;
   }>();
   readonly inputText = output<{ type: JudiciaryTypePayload; searchText: string }>();
 
-  readonly getSuggestionLabel = (judiciary: JudicialMember): string => {
-    return this.judicialMemberNamePipe.transform(judiciary);
-  };
-  readonly getSuggestionKey = (suggestion: JudiciaryWithSpecialisms): string => {
-    return suggestion.id;
-  };
-  readonly getSuggestionSubTitle = (suggestion: JudiciaryWithSpecialisms): string => {
+  readonly getSuggestionLabel = (suggestion: ExtendedJudicialMember): string => {
     const { forenames, surname } = suggestion;
-    return `${forenames} ${surname}`;
+    const label = `${forenames} ${surname}`;
+    if (this.#searchText.length > 0) {
+      const offset = this.#searchText.length;
+      const idx = label.toLowerCase().indexOf(this.#searchText.toLowerCase());
+
+      if (idx !== -1) {
+        return (
+          `${label.substring(0, idx)}<b>${label.substring(idx, idx + offset)}</b>` +
+          `${label.substring(idx + offset)}`
+        );
+      }
+    }
+    return label;
   };
 
-  readonly hasAvailableSpecialisms = computed(() => {
+  readonly getKey = (suggestion: ExtendedJudicialMember): string => {
+    return suggestion.id;
+  };
+
+  readonly getSuggestionSubTitle = (suggestion: ExtendedJudicialMember): string => {
+    return this.judicialMemberNamePipe.transform(suggestion);
+  };
+
+  readonly canAddMoreSpecialisms = computed(() => {
     const judiciary = this.selectedJudiciary();
     const existingSpecialisms = judiciary?.specialisms || [];
     const allSpecialisms = Object.values(Specialism);
     return existingSpecialisms.length < allSpecialisms.length;
   });
 
+  #searchText: string = '';
+  #onChange: (value: ExtendedJudicialMember | null) => void = () => {};
+
   constructor() {
-    this.searchSubject.pipe(debounceTime(300), takeUntilDestroyed()).subscribe((searchText) => {
+    this.searchSubject.pipe(debounceTime(500), takeUntilDestroyed()).subscribe((searchText) => {
       const type = this.judiciaryType();
+      this.#searchText = searchText;
       if (type) {
         this.inputText.emit({ type, searchText });
       }
     });
   }
 
-  #onChange: (value: JudiciaryWithSpecialisms | null) => void = () => {};
-
-  handleModelChange(value: JudiciaryWithSpecialisms | null): void {
+  handleModelChange(value: ExtendedJudicialMember | null): void {
     this.selectedJudiciary.set(value);
     this.#onChange(value);
   }
 
-  writeValue(value: JudiciaryWithSpecialisms | null): void {
+  writeValue(value: ExtendedJudicialMember | null): void {
     this.selectedJudiciary.set(value);
   }
 
-  registerOnChange(fn: (value: JudiciaryWithSpecialisms | null) => void): void {
+  registerOnChange(fn: (value: ExtendedJudicialMember | null) => void): void {
     this.#onChange = fn;
   }
 
@@ -168,5 +211,9 @@ export class JudiciaryAutosuggestControlComponent implements ControlValueAccesso
       judiciary: this.selectedJudiciary(),
       type: this.judiciaryType()
     });
+  }
+
+  setDisabledState(isDisabled: boolean) {
+    this.disabled.set(isDisabled);
   }
 }

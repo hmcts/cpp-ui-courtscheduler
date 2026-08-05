@@ -5,7 +5,7 @@ import {
   SpecialismAddedConfirmationFormComponent,
   SpecialismAddedConfirmationFormValues
 } from '../specialism-added-confirmation-form/specialism-added-confirmation-form.component';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 import { SpecialismFormatPipe } from '../../pipes/specialism-format.pipe';
 
 @Component({

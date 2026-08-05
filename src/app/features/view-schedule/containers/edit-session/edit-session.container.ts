@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import {
+  ModalService,
   PdkBackLink,
   PdkErrorSummaryComponent,
   PdkGrid,
@@ -11,89 +10,138 @@ import {
   PdkTypographyDirective,
   ValidationError
 } from '@cpp/pdk';
-import { CourtCentre } from '../../../../shared';
-import { CourtScheduleSession } from '../../model/view-schedule.model';
+import { HttpErrorResponse } from '@angular/common/http';
+import { EditSessionFormValues } from '../../model/view-schedule.model';
 import { ViewScheduleState } from '../../state/view-schedule.state';
 import { getCourtCentres } from '../../../../core/selectors/reference-data/reference-data';
-import {
-  getErrors,
-  getJurisdiction,
-  getSessionToEdit
-} from '../../state/selectors/view-schedule.selectors';
 import { ViewScheduleActions } from '../../state/actions';
 import { ViewScheduleRoutes } from '../../view-schedule.routes';
 import { EditSessionComponent } from '../../components/edit-form/edit-form.component';
-import { AsyncPipe } from '@angular/common';
-import { takeUntil } from 'rxjs/operators';
+import { SelectedCourtAndJudiciaryComponent } from '../../components/selected-court-and-judiciary/selected-court-and-judiciary.component';
+import {
+  RemoveJudiciaryModalComponent,
+  RemoveJudiciaryModalData
+} from '../../components/remove-judiciary-modal/remove-judiciary-modal.component';
+import { JurisdictionType } from '../../../../../app/shared/model/jurisdiction';
+import { CourtSchedulerRoutes } from '../../../../../app/app-routes';
+import { JudiciarySessionAssignmentRoutes } from '../../../../features/judiciary-session-assignment/judiciary-session-assignment.routes';
+import { ManageSessionsStore } from '../../store/manage-sessions.store';
 
 @Component({
   selector: 'edit-session',
   template: `
-    @if (errors?.length > 0) {
-      <pdk-error-summary [errors]="errors" focusOnChange pdk-margin-top="4" />
+    @if (errors()?.length > 0) {
+      <pdk-error-summary [errors]="errors()" focusOnChange pdk-margin-top="4" />
     }
     <div pdk-margin-bottom="4">
       <a pdk-back-link (click)="handleBackLink()" href="javascript:void(0);">Back</a>
     </div>
     <pdk-grid container>
       <pdk-grid full>
-        <h1 pdk-typography="heading-xlarge">Edit session</h1>
+        <h1 pdk-typography="heading-xlarge">Edit session details</h1>
+        @if (jurisdiction() === JurisdictionType.CROWN) {
+          <selected-court-and-judiciary
+            [courtName]="sessionToEdit().courtHouseName"
+            [assignedJudiciary]="manageSessionsStore.selectedJudiciaries() ?? []"
+            (assignJudiciary)="navigateToAssignJudiciary()"
+            (removeAllJudiciary)="handleRemoveAllJudiciary()"
+          />
+        }
+
         <edit-sessions-form
-          [courtCentres]="courtCentres$ | async"
-          [sessionToEdit]="sessionToEdit$ | async"
+          [courtCentres]="courtCentres()"
+          [sessionToEdit]="sessionToEdit()"
           [jurisdiction]="jurisdiction()"
           (submitForm)="handleSubmitForm($event)"
           (handleBackNav)="handleBackLink()"
-          (errors)="errors = $event"
+          (errors)="errors.set($event)"
         />
       </pdk-grid>
     </pdk-grid>
   `,
   imports: [
-    AsyncPipe,
     PdkBackLink,
     PdkErrorSummaryComponent,
     PdkGrid,
     PdkMarginDirective,
     PdkTypographyDirective,
-    EditSessionComponent
+    EditSessionComponent,
+    SelectedCourtAndJudiciaryComponent
   ]
 })
-export class EditSessionContainer implements OnInit, OnDestroy {
+export class EditSessionContainer {
   private store = inject<Store<ViewScheduleState>>(Store);
   private router = inject(Router);
-  courtCentres$: Observable<CourtCentre[]>;
-  sessionToEdit$: Observable<CourtScheduleSession>;
-  sessionToCopy: CourtScheduleSession;
-  errors: ValidationError[] = [];
-  errors$: Observable<ValidationError[]>;
-  readonly jurisdiction = toSignal(this.store.select(getJurisdiction), { initialValue: null });
-  destroy$: Subject<boolean> = new Subject<boolean>();
+  private modalService = inject(ModalService);
 
-  constructor() {
-    this.courtCentres$ = this.store.select(getCourtCentres);
-    this.sessionToEdit$ = this.store.select(getSessionToEdit);
-    this.errors$ = this.store.select(getErrors);
+  readonly manageSessionsStore = inject(ManageSessionsStore);
+  readonly sessionToEdit = computed(() => this.manageSessionsStore.sessions()[0]);
+  readonly courtCentres = this.store.selectSignal(getCourtCentres);
+  readonly jurisdiction = computed(() => this.sessionToEdit()?.jurisdiction ?? null);
+  readonly JurisdictionType = JurisdictionType;
 
-    this.errors$.pipe(takeUntil(this.destroy$)).subscribe((errors) => {
-      this.errors = [...errors];
+  errors = signal<ValidationError[]>([]);
+
+  handleSubmitForm(formValues: EditSessionFormValues) {
+    this.manageSessionsStore.updateSession({
+      formValues,
+      onUpdateSuccess: (courtRoomName) => {
+        this.store.dispatch(
+          ViewScheduleActions.setViewBanner({
+            message: 'Sessions updated successfully',
+            bannerType: 'success',
+            courtRoomName
+          })
+        );
+        this.router.navigate([CourtSchedulerRoutes.VIEW_SCHEDULE]);
+      },
+      onUpdateError: (error: HttpErrorResponse) => {
+        if (error.status === 400) {
+          const parsedError = JSON.parse(error.error);
+          this.errors.set([{ id: 'backendError', message: parsedError.error }]);
+        } else {
+          this.manageSessionsStore.handleError(error);
+        }
+      }
     });
   }
 
-  handleSubmitForm(session: CourtScheduleSession) {
-    this.store.dispatch(ViewScheduleActions.updateSession({ session }));
-  }
-
   handleBackLink() {
+    this.store.dispatch(ViewScheduleActions.clearViewBanner());
     this.router.navigate([ViewScheduleRoutes.VIEW]);
   }
 
-  ngOnInit(): void {
-    this.store.dispatch(ViewScheduleActions.setErrors({ errors: [] }));
+  navigateToAssignJudiciary(): void {
+    this.router.navigate(
+      [
+        CourtSchedulerRoutes.VIEW_SCHEDULE,
+        ViewScheduleRoutes.EDIT,
+        CourtSchedulerRoutes.JUDICIARY_SESSION_ASSIGNMENT,
+        JudiciarySessionAssignmentRoutes.ASSIGN
+      ],
+      { queryParams: { referrer: this.router.url.split('?')[0].slice(1) } }
+    );
   }
 
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
+  handleRemoveAllJudiciary(): void {
+    const overlayRef = this.modalService.open<RemoveJudiciaryModalData>(
+      RemoveJudiciaryModalComponent,
+      {
+        data: {
+          confirm: () => {
+            this.manageSessionsStore.removeAllJudiciary({
+              onRemoveSuccess: () => {
+                this.manageSessionsStore.clearJudiciarySelection();
+                overlayRef.dispose();
+              }
+            });
+          },
+          cancel: () => {
+            overlayRef.dispose();
+          }
+        },
+        disposeOnBackDropClick: false
+      }
+    );
   }
 }

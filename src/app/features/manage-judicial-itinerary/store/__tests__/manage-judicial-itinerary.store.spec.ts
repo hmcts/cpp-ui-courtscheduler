@@ -5,8 +5,8 @@ import { ManageJudicialItineraryStore } from '../manage-judicial-itinerary.store
 import { JudicialItineraryService } from '../../services/judicial-itinerary.service';
 import { JudicialMemberNamePipe } from '@cpp/reference-data';
 import { ExtractSignalStoreFeatureResult } from '../../../../shared/types/signal-test-types';
-import { JudiciaryWithSpecialisms } from '../../model/judicial-itinerary.interface';
-import { Specialism } from '../../model/specialism.enum';
+import { ExtendedJudicialMember } from '../../../../shared/model';
+import { Specialism } from '@cpp/reference-data';
 import { ValidationError } from '@cpp/pdk';
 import { ServerSubmissionErrorDTO } from '../../model/judicial-itinerary.interface';
 
@@ -219,7 +219,7 @@ describe('ManageJudicialItineraryStore', () => {
     it('should reset all feature states to initial values', () => {
       expect.assertions(13);
 
-      const mockJudiciary: JudiciaryWithSpecialisms = {
+      const mockJudiciary: ExtendedJudicialMember = {
         id: 'judge-1',
         seqId: 1,
         surname: 'Smith',
@@ -227,7 +227,7 @@ describe('ManageJudicialItineraryStore', () => {
         judiciaryType: 'Circuit Judge',
         emailAddress: 'john.smith@example.com',
         specialisms: [Specialism.MURDER]
-      } as unknown as JudiciaryWithSpecialisms;
+      } as unknown as ExtendedJudicialMember;
 
       store.setSelectedJudiciary(mockJudiciary);
       store.setSearchParams({
@@ -260,8 +260,8 @@ describe('ManageJudicialItineraryStore', () => {
 
       store.resetState();
 
-      expect(store.selectedType()).toBeNull();
-      expect(store.selectedJudiciary()).toBeNull();
+      expect(store.selectedJudiciaryTypes()).toBeNull();
+      expect(store.selectedJudiciaries()).toBeNull();
       expect(store.searchParams().courtCentre).toBeNull();
       expect(store.searchParams().availability.startDate).toBeNull();
       expect(store.searchParams().availability.endDate).toBeNull();

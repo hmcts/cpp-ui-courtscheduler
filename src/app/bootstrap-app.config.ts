@@ -2,7 +2,7 @@ import { ApplicationConfig, provideAppInitializer, inject } from '@angular/core'
 import { provideProtractorTestingSupport } from '@angular/platform-browser';
 import { provideStore } from '@ngrx/store';
 import { reducers } from './core/reducers';
-import { provideRouter, withInMemoryScrolling, withRouterConfig } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withRouterConfig } from '@angular/router';
 import { appRoutes } from './app-routes';
 import { provideRouterStore, RouterState } from '@ngrx/router-store';
 import { environment } from '../environments/environment';
@@ -28,12 +28,10 @@ export const appBootstrapConfig: ApplicationConfig = {
     provideProtractorTestingSupport(),
     provideRouter(
       appRoutes,
+      withComponentInputBinding(),
       withRouterConfig({
         paramsInheritanceStrategy: 'always',
         onSameUrlNavigation: 'reload'
-      }),
-      withInMemoryScrolling({
-        scrollPositionRestoration: 'top'
       })
     ),
     provideAppInitializer(async () => await inject(AppConfigService).load()),

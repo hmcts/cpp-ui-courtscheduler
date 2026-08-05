@@ -46,10 +46,7 @@ describe('AddSessionsFormComponent', () => {
     expect(component.formModel.sessionStartTime).toBeUndefined();
     expect(component.formModel.sessionEndTime).toBeUndefined();
 
-    const { start, end } = TimeRangeUtils.getTimeRangeErrorMessages(
-      undefined,
-      TimeRangeUtils.getTimeRange(undefined, CUSTOM_SESSION_TIME_LIMITS)
-    );
+    const { start, end } = TimeRangeUtils.getTimeRangeErrorMessages();
     expect(component.startTimeErrorMessages).toEqual(start);
     expect(component.endTimeErrorMessages).toEqual(end);
   });
@@ -70,10 +67,7 @@ describe('AddSessionsFormComponent', () => {
     expect(component.formModel.sessionEndTime).toBe('12:30');
     expect(component.formModel.isOverbookingAllowed).toBeTruthy();
 
-    const { start, end } = TimeRangeUtils.getTimeRangeErrorMessages(
-      component.formModel.sessionType,
-      TimeRangeUtils.getTimeRange(component.formModel.sessionType, CUSTOM_SESSION_TIME_LIMITS)
-    );
+    const { start, end } = TimeRangeUtils.getTimeRangeErrorMessages();
     expect(component.startTimeErrorMessages).toEqual(start);
     expect(component.endTimeErrorMessages).toEqual(end);
   });
@@ -201,21 +195,6 @@ describe('AddSessionsFormComponent', () => {
     });
   });
 
-  it('should update error messages through TimeRangeUtils when session type changes', () => {
-    spyOn(TimeRangeUtils, 'updateErrorMessages');
-    component.formModel.sessionType = 'AM';
-    fixture.detectChanges();
-
-    component.handleCustomTimesErrorMessages();
-
-    expect(TimeRangeUtils.updateErrorMessages).toHaveBeenCalledWith(
-      component.startTimeErrorMessages,
-      component.endTimeErrorMessages,
-      component.formModel.sessionType,
-      component.timeRange
-    );
-  });
-
   it('should get time range through TimeRangeUtils', () => {
     spyOn(TimeRangeUtils, 'getTimeRange').and.callThrough();
     component.formModel.sessionType = 'PM';
@@ -269,17 +248,6 @@ describe('AddSessionsFormComponent', () => {
     component.handleFormErrors(mockErrors);
 
     expect(component.errors.emit).toHaveBeenCalledWith(mockErrors);
-  });
-
-  it('should clear duration and update error messages when session type changes', () => {
-    spyOn(component, 'handleCustomTimesErrorMessages');
-    component.formModel.duration = 120;
-    component.formModel.sessionType = 'AM';
-
-    component.onSessionTypeChange('PM');
-
-    expect(component.formModel.duration).toBeNull();
-    expect(component.handleCustomTimesErrorMessages).toHaveBeenCalled();
   });
 
   it('should include all days including Saturday in repeatedDaysOptions when jurisdiction is MAGISTRATES', () => {

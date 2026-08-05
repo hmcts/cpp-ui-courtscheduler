@@ -7,11 +7,11 @@ import { JudicialItineraryService } from '../judicial-itinerary.service';
 import {
   FindAvailabilityParams,
   FindAvailabilityDtoResponse,
-  FindAvailabilityVM,
-  JudiciaryWithSpecialisms
+  FindAvailabilityVM
 } from '../../model/judicial-itinerary.interface';
-import { Specialism } from '../../model/specialism.enum';
-import { SessionType } from '../../../../shared/model/session';
+import { ExtendedJudicialMember } from '../../../../shared/model';
+import { Specialism } from '@cpp/reference-data';
+import { SessionType } from '../../../../shared/model';
 import { Unavailability } from '../../model/unavailability.interface';
 
 describe('JudicialItineraryService', () => {
@@ -47,21 +47,21 @@ describe('JudicialItineraryService', () => {
         forenames: 'John',
         judiciaryType: 'Circuit Judge',
         specialisms: [Specialism.MURDER, Specialism.ATTEMPTEDMURDER]
-      } as JudiciaryWithSpecialisms
+      } as ExtendedJudicialMember
     ],
     totalCount: 1,
     pageNumber: 1,
     pageSize: 20
   };
 
-  const expectedJudiciaryMember: JudiciaryWithSpecialisms = {
+  const expectedJudiciaryMember: ExtendedJudicialMember = {
     id: 'judge-1',
     seqId: 1,
     surname: 'Smith',
     forenames: 'John',
     judiciaryType: 'Circuit Judge',
     specialisms: [Specialism.MURDER, Specialism.ATTEMPTEDMURDER]
-  } as JudiciaryWithSpecialisms;
+  } as ExtendedJudicialMember;
 
   const expectedVMResponse: FindAvailabilityVM = {
     itineraries: [
@@ -345,7 +345,7 @@ describe('JudicialItineraryService', () => {
         forenames: 'John',
         judiciaryType: 'Circuit Judge',
         specialisms: [Specialism.MURDER]
-      } as JudiciaryWithSpecialisms
+      } as ExtendedJudicialMember
     };
 
     cppHttp.query.mockReturnValue(of(mockResponse));
@@ -380,7 +380,7 @@ describe('JudicialItineraryService', () => {
         forenames: 'John',
         judiciaryType: 'Circuit Judge',
         specialisms: [Specialism.MURDER, Specialism.ATTEMPTEDMURDER]
-      } as JudiciaryWithSpecialisms
+      } as ExtendedJudicialMember
     };
 
     cppHttp.query.mockReturnValue(of(mockResponse));
@@ -416,7 +416,7 @@ describe('JudicialItineraryService', () => {
         forenames: 'John',
         judiciaryType: 'Circuit Judge',
         specialisms: ['UNKNOWN_SPECIALISM' as Specialism, Specialism.MURDER]
-      } as JudiciaryWithSpecialisms
+      } as ExtendedJudicialMember
     };
 
     cppHttp.query.mockReturnValue(of(mockResponse));
@@ -448,7 +448,7 @@ describe('JudicialItineraryService', () => {
         forenames: 'John',
         judiciaryType: 'Circuit Judge',
         specialisms: []
-      } as JudiciaryWithSpecialisms
+      } as ExtendedJudicialMember
     };
 
     cppHttp.query.mockReturnValue(of(mockResponse));
@@ -480,7 +480,7 @@ describe('JudicialItineraryService', () => {
         forenames: 'John',
         judiciaryType: 'Circuit Judge',
         specialisms: undefined
-      } as JudiciaryWithSpecialisms
+      } as ExtendedJudicialMember
     };
 
     cppHttp.query.mockReturnValue(of(mockResponse));

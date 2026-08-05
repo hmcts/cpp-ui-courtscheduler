@@ -7,8 +7,7 @@ import {
   getSundaysAfterStartDate,
   TWO_YEARS_IN_WEEKS,
   parseDateToString,
-  parseDateToLocaleString,
-  parseStringToDate
+  parseDateToLocaleString
 } from './date-utils';
 
 describe('Date Utilities', () => {
@@ -133,20 +132,20 @@ describe('Date Utilities', () => {
     });
   });
 
-  describe('parseStringToDate', () => {
+  describe('parseDateToString', () => {
     it('should correctly parse a date string to a Date object', () => {
       const dateString = '2023-01-01';
-      const result = parseStringToDate(dateString);
-      expect(result).toEqual(new Date('2023-01-01'));
+      const result = parseDateToString(dateString);
+      expect(result).toEqual('2023-01-01');
     });
 
     it('should return null when dateString is undefined', () => {
-      const result = parseStringToDate(undefined);
+      const result = parseDateToString(undefined);
       expect(result).toBeNull();
     });
 
     it('should return null when dateString is an empty string', () => {
-      const result = parseStringToDate('');
+      const result = parseDateToString('');
       expect(result).toBeNull();
     });
   });

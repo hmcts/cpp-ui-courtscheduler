@@ -9,7 +9,7 @@ import { OrganisationUnit } from '@cpp/reference-data';
 import { of, throwError } from 'rxjs';
 import { JudicialItineraryService } from '../../services/judicial-itinerary.service';
 import { FindAvailabilityVM } from '../../model/judicial-itinerary.interface';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 import { SortOrder } from '@cpp/pdk';
 import { ItinerarySortField } from '../manage-judiciary-itinerary.store.interfaces';
 

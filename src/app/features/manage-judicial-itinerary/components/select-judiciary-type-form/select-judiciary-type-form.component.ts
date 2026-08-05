@@ -1,13 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject, input, output, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
-import { catchError, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 import {
   PdkButton,
   PdkDividerComponent,
   PdkForm,
-  PdkFormFieldComponent,
   PdkFormGroupComponent,
   PdkGrid,
   PdkMarginDirective,
@@ -15,16 +12,20 @@ import {
   PdkTypographyDirective,
   ValidationError
 } from '@cpp/pdk';
-import { JudiciaryAutosuggestControlComponent } from '../../../../shared/components/judiciary-autosuggest-control/judiciary-autosuggest-control.component';
-import { JudiciaryWithSpecialisms } from '../../model/judicial-itinerary.interface';
 import { JudiciaryTypePayload, ReferenceDataService } from '@cpp/reference-data';
-import { Specialism } from '../../model/specialism.enum';
+import { catchError, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { JudiciarySelectionInputComponent } from '../../../../shared/components/judiciary-selection-input/judiciary-selection-input.component';
+import { JudiciarySelectionValue, ExtendedJudicialMember } from '../../../../shared/model';
 
-export interface SelectJudiciaryTypeFormValues {
-  judiciaryType: JudiciaryTypePayload | null;
-  judiciary: JudiciaryWithSpecialisms | null;
+export interface SelectJudiciaryTypeFormPayload {
+  judiciary: ExtendedJudicialMember | null;
 }
 
+interface SelectJudiciaryTypeInitialValues {
+  judiciarySelection: JudiciarySelectionValue;
+  selectedJudiciaryTypes: (keyof JudiciarySelectionValue)[];
+}
 @Component({
   selector: 'select-judiciary-type-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,102 +41,21 @@ export interface SelectJudiciaryTypeFormValues {
 
       <pdk-grid container>
         <pdk-grid two-thirds>
-          <pdk-form-field
-            label="Select judiciary type and name"
-            labelType="small"
-            [errorMessages]="[
-              {
-                rule: 'required',
-                message: 'Select a judiciary type.'
-              }
-            ]"
-          >
-            <pdk-radio-group
-              name="judiciaryType"
-              [ngModel]="initialValues()?.judiciaryType || null"
-              #selectedType="ngModel"
-              required
-              data-test-id="judiciary-type-radio"
-            >
-              <pdk-radio-button value="Judge">Judge</pdk-radio-button>
-              @if (selectedType.value === 'Judge') {
-                <pdk-radio-conditional>
-                  <judiciary-autosuggest-control
-                    name="judiciary"
-                    label="Name"
-                    [judiciaryType]="'Judge'"
-                    [suggestions]="suggestionsResource.value() ?? []"
-                    [required]="true"
-                    [ngModel]="getJudiciaryValueForType('Judge')"
-                    #selectedJudiciary="ngModel"
-                    [errorMessagesInput]="[
-                      {
-                        rule: 'required',
-                        message: 'Choose a name from the list.'
-                      }
-                    ]"
-                    (onAddSpecialism)="handleAddSpecialism($event)"
-                    (inputText)="handleInputText($event)"
-                    data-test-id="judiciary-name-input"
-                  />
-                </pdk-radio-conditional>
-              }
-
-              <pdk-radio-button value="Recorder">Recorder</pdk-radio-button>
-              @if (selectedType.value === 'Recorder') {
-                <pdk-radio-conditional>
-                  <judiciary-autosuggest-control
-                    name="judiciary"
-                    label="Name"
-                    [judiciaryType]="'Recorder'"
-                    [suggestions]="suggestionsResource.value() ?? []"
-                    [required]="true"
-                    [ngModel]="getJudiciaryValueForType('Recorder')"
-                    #selectedJudiciary="ngModel"
-                    [errorMessagesInput]="[
-                      {
-                        rule: 'required',
-                        message: 'Choose a name from the list.'
-                      }
-                    ]"
-                    (onAddSpecialism)="handleAddSpecialism($event)"
-                    (inputText)="handleInputText($event)"
-                    data-test-id="judiciary-name-input"
-                  />
-                </pdk-radio-conditional>
-              }
-
-              <pdk-radio-button value="Magistrate">Magistrate</pdk-radio-button>
-              @if (selectedType.value === 'Magistrate') {
-                <pdk-radio-conditional>
-                  <judiciary-autosuggest-control
-                    name="judiciary"
-                    label="Name"
-                    [judiciaryType]="'Magistrate'"
-                    [suggestions]="suggestionsResource.value() ?? []"
-                    [required]="true"
-                    [ngModel]="getJudiciaryValueForType('Magistrate')"
-                    #selectedJudiciary="ngModel"
-                    [errorMessagesInput]="[
-                      {
-                        rule: 'required',
-                        message: 'Choose a name from the list.'
-                      }
-                    ]"
-                    (onAddSpecialism)="handleAddSpecialism($event)"
-                    (inputText)="handleInputText($event)"
-                    data-test-id="judiciary-name-input"
-                  />
-                </pdk-radio-conditional>
-              }
-            </pdk-radio-group>
-          </pdk-form-field>
+          <judiciary-selection-input
+            required
+            name="judiciarySelection"
+            [ngModel]="initialValues()?.judiciarySelection ?? null"
+            [selectedJudiciaryTypes]="initialValues()?.selectedJudiciaryTypes ?? []"
+            [suggestions]="suggestionsResource.value()"
+            (onAddSpecialism)="addSpecialism.emit($event)"
+            (inputText)="handleInputText($event)"
+            data-test-id="judiciary-selection-input"
+          />
         </pdk-grid>
 
         <pdk-grid full>
           <pdk-divider></pdk-divider>
         </pdk-grid>
-
         <pdk-grid one-third>
           <pdk-form-group pdk-margin-top="4">
             <button type="submit" pdk-button data-test-id="continue-button">Continue</button>
@@ -149,22 +69,23 @@ export interface SelectJudiciaryTypeFormValues {
     PdkButton,
     PdkDividerComponent,
     PdkForm,
-    PdkFormFieldComponent,
     PdkFormGroupComponent,
     PdkGrid,
     PdkMarginDirective,
     PdkRadio,
     PdkTypographyDirective,
-    JudiciaryAutosuggestControlComponent
+    JudiciarySelectionInputComponent
   ]
 })
 export class SelectJudiciaryTypeFormComponent {
   readonly referenceDataService = inject(ReferenceDataService);
-
-  readonly initialValues = input<SelectJudiciaryTypeFormValues | null>(null);
-  readonly submitForm = output<SelectJudiciaryTypeFormValues>();
+  readonly initialValues = input<SelectJudiciaryTypeInitialValues>(null);
+  readonly submitForm = output<SelectJudiciaryTypeFormPayload>();
   readonly errors = output<ValidationError[] | null>();
-  readonly addSpecialism = output<SelectJudiciaryTypeFormValues>();
+  readonly addSpecialism = output<{
+    judiciary: ExtendedJudicialMember | null;
+    type: JudiciaryTypePayload | null;
+  }>();
 
   readonly querySignal = signal<{ type: JudiciaryTypePayload | null; searchText: string }>({
     type: null,
@@ -173,66 +94,40 @@ export class SelectJudiciaryTypeFormComponent {
 
   readonly suggestionsResource = rxResource({
     request: this.querySignal,
-    loader: ({ request }) => {
-      if (!request.type || !request.searchText) {
-        return of([]);
+    loader: ({ request: { type, searchText } }) => {
+      if (!type || !searchText) {
+        return of({ type, judicialMembers: [] });
       }
       return this.referenceDataService
         .fetchJudicialMembers({
-          judiciaryGroup: request.type,
-          search: request.searchText,
+          judiciaryGroup: type,
+          search: searchText,
           limit: 20,
           withSpecialism: true
         })
         .pipe(
-          map((judiciaries) => {
-            return judiciaries.map((judiciary) => {
-              const judiciaryWithSpecialisms = judiciary as JudiciaryWithSpecialisms;
-              if (judiciaryWithSpecialisms.specialisms) {
-                judiciaryWithSpecialisms.specialisms = judiciaryWithSpecialisms.specialisms.filter(
-                  (s) => Object.values(Specialism).includes(s as Specialism)
-                ) as Specialism[];
-              }
-              return judiciaryWithSpecialisms;
-            });
-          }),
-          catchError(() => of([]))
+          map((judicialMembers) => ({
+            type,
+            judicialMembers
+          })),
+          catchError(() => of({ type, judicialMembers: [] }))
         );
     }
   });
 
-  handleInputText(event: { type: JudiciaryTypePayload; searchText: string }): void {
+  handleInputText({ type, searchText }: { type: JudiciaryTypePayload; searchText: string }): void {
     this.querySignal.set({
-      type: event.type,
-      searchText: event.searchText
+      type,
+      searchText
     });
   }
 
-  getJudiciaryValueForType(selectedType: JudiciaryTypePayload): JudiciaryWithSpecialisms | null {
-    const initial = this.initialValues();
-    if (initial?.judiciaryType === selectedType && initial?.judiciary) {
-      return initial.judiciary;
-    }
-    if (initial?.judiciaryType && initial.judiciaryType !== selectedType) {
-      return null;
-    }
-    return null;
-  }
-
-  handleSubmitForm(values: any): void {
+  handleSubmitForm({ judiciarySelection }: { judiciarySelection: JudiciarySelectionValue }): void {
     this.submitForm.emit({
-      judiciaryType: values.judiciaryType,
-      judiciary: values.judiciary
-    });
-  }
-
-  handleAddSpecialism(event: {
-    judiciary: JudiciaryWithSpecialisms | null;
-    type: JudiciaryTypePayload | null;
-  }): void {
-    this.addSpecialism.emit({
-      judiciaryType: event.type,
-      judiciary: event.judiciary
+      judiciary:
+        judiciarySelection.Magistrate?.[0] ??
+        judiciarySelection.Judge ??
+        judiciarySelection.Recorder
     });
   }
 }

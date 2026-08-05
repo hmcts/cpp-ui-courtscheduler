@@ -29,7 +29,7 @@ export const getJudicialItineraryGuard: CanActivateFn = (
     take(1),
     map(({ itinerary }) => {
       store.setSelectedItinerary(itinerary);
-      store.setSelectedJudiciary(itinerary.judiciaryMember);
+      store.setSelectedJudiciary(itinerary?.judiciaryMember ? [itinerary.judiciaryMember] : null);
 
       return true;
     }),

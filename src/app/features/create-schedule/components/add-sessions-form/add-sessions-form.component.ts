@@ -25,14 +25,15 @@ import {
   PdkBorderColorDirective,
   PdkTypographyDirective,
   PdkTextInput,
-  PdkTimeInputComponent
+  PdkTimeInputComponent,
+  ErrorMessageConfig
 } from '@cpp/pdk';
 import { OrganisationUnit, RotaBusinessType } from '@cpp/reference-data';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Session, SessionType } from '../../../../shared/model/session';
+import { Session } from '../../../../shared/model/session';
 import { DayOfWeek } from '../../../../shared/model/days';
 import { NgTemplateOutlet } from '@angular/common';
-import { TimeRangeValidatorDirective } from '../../../../shared/pipes/time-range-validator.pipe';
+import { TimeRangeValidatorDirective } from '../../../../shared/directives/time-range-validator.directive';
 import { FormatTimePipe } from '../../../../shared/pipes/format-time.pipe';
 import {
   COURTROOM_ASSIGNMENT_OPTIONS,
@@ -42,7 +43,6 @@ import {
   VALIDATION
 } from '../../../../shared/utils/session-form.config';
 import * as TimeRangeUtils from '../../../../shared/utils/time-range.utils';
-import { TimeRangeError } from '../../../../shared/utils/time-range.utils';
 import { CUSTOM_SESSION_TIME_LIMITS, NATIONAL_STANDARD_TIMES } from '@cpp/scheduling';
 import { isCrownJurisdiction } from '../../../../shared/utils/jurisdiction.utils';
 import { FrequencyType, RepeatPattern } from '../../model/repeat-pattern';
@@ -157,8 +157,8 @@ export class AddSessionsFormComponent implements OnInit {
     index: undefined
   };
 
-  startTimeErrorMessages: TimeRangeError[] = [];
-  endTimeErrorMessages: TimeRangeError[] = [];
+  startTimeErrorMessages: ErrorMessageConfig[] = [];
+  endTimeErrorMessages: ErrorMessageConfig[] = [];
 
   constructor() {
     // Initialize form model from initialValues (copy mode)
@@ -186,10 +186,7 @@ export class AddSessionsFormComponent implements OnInit {
         };
       }
 
-      const { start, end } = TimeRangeUtils.getTimeRangeErrorMessages(
-        this.formModel.sessionType,
-        this.timeRange
-      );
+      const { start, end } = TimeRangeUtils.getTimeRangeErrorMessages();
       this.startTimeErrorMessages = start;
       this.endTimeErrorMessages = end;
     });
@@ -208,18 +205,11 @@ export class AddSessionsFormComponent implements OnInit {
     return TimeRangeUtils.getTimeRange(this.formModel.sessionType, CUSTOM_SESSION_TIME_LIMITS);
   }
 
-  onSessionTypeChange = (sessionType: SessionType): void => {
-    this.formModel.duration = null;
-    this.handleCustomTimesErrorMessages();
-  };
-
   handleCustomTimesChange = (checked: boolean): void => {
     this.formModel.customTimes = checked;
     if (!checked) {
       this.formModel.sessionStartTime = this.formModel.sessionEndTime = undefined;
     }
-
-    this.handleCustomTimesErrorMessages();
   };
 
   isAllDaysSelected = (): boolean => {
@@ -234,15 +224,6 @@ export class AddSessionsFormComponent implements OnInit {
     } else {
       this.formModel.repeatDays = [];
     }
-  };
-
-  handleCustomTimesErrorMessages = (): void => {
-    TimeRangeUtils.updateErrorMessages(
-      this.startTimeErrorMessages,
-      this.endTimeErrorMessages,
-      this.formModel.sessionType,
-      this.timeRange
-    );
   };
 
   handleFormErrors = (errorList: ValidationError[]): void => {

@@ -1,16 +1,28 @@
+import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
 import { loadJudiciaryItineraries } from './guards/load-judiciary-itineraries.guard';
-import { adJudiciaryNavigateGuard } from './guards/add-judiciary-navigate.guard';
 import { getJudicialItineraryGuard } from './guards/get-judicial-itinerary.guard';
+import { ManageJudicialItineraryStore } from './store/manage-judicial-itinerary.store';
+import { staleSessionGuardFactory } from '../../shared/guards/stale-session.guard';
+import { CourtSchedulerRoutes } from '../../app-routes';
 
 export enum JudicialItineraryRoutes {
   SELECT_JUDICIARY_TYPE = 'select-judiciary-type',
   ADD_SITTING_DAYS = 'add-sitting-days',
   ADD_SPECIALISMS = 'add-specialisms',
-  REFRESH_NAVIGATE = 'refresh-navigate',
   EDIT = 'edit',
   REMOVE = 'remove'
 }
+
+const hasSearchParams = staleSessionGuardFactory(
+  () => {
+    const store = inject(ManageJudicialItineraryStore);
+    const searchParams = store.searchParams();
+    return !!searchParams && !!searchParams.courtCentre;
+  },
+  `/${CourtSchedulerRoutes.MANAGE_JUDICIAL_ITINERARY}`,
+  'Manage judicial itinerary'
+);
 
 export const manageJudicialItineraryRoutes: Routes = [
   {
@@ -33,7 +45,7 @@ export const manageJudicialItineraryRoutes: Routes = [
       },
       {
         path: JudicialItineraryRoutes.SELECT_JUDICIARY_TYPE,
-        canActivate: [adJudiciaryNavigateGuard],
+        canActivate: [hasSearchParams],
         loadComponent: () =>
           import('./containers/select-judiciary-type/select-judiciary-type.container').then(
             (c) => c.SelectJudiciaryTypeContainer
@@ -44,7 +56,7 @@ export const manageJudicialItineraryRoutes: Routes = [
       },
       {
         path: JudicialItineraryRoutes.ADD_SITTING_DAYS,
-        canActivate: [adJudiciaryNavigateGuard],
+        canActivate: [hasSearchParams],
         loadChildren: () =>
           import('./containers/add-sitting-days/add-sitting-days.routes').then(
             (m) => m.addSittingDaysRoutes
@@ -52,17 +64,10 @@ export const manageJudicialItineraryRoutes: Routes = [
       },
       {
         path: JudicialItineraryRoutes.ADD_SPECIALISMS,
-        canActivate: [adJudiciaryNavigateGuard],
+        canActivate: [hasSearchParams],
         loadChildren: () =>
           import('./containers/add-specialisms/add-specialisms.routes').then(
             (m) => m.addSpecialismsRoutes
-          )
-      },
-      {
-        path: JudicialItineraryRoutes.REFRESH_NAVIGATE,
-        loadComponent: () =>
-          import('./components/refresh-navigate-page/refresh-navigate-page.component').then(
-            (c) => c.RefreshNavigatePageComponent
           )
       },
       {

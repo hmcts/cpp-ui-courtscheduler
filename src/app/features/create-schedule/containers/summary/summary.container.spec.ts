@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { Subject } from 'rxjs';
 import { SummaryContainer } from './summary.container';
 import { By } from '@angular/platform-browser';
 import { mockCourtScheduleDraft } from '../../../../shared';
@@ -15,7 +14,6 @@ describe('SummaryContainer', () => {
   let fixture: ComponentFixture<SummaryContainer>;
   let mockStore: MockStore<CreateScheduleState>;
   let router: Router;
-  let route: ActivatedRoute;
   let location: Location;
 
   beforeEach(async () => {
@@ -50,9 +48,7 @@ describe('SummaryContainer', () => {
     component = fixture.componentInstance;
     mockStore = TestBed.inject(MockStore);
     router = TestBed.inject(Router);
-    route = TestBed.inject(ActivatedRoute);
     location = TestBed.inject(Location);
-    component.destroy$ = new Subject<boolean>();
     fixture.detectChanges();
   });
 
@@ -60,10 +56,7 @@ describe('SummaryContainer', () => {
     expect(fixture).toMatchSnapshot();
   });
 
-  it('should display the back link when not persisted', () => {
-    component.isPersisted = false;
-    fixture.detectChanges();
-
+  it('should display the back link', () => {
     const backLink = fixture.debugElement.query(By.css('a[pdk-back-link]'));
     expect(backLink).toBeTruthy();
   });
@@ -85,40 +78,11 @@ describe('SummaryContainer', () => {
     });
   });
 
-  it('should display a success alert when sessions are persisted', () => {
-    component.isPersisted = true;
-    fixture.detectChanges();
-
-    const successAlert = fixture.debugElement.query(By.css('pdk-alert[type="success"]'));
-    expect(successAlert).toBeTruthy();
-  });
-
   it('should dispatch createCourtSchedule action when handleContinue is called', () => {
     spyOn(mockStore, 'dispatch');
 
     component.handleContinue();
 
     expect(mockStore.dispatch).toHaveBeenCalledWith(CreateScheduleActions.createCourtSchedule());
-  });
-
-  it('should navigate when handleNewSessionsNavigation is called', () => {
-    spyOn(mockStore, 'dispatch');
-    spyOn(router, 'navigate');
-
-    component.handleNewSessionsNavigation();
-
-    expect(router.navigate).toHaveBeenCalledWith([CreateScheduleRoutes.SELECT_BUSINESS_TYPE], {
-      relativeTo: route.parent
-    });
-  });
-
-  it('should unsubscribe from observables on ngOnDestroy', () => {
-    spyOn(component.destroy$, 'next');
-    spyOn(component.destroy$, 'complete');
-
-    component.ngOnDestroy();
-
-    expect(component.destroy$.next).toHaveBeenCalledWith(true);
-    expect(component.destroy$.complete).toHaveBeenCalled();
   });
 });

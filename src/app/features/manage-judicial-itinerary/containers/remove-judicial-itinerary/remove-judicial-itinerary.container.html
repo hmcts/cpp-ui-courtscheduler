@@ -9,8 +9,8 @@
     <remove-judiciary-itinerary-details
       [itinerary]="store.selectedItinerary()"
       [courtCentre]="store.searchParams().courtCentre"
-      [selectedJudiciary]="store.selectedJudiciary()"
-      [selectedType]="store.selectedType()"
+      [selectedJudiciary]="store.firstSelectedJudiciary()"
+      [selectedType]="store.firstSelectedJudiciaryType()"
     />
 
     <remove-judiciary-itinerary-form

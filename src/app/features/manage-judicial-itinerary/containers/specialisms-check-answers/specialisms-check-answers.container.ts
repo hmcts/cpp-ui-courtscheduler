@@ -23,9 +23,8 @@ import {
     <h1 pdk-typography="heading-large">Check your answers</h1>
 
     <judiciary-details
-      [selectedType]="store.selectedType()"
-      [selectedJudiciary]="store.selectedJudiciary()"
-      [existingSpecialisms]="store.selectedJudiciarySpecialisms()"
+      [selectedType]="store.firstSelectedJudiciaryType()"
+      [selectedJudiciary]="store.firstSelectedJudiciary()"
     />
 
     <specialism-added-confirmation-form

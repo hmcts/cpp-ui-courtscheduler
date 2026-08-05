@@ -33,6 +33,7 @@ import {
   CourtScheduleSessionSortFieldsKeys
 } from '../../../model/view-schedule.model';
 import { SessionDurationCellComponent } from './cells/session-duration-cell.component';
+import { JudiciaryNameListComponent } from '../../../../../shared/components/judiciary-name-list/judiciary-name-list.component';
 
 export interface SessionTableAction {
   label: string;
@@ -90,6 +91,7 @@ export interface SelectAllSessionsEvent {
     PdkTable,
     PdkVisuallyHiddenDirective,
     SessionDurationCellComponent,
+    JudiciaryNameListComponent,
     FormatTimePipe
   ]
 })

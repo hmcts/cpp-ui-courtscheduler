@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssignJudiciaryContainer should match snapshot 1`] = `
+<assign-judiciary-container
+  assignmentService={[Function Object]}
+  formErrors="null"
+  globalStore={[Function _MockStore]}
+  initialValues={[Function Function]}
+  location={[Function Object]}
+  querySignal={[Function Function]}
+  referrer={[Function Function]}
+  router={[Function Object]}
+  store={[Function Object]}
+  suggestionsResource={[Function ResourceImpl]}
+>
+  <div>
+    <a
+      class="govuk-!-margin-top-0 govuk-back-link"
+      href="javascript:void(0);"
+      pdk-back-link=""
+      pdk-margin-top="0"
+    >
+       Back 
+    </a>
+  </div><pdk-grid
+    class="govuk-grid-row"
+    container=""
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h1
+        class="govuk-heading-l"
+        pdk-typography="heading-large"
+      >
+        Select judiciary to add to sessions
+      </h1>
+    </pdk-grid>
+    <pdk-grid
+      class="govuk-grid-column-two-thirds"
+      two-thirds=""
+    >
+      <assign-judiciary-form />
+    </pdk-grid>
+  </pdk-grid>
+</assign-judiciary-container>
+`;

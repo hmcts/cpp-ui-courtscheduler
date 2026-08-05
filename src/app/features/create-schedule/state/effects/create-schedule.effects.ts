@@ -108,7 +108,14 @@ export class CreateScheduleEffects {
           };
 
           return this.courtSchedulerService.createCourtSchedule(payload).pipe(
-            map((_) => CreateScheduleActions.createCourtScheduleSuccess({ isPersisted: true })),
+            map((_) => {
+              return CreateScheduleActions.createCourtScheduleSuccess({ isPersisted: true });
+            }),
+            tap(() =>
+              this.router.navigate([
+                `${CourtSchedulerRoutes.CREATE_SCHEDULE}/${CreateScheduleRoutes.SUCCESS}`
+              ])
+            ),
             catchError((error: HttpErrorResponse) => of(apiError({ error })))
           );
         })

@@ -1,0 +1,119 @@
+@let selectedTypes = selectedJudiciaryTypes();
+@let queriedSuggestions = suggestions();
+<pdk-form-field
+  label="Select judiciary type and name"
+  labelType="small"
+  [formGroup]="formGroup"
+  [errorMessages]="errorMessages()"
+>
+  @if (multi()) {
+    <pdk-checkbox-group
+      name="judiciaryType"
+      [ngModel]="selectedTypes"
+      (ngModelChange)="onJudicialSelectionChange($event)"
+      [ngModelOptions]="{ standalone: true }"
+      #judiciaryTypesGroup="ngModel"
+      data-test-id="judiciary-type-checkbox"
+      [minCount]="required() ? 1 : undefined"
+      [validator]="resolvedValidator()"
+    >
+      @for (type of judiciaryTypes(); track type) {
+        <pdk-checkbox [value]="type">
+          {{ type }}
+        </pdk-checkbox>
+        @if (judiciaryTypesGroup.value?.includes(type)) {
+          <pdk-checkbox-conditional>
+            @if (type === 'Magistrate') {
+              <magistrates-judiciary-selection-input
+                [slotConfig]="magistrateConfig()"
+                [hideSpecialismsAction]="hideSpecialismsAction()"
+                [suggestions]="
+                  queriedSuggestions?.type === 'Magistrate'
+                    ? queriedSuggestions.judicialMembers
+                    : []
+                "
+                [hideSpecialismsAction]="hideSpecialismsAction()"
+                (onAddSpecialism)="onAddSpecialism.emit($event)"
+                [formControlName]="type"
+                (inputText)="inputText.emit($event)"
+              />
+            } @else {
+              <judiciary-autosuggest-control
+                [name]="type"
+                [label]="'Name'"
+                [judiciaryType]="type"
+                [hideSpecialismsAction]="hideSpecialismsAction()"
+                [suggestions]="
+                  queriedSuggestions?.type === type ? queriedSuggestions.judicialMembers : []
+                "
+                [hideSpecialismsAction]="hideSpecialismsAction()"
+                required
+                [formControlName]="type"
+                [errorMessagesInput]="[
+                  { rule: 'required', message: 'Choose a name from the list.' }
+                ]"
+                (onAddSpecialism)="onAddSpecialism.emit($event)"
+                (inputText)="inputText.emit($event)"
+                data-test-id="judiciary-name-input"
+              />
+            }
+          </pdk-checkbox-conditional>
+        }
+      }
+    </pdk-checkbox-group>
+  } @else {
+    <pdk-radio-group
+      name="judiciaryType"
+      [ngModel]="selectedTypes[0]"
+      (ngModelChange)="onJudicialSelectionChange([$event])"
+      [ngModelOptions]="{ standalone: true }"
+      #judiciaryTypesGroup="ngModel"
+      data-test-id="judiciary-type-radio"
+      [required]="required()"
+      [validator]="resolvedValidator()"
+    >
+      @for (type of judiciaryTypes(); track type) {
+        <pdk-radio-button [value]="type">{{ type }}</pdk-radio-button>
+        <pdk-radio-conditional>
+          @if (judiciaryTypesGroup.value === type) {
+            @if (type === 'Magistrate') {
+              <magistrates-judiciary-selection-input
+                [slotConfig]="magistrateConfig()"
+                [hideSpecialismsAction]="hideSpecialismsAction()"
+                [suggestions]="
+                  queriedSuggestions?.type === 'Magistrate'
+                    ? queriedSuggestions.judicialMembers
+                    : []
+                "
+                [hideSpecialismsAction]="hideSpecialismsAction()"
+                (onAddSpecialism)="onAddSpecialism.emit($event)"
+                [formControlName]="type"
+                required
+                (inputText)="inputText.emit($event)"
+              />
+            } @else {
+              <judiciary-autosuggest-control
+                [name]="type"
+                [label]="'Name'"
+                [judiciaryType]="type"
+                [hideSpecialismsAction]="hideSpecialismsAction()"
+                [suggestions]="
+                  queriedSuggestions?.type === type ? queriedSuggestions.judicialMembers : []
+                "
+                required
+                [formControlName]="type"
+                [hideSpecialismsAction]="hideSpecialismsAction()"
+                [errorMessagesInput]="[
+                  { rule: 'required', message: 'Choose a name from the list.' }
+                ]"
+                (onAddSpecialism)="onAddSpecialism.emit($event)"
+                (inputText)="inputText.emit($event)"
+                data-test-id="judiciary-name-input"
+              />
+            }
+          }
+        </pdk-radio-conditional>
+      }
+    </pdk-radio-group>
+  }
+</pdk-form-field>

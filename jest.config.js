@@ -17,6 +17,10 @@ module.exports = {
       statements: 90
     }
   },
+  transform: {
+    '^.+\\.(ts|js|html)$': 'jest-preset-angular'
+  },
+  transformIgnorePatterns: ['node_modules/(?!@ngrx|@cpp/core|.*\\.mjs)'],
   moduleNameMapper: {
     '^lodash-es$': 'lodash'
   }

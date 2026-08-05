@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { PdkBackLink, PdkGrid, PdkMarginDirective } from '@cpp/pdk';
 import {
   SelectJudiciaryTypeFormComponent,
-  SelectJudiciaryTypeFormValues
+  SelectJudiciaryTypeFormPayload
 } from '../../components/select-judiciary-type-form/select-judiciary-type-form.component';
 import { ManageJudicialItineraryStore } from '../../store/manage-judicial-itinerary.store';
 import { CourtSchedulerRoutes } from '../../../../app-routes';
 import { JudicialItineraryRoutes } from '../../manage-judicial-itinerary.routes';
+import { ExtendedJudicialMember } from '../../../../shared/model';
 
 @Component({
   selector: 'select-judiciary-type-container',
@@ -21,7 +22,7 @@ import { JudicialItineraryRoutes } from '../../manage-judicial-itinerary.routes'
     <pdk-grid container>
       <pdk-grid full>
         <select-judiciary-type-form
-          [initialValues]="initialFormValues()"
+          [initialValues]="initialValues()"
           (errors)="store.setFormErrors($event || [])"
           (submitForm)="handleSubmitForm($event)"
           (addSpecialism)="handleAddSpecialism($event)"
@@ -36,35 +37,25 @@ export class SelectJudiciaryTypeContainer implements OnDestroy {
   readonly router = inject(Router);
   readonly location = inject(Location);
 
-  ngOnDestroy(): void {
-    this.store.clearSpecialismAddedSuccess();
-  }
-
-  readonly initialFormValues = computed<SelectJudiciaryTypeFormValues | null>(() => {
-    const selectedType = this.store.selectedType();
-    const selectedJudiciary = this.store.selectedJudiciary();
-
-    if (selectedType && selectedJudiciary) {
-      return {
-        judiciaryType: selectedType,
-        judiciary: selectedJudiciary
-      };
-    }
-    return null;
+  readonly initialValues = computed(() => {
+    return {
+      judiciarySelection: this.store.selectedJudiciaryByTypeMap(),
+      selectedJudiciaryTypes: this.store.selectedJudiciaryTypes()
+    };
   });
 
-  handleSubmitForm({ judiciary }: SelectJudiciaryTypeFormValues): void {
+  handleSubmitForm({ judiciary }: SelectJudiciaryTypeFormPayload): void {
     this.store.clearSpecialismAddedSuccess();
-    this.store.setSelectedJudiciary(judiciary);
+    this.store.setSelectedJudiciary([judiciary]);
     this.router.navigate([
       CourtSchedulerRoutes.MANAGE_JUDICIAL_ITINERARY,
       JudicialItineraryRoutes.ADD_SITTING_DAYS
     ]);
   }
 
-  handleAddSpecialism({ judiciary }: SelectJudiciaryTypeFormValues): void {
+  handleAddSpecialism({ judiciary }: { judiciary: ExtendedJudicialMember | null }): void {
     this.store.clearSpecialismAddedSuccess();
-    this.store.setSelectedJudiciary(judiciary);
+    this.store.setSelectedJudiciary([judiciary]);
 
     const currentUrl = this.router.url;
     this.router.navigate(
@@ -78,5 +69,9 @@ export class SelectJudiciaryTypeContainer implements OnDestroy {
   handleBackLink(): void {
     this.location.back();
     this.store.clearJudiciarySelection();
+  }
+
+  ngOnDestroy(): void {
+    this.store.clearSpecialismAddedSuccess();
   }
 }

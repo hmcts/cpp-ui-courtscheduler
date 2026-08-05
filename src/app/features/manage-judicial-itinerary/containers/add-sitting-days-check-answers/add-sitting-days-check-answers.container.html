@@ -10,9 +10,8 @@
 
 <selected-court-and-judiciary-details
   [courtCentre]="store.searchParams.courtCentre()"
-  [selectedType]="store.selectedType()"
-  [selectedJudiciary]="store.selectedJudiciary()"
-  [existingSpecialisms]="store.selectedJudiciarySpecialisms()"
+  [selectedType]="store.firstSelectedJudiciaryType()"
+  [selectedJudiciary]="store.firstSelectedJudiciary()"
 />
 
 <pdk-grid container pdk-margin-top="4">

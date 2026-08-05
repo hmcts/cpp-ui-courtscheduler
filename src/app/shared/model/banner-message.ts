@@ -1,1 +1,1 @@
-export type BannerMessage = { message: string; bannerType: string };
+export type BannerMessage = { message: string; bannerType: string; courtRoomName?: string };

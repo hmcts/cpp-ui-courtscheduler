@@ -21,7 +21,7 @@ import {
   PdkTypographyDirective,
   ValidationError
 } from '@cpp/pdk';
-import { SessionType } from '../../../../shared/model/session';
+import { SessionType } from '../../../../shared/model';
 import { formatDate, normalizeDate } from '../../../../shared/utils/date-utils';
 import { DraftItinerary } from '../../model/judicial-itinerary.interface';
 import { DateRangeComponent } from '../../../../shared/components/date-range/date-range.component';

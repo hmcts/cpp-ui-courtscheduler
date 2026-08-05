@@ -9,8 +9,6 @@ export const getSearchValues = (state: ViewScheduleState) =>
   state.viewSchedule && state.viewSchedule.searchValues;
 export const getActiveCourtroomsIndexes = (state: ViewScheduleState) =>
   state.viewSchedule && state.viewSchedule.activeCourtroomsIndexes;
-export const getSessionToEdit = (state: ViewScheduleState) =>
-  state.viewSchedule && state.viewSchedule.sessionToEdit;
 export const getSessionsToRemove = (state: ViewScheduleState) =>
   state.viewSchedule && state.viewSchedule.sessionsToRemove;
 export const getSessionsToAssign = (state: ViewScheduleState) =>

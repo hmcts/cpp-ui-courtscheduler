@@ -33,6 +33,7 @@ export const VALIDATION = {
   repeatDay: 'Select a day',
   startTime: 'Enter a start time',
   endTime: 'Enter an end time',
+  timeRange: (prefix: 'Start' | 'End') => `${prefix} time must be between {{min}} and {{max}}`,
   endTimeAfterStartTime: 'End time must be after start time',
   courtroomAssignment: 'Select a courtroom assignment'
 } as const;

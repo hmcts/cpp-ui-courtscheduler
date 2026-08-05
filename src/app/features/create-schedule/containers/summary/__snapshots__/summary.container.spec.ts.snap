@@ -2,18 +2,14 @@
 
 exports[`SummaryContainer should create 1`] = `
 <summary-container
-  banner={[Function Function]}
-  businessType$={[Function _Store]}
-  courtCentre$={[Function _Store]}
-  destroy$={[Function Subject]}
-  isPersisted="false"
+  businessType={[Function Function]}
+  courtCentre={[Function Function]}
   jurisdiction="null"
   location={[Function Object]}
-  repeatPattern$={[Function _Store]}
+  repeatPattern={[Function Function]}
   route={[Function Object]}
   router={[Function _Router]}
-  routes={[Function Object]}
-  sessions={[Function Array]}
+  sessions={[Function Function]}
   store={[Function _MockStore]}
 >
   <div
@@ -39,7 +35,7 @@ exports[`SummaryContainer should create 1`] = `
         class="govuk-heading-xl"
         pdk-typography="heading-xlarge"
       >
-         Summary for Business Type 1 
+        Summary for Business Type 1
       </h1>
       <journey-summary>
         <div

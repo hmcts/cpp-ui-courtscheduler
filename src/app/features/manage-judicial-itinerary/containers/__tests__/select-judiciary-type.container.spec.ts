@@ -12,12 +12,13 @@ import { SelectJudiciaryTypeContainer } from '../select-judiciary-type/select-ju
 import { SelectJudiciaryTypeFormComponent } from '../../components/select-judiciary-type-form/select-judiciary-type-form.component';
 import { ManageJudicialItineraryStore } from '../../store/manage-judicial-itinerary.store';
 import { ExtractSignalStoreFeatureResult } from '../../../../shared/types/signal-test-types';
-import { JudiciaryWithSpecialisms } from '../../model/judicial-itinerary.interface';
-import { Specialism } from '../../model/specialism.enum';
+import { ExtendedJudicialMember } from '../../../../shared/model';
+import { Specialism } from '@cpp/reference-data';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 import { CourtSchedulerRoutes } from '../../../../app-routes';
 import { JudicialItineraryRoutes } from '../../manage-judicial-itinerary.routes';
+import { getJudiciaryTypes } from '../../../../shared/utils/core.utils';
 import { JudicialMemberNamePipe } from '@cpp/reference-data';
 import { ValidationError } from '@cpp/pdk';
 
@@ -34,7 +35,7 @@ describe('SelectJudiciaryTypeContainer', () => {
   let store: ExtractSignalStoreFeatureResult<typeof ManageJudicialItineraryStore>;
   let router: Router;
 
-  const mockJudiciary: JudiciaryWithSpecialisms = {
+  const mockJudiciary: ExtendedJudicialMember = {
     id: 'judge-1',
     seqId: 1,
     surname: 'Smith',
@@ -42,7 +43,7 @@ describe('SelectJudiciaryTypeContainer', () => {
     judiciaryType: 'Circuit Judge',
     emailAddress: 'john.smith@example.com',
     specialisms: [Specialism.MURDER]
-  } as unknown as JudiciaryWithSpecialisms;
+  } as unknown as ExtendedJudicialMember;
 
   beforeEach(() => {
     const mockCppHttp = {
@@ -108,44 +109,43 @@ describe('SelectJudiciaryTypeContainer', () => {
     expect(fixture).toMatchSnapshot();
   });
 
-  it('should compute initialFormValues when store has selectedType and selectedJudiciary', () => {
+  it('should compute initialValues from store selection', () => {
     expect.assertions(1);
     store.setSelectedJudiciary(mockJudiciary);
 
-    const initialValues = component.initialFormValues();
-    expect(initialValues).toEqual({
-      judiciaryType: 'Judge',
-      judiciary: mockJudiciary
+    expect(component.initialValues()).toEqual({
+      judiciarySelection: store.selectedJudiciaryByTypeMap(),
+      selectedJudiciaryTypes: store.selectedJudiciaryTypes()
     });
   });
 
-  it('should return null for initialFormValues when store has no selectedType', () => {
+  it('should expose null selection in initialValues when store has no judiciary', () => {
     expect.assertions(1);
     store.clearJudiciarySelection();
 
-    const initialValues = component.initialFormValues();
-    expect(initialValues).toBeNull();
+    expect(component.initialValues()).toEqual({
+      judiciarySelection: null,
+      selectedJudiciaryTypes: null
+    });
   });
 
-  it('should return null for initialFormValues when store has no selectedJudiciary', () => {
+  it('should expose null selection in initialValues when selectedJudiciary is cleared', () => {
     expect.assertions(1);
     store.setSelectedJudiciary(null);
 
-    const initialValues = component.initialFormValues();
-    expect(initialValues).toBeNull();
+    expect(component.initialValues()).toEqual({
+      judiciarySelection: null,
+      selectedJudiciaryTypes: null
+    });
   });
 
   it('should handle form submission and navigate to add-sitting-days', () => {
     expect.assertions(2);
     const navigateSpy = jest.spyOn(router, 'navigate');
-    const formValues = {
-      judiciaryType: 'Judge' as const,
-      judiciary: mockJudiciary
-    };
 
-    component.handleSubmitForm(formValues);
+    component.handleSubmitForm({ judiciary: mockJudiciary });
 
-    expect(store.selectedType()).toBe('Judge');
+    expect(store.selectedJudiciaries()).toEqual([mockJudiciary]);
     expect(navigateSpy).toHaveBeenCalledWith([
       CourtSchedulerRoutes.MANAGE_JUDICIAL_ITINERARY,
       JudicialItineraryRoutes.ADD_SITTING_DAYS
@@ -160,19 +160,14 @@ describe('SelectJudiciaryTypeContainer', () => {
       writable: true
     });
 
-    const formValues = {
-      judiciaryType: 'Judge' as const,
-      judiciary: mockJudiciary
-    };
+    component.handleAddSpecialism({ judiciary: mockJudiciary });
 
-    component.handleAddSpecialism(formValues);
-
-    expect(store.selectedType()).toBe('Judge');
+    expect(store.selectedJudiciaries()).toEqual([mockJudiciary]);
     expect(navigateSpy).toHaveBeenCalledWith(
       [CourtSchedulerRoutes.MANAGE_JUDICIAL_ITINERARY, JudicialItineraryRoutes.ADD_SPECIALISMS],
       { queryParams: { referrer: '/current-url' } }
     );
-    expect(store.selectedJudiciary()).toEqual(mockJudiciary);
+    expect(store.selectedJudiciaryTypes()).toEqual(getJudiciaryTypes([mockJudiciary]));
   });
 
   it('should call store.setFormErrors when form emits errors', () => {
@@ -212,15 +207,11 @@ describe('SelectJudiciaryTypeContainer', () => {
 
   it('should call clearSpecialismAddedSuccess when handleSubmitForm is called', () => {
     expect.assertions(1);
-    const formValues = {
-      judiciaryType: 'Judge' as const,
-      judiciary: mockJudiciary
-    };
 
     store.setDraftSpecialisms([Specialism.MURDER]);
     store.addSpecialisms({});
 
-    component.handleSubmitForm(formValues);
+    component.handleSubmitForm({ judiciary: mockJudiciary });
 
     expect(store.specialismAddedSuccess()).toBe(false);
   });
@@ -235,7 +226,7 @@ describe('SelectJudiciaryTypeContainer', () => {
     store.setDraftSpecialisms([Specialism.MURDER]);
     store.addSpecialisms({});
 
-    component.handleAddSpecialism({ judiciaryType: 'Judge', judiciary: mockJudiciary });
+    component.handleAddSpecialism({ judiciary: mockJudiciary });
 
     expect(store.specialismAddedSuccess()).toBe(false);
   });

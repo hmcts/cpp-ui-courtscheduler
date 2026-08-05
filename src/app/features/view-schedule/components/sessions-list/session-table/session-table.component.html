@@ -56,6 +56,7 @@
       <th pdk-table-header>Total capacity</th>
       <th pdk-table-header>Total booked</th>
       <th pdk-table-header>Overbooking</th>
+      <th pdk-table-header>Judiciary names</th>
       @if (config().showActionsColumn && config().actions?.length) {
         <th pdk-table-header *cppUserHasPermission="permissions.create">Actions</th>
       }
@@ -126,6 +127,13 @@
         <td pdk-table-cell>{{ session.totalBooked }}</td>
         <td pdk-table-cell data-test-id="overbooking">
           {{ session.isOverbookingAllowed ? 'Yes' : 'No' }}
+        </td>
+        <td pdk-table-cell data-test-id="judiciaryNames">
+          @if (session.judiciaries?.length > 0) {
+            <judiciary-name-list [judiciaries]="session.judiciaries" />
+          } @else {
+            -
+          }
         </td>
         @if (config().showActionsColumn && config().actions?.length) {
           <td pdk-table-cell *cppUserHasPermission="permissions.create">

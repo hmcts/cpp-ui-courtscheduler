@@ -95,7 +95,7 @@ describe('RepeatPatternMoreThanOnceFormComponent', () => {
       fixture.componentRef.setInput('initialValues', mockWeeklyPattern);
       fixture.detectChanges();
 
-      expect(component.startDate()).toEqual(new Date(mockWeeklyPattern.startDate));
+      expect(component.startDate()).toEqual(mockWeeklyPattern.startDate);
     });
   });
 
@@ -225,7 +225,7 @@ describe('RepeatPatternMoreThanOnceFormComponent', () => {
       const newDate = '2023-02-15';
       component.handleStartDateChange(newDate);
 
-      expect(component.startDate()).toEqual(new Date(newDate));
+      expect(component.startDate()).toEqual(newDate);
     });
 
     it('should clear both dates when handleStartDateChange is called with empty string', () => {
@@ -278,7 +278,7 @@ describe('RepeatPatternMoreThanOnceFormComponent', () => {
 
       expect(component.frequency()).toBe(FrequencyType.EVERY_WEEK);
       expect(component.repeatFor()).toBe(2);
-      expect(component.startDate()).toEqual(new Date(mockWeeklyPattern.startDate));
+      expect(component.startDate()).toEqual(mockWeeklyPattern.startDate);
       expect(component.endDate()).toEqual(new Date(mockWeeklyPattern.endDate));
     });
   });

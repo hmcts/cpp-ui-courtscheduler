@@ -22,10 +22,10 @@ export const viewScheduleReducer = createReducer(
       courtSchedules
     };
   }),
-  on(ViewScheduleActions.setViewBanner, (state, { message, bannerType }) => {
+  on(ViewScheduleActions.setViewBanner, (state, { message, bannerType, courtRoomName }) => {
     return {
       ...state,
-      bannerMessage: { message, bannerType }
+      bannerMessage: { message, bannerType, courtRoomName }
     };
   }),
   on(ViewScheduleActions.clearViewBanner, (state) => {
@@ -41,12 +41,6 @@ export const viewScheduleReducer = createReducer(
     ...state,
     searchValues: searchFormValues
   })),
-  on(ViewScheduleActions.setSessionToEdit, (state, { session }) => {
-    return {
-      ...state,
-      sessionToEdit: session
-    };
-  }),
   on(ViewScheduleActions.setViewSessionsToRemove, (state, { sessionsToRemove }) => {
     return {
       ...state,

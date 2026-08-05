@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { provideRouter, Routes } from '@angular/router';
 import { SelectedCourtAndJudiciaryDetailsComponent } from '../selected-court-and-judiciary-details/selected-court-and-judiciary-details.component';
 import { OrganisationUnit, JudiciaryTypePayload } from '@cpp/reference-data';
-import { Specialism } from '../../model/specialism.enum';
-import { JudiciaryWithSpecialisms } from '../../model/judicial-itinerary.interface';
+import { Specialism } from '@cpp/reference-data';
+import { ExtendedJudicialMember } from '../../../../shared/model';
 import { CourtSchedulerRoutes } from '../../../../app-routes';
 import { JudicialItineraryRoutes } from '../../manage-judicial-itinerary.routes';
 
@@ -40,7 +40,6 @@ const mockRoutes: Routes = [
       [courtCentre]="courtCentre"
       [selectedType]="selectedType"
       [selectedJudiciary]="selectedJudiciary"
-      [existingSpecialisms]="existingSpecialisms"
     ></selected-court-and-judiciary-details>
   `,
   imports: [SelectedCourtAndJudiciaryDetailsComponent]
@@ -48,8 +47,7 @@ const mockRoutes: Routes = [
 class TestHostComponent {
   courtCentre: OrganisationUnit | null = null;
   selectedType: JudiciaryTypePayload | null = null;
-  selectedJudiciary: JudiciaryWithSpecialisms | null = null;
-  existingSpecialisms: Specialism[] = [];
+  selectedJudiciary: ExtendedJudicialMember | null = null;
 }
 
 describe('SelectedCourtAndJudiciaryDetailsComponent', () => {
@@ -71,14 +69,14 @@ describe('SelectedCourtAndJudiciaryDetailsComponent', () => {
     emailAddress: 'test@example.com'
   } as unknown as OrganisationUnit;
 
-  const mockJudiciary: JudiciaryWithSpecialisms = {
+  const mockJudiciary: ExtendedJudicialMember = {
     id: 'judge-1',
     seqId: 1,
     surname: 'Smith',
     forenames: 'John',
     judiciaryType: 'Circuit Judge',
     emailAddress: 'john.smith@example.com'
-  } as unknown as JudiciaryWithSpecialisms;
+  } as unknown as ExtendedJudicialMember;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -109,8 +107,7 @@ describe('SelectedCourtAndJudiciaryDetailsComponent', () => {
 
     testHost.courtCentre = mockCourtCentre;
     testHost.selectedType = 'Judge';
-    testHost.selectedJudiciary = mockJudiciary;
-    testHost.existingSpecialisms = [Specialism.MURDER];
+    testHost.selectedJudiciary = { ...mockJudiciary, specialisms: [Specialism.MURDER] };
     fixture.detectChanges();
 
     expect(fixture).toMatchSnapshot();
@@ -159,7 +156,10 @@ describe('SelectedCourtAndJudiciaryDetailsComponent', () => {
   it('should show "Add new specialism" link when not all specialisms are selected', () => {
     expect.assertions(1);
 
-    testHost.existingSpecialisms = [Specialism.MURDER, Specialism.ATTEMPTEDMURDER];
+    testHost.selectedJudiciary = {
+      ...mockJudiciary,
+      specialisms: [Specialism.MURDER, Specialism.ATTEMPTEDMURDER]
+    };
     fixture.detectChanges();
 
     const addLink = fixture.nativeElement.querySelector('[data-test-id="add-new-specialism-link"]');
@@ -169,12 +169,15 @@ describe('SelectedCourtAndJudiciaryDetailsComponent', () => {
   it('should not show "Add new specialism" link when all specialisms are selected', () => {
     expect.assertions(1);
 
-    testHost.existingSpecialisms = [
-      Specialism.MURDER,
-      Specialism.ATTEMPTEDMURDER,
-      Specialism.SEXUALOFFENCE,
-      Specialism.TERRORISM
-    ];
+    testHost.selectedJudiciary = {
+      ...mockJudiciary,
+      specialisms: [
+        Specialism.MURDER,
+        Specialism.ATTEMPTEDMURDER,
+        Specialism.SEXUALOFFENCE,
+        Specialism.TERRORISM
+      ]
+    };
     fixture.detectChanges();
 
     const addLink = fixture.nativeElement.querySelector('[data-test-id="add-new-specialism-link"]');
@@ -184,7 +187,7 @@ describe('SelectedCourtAndJudiciaryDetailsComponent', () => {
   it('should show "Add new specialism" link when no specialisms are selected', () => {
     expect.assertions(1);
 
-    testHost.existingSpecialisms = [];
+    testHost.selectedJudiciary = { ...mockJudiciary, specialisms: [] };
     fixture.detectChanges();
 
     const addLink = fixture.nativeElement.querySelector('[data-test-id="add-new-specialism-link"]');
@@ -194,19 +197,21 @@ describe('SelectedCourtAndJudiciaryDetailsComponent', () => {
   it('should compute allSpecialismsSelected as false when not all specialisms are selected', () => {
     expect.assertions(3);
 
-    testHost.existingSpecialisms = [Specialism.MURDER];
+    testHost.selectedJudiciary = { ...mockJudiciary, specialisms: [Specialism.MURDER] };
     fixture.detectChanges();
     expect(component.allSpecialismsSelected()).toBe(false);
 
-    testHost.existingSpecialisms = [Specialism.MURDER, Specialism.ATTEMPTEDMURDER];
+    testHost.selectedJudiciary = {
+      ...mockJudiciary,
+      specialisms: [Specialism.MURDER, Specialism.ATTEMPTEDMURDER]
+    };
     fixture.detectChanges();
     expect(component.allSpecialismsSelected()).toBe(false);
 
-    testHost.existingSpecialisms = [
-      Specialism.MURDER,
-      Specialism.ATTEMPTEDMURDER,
-      Specialism.SEXUALOFFENCE
-    ];
+    testHost.selectedJudiciary = {
+      ...mockJudiciary,
+      specialisms: [Specialism.MURDER, Specialism.ATTEMPTEDMURDER, Specialism.SEXUALOFFENCE]
+    };
     fixture.detectChanges();
     expect(component.allSpecialismsSelected()).toBe(false);
   });
@@ -214,12 +219,15 @@ describe('SelectedCourtAndJudiciaryDetailsComponent', () => {
   it('should compute allSpecialismsSelected as true when all specialisms are selected', () => {
     expect.assertions(1);
 
-    testHost.existingSpecialisms = [
-      Specialism.MURDER,
-      Specialism.ATTEMPTEDMURDER,
-      Specialism.SEXUALOFFENCE,
-      Specialism.TERRORISM
-    ];
+    testHost.selectedJudiciary = {
+      ...mockJudiciary,
+      specialisms: [
+        Specialism.MURDER,
+        Specialism.ATTEMPTEDMURDER,
+        Specialism.SEXUALOFFENCE,
+        Specialism.TERRORISM
+      ]
+    };
     fixture.detectChanges();
 
     expect(component.allSpecialismsSelected()).toBe(true);
@@ -228,12 +236,15 @@ describe('SelectedCourtAndJudiciaryDetailsComponent', () => {
   it('should compute allSpecialismsSelected correctly regardless of order', () => {
     expect.assertions(1);
 
-    testHost.existingSpecialisms = [
-      Specialism.TERRORISM,
-      Specialism.SEXUALOFFENCE,
-      Specialism.ATTEMPTEDMURDER,
-      Specialism.MURDER
-    ];
+    testHost.selectedJudiciary = {
+      ...mockJudiciary,
+      specialisms: [
+        Specialism.TERRORISM,
+        Specialism.SEXUALOFFENCE,
+        Specialism.ATTEMPTEDMURDER,
+        Specialism.MURDER
+      ]
+    };
     fixture.detectChanges();
 
     expect(component.allSpecialismsSelected()).toBe(true);
@@ -242,13 +253,16 @@ describe('SelectedCourtAndJudiciaryDetailsComponent', () => {
   it('should compute allSpecialismsSelected correctly when there are duplicates but all specialisms present', () => {
     expect.assertions(1);
 
-    testHost.existingSpecialisms = [
-      Specialism.MURDER,
-      Specialism.MURDER,
-      Specialism.ATTEMPTEDMURDER,
-      Specialism.SEXUALOFFENCE,
-      Specialism.TERRORISM
-    ];
+    testHost.selectedJudiciary = {
+      ...mockJudiciary,
+      specialisms: [
+        Specialism.MURDER,
+        Specialism.MURDER,
+        Specialism.ATTEMPTEDMURDER,
+        Specialism.SEXUALOFFENCE,
+        Specialism.TERRORISM
+      ]
+    };
     fixture.detectChanges();
 
     expect(component.allSpecialismsSelected()).toBe(true);
@@ -257,11 +271,10 @@ describe('SelectedCourtAndJudiciaryDetailsComponent', () => {
   it('should compute allSpecialismsSelected as false when there are duplicates but not all specialisms present', () => {
     expect.assertions(1);
 
-    testHost.existingSpecialisms = [
-      Specialism.MURDER,
-      Specialism.MURDER,
-      Specialism.ATTEMPTEDMURDER
-    ];
+    testHost.selectedJudiciary = {
+      ...mockJudiciary,
+      specialisms: [Specialism.MURDER, Specialism.MURDER, Specialism.ATTEMPTEDMURDER]
+    };
     fixture.detectChanges();
 
     expect(component.allSpecialismsSelected()).toBe(false);
@@ -272,13 +285,15 @@ describe('SelectedCourtAndJudiciaryDetailsComponent', () => {
 
     testHost.courtCentre = mockCourtCentre;
     testHost.selectedType = 'Judge';
-    testHost.selectedJudiciary = mockJudiciary;
-    testHost.existingSpecialisms = [
-      Specialism.MURDER,
-      Specialism.ATTEMPTEDMURDER,
-      Specialism.SEXUALOFFENCE,
-      Specialism.TERRORISM
-    ];
+    testHost.selectedJudiciary = {
+      ...mockJudiciary,
+      specialisms: [
+        Specialism.MURDER,
+        Specialism.ATTEMPTEDMURDER,
+        Specialism.SEXUALOFFENCE,
+        Specialism.TERRORISM
+      ]
+    };
     fixture.detectChanges();
 
     expect(fixture).toMatchSnapshot();

@@ -1,7 +1,8 @@
 import { OrganisationUnit } from '@cpp/reference-data';
 import { BannerMessage } from '../../../shared/model/banner-message';
 import { ValidationError } from '@cpp/pdk';
-import { JurisdictionType } from '../../../shared/model/jurisdiction';
+import { JurisdictionType } from '../../../../app/shared/model/jurisdiction';
+import { ExtendedJudicialMember } from '../../../shared';
 
 export interface CourtScheduleSession {
   courtScheduleId?: string;
@@ -38,6 +39,7 @@ export interface CourtScheduleSession {
   jurisdiction: JurisdictionType;
   isDraft?: boolean;
   courtroomAssignment?: string;
+  judiciaries?: ExtendedJudicialMember[];
 }
 
 export type CourtScheduleSessionSortFieldsKeys = keyof Pick<
@@ -55,7 +57,6 @@ export interface ViewCourtSchedule {
   courtSchedules: CourtSchedule[];
   bannerMessage?: BannerMessage;
   searchValues?: SearchFormValues;
-  sessionToEdit?: CourtScheduleSession;
   sessionsToRemove?: CourtScheduleSession[];
   sessionsToAssign?: CourtScheduleSession[];
   errors?: ValidationError[];
@@ -80,9 +81,27 @@ export interface SearchFormValues {
   endDate: string;
 }
 
+export interface EditSessionFormValues {
+  courtRoomId: string;
+  courtRoomName?: string;
+  businessType: string;
+  courtSession?: string;
+  panel: string;
+  sessionStartTime?: string;
+  sessionEndTime?: string;
+  isOverbookingAllowed?: boolean;
+  maxSlots?: number;
+  maxDuration?: number;
+  maxDurationForMorning?: number;
+  maxDurationForAfternoon?: number;
+  courtroomAssignment?: string;
+  isDraft?: boolean;
+}
+
 export enum BulkActionType {
   REMOVE = 'remove',
-  ASSIGN = 'assign'
+  ASSIGN = 'assign',
+  ASSIGN_JUDICIARY = 'assign-judiciary'
 }
 
 export interface BulkActionPayload {

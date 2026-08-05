@@ -25,18 +25,22 @@ exports[`SelectJudiciaryTypeContainer should render correctly 1`] = `
           <div>
             <div>
               Initial Values: {
-    "judiciaryType": "Judge",
-    "judiciary": {
-      "id": "judge-1",
-      "seqId": 1,
-      "surname": "Smith",
-      "forenames": "John",
-      "judiciaryType": "Circuit Judge",
-      "emailAddress": "john.smith@example.com",
-      "specialisms": [
-        "MURDER"
-      ]
-    }
+    "judiciarySelection": {
+      "Judge": {
+        "id": "judge-1",
+        "seqId": 1,
+        "surname": "Smith",
+        "forenames": "John",
+        "judiciaryType": "Circuit Judge",
+        "emailAddress": "john.smith@example.com",
+        "specialisms": [
+          "MURDER"
+        ]
+      }
+    },
+    "selectedJudiciaryTypes": [
+      "Judge"
+    ]
   }
             </div>
           </div>

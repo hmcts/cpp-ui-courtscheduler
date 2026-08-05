@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
@@ -11,13 +11,14 @@ import { RemoveJudiciaryItineraryFormComponent } from '../../components/remove-j
 import { ValidationError } from '@cpp/pdk';
 import { signal } from '@angular/core';
 import { Itinerary } from '../../model/judicial-itinerary.interface';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 import {
   JudicialMember,
   OrganisationUnit,
   JudiciaryTypePayload,
   JudicialMemberNamePipe
 } from '@cpp/reference-data';
+import { ItinerarySearchParams } from '../../store/manage-judiciary-itinerary.store.interfaces';
 
 @Component({
   selector: 'remove-judiciary-itinerary-details',
@@ -79,16 +80,29 @@ const mockCourtCentre: OrganisationUnit = {
 
 class MockManageJudicialItineraryStore {
   readonly selectedItinerary = signal<Itinerary | null>(mockItinerary);
-  readonly paginatedItineraries = {};
-  readonly searchParams = signal({ courtCentre: mockCourtCentre });
-  readonly selectedJudiciary = signal<JudicialMember | null>(mockJudiciary);
-  readonly selectedType = signal<JudiciaryTypePayload | null>('Judge');
+  readonly searchParams = signal<ItinerarySearchParams>({
+    courtCentre: mockCourtCentre,
+    availability: { startDate: null, endDate: null }
+  });
+  readonly paginatedItineraries = {
+    itineraries: [] as Itinerary[],
+    currentPage: 1,
+    pageSize: 20,
+    totalCount: 0
+  };
+  readonly selectedJudiciaries = signal<JudicialMember[] | null>([mockJudiciary]);
+  readonly selectedJudiciaryTypes = signal<JudiciaryTypePayload[] | null>(['Judge']);
+  readonly firstSelectedJudiciary = computed(() => this.selectedJudiciaries()?.[0] ?? null);
+  readonly firstSelectedJudiciaryType = computed(() => this.selectedJudiciaryTypes()?.[0] ?? null);
   readonly removeItinerary = jest.fn();
   readonly setSuccessMessage = jest.fn();
   readonly resetPaginatedItineraries = jest.fn();
   readonly setServerSubmissionError = jest.fn();
   readonly handleError = jest.fn();
   readonly clearServerSubmissionError = jest.fn();
+  readonly clearUpsertItinerary = jest.fn();
+  readonly setFormErrors = jest.fn();
+  readonly clearJudiciarySelection = jest.fn();
 }
 
 describe('RemoveJudicialItineraryContainer', () => {

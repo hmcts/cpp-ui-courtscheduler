@@ -3,7 +3,6 @@
 exports[`SelectedCourtAndJudiciaryDetailsComponent should render correctly 1`] = `
 <app-test-host
   courtCentre={[Function Object]}
-  existingSpecialisms={[Function Array]}
   selectedJudiciary={[Function Object]}
   selectedType={[Function String]}
 >
@@ -158,7 +157,6 @@ exports[`SelectedCourtAndJudiciaryDetailsComponent should render correctly 1`] =
 exports[`SelectedCourtAndJudiciaryDetailsComponent should render correctly when all specialisms are selected 1`] = `
 <app-test-host
   courtCentre={[Function Object]}
-  existingSpecialisms={[Function Array]}
   selectedJudiciary={[Function Object]}
   selectedType={[Function String]}
 >

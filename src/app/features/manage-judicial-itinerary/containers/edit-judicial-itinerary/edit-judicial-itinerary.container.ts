@@ -10,7 +10,7 @@ import { JudicialMemberNamePipe } from '@cpp/reference-data';
 import { EditJudicialItineraryRoutes } from './edit-judicial-itinerary.routes';
 import { CourtSchedulerRoutes } from '../../../../app-routes';
 import { JudicialItineraryRoutes } from '../../manage-judicial-itinerary.routes';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 
 @Component({
   selector: 'edit-judicial-itinerary-container',
@@ -38,12 +38,13 @@ export class EditJudicialItineraryContainer implements OnDestroy {
     return null;
   });
   readonly judiciaryName = computed(() =>
-    this.judicialMemberNamePipe.transform(this.store.selectedJudiciary())
+    this.judicialMemberNamePipe.transform(this.store.firstSelectedJudiciary())
   );
 
   readonly allSpecialismsSelected = computed(() => {
+    const selectedJudiciary = this.store.firstSelectedJudiciary();
     const allSpecialisms = Object.values(Specialism);
-    const existing = this.store.selectedJudiciarySpecialisms();
+    const existing = selectedJudiciary?.specialisms ?? [];
     return allSpecialisms.every((specialism) => existing.includes(specialism));
   });
 

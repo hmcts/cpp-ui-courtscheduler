@@ -13,7 +13,7 @@ import {
   PdkTypographyDirective,
   ValidationError
 } from '@cpp/pdk';
-import { Specialism } from '../../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 import { SpecialismFormatPipe } from '../../pipes/specialism-format.pipe';
 
 export interface SpecialismAddedConfirmationFormValues {

@@ -34,8 +34,6 @@ exports[`CourtroomListComponent should create 1`] = `
       >
         List of sessions
       </h2>
-      <div>
-      </div>
       <pdk-divider>
         <hr
           class="pdk-divider"

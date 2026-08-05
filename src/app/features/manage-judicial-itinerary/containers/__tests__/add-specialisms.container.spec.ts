@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, input, output, signal } from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { provideRouter, Routes } from '@angular/router';
@@ -12,10 +12,11 @@ import {
   AddSpecialismsFormValues
 } from '../../components/add-specialisms-form/add-specialisms-form.component';
 import { JudiciaryDetailsComponent } from '../../components/judiciary-details/judiciary-details.component';
-import { Specialism } from '../../model/specialism.enum';
 import { ValidationError } from '@cpp/pdk';
 import { CourtSchedulerRoutes } from '../../../../app-routes';
 import { JudicialItineraryRoutes } from '../../manage-judicial-itinerary.routes';
+import { JudiciaryTypePayload, Specialism } from '@cpp/reference-data';
+import { ExtendedJudicialMember } from '../../../../shared/model';
 
 @Component({
   selector: 'app-mock-route',
@@ -61,15 +62,14 @@ class MockAddSpecialismsFormComponent {
   selector: 'judiciary-details',
   template: `<div>
     Mock Judiciary Details - Type: {{ selectedType() | json }}, Judiciary:
-    {{ selectedJudiciary() | json }}, Specialisms: {{ existingSpecialisms() | json }}
+    {{ selectedJudiciary() | json }}
   </div>`,
   imports: [JsonPipe]
 })
 class MockJudiciaryDetailsComponent {
-  readonly selectedType = input.required<any>();
-  readonly selectedJudiciary = input.required<any>();
-  readonly existingSpecialisms = input.required<Specialism[]>();
-  readonly hideSpecialismsAction = input<boolean>(false);
+  readonly selectedType = input.required<JudiciaryTypePayload | null>();
+  readonly selectedJudiciary = input.required<ExtendedJudicialMember | null>();
+  readonly hideSpecialismsAction = input<boolean>(true);
 }
 
 @Component({
@@ -87,9 +87,10 @@ const mockJudiciary = {
 };
 
 class MockManageJudicialItineraryStore {
-  readonly selectedType = signal<string | null>(null);
-  readonly selectedJudiciary = signal<any>(null);
-  readonly selectedJudiciarySpecialisms = signal<Specialism[]>([]);
+  readonly selectedJudiciaries = signal<ExtendedJudicialMember[] | null>(null);
+  readonly selectedJudiciaryTypes = signal<JudiciaryTypePayload[] | null>(null);
+  readonly firstSelectedJudiciary = computed(() => this.selectedJudiciaries()?.[0] ?? null);
+  readonly firstSelectedJudiciaryType = computed(() => this.selectedJudiciaryTypes()?.[0] ?? null);
   readonly draftSpecialisms = signal<Specialism[]>([]);
   readonly setDraftSpecialisms = jest.fn();
   readonly setFormErrors = jest.fn();
@@ -144,9 +145,13 @@ describe('AddSpecialismsContainer', () => {
   });
 
   it('should render correctly', () => {
-    store.selectedType.set('Circuit Judge');
-    store.selectedJudiciary.set(mockJudiciary);
-    store.selectedJudiciarySpecialisms.set([Specialism.MURDER, Specialism.ATTEMPTEDMURDER]);
+    store.selectedJudiciaries.set([
+      {
+        ...mockJudiciary,
+        specialisms: [Specialism.MURDER, Specialism.ATTEMPTEDMURDER]
+      } as ExtendedJudicialMember
+    ]);
+    store.selectedJudiciaryTypes.set(['Judge']);
     store.draftSpecialisms.set([Specialism.MURDER]);
     fixture.detectChanges();
 

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Specialism } from '../model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 
 const SPECIALISM_DISPLAY_MAP: Record<Specialism, string> = {
   [Specialism.MURDER]: 'Murder',

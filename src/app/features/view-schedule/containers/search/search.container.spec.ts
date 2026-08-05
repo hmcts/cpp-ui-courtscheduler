@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { Store } from '@ngrx/store';
 import { ViewScheduleActions } from '../../state/actions';
 import { SearchFormComponent } from '../../components/search-form/search-form.component';
 import { CourtroomListComponent } from '../../components/courtroom-list/courtroom-list.component';
@@ -25,6 +26,9 @@ import {
 } from '../../model/view-schedule.model';
 import { BannerMessage } from '../../../../shared/model/banner-message';
 import { JurisdictionType } from '../../../../shared/model/jurisdiction';
+import { ExtendedJudicialMember } from '../../../../shared/model';
+import { CourtSchedulerRoutes } from '../../../../app-routes';
+import { JudiciarySessionAssignmentRoutes } from '../../../judiciary-session-assignment/judiciary-session-assignment.routes';
 
 describe('SearchContainer', () => {
   let component: SearchContainer;
@@ -33,7 +37,6 @@ describe('SearchContainer', () => {
   let dispatchSpy: jasmine.Spy;
   let router: Router;
   let route: ActivatedRoute;
-
   const initialState = {
     referenceData: {
       courtCentres: [mockMagistratesCourtCentre],
@@ -77,7 +80,7 @@ describe('SearchContainer', () => {
 
     fixture = TestBed.createComponent(SearchContainer);
     component = fixture.componentInstance;
-    store = TestBed.inject(MockStore);
+    store = TestBed.inject(Store) as MockStore;
     router = TestBed.inject(Router);
     route = TestBed.inject(ActivatedRoute);
 
@@ -149,11 +152,15 @@ describe('SearchContainer', () => {
     });
   });
 
-  it('should dispatch setSessionToEdit action and navigate to edit route on handleEdit', () => {
+  it('should navigate to edit route with sessionId on handleEdit', () => {
     const session = { ...mockCourtScheduleSession };
-    component.handleEdit(session);
-    expect(dispatchSpy).toHaveBeenCalledWith(ViewScheduleActions.setSessionToEdit({ session }));
-    expect(router.navigate).toHaveBeenCalled();
+    component.handleEdit(session.courtScheduleId);
+    expect(router.navigate).toHaveBeenCalledWith(
+      [ViewScheduleRoutes.EDIT, session.courtScheduleId],
+      {
+        relativeTo: route.parent
+      }
+    );
   });
 
   it('should dispatch setActiveCourtroomsIndexes action on handleActiveCourtroomsIndexes', () => {
@@ -194,6 +201,51 @@ describe('SearchContainer', () => {
 
     expect(dispatchSpy).toHaveBeenCalledWith(
       ViewScheduleActions.setJurisdiction({ jurisdiction: null })
+    );
+  });
+
+  it('should navigate to assign on ASSIGN_JUDICIARY when sessions have no judiciaries', () => {
+    const sessions = [mockCourtScheduleSession];
+    component.handleBulkAction({
+      action: BulkActionType.ASSIGN_JUDICIARY,
+      sessions
+    });
+    expect(router.navigate).toHaveBeenCalledWith(
+      [
+        ViewScheduleRoutes.EDIT,
+        CourtSchedulerRoutes.JUDICIARY_SESSION_ASSIGNMENT,
+        JudiciarySessionAssignmentRoutes.ASSIGN
+      ],
+      {
+        relativeTo: route.parent,
+        state: { sessions },
+        queryParams: { referrer: CourtSchedulerRoutes.VIEW_SCHEDULE }
+      }
+    );
+  });
+
+  it('should navigate to reassignment confirmation on ASSIGN_JUDICIARY when a session has judiciaries', () => {
+    const sessions = [
+      {
+        ...mockCourtScheduleSession,
+        judiciaries: [{ id: 'j1' } as ExtendedJudicialMember]
+      }
+    ];
+    component.handleBulkAction({
+      action: BulkActionType.ASSIGN_JUDICIARY,
+      sessions
+    });
+    expect(router.navigate).toHaveBeenCalledWith(
+      [
+        ViewScheduleRoutes.EDIT,
+        CourtSchedulerRoutes.JUDICIARY_SESSION_ASSIGNMENT,
+        JudiciarySessionAssignmentRoutes.REASSIGNMENT_CONFIRMATION
+      ],
+      {
+        relativeTo: route.parent,
+        state: { sessions },
+        queryParams: { referrer: CourtSchedulerRoutes.VIEW_SCHEDULE }
+      }
     );
   });
 });

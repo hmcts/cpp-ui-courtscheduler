@@ -15,16 +15,10 @@ import { ViewScheduleService } from '../../services/view-schedule.service';
 import { SearchSchedulesPayload } from '../../model/view-schedule.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { apiError } from '../../../../core/actions/api.actions';
-import { observeOn, tap, withLatestFrom } from 'rxjs/operators';
+import { observeOn, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { EnterZoneScheduler, LeaveZoneScheduler } from '../../../../shared/utils/zone-schedulers';
 import { CourtSchedulerRoutes } from '../../../../app-routes';
-import { ViewScheduleState } from '../view-schedule.state';
-import { Store } from '@ngrx/store';
-import { JurisdictionType } from '../../../../shared/model/jurisdiction';
-import { getJurisdiction } from '../selectors/view-schedule.selectors';
-import { PanelType } from '../../../../shared/model/panel';
-import { CourtroomAssignmentType } from '../../../../shared/model/courtroom-assignment';
 
 @Injectable()
 export class ViewScheduleEffects {
@@ -32,13 +26,9 @@ export class ViewScheduleEffects {
   private viewScheduleService = inject(ViewScheduleService);
   private router = inject(Router);
   private zone = inject(NgZone);
-  private store = inject<Store<ViewScheduleState>>(Store);
-
   searchSchedules$;
   removeSessions$;
   removeSessionsSuccess$;
-  updateSchedules$;
-  updateSchedulesSuccess$;
   setSuccessBannerSuccess$;
   assignCourtroom$;
   assignCourtroomSuccess$;
@@ -96,7 +86,11 @@ export class ViewScheduleEffects {
                   })
                 );
               } else {
-                return of(ViewScheduleActions.removeSessionsSuccess());
+                return of(
+                  ViewScheduleActions.removeSessionsSuccess({
+                    courtRoomName: sessionsToRemove[0].courtRoomName
+                  })
+                );
               }
             }),
             catchError((error: HttpErrorResponse) => of(apiError({ error })))
@@ -108,92 +102,15 @@ export class ViewScheduleEffects {
     this.removeSessionsSuccess$ = createEffect(() =>
       this.actions$.pipe(
         ofType(ViewScheduleActions.removeSessionsSuccess),
-        switchMap(() =>
+        switchMap(({ courtRoomName }) =>
           of(
             ViewScheduleActions.clearViewSessionsToRemove(),
             ViewScheduleActions.setViewBanner({
               message: 'Sessions removed successfully',
-              bannerType: 'success'
+              bannerType: 'success',
+              courtRoomName
             })
           )
-        ),
-        tap(() => this.router.navigate([`${CourtSchedulerRoutes.VIEW_SCHEDULE}`]))
-      )
-    );
-
-    this.updateSchedules$ = createEffect(() =>
-      this.actions$.pipe(
-        ofType(ViewScheduleActions.updateSession),
-        withLatestFrom(this.store.select(getJurisdiction)),
-        switchMap(([{ session }, jurisdiction]) => {
-          const isCrown = jurisdiction === JurisdictionType.CROWN;
-
-          const {
-            courtScheduleId,
-            courtRoomId,
-            businessType,
-            courtSession,
-            sessionStartTime,
-            sessionEndTime,
-            maxSlots,
-            maxDuration,
-            maxDurationForMorning,
-            maxDurationForAfternoon,
-            allDaySplit,
-            panel,
-            courtroomAssignment
-          } = session;
-
-          const payload = {
-            courtScheduleId,
-            courtRoomId,
-            businessType,
-            courtSession,
-            sessionStartTime,
-            sessionEndTime,
-            isOverbookingAllowed: session.isOverbookingAllowed ?? false,
-            ...(maxSlots !== undefined ? { maxSlots } : { maxDuration }),
-            ...(maxDurationForMorning !== undefined && { maxDurationForMorning }),
-            ...(maxDurationForAfternoon !== undefined && { maxDurationForAfternoon }),
-            ...(allDaySplit !== undefined && { allDaySplit }),
-            panel: isCrown ? PanelType.ADULT : panel,
-            ...(isCrown && {
-              isDraft: courtroomAssignment === CourtroomAssignmentType.DRAFT
-            }),
-            jurisdiction
-          };
-          return this.viewScheduleService.updateSession(payload).pipe(
-            map(() => ViewScheduleActions.updateSessionSuccess()),
-            catchError((httpError: HttpErrorResponse) => {
-              if (httpError.status === 400) {
-                const parsedError = JSON.parse(httpError.error);
-
-                return of(
-                  ViewScheduleActions.setErrors({
-                    errors: [
-                      {
-                        id: 'backendError',
-                        message: parsedError.error
-                      }
-                    ]
-                  })
-                );
-              }
-              return of(apiError({ error: httpError }));
-            })
-          );
-        })
-      )
-    );
-
-    this.updateSchedulesSuccess$ = createEffect(() =>
-      this.actions$.pipe(
-        ofType(ViewScheduleActions.updateSessionSuccess),
-        map(() =>
-          ViewScheduleActions.setViewBanner({
-            message: 'Sessions updated successfully',
-            bannerType: 'success'
-          })
         ),
         tap(() => this.router.navigate([`${CourtSchedulerRoutes.VIEW_SCHEDULE}`]))
       )
@@ -213,7 +130,7 @@ export class ViewScheduleEffects {
     this.assignCourtroom$ = createEffect(() =>
       this.actions$.pipe(
         ofType(ViewScheduleActions.assignCourtroom),
-        switchMap(({ sessionsToAssign, courtroomId }) => {
+        switchMap(({ sessionsToAssign, courtroomId, courtRoomName }) => {
           const courtScheduleIds = sessionsToAssign.map((session) => session.courtScheduleId);
 
           const payload = {
@@ -241,7 +158,7 @@ export class ViewScheduleEffects {
                   })
                 );
               } else {
-                return of(ViewScheduleActions.assignCourtroomSuccess());
+                return of(ViewScheduleActions.assignCourtroomSuccess({ courtRoomName }));
               }
             }),
             catchError((error: HttpErrorResponse) => of(apiError({ error })))
@@ -253,12 +170,13 @@ export class ViewScheduleEffects {
     this.assignCourtroomSuccess$ = createEffect(() =>
       this.actions$.pipe(
         ofType(ViewScheduleActions.assignCourtroomSuccess),
-        switchMap(() =>
+        switchMap(({ courtRoomName }) =>
           of(
             ViewScheduleActions.clearViewSessionsToAssign(),
             ViewScheduleActions.setViewBanner({
               message: 'Courtroom assigned successfully',
-              bannerType: 'success'
+              bannerType: 'success',
+              courtRoomName
             })
           )
         ),

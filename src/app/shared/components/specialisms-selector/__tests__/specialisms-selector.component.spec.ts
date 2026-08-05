@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { SpecialismsSelectorComponent } from '../specialisms-selector.component';
-import { Specialism } from '../../../../features/manage-judicial-itinerary/model/specialism.enum';
+import { Specialism } from '@cpp/reference-data';
 
 @Component({
   selector: 'app-test-host',

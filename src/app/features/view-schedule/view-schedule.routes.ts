@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
 import { OrganisationUnitsGuard, RotaBusinessTypesGuard } from '@cpp/reference-data';
-import { editSessionNavGuard } from './guards/edit-session-nav.guard';
 import { removeSessionsNavGuard } from './guards/remove-sessions-nav.guard';
 import { assignCourtroomNavGuard } from './guards/assign-courtroom-nav.guard';
+import { editSessionsGuard } from './guards/edit-sessions.guard';
+import { ManageSessionsStore } from './store/manage-sessions.store';
+import { CourtSchedulerRoutes } from '../../app-routes';
 
 export enum ViewScheduleRoutes {
   VIEW = 'view',
@@ -24,13 +26,34 @@ export const viewScheduleRoutes: Routes = [
   {
     path: ViewScheduleRoutes.EDIT,
     loadComponent: () =>
-      import('./containers/edit-session/edit-session.container').then(
-        (c) => c.EditSessionContainer
+      import('./containers/edit-sessions-shell/edit-sessions-shell.component').then(
+        (c) => c.EditSessionsShellComponent
       ),
-    canActivate: [OrganisationUnitsGuard, RotaBusinessTypesGuard, editSessionNavGuard],
+    canActivate: [OrganisationUnitsGuard, RotaBusinessTypesGuard, editSessionsGuard],
+    providers: [ManageSessionsStore],
+    runGuardsAndResolvers: 'always',
     data: {
       title: 'Edit Schedule | Common Platform'
-    }
+    },
+    children: [
+      {
+        path: ':id',
+        loadComponent: () =>
+          import('./containers/edit-session/edit-session.container').then(
+            (c) => c.EditSessionContainer
+          ),
+        data: {
+          title: 'Edit Schedule | Common Platform'
+        }
+      },
+      {
+        path: CourtSchedulerRoutes.JUDICIARY_SESSION_ASSIGNMENT,
+        loadChildren: () =>
+          import('../judiciary-session-assignment/judiciary-session-assignment.routes').then(
+            (r) => r.judiciarySessionAssignmentRoutes
+          )
+      }
+    ]
   },
   {
     path: ViewScheduleRoutes.REMOVE_SESSIONS,

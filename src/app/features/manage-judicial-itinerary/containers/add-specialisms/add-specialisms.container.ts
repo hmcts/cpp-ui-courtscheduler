@@ -14,6 +14,7 @@ import { createRouterSignals } from '../../../../../shared-signals/router-signal
   selector: 'add-specialisms-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
+    @let judiciary = store.firstSelectedJudiciary();
     <div>
       <a pdk-back-link pdk-margin-top="0" (click)="handleBackLink()" href="javascript:void(0);"
         >Back</a
@@ -23,13 +24,12 @@ import { createRouterSignals } from '../../../../../shared-signals/router-signal
     <h1 pdk-typography="heading-large">Add new specialism</h1>
 
     <judiciary-details
-      [selectedType]="store.selectedType()"
-      [selectedJudiciary]="store.selectedJudiciary()"
-      [existingSpecialisms]="store.selectedJudiciarySpecialisms()"
+      [selectedType]="store.firstSelectedJudiciaryType()"
+      [selectedJudiciary]="judiciary"
     />
 
     <add-specialisms-form
-      [existingSpecialisms]="store.selectedJudiciarySpecialisms()"
+      [existingSpecialisms]="judiciary?.specialisms ?? []"
       [initialValues]="initialFormValues()"
       (errors)="store.setFormErrors($event || [])"
       (submitForm)="handleSubmitForm($event)"

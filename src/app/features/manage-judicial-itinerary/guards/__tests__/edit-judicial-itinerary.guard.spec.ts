@@ -7,8 +7,8 @@ import { ManageJudicialItineraryStore } from '../../store/manage-judicial-itiner
 import { JudicialItineraryService } from '../../services/judicial-itinerary.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Itinerary } from '../../model/judicial-itinerary.interface';
-import { JudiciaryWithSpecialisms } from '../../model/judicial-itinerary.interface';
-import { Specialism } from '../../model/specialism.enum';
+import { ExtendedJudicialMember } from '../../../../shared/model';
+import { Specialism } from '@cpp/reference-data';
 
 class MockManageJudicialItineraryStore {
   readonly selectedItinerary = jest.fn();
@@ -27,7 +27,7 @@ describe('getJudicialItineraryGuard', () => {
   let route: ActivatedRouteSnapshot;
   let state: RouterStateSnapshot;
 
-  const mockJudiciary: JudiciaryWithSpecialisms = {
+  const mockJudiciary: ExtendedJudicialMember = {
     id: 'judge-1',
     seqId: 1,
     surname: 'Smith',
@@ -35,7 +35,7 @@ describe('getJudicialItineraryGuard', () => {
     judiciaryType: 'Circuit Judge',
     emailAddress: 'john.smith@example.com',
     specialisms: [Specialism.MURDER]
-  } as unknown as JudiciaryWithSpecialisms;
+  } as unknown as ExtendedJudicialMember;
 
   const mockItinerary: Itinerary = {
     id: 'rule-1',
@@ -141,7 +141,7 @@ describe('getJudicialItineraryGuard', () => {
       expect(allowed).toBe(true);
       expect(service.findAvailabilityById).toHaveBeenCalledWith('rule-1');
       expect(store.setSelectedItinerary).toHaveBeenCalledWith(mockItinerary);
-      expect(store.setSelectedJudiciary).toHaveBeenCalledWith(mockJudiciary);
+      expect(store.setSelectedJudiciary).toHaveBeenCalledWith([mockJudiciary]);
       done();
     });
   });
@@ -160,7 +160,7 @@ describe('getJudicialItineraryGuard', () => {
       expect(allowed).toBe(true);
       expect(service.findAvailabilityById).toHaveBeenCalledWith('rule-1');
       expect(store.setSelectedItinerary).toHaveBeenCalledWith(mockItinerary);
-      expect(store.setSelectedJudiciary).toHaveBeenCalledWith(mockJudiciary);
+      expect(store.setSelectedJudiciary).toHaveBeenCalledWith([mockJudiciary]);
       done();
     });
   });

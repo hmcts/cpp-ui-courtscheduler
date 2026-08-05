@@ -9,7 +9,6 @@ import {
   mockCourtScheduleDraft,
   mockSession
 } from '../../../shared';
-import { CreateScheduleActions } from '../state/actions';
 import { createScheduleNavGuard } from './create-schedule-nav.guard';
 import { cold } from 'jasmine-marbles';
 
@@ -38,8 +37,6 @@ describe('createScheduleNavGuard', () => {
     const route = {
       firstChild: { routeConfig: { path: 'not-valid-path' } }
     } as ActivatedRouteSnapshot;
-
-    (createUrlTreeFromSnapshot as jest.Mock).mockReturnValue(mockUrlTree);
 
     const result$ = TestBed.runInInjectionContext(() => createScheduleNavGuard(route));
     const expected$ = cold('(a|)', { a: mockUrlTree });
@@ -178,7 +175,7 @@ describe('createScheduleNavGuard', () => {
     expect(result).toBeObservable(expected);
   });
 
-  it('should dispatch clearJourney and prevent navigation to SUMMARY if isPersisted is true', () => {
+  it('should allow navigation to SUCCESS when isPersisted is true', () => {
     store.setState({
       courtScheduleDraft: {
         ...mockCourtScheduleDraft,
@@ -187,16 +184,34 @@ describe('createScheduleNavGuard', () => {
     } as CreateScheduleState);
 
     const route = {
-      firstChild: { routeConfig: { path: CreateScheduleRoutes.SUMMARY } }
+      firstChild: { routeConfig: { path: CreateScheduleRoutes.SUCCESS } }
     } as ActivatedRouteSnapshot;
-
-    spyOn(store, 'dispatch');
 
     const result$ = TestBed.runInInjectionContext(() => createScheduleNavGuard(route));
     const expected$ = cold('(a|)', { a: true });
 
     expect(result$).toBeObservable(expected$);
-    expect(store.dispatch).toHaveBeenCalledWith(CreateScheduleActions.clearJourney());
+  });
+
+  it('should redirect when navigating to SUCCESS when isPersisted is false', () => {
+    store.setState({
+      courtScheduleDraft: {
+        ...mockCourtScheduleDraft,
+        isPersisted: false
+      }
+    } as CreateScheduleState);
+
+    const route = {
+      firstChild: { routeConfig: { path: CreateScheduleRoutes.SUCCESS } }
+    } as ActivatedRouteSnapshot;
+
+    const result$ = TestBed.runInInjectionContext(() => createScheduleNavGuard(route));
+    const expected$ = cold('(a|)', { a: mockUrlTree });
+
+    expect(result$).toBeObservable(expected$);
+    expect(createUrlTreeFromSnapshot).toHaveBeenCalledWith(route, [
+      CreateScheduleRoutes.SELECT_COURT
+    ]);
   });
 
   it('should allow navigation to REMOVE_SESSIONS if selectedCourt, selectedBusinessType and sessionsToRemove are set', () => {

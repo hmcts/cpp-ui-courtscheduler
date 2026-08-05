@@ -4,10 +4,10 @@ exports[`SelectBusinessTypeContainer should create 1`] = `
 <select-business-type-container
   businessTypeLabel={[Function Function]}
   businessTypes={[Function Function]}
-  courtCentre$={[Function _Store]}
+  courtCentre={[Function Function]}
   errors={[Function Array]}
   findBusinessTypeByCode={[Function Function]}
-  initialValues$={[Function _Store]}
+  initialValues={[Function Function]}
   jurisdiction={[Function Function]}
   route={[Function Object]}
   router={[Function _Router]}
@@ -182,10 +182,10 @@ exports[`SelectBusinessTypeContainer should select crown business types when jur
 <select-business-type-container
   businessTypeLabel={[Function Function]}
   businessTypes={[Function Function]}
-  courtCentre$={[Function _Store]}
+  courtCentre={[Function Function]}
   errors={[Function Array]}
   findBusinessTypeByCode={[Function Function]}
-  initialValues$={[Function _Store]}
+  initialValues={[Function Function]}
   jurisdiction={[Function Function]}
   route={[Function Object]}
   router={[Function _Router]}
@@ -360,10 +360,10 @@ exports[`SelectBusinessTypeContainer should select magistrates business types wh
 <select-business-type-container
   businessTypeLabel={[Function Function]}
   businessTypes={[Function Function]}
-  courtCentre$={[Function _Store]}
+  courtCentre={[Function Function]}
   errors={[Function Array]}
   findBusinessTypeByCode={[Function Function]}
-  initialValues$={[Function _Store]}
+  initialValues={[Function Function]}
   jurisdiction={[Function Function]}
   route={[Function Object]}
   router={[Function _Router]}

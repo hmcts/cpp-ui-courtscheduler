@@ -1,9 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {
-  judiciaryTypeGroupToJudiciaryTypePayload,
-  mapRefDataJudiciaryToJudiciaryType
-} from '@cpp/reference-data';
 import { Itinerary } from '../model/judicial-itinerary.interface';
+import { getJudiciaryType } from '../../../shared/utils/core.utils';
 
 @Pipe({
   name: 'itineraryType'
@@ -14,7 +11,6 @@ export class ItineraryTypePipe implements PipeTransform {
     if (!judiciary) {
       return 'Not added';
     }
-    const judiciaryGroup = mapRefDataJudiciaryToJudiciaryType(judiciary.judiciaryType);
-    return judiciaryTypeGroupToJudiciaryTypePayload(judiciaryGroup) ?? 'Not added';
+    return getJudiciaryType(judiciary) ?? 'Not added';
   }
 }

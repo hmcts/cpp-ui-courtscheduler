@@ -33,6 +33,8 @@ import { ViewScheduleRoutes } from '../../view-schedule.routes';
 import { BannerMessage } from '../../../../shared/model/banner-message';
 import { tap } from 'rxjs/operators';
 import { JurisdictionType } from '../../../../shared/model/jurisdiction';
+import { CourtSchedulerRoutes } from '../../../../app-routes';
+import { JudiciarySessionAssignmentRoutes } from '../../../judiciary-session-assignment/judiciary-session-assignment.routes';
 
 @Component({
   selector: 'search-container',
@@ -63,7 +65,7 @@ import { JurisdictionType } from '../../../../shared/model/jurisdiction';
             [activeCourtroomsIndexes]="activeCourtroomsIndexes$ | async"
             [jurisdiction]="jurisdiction()"
             (submitForm)="handleBulkAction($event)"
-            (setSessionToEdit)="handleEdit($event)"
+            (setSessionToEdit)="handleEdit($event.courtScheduleId)"
             (setActiveCourtroomsIndexes)="handleActiveCourtroomsIndexes($event)"
             (validationErrors)="handleValidationErrors($event)"
           />
@@ -86,7 +88,6 @@ export class SearchContainer implements OnInit {
   route = inject(ActivatedRoute);
   private store = inject<Store<ViewScheduleState>>(Store);
   private router = inject(Router);
-
   courtSchedules$: Observable<CourtSchedule[]>;
   searchValues$: Observable<SearchFormValues>;
   bannerMessage$: Observable<BannerMessage>;
@@ -148,6 +149,8 @@ export class SearchContainer implements OnInit {
       this.router.navigate([ViewScheduleRoutes.ASSIGN_COURTROOM], {
         relativeTo: this.route.parent
       });
+    } else if (payload.action === BulkActionType.ASSIGN_JUDICIARY) {
+      this.handleJudiciaryAssignment(payload.sessions);
     }
   }
 
@@ -155,13 +158,10 @@ export class SearchContainer implements OnInit {
     return courtSchedules.reduce((acc, cur) => acc + cur.sessions.length, 0);
   }
 
-  handleEdit(session: CourtScheduleSession) {
-    this.store.dispatch(
-      ViewScheduleActions.setSessionToEdit({
-        session
-      })
-    );
-    this.router.navigate([ViewScheduleRoutes.EDIT], { relativeTo: this.route.parent });
+  handleEdit(sessionId: string) {
+    this.router.navigate([ViewScheduleRoutes.EDIT, sessionId], {
+      relativeTo: this.route.parent
+    });
   }
 
   handleActiveCourtroomsIndexes(activeCourtroomsIndexes: number[]) {
@@ -174,5 +174,21 @@ export class SearchContainer implements OnInit {
 
   handleValidationErrors(errors: ValidationError[]): void {
     this.errors = errors;
+  }
+
+  handleJudiciaryAssignment(sessions: CourtScheduleSession[]): void {
+    const hasJudiciary = sessions.some((s) => s.judiciaries?.length > 0);
+    const destination = hasJudiciary
+      ? JudiciarySessionAssignmentRoutes.REASSIGNMENT_CONFIRMATION
+      : JudiciarySessionAssignmentRoutes.ASSIGN;
+
+    this.router.navigate(
+      [ViewScheduleRoutes.EDIT, CourtSchedulerRoutes.JUDICIARY_SESSION_ASSIGNMENT, destination],
+      {
+        relativeTo: this.route.parent,
+        state: { sessions },
+        queryParams: { referrer: CourtSchedulerRoutes.VIEW_SCHEDULE }
+      }
+    );
   }
 }

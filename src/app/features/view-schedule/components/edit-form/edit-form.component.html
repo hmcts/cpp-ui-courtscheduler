@@ -1,5 +1,10 @@
-@if (!isPastDate) {
+@let session = sessionToEdit();
+@let pastDate = isPastDate();
+
+@if (!pastDate) {
   <div pdk-margin-bottom="8">
+    @let jur = jurisdiction();
+    @let hearingsBooked = hasHearingsBooked();
     <h2 pdk-typography="heading-medium">Session details</h2>
     <form
       #form="ngForm"
@@ -8,9 +13,13 @@
       (errors)="errors.emit($event)"
       (validSubmit)="handleSubmitForm(form.value)"
     >
+      @let values = formValues();
+      @let selectedSession = selectedCourtSession();
+      @let timeRanges = timeRange();
+      @let durationErrors = durationErrorMessages();
       <pdk-grid container>
         <pdk-grid full pdk-padding-left="0">
-          @if (!hasHearingsBooked) {
+          @if (!hearingsBooked) {
             <pdk-grid one-half>
               <pdk-form-field
                 label="Courtroom"
@@ -23,9 +32,9 @@
                 ]"
               >
                 <pdk-select
-                  [ngModel]="formValues?.courtRoomId"
+                  [ngModel]="values.courtRoomId"
                   [name]="'courtRoomId'"
-                  [options]="courtroomOptions"
+                  [options]="courtroomOptions()"
                   justified
                   required
                 >
@@ -33,7 +42,8 @@
               </pdk-form-field>
             </pdk-grid>
           }
-          @if (jurisdiction() === JurisdictionType.CROWN) {
+          @if (jur === JurisdictionType.CROWN) {
+            @let canAssign = canBeAssigned();
             <pdk-grid one-half>
               <pdk-form-field
                 label="Courtroom assignment"
@@ -47,18 +57,16 @@
               >
                 <pdk-radio-group
                   class="courtroom-assignment-radio-group"
-                  [ngModel]="formValues?.courtroomAssignment"
+                  [ngModel]="values.courtroomAssignment"
                   name="courtroomAssignment"
                   [options]="courtroomAssignmentOptions"
-                  [hidden]="!canBeAssigned"
+                  [hidden]="!canAssign"
                   required
                 >
                 </pdk-radio-group>
 
-                @if (!canBeAssigned) {
-                  <span>{{
-                    formValues?.courtroomAssignment === 'DRAFT' ? 'Draft' : 'Assigned'
-                  }}</span>
+                @if (!canAssign) {
+                  <span>{{ values.courtroomAssignment === 'DRAFT' ? 'Draft' : 'Assigned' }}</span>
                 }
               </pdk-form-field>
             </pdk-grid>
@@ -77,9 +85,9 @@
               ]"
             >
               <cpp-rota-business-type-select
-                [ngModel]="formValues?.businessType"
+                [ngModel]="values.businessType"
                 [name]="'businessType'"
-                [jurisdiction]="jurisdiction()"
+                [jurisdiction]="jur"
                 [filterBy]="getMatchingSlotTypeFilter()"
                 justified
                 required
@@ -101,115 +109,108 @@
               ]"
             >
               <pdk-radio-group
-                [ngModel]="formValues?.courtSession"
+                [ngModel]="values.courtSession"
                 name="courtSession"
-                (ngModelChange)="onCourtSessionChange($event)"
+                (ngModelChange)="selectedCourtSession.set($event)"
                 required
               >
-                @if (showAM) {
+                @if (showAM()) {
                   <pdk-radio-button value="AM">AM</pdk-radio-button>
                 }
-                @if (formValues?.courtSession === 'AM') {
+                @if (selectedSession === 'AM') {
                   <pdk-radio-conditional>
                     <pdk-form-field
                       label="{{
-                        formValues?.slotBased
+                        session?.slotBased
                           ? 'Enter number of slots'
                           : 'Enter session duration in minutes'
                       }}"
                       labelType="small"
-                      [errorMessages]="durationErrorMessages"
+                      [errorMessages]="durationErrors"
                     >
                       <input
                         pdk-text-input
-                        [ngModel]="
-                          formValues?.slotBased ? formValues?.maxSlots : formValues?.maxDuration
-                        "
+                        [ngModel]="session?.slotBased ? values.maxSlots : values.maxDuration"
                         [pdk-input]="3"
                         type="number"
                         pattern="[0-9]*"
-                        name="{{ formValues.slotBased ? 'maxSlots' : 'maxDuration' }}"
-                        [min]="formValues.totalBooked"
+                        name="{{ session?.slotBased ? 'maxSlots' : 'maxDuration' }}"
+                        [min]="session?.totalBooked"
                         required
                         data-test-id="duration"
                       />
                     </pdk-form-field>
                   </pdk-radio-conditional>
                 }
-                @if (showPM) {
+                @if (showPM()) {
                   <pdk-radio-button value="PM">PM</pdk-radio-button>
                 }
-                @if (formValues?.courtSession === 'PM') {
+                @if (selectedSession === 'PM') {
                   <pdk-radio-conditional>
                     <pdk-form-field
                       label="{{
-                        formValues?.slotBased
+                        session?.slotBased
                           ? 'Enter number of slots'
                           : 'Enter session duration in minutes'
                       }}"
                       labelType="small"
-                      [errorMessages]="durationErrorMessages"
+                      [errorMessages]="durationErrors"
                     >
                       <input
                         pdk-text-input
-                        [ngModel]="
-                          formValues?.slotBased ? formValues?.maxSlots : formValues?.maxDuration
-                        "
+                        [ngModel]="session?.slotBased ? values.maxSlots : values.maxDuration"
                         [pdk-input]="3"
                         type="number"
                         pattern="[0-9]*"
-                        name="{{ formValues.slotBased ? 'maxSlots' : 'maxDuration' }}"
-                        [min]="formValues.totalBooked"
+                        name="{{ session?.slotBased ? 'maxSlots' : 'maxDuration' }}"
+                        [min]="session?.totalBooked"
                         required
                         data-test-id="duration"
                       />
                     </pdk-form-field>
                   </pdk-radio-conditional>
                 }
-                @if (showAD) {
+                @if (showAD()) {
                   <pdk-radio-button value="AD">All day</pdk-radio-button>
                 }
-                @if (formValues?.courtSession === 'AD') {
+                @if (selectedSession === 'AD') {
                   <pdk-radio-conditional>
                     @if (
-                      formValues?.slotBased ||
-                      (!formValues?.slotBased && formValues?.allDaySplit === false)
+                      session?.slotBased || (!session?.slotBased && session?.allDaySplit === false)
                     ) {
                       <pdk-form-field
                         label="{{
-                          formValues?.slotBased
+                          session?.slotBased
                             ? 'Enter number of slots'
                             : 'Enter session duration in minutes'
                         }}"
                         labelType="small"
-                        [errorMessages]="durationErrorMessages"
+                        [errorMessages]="durationErrors"
                       >
                         <input
                           pdk-text-input
-                          [ngModel]="
-                            formValues?.slotBased ? formValues?.maxSlots : formValues?.maxDuration
-                          "
+                          [ngModel]="session?.slotBased ? values.maxSlots : values.maxDuration"
                           [pdk-input]="3"
                           type="number"
-                          name="{{ formValues.slotBased ? 'maxSlots' : 'maxDuration' }}"
-                          [min]="formValues.totalBooked"
+                          name="{{ session?.slotBased ? 'maxSlots' : 'maxDuration' }}"
+                          [min]="session?.totalBooked"
                           pattern="[0-9]*"
                           required
                           data-test-id="duration"
                         />
                       </pdk-form-field>
                     }
-                    @if (!formValues?.slotBased && formValues?.allDaySplit === true) {
+                    @if (!session?.slotBased && session?.allDaySplit === true) {
                       <pdk-form-field
                         label="AM"
                         hintText="Enter session duration in minutes"
                         labelType="small"
-                        [errorMessages]="morningDurationErrorMessages"
+                        [errorMessages]="morningDurationErrorMessages()"
                       >
                         <input
                           pdk-text-input
-                          [ngModel]="formValues?.maxDurationForMorning"
-                          [min]="formValues.totalBookedForMorning"
+                          [ngModel]="values.maxDurationForMorning"
+                          [min]="session?.totalBookedForMorning"
                           [pdk-input]="3"
                           type="number"
                           name="maxDurationForMorning"
@@ -219,17 +220,17 @@
                         />
                       </pdk-form-field>
                     }
-                    @if (!formValues?.slotBased && formValues?.allDaySplit === true) {
+                    @if (!session?.slotBased && session?.allDaySplit === true) {
                       <pdk-form-field
                         label="PM"
                         hintText="Enter session duration in minutes"
                         labelType="small"
-                        [errorMessages]="afternoonDurationErrorMessages"
+                        [errorMessages]="afternoonDurationErrorMessages()"
                       >
                         <input
                           pdk-text-input
-                          [ngModel]="formValues?.maxDurationForAfternoon"
-                          [min]="formValues.totalBookedForAfternoon"
+                          [ngModel]="values.maxDurationForAfternoon"
+                          [min]="session?.totalBookedForAfternoon"
                           [pdk-input]="3"
                           type="number"
                           name="maxDurationForAfternoon"
@@ -245,9 +246,9 @@
             </pdk-form-field>
           </pdk-grid>
 
-          @if (jurisdiction() === JurisdictionType.MAGISTRATES) {
+          @if (jur === JurisdictionType.MAGISTRATES) {
             <pdk-grid one-half>
-              @if (!hasHearingsBooked) {
+              @if (!hearingsBooked) {
                 <pdk-form-field
                   label="Panel"
                   labelType="small"
@@ -259,7 +260,7 @@
                   ]"
                 >
                   <pdk-radio-group
-                    [ngModel]="formValues?.panel"
+                    [ngModel]="values.panel"
                     name="panel"
                     [options]="panelOptions"
                     required
@@ -283,13 +284,12 @@
               [errorMessages]="startTimeErrorMessages"
             >
               <pdk-time-input
+                #startTimeModel="ngModel"
                 name="sessionStartTime"
-                [(ngModel)]="formValues.sessionStartTime"
-                [ngModelOptions]="{ updateOn: 'change' }"
-                autoShift
+                [ngModel]="values.sessionStartTime"
+                [autoShift]="false"
                 labelHidden="false"
-                timeRangeValidator
-                [timeRange]="timeRange.start"
+                [timeRange]="timeRanges.start"
                 required
               >
               </pdk-time-input>
@@ -301,13 +301,11 @@
             >
               <pdk-time-input
                 name="sessionEndTime"
-                [(ngModel)]="formValues.sessionEndTime"
-                [ngModelOptions]="{ updateOn: 'change' }"
-                autoShift
+                [ngModel]="values.sessionEndTime"
+                [autoShift]="false"
                 labelHidden="false"
-                timeRangeValidator
-                [timeRange]="timeRange.end"
-                [startTime]="formValues.sessionStartTime"
+                [timeRange]="timeRanges.end"
+                [benchMarkTime]="startTimeModel.value"
                 required
               >
               </pdk-time-input>
@@ -323,7 +321,7 @@
           >
             <pdk-checkbox-group name="additionalSessionOptions" ngModel>
               <pdk-checkbox
-                [ngModel]="formValues?.isOverbookingAllowed"
+                [ngModel]="values.isOverbookingAllowed"
                 name="isOverbookingAllowed"
                 checkboxType="small"
                 pdk-padding-top="2"
@@ -342,11 +340,11 @@
   </div>
 }
 
-@if (isPastDate) {
+@if (pastDate) {
   <div>
     <sessions-list
       [isEditView]="true"
-      [ineligiblePastSessions]="ineligiblePastSessions"
+      [ineligiblePastSessions]="[session]"
       [jurisdiction]="jurisdiction()"
     />
     <button pdk-button pdk-margin-top="4" (click)="handleBackNav.emit()">Continue</button>

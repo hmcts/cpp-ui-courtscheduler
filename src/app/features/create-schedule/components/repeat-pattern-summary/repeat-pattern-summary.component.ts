@@ -67,7 +67,6 @@ import { NgPlural, NgPluralCase } from '@angular/common';
 })
 export class RepeatPatternSummaryComponent implements OnInit {
   readonly repeatPattern = input<RepeatPattern>();
-
   repeatPatternDates: {
     startDateLabel: string;
     endDateLabel: string;

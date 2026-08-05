@@ -3,8 +3,7 @@ import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { AddSittingDaysFormComponent } from '../add-sitting-days-form/add-sitting-days-form.component';
 import { DraftItinerary } from '../../model/judicial-itinerary.interface';
-import { DayOfWeek } from '../../../../shared/model/days';
-import { SessionType } from '../../../../shared/model/session';
+import { DayOfWeek, SessionType } from '../../../../shared/model';
 import { ValidationError } from '@cpp/pdk';
 
 @Component({

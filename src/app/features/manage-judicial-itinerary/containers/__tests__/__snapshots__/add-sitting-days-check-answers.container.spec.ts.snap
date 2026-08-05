@@ -43,15 +43,16 @@ exports[`AddSittingDaysCheckAnswersContainer should render correctly 1`] = `
     "oucodeL1Name": "Test Area",
     "region": "Test Region",
     "emailAddress": "test@example.com"
-  }, Type: "Circuit Judge", Judiciary: {
+  }, Type: "Judge", Judiciary: {
     "id": "judge-1",
     "surname": "Smith",
     "forenames": "John",
-    "judiciaryType": "Circuit Judge"
-  }, Specialisms: [
-    "MURDER",
-    "ATTEMPTED_MURDER"
-  ] 
+    "judiciaryType": "Circuit Judge",
+    "specialisms": [
+      "MURDER",
+      "ATTEMPTED_MURDER"
+    ]
+  } 
       </div>
     </selected-court-and-judiciary-details>
     <pdk-grid

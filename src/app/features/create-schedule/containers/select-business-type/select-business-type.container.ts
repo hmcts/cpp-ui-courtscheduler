@@ -1,14 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-  getRotaBusinessTypesByJurisdiction,
-  OrganisationUnit,
-  RotaBusinessType,
-  RotaBusinessTypeCode
-} from '@cpp/reference-data';
-import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { getRotaBusinessTypesByJurisdiction, RotaBusinessTypeCode } from '@cpp/reference-data';
+import { Store } from '@ngrx/store';
 import { isEqual } from 'lodash-es';
 import {
   PdkBackLink,
@@ -18,7 +11,6 @@ import {
   PdkTypographyDirective,
   ValidationError
 } from '@cpp/pdk';
-import { AsyncPipe } from '@angular/common';
 import { SelectBusinessTypeFormComponent } from '../../components/select-business-type-form/select-business-type-form.component';
 import { CreateScheduleRoutes } from '../../create-schedule.routes';
 import {
@@ -43,15 +35,15 @@ import { JourneySummaryComponent } from '../../components/journey-summary/journe
       <pdk-grid full>
         <h1 pdk-typography="heading-xlarge">Select business type</h1>
         <journey-summary
-          [courtCentre]="courtCentre$ | async"
+          [courtCentre]="courtCentre()"
           [businessTypeLabel]="businessTypeLabel()"
           headingText="Court details"
         />
       </pdk-grid>
       <pdk-grid one-half>
         <select-business-type-form
-          [courtCentre]="courtCentre$ | async"
-          [initialValues]="initialValues$ | async"
+          [courtCentre]="courtCentre()"
+          [initialValues]="initialValues()"
           [jurisdiction]="jurisdiction()"
           (errors)="errors = $event"
           (submitForm)="submitBusinessType($event)"
@@ -60,7 +52,6 @@ import { JourneySummaryComponent } from '../../components/journey-summary/journe
     </pdk-grid>
   `,
   imports: [
-    AsyncPipe,
     PdkBackLink,
     PdkErrorSummaryComponent,
     PdkGrid,
@@ -75,12 +66,9 @@ export class SelectBusinessTypeContainer {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
-  courtCentre$: Observable<OrganisationUnit>;
-  initialValues$: Observable<RotaBusinessType>;
-
-  readonly selectedBusinessType = toSignal(this.store.select(getSelectedBusinessType), {
-    initialValue: null
-  });
+  readonly courtCentre = this.store.selectSignal(getSelectedCourtCentre);
+  readonly initialValues = this.store.selectSignal(getSelectedBusinessType);
+  readonly selectedBusinessType = this.store.selectSignal(getSelectedBusinessType);
   readonly businessTypeLabel = computed(() => this.selectedBusinessType()?.typeDescription);
   readonly jurisdiction = this.store.selectSignal(getJurisdiction);
   readonly businessTypes = computed(() => {
@@ -95,11 +83,6 @@ export class SelectBusinessTypeContainer {
     this.businessTypes()?.find((bt) => bt.typeCode === code);
 
   errors: ValidationError[] = [];
-
-  constructor() {
-    this.courtCentre$ = this.store.pipe(select(getSelectedCourtCentre));
-    this.initialValues$ = this.store.select(getSelectedBusinessType);
-  }
 
   submitBusinessType(businessTypeCode: RotaBusinessTypeCode) {
     const businessType = this.findBusinessTypeByCode(businessTypeCode);

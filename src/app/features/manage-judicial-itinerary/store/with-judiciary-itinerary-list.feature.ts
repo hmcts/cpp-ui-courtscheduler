@@ -20,9 +20,8 @@ import {
   ItinerarySortField
 } from './manage-judiciary-itinerary.store.interfaces';
 import { sortItineraries } from './manage-judiciary-itinerary.store.utils';
-import { MethodsDictionary } from '@ngrx/signals/src/signal-store-models';
 
-interface BaseDependencyMethods extends MethodsDictionary {
+interface BaseDependencyMethods extends Record<string, Function> {
   handleError?: (error: HttpErrorResponse) => void;
 }
 

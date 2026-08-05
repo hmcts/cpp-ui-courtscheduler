@@ -281,7 +281,7 @@ describe('CreateScheduleEffects', () => {
   });
 
   describe('createCourtSchedule$', () => {
-    it('should return createCourtScheduleSuccess action on success', () => {
+    it('should return createCourtScheduleSuccess action with isPersisted on success', () => {
       const action = CreateScheduleActions.createCourtSchedule();
       actions$ = hot('-a', { a: action });
 

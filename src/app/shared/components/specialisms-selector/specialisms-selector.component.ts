@@ -13,8 +13,9 @@ import {
   PdkFormFieldComponent,
   PdkMinCountValidatorDirective
 } from '@cpp/pdk';
-import { Specialism } from '../../../features/manage-judicial-itinerary/model/specialism.enum';
+
 import { SpecialismFormatPipe } from '../../../features/manage-judicial-itinerary/pipes/specialism-format.pipe';
+import { Specialism } from '@cpp/reference-data';
 
 @Component({
   selector: 'specialisms-selector',

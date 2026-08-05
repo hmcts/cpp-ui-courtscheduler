@@ -22,7 +22,7 @@ exports[`JudiciaryAutosuggestControlComponent should render correctly 1`] = `
       >
         <label
           class="govuk-label govuk-label--s"
-          for="pdk-form-control-undefined-GENERATED_ID"
+          for="pdk-autosuggest__input-GENERATED_ID"
         >
            Judiciary name 
         </label>
@@ -33,52 +33,49 @@ exports[`JudiciaryAutosuggestControlComponent should render correctly 1`] = `
              Search by name 
           </div>
         </pdk-hint>
-        <pdk-autosuggest-lite
+        <pdk-autosuggest
           class="ng-untouched ng-pristine ng-valid"
+          highlightcolor="blue"
         >
-          <pdk-autosuggest
-            highlightcolor="blue"
-          >
-            <pdk-interaction-container>
-              <div>
-                <div
-                  class="pdk-autosuggest"
+          <pdk-interaction-container>
+            <div>
+              <div
+                class="pdk-autosuggest"
+              >
+                <input
+                  aria-autocomplete="list"
+                  aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                  aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                  aria-expanded="false"
+                  autocomplete="off"
+                  class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-autosuggest__input-GENERATED_ID"
+                  role="combobox"
+                  type="text"
+                />
+                <span
+                  class="govuk-visually-hidden"
+                  id="pdk-autosuggest__instructions-GENERATED_ID"
+                  pdk-visually-hidden=""
                 >
-                  <input
-                    aria-autocomplete="list"
-                    aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                    aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
-                    aria-expanded="false"
-                    autocomplete="off"
-                    class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
-                    id="pdk-form-control-undefined-GENERATED_ID"
-                    role="combobox"
-                    type="text"
-                  />
-                  <span
-                    class="govuk-visually-hidden"
-                    id="pdk-autosuggest__instructions-GENERATED_ID"
-                    pdk-visually-hidden=""
-                  >
-                     When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
-                  </span>
-                  <span
-                    aria-live="polite"
-                    class="govuk-visually-hidden"
-                    pdk-visually-hidden=""
-                    role="status"
-                  >
-                  </span>
-                  <div
-                    class="pdk-autosuggest__suggestions-container"
-                    id="pdk-autosuggest__suggestions-container-GENERATED_ID"
-                  >
-                  </div>
+                   When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                </span>
+                <span
+                  aria-live="polite"
+                  class="govuk-visually-hidden"
+                  pdk-visually-hidden=""
+                  role="status"
+                >
+                </span>
+                <div
+                  class="pdk-autosuggest__suggestions-container"
+                  id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                >
                 </div>
               </div>
-            </pdk-interaction-container>
-          </pdk-autosuggest>
-        </pdk-autosuggest-lite>
+            </div>
+          </pdk-interaction-container>
+        </pdk-autosuggest>
       </pdk-form-group>
     </pdk-form-field>
   </judiciary-autosuggest-control>
@@ -107,7 +104,7 @@ exports[`JudiciaryAutosuggestControlComponent should render correctly when judic
       >
         <label
           class="govuk-label govuk-label--s"
-          for="pdk-form-control-undefined-GENERATED_ID"
+          for="pdk-autosuggest__input-GENERATED_ID"
         >
            Judiciary name 
         </label>
@@ -118,52 +115,49 @@ exports[`JudiciaryAutosuggestControlComponent should render correctly when judic
              Search by name 
           </div>
         </pdk-hint>
-        <pdk-autosuggest-lite
+        <pdk-autosuggest
           class="ng-untouched ng-pristine ng-valid"
+          highlightcolor="blue"
         >
-          <pdk-autosuggest
-            highlightcolor="blue"
-          >
-            <pdk-interaction-container>
-              <div>
-                <div
-                  class="pdk-autosuggest"
+          <pdk-interaction-container>
+            <div>
+              <div
+                class="pdk-autosuggest"
+              >
+                <input
+                  aria-autocomplete="list"
+                  aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                  aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                  aria-expanded="false"
+                  autocomplete="off"
+                  class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-autosuggest__input-GENERATED_ID"
+                  role="combobox"
+                  type="text"
+                />
+                <span
+                  class="govuk-visually-hidden"
+                  id="pdk-autosuggest__instructions-GENERATED_ID"
+                  pdk-visually-hidden=""
                 >
-                  <input
-                    aria-autocomplete="list"
-                    aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                    aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
-                    aria-expanded="false"
-                    autocomplete="off"
-                    class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
-                    id="pdk-form-control-undefined-GENERATED_ID"
-                    role="combobox"
-                    type="text"
-                  />
-                  <span
-                    class="govuk-visually-hidden"
-                    id="pdk-autosuggest__instructions-GENERATED_ID"
-                    pdk-visually-hidden=""
-                  >
-                     When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
-                  </span>
-                  <span
-                    aria-live="polite"
-                    class="govuk-visually-hidden"
-                    pdk-visually-hidden=""
-                    role="status"
-                  >
-                  </span>
-                  <div
-                    class="pdk-autosuggest__suggestions-container"
-                    id="pdk-autosuggest__suggestions-container-GENERATED_ID"
-                  >
-                  </div>
+                   When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                </span>
+                <span
+                  aria-live="polite"
+                  class="govuk-visually-hidden"
+                  pdk-visually-hidden=""
+                  role="status"
+                >
+                </span>
+                <div
+                  class="pdk-autosuggest__suggestions-container"
+                  id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                >
                 </div>
               </div>
-            </pdk-interaction-container>
-          </pdk-autosuggest>
-        </pdk-autosuggest-lite>
+            </div>
+          </pdk-interaction-container>
+        </pdk-autosuggest>
       </pdk-form-group>
     </pdk-form-field>
   </judiciary-autosuggest-control>
@@ -192,7 +186,7 @@ exports[`JudiciaryAutosuggestControlComponent should render correctly with speci
       >
         <label
           class="govuk-label govuk-label--s"
-          for="pdk-form-control-undefined-GENERATED_ID"
+          for="pdk-autosuggest__input-GENERATED_ID"
         >
            Judiciary name 
         </label>
@@ -203,52 +197,49 @@ exports[`JudiciaryAutosuggestControlComponent should render correctly with speci
              Search by name 
           </div>
         </pdk-hint>
-        <pdk-autosuggest-lite
+        <pdk-autosuggest
           class="ng-untouched ng-pristine ng-valid"
+          highlightcolor="blue"
         >
-          <pdk-autosuggest
-            highlightcolor="blue"
-          >
-            <pdk-interaction-container>
-              <div>
-                <div
-                  class="pdk-autosuggest"
+          <pdk-interaction-container>
+            <div>
+              <div
+                class="pdk-autosuggest"
+              >
+                <input
+                  aria-autocomplete="list"
+                  aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                  aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                  aria-expanded="false"
+                  autocomplete="off"
+                  class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-autosuggest__input-GENERATED_ID"
+                  role="combobox"
+                  type="text"
+                />
+                <span
+                  class="govuk-visually-hidden"
+                  id="pdk-autosuggest__instructions-GENERATED_ID"
+                  pdk-visually-hidden=""
                 >
-                  <input
-                    aria-autocomplete="list"
-                    aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                    aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
-                    aria-expanded="false"
-                    autocomplete="off"
-                    class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
-                    id="pdk-form-control-undefined-GENERATED_ID"
-                    role="combobox"
-                    type="text"
-                  />
-                  <span
-                    class="govuk-visually-hidden"
-                    id="pdk-autosuggest__instructions-GENERATED_ID"
-                    pdk-visually-hidden=""
-                  >
-                     When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
-                  </span>
-                  <span
-                    aria-live="polite"
-                    class="govuk-visually-hidden"
-                    pdk-visually-hidden=""
-                    role="status"
-                  >
-                  </span>
-                  <div
-                    class="pdk-autosuggest__suggestions-container"
-                    id="pdk-autosuggest__suggestions-container-GENERATED_ID"
-                  >
-                  </div>
+                   When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                </span>
+                <span
+                  aria-live="polite"
+                  class="govuk-visually-hidden"
+                  pdk-visually-hidden=""
+                  role="status"
+                >
+                </span>
+                <div
+                  class="pdk-autosuggest__suggestions-container"
+                  id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                >
                 </div>
               </div>
-            </pdk-interaction-container>
-          </pdk-autosuggest>
-        </pdk-autosuggest-lite>
+            </div>
+          </pdk-interaction-container>
+        </pdk-autosuggest>
       </pdk-form-group>
     </pdk-form-field>
     <pdk-grid
@@ -261,8 +252,8 @@ exports[`JudiciaryAutosuggestControlComponent should render correctly with speci
         full=""
       >
         <h2
-          class="govuk-heading-m"
-          pdk-typography="heading-medium"
+          class="govuk-heading-s"
+          pdk-typography="heading-small"
         >
           Judiciary Specialisms
         </h2>
@@ -333,7 +324,7 @@ exports[`JudiciaryAutosuggestControlComponent should render correctly without sp
       >
         <label
           class="govuk-label govuk-label--s"
-          for="pdk-form-control-undefined-GENERATED_ID"
+          for="pdk-autosuggest__input-GENERATED_ID"
         >
            Judiciary name 
         </label>
@@ -344,52 +335,49 @@ exports[`JudiciaryAutosuggestControlComponent should render correctly without sp
              Search by name 
           </div>
         </pdk-hint>
-        <pdk-autosuggest-lite
+        <pdk-autosuggest
           class="ng-untouched ng-pristine ng-valid"
+          highlightcolor="blue"
         >
-          <pdk-autosuggest
-            highlightcolor="blue"
-          >
-            <pdk-interaction-container>
-              <div>
-                <div
-                  class="pdk-autosuggest"
+          <pdk-interaction-container>
+            <div>
+              <div
+                class="pdk-autosuggest"
+              >
+                <input
+                  aria-autocomplete="list"
+                  aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                  aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                  aria-expanded="false"
+                  autocomplete="off"
+                  class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-autosuggest__input-GENERATED_ID"
+                  role="combobox"
+                  type="text"
+                />
+                <span
+                  class="govuk-visually-hidden"
+                  id="pdk-autosuggest__instructions-GENERATED_ID"
+                  pdk-visually-hidden=""
                 >
-                  <input
-                    aria-autocomplete="list"
-                    aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                    aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
-                    aria-expanded="false"
-                    autocomplete="off"
-                    class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
-                    id="pdk-form-control-undefined-GENERATED_ID"
-                    role="combobox"
-                    type="text"
-                  />
-                  <span
-                    class="govuk-visually-hidden"
-                    id="pdk-autosuggest__instructions-GENERATED_ID"
-                    pdk-visually-hidden=""
-                  >
-                     When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
-                  </span>
-                  <span
-                    aria-live="polite"
-                    class="govuk-visually-hidden"
-                    pdk-visually-hidden=""
-                    role="status"
-                  >
-                  </span>
-                  <div
-                    class="pdk-autosuggest__suggestions-container"
-                    id="pdk-autosuggest__suggestions-container-GENERATED_ID"
-                  >
-                  </div>
+                   When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                </span>
+                <span
+                  aria-live="polite"
+                  class="govuk-visually-hidden"
+                  pdk-visually-hidden=""
+                  role="status"
+                >
+                </span>
+                <div
+                  class="pdk-autosuggest__suggestions-container"
+                  id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                >
                 </div>
               </div>
-            </pdk-interaction-container>
-          </pdk-autosuggest>
-        </pdk-autosuggest-lite>
+            </div>
+          </pdk-interaction-container>
+        </pdk-autosuggest>
       </pdk-form-group>
     </pdk-form-field>
   </judiciary-autosuggest-control>
