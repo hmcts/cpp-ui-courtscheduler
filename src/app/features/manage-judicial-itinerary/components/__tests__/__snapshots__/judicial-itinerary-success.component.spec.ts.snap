@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JudicialItinerarySuccessComponent should render correctly 1`] = `
+<app-test-host>
+  <judicial-itinerary-success>
+    <pdk-grid
+      class="govuk-grid-row"
+      container=""
+    >
+      <pdk-grid
+        class="govuk-grid-column-two-thirds"
+        two-thirds=""
+      >
+        <pdk-panel
+          class="govuk-!-margin-bottom-4"
+          pdk-margin-bottom="4"
+          type="confirmation"
+        >
+          <div
+            class="govuk-panel govuk-panel--confirmation"
+          >
+            <h1
+              class="govuk-panel__title"
+            >
+            </h1>
+            <div
+              class="govuk-panel__body"
+            >
+               Judiciary John Smith's availability added to Test Court 
+            </div>
+          </div>
+        </pdk-panel>
+        <div
+          class="govuk-!-margin-top-4"
+          pdk-margin-top="4"
+        >
+          <button
+            class="govuk-button"
+            data-test-id="go-to-manage-judiciary-itinerary-button"
+            pdk-button=""
+            type="button"
+          >
+             Go to manage judiciary itinerary 
+          </button>
+        </div>
+      </pdk-grid>
+    </pdk-grid>
+  </judicial-itinerary-success>
+</app-test-host>
+`;

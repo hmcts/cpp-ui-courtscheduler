@@ -1,0 +1,36 @@
+<form
+  #form="ngForm"
+  data-test-id="removeJudiciaryItineraryForm"
+  pdk-form
+  novalidate
+  (errors)="errors.emit($event)"
+  (validSubmit)="handleSubmitForm(form.value)"
+>
+  <pdk-form-field
+    labelType="small"
+    label="Are you sure you want to remove this from judicial itinerary?"
+    [errorMessages]="[
+      {
+        rule: 'required',
+        message: 'Please select an option'
+      }
+    ]"
+  >
+    <pdk-radio-group
+      ngModel
+      name="removeConfirmation"
+      [options]="removeConfirmationOptions"
+      required
+      data-test-id="removeConfirmation"
+      inline
+    >
+    </pdk-radio-group>
+  </pdk-form-field>
+  <div class="actions">
+    <pdk-form-group>
+      <button type="submit" data-test-id="continue-button" pdk-button pdk-margin-bottom="0">
+        Continue
+      </button>
+    </pdk-form-group>
+  </div>
+</form>

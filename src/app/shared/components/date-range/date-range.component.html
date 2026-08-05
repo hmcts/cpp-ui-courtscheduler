@@ -1,0 +1,57 @@
+@let startDateDay = startDateLabel();
+@let endDateDay = endDateLabel();
+@let fieldSetLabel = label();
+<div [formGroup]="formGroup">
+  <fieldset pdk-fieldset>
+    <legend [pdk-legend]="'small'" [pdk-visually-hidden]="!fieldSetLabel">
+      {{ fieldSetLabel ?? 'Date range' }}
+    </legend>
+    <pdk-grid one-half pdk-padding-left="0">
+      <pdk-form-field
+        label="Start date"
+        [errors]="serverError()"
+        [labelType]="fieldSetLabel ? 'default' : 'small'"
+        [errorMessages]="startDateErrorMessages()"
+      >
+        <pdk-date-input
+          [required]="requiredStartDate()"
+          [weekDate]="disableWeekend()"
+          picker
+          [minDate]="minStartDate()"
+          [maxDate]="maxStartDate()"
+          formControlName="startDate"
+          data-test-id="start-date"
+        >
+        </pdk-date-input>
+        @if (startDateDay) {
+          <pdk-inset-text pdk-margin-bottom="0">
+            {{ startDateDay }}
+          </pdk-inset-text>
+        }
+      </pdk-form-field>
+    </pdk-grid>
+    <pdk-grid one-half pdk-padding-left="0">
+      <pdk-form-field
+        label="End date {{ !requiredEndDate() ? ' (optional)' : '' }}"
+        [labelType]="fieldSetLabel ? 'default' : 'small'"
+        [errorMessages]="endDateErrorMessages()"
+      >
+        <pdk-date-input
+          formControlName="endDate"
+          [required]="requiredEndDate()"
+          [weekDate]="disableWeekend()"
+          picker
+          [minDate]="computedMinEndDate()"
+          [maxDate]="computedMaxEndDate()"
+          data-test-id="end-date"
+        >
+        </pdk-date-input>
+        @if (endDateDay) {
+          <pdk-inset-text pdk-margin-bottom="0">
+            {{ endDateDay }}
+          </pdk-inset-text>
+        }
+      </pdk-form-field>
+    </pdk-grid>
+  </fieldset>
+</div>

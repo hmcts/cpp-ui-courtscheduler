@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+
+  "compilerOptions": {
+    "target": "ES2023",
+    "types": ["jest", "node"],
+    "outDir": "./out-tsc/spec",
+    "allowJs": true
+  },
+  "files": [],
+  "include": ["/**/*.spec.ts", "/**/*.d.ts"]
+}

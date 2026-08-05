@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddSittingDaysCheckAnswersContainer should render correctly 1`] = `
+<app-test-host>
+  <add-sitting-days-check-answers-container>
+    <div>
+      <a
+        class="govuk-!-margin-top-0 govuk-back-link"
+        href="javascript:void(0);"
+        pdk-back-link=""
+        pdk-margin-top="0"
+      >
+        Back
+      </a>
+    </div>
+    <pdk-grid
+      class="govuk-!-margin-top-4 govuk-grid-row"
+      container=""
+      pdk-margin-top="4"
+    >
+      <pdk-grid
+        class="govuk-grid-column-full"
+        full=""
+      >
+        <h1
+          class="govuk-heading-l"
+          pdk-typography="heading-large"
+        >
+          Check your answers
+        </h1>
+      </pdk-grid>
+    </pdk-grid>
+    <selected-court-and-judiciary-details>
+      <div>
+         Mock Selected Court Details - Court: {
+    "id": "court-1",
+    "oucode": "OU001",
+    "oucodeL3Code": "L3-001",
+    "oucodeL3Name": "Test Court",
+    "oucodeL2Code": "L2-001",
+    "oucodeL2Name": "Test Region",
+    "oucodeL1Code": "L1-001",
+    "oucodeL1Name": "Test Area",
+    "region": "Test Region",
+    "emailAddress": "test@example.com"
+  }, Type: "Circuit Judge", Judiciary: {
+    "id": "judge-1",
+    "surname": "Smith",
+    "forenames": "John",
+    "judiciaryType": "Circuit Judge"
+  }, Specialisms: [
+    "MURDER",
+    "ATTEMPTED_MURDER"
+  ] 
+      </div>
+    </selected-court-and-judiciary-details>
+    <pdk-grid
+      class="govuk-!-margin-top-4 govuk-grid-row"
+      container=""
+      pdk-margin-top="4"
+    >
+      <pdk-grid
+        class="govuk-grid-column-full"
+        full=""
+      >
+        <h2
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+          Judiciary availability
+        </h2>
+        <dl
+          class="govuk-!-margin-top-2 pdk-summary-list"
+          pdk-margin-top="2"
+          pdk-summary-list=""
+        >
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Start date
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+               1 January 2026 
+            </dd>
+            <dd
+              class="pdk-summary-list__actions"
+              pdk-summary-list-action=""
+            >
+              <a
+                class="govuk-link govuk-link--no-visited-state"
+                data-test-id="change-start-date-link"
+                href="javascript:void(0);"
+                pdk-link=""
+                unvisited=""
+              >
+                 Change 
+              </a>
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              End date
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+               31 January 2026 
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Sitting days in a week (optional)
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              MONDAY, WEDNESDAY
+            </dd>
+            <dd
+              class="pdk-summary-list__actions"
+              pdk-summary-list-action=""
+            >
+              <a
+                class="govuk-link govuk-link--no-visited-state"
+                data-test-id="change-sitting-days-link"
+                href="javascript:void(0);"
+                pdk-link=""
+                unvisited=""
+              >
+                 Change 
+              </a>
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Session
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              All day
+            </dd>
+            <dd
+              class="pdk-summary-list__actions"
+              pdk-summary-list-action=""
+            >
+              <a
+                class="govuk-link govuk-link--no-visited-state"
+                data-test-id="change-session-link"
+                href="javascript:void(0);"
+                pdk-link=""
+                unvisited=""
+              >
+                 Change 
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </pdk-grid>
+    </pdk-grid>
+    <pdk-grid
+      class="govuk-!-margin-top-5 govuk-grid-row"
+      container=""
+      pdk-margin-top="5"
+    >
+      <pdk-grid
+        class="govuk-grid-column-two-thirds"
+        two-thirds=""
+      >
+        <button
+          class="govuk-button"
+          data-test-id="continue-and-add-judiciary-button"
+          pdk-button=""
+          type="button"
+        >
+           Continue and add Judiciary 
+        </button>
+      </pdk-grid>
+    </pdk-grid>
+  </add-sitting-days-check-answers-container>
+</app-test-host>
+`;

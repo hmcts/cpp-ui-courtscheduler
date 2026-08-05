@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`apiReducer ApiActions.apiError should caputure a failed request 1`] = `
+{
+  "errors": [
+    {
+      "status": 400,
+    },
+  ],
+  "requests": [
+    {
+      "url": "/",
+    },
+  ],
+}
+`;
+
+exports[`apiReducer ApiActions.completedApiRequest should clear a pending request 1`] = `
+{
+  "errors": [],
+  "requests": [],
+}
+`;
+
+exports[`apiReducer ApiActions.pendingApiRequest should add a pending request 1`] = `
+{
+  "errors": [],
+  "requests": [
+    {
+      "url": "/",
+    },
+  ],
+}
+`;
+
+exports[`apiReducer undefined action should return the default state 1`] = `
+{
+  "errors": [],
+  "requests": [],
+}
+`;

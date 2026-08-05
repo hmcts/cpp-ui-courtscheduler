@@ -1,0 +1,24 @@
+<div>
+  <a pdk-back-link pdk-margin-top="0" (click)="handleBackLink()" href="javascript:void(0);">Back</a>
+</div>
+
+<pdk-grid container>
+  <pdk-grid full>
+    <h1 pdk-typography="heading-large">Add sitting days and availability</h1>
+  </pdk-grid>
+</pdk-grid>
+
+<selected-court-and-judiciary-details
+  [courtCentre]="store.searchParams.courtCentre()"
+  [selectedType]="store.selectedType()"
+  [selectedJudiciary]="store.selectedJudiciary()"
+  [existingSpecialisms]="store.selectedJudiciarySpecialisms()"
+/>
+
+<add-sitting-days-form
+  [initialValues]="store.draftItinerary()"
+  [serverSubmissionErrorMessage]="serverSubmissionErrorMessage()"
+  (errors)="store.setFormErrors($event || [])"
+  (submitForm)="handleSubmitForm($event)"
+  (clearForm)="handleClearForm()"
+/>

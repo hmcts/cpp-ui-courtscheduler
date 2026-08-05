@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourtroomListComponent should create 1`] = `
+<courtroom-list
+  __ngSimpleChanges__={[Function Object]}
+  accordion={[Function Function]}
+  accordionItems={[Function Function]}
+  activeCourtroomsIndexes={[Function Function]}
+  banner={[Function Function]}
+  bannerMessage={[Function Function]}
+  cdr={[Function ViewRef]}
+  courtSchedules={[Function Function]}
+  jurisdiction={[Function Function]}
+  openAccordionsIndexes={[Function Array]}
+  setActiveCourtroomsIndexes={[Function OutputEmitterRef]}
+  setSessionToEdit={[Function OutputEmitterRef]}
+  submitForm={[Function OutputEmitterRef]}
+  validationErrors={[Function OutputEmitterRef]}
+>
+  <div
+    class="govuk-!-margin-bottom-4 govuk-grid-row"
+    container=""
+    pdk-grid=""
+    pdk-margin-bottom="4"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        List of sessions
+      </h2>
+      <div>
+      </div>
+      <pdk-divider>
+        <hr
+          class="pdk-divider"
+        />
+      </pdk-divider>
+      <pdk-accordion>
+        <div
+          class="govuk-accordion"
+        >
+          <div
+            class="govuk-accordion__controls"
+          >
+            <button
+              aria-expanded="false"
+              class="govuk-accordion__show-all"
+              type="button"
+            >
+              <span
+                class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"
+              />
+              <span
+                class="govuk-accordion__show-all-text"
+              >
+                 Open all
+                <span
+                  class="govuk-visually-hidden"
+                  pdk-visually-hidden=""
+                >
+                   sections
+                </span>
+              </span>
+            </button>
+          </div>
+          <pdk-accordion-item
+            data-test-id="courtroomListItem"
+            id="0"
+          >
+            <div
+              class="govuk-accordion__section"
+            >
+              <div
+                class="govuk-accordion__section-header"
+              >
+                <h2
+                  class="govuk-accordion__section-heading"
+                >
+                  <button
+                    aria-controls="govuk-accordion-GENERATED_ID-content"
+                    aria-expanded="false"
+                    class="govuk-accordion__section-button"
+                    id="govuk-accordion-GENERATED_ID-heading"
+                    type="button"
+                  >
+                    <span
+                      class="govuk-accordion__section-heading-text"
+                    >
+                      <span
+                        class="govuk-accordion__section-heading-text-focus"
+                      >
+                         Courtroom 1 
+                      </span>
+                    </span>
+                    <span
+                      class="govuk-accordion__section-toggle"
+                      data-nosnippet=""
+                    >
+                      <span
+                        class="govuk-accordion__section-toggle-focus"
+                      >
+                        <span
+                          aria-hidden="true"
+                          class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"
+                        />
+                        <span
+                          class="govuk-accordion__section-toggle-text"
+                        >
+                           Show 
+                        </span>
+                      </span>
+                    </span>
+                  </button>
+                </h2>
+              </div>
+              <div
+                aria-labelledby="govuk-accordion-GENERATED_ID-heading"
+                class="govuk-accordion__section-content"
+                hidden="until-found"
+                id="govuk-accordion-GENERATED_ID-content"
+              >
+                <sessions-list>
+                   sessions: [object Object],[object Object] removableSessions:  ineligibleWithHearings:  ineligiblePastSessions:  isDeleteView: false isEditView: false 
+                </sessions-list>
+              </div>
+            </div>
+          </pdk-accordion-item>
+          <pdk-accordion-item
+            data-test-id="courtroomListItem"
+            id="1"
+          >
+            <div
+              class="govuk-accordion__section"
+            >
+              <div
+                class="govuk-accordion__section-header"
+              >
+                <h2
+                  class="govuk-accordion__section-heading"
+                >
+                  <button
+                    aria-controls="govuk-accordion-GENERATED_ID-content"
+                    aria-expanded="false"
+                    class="govuk-accordion__section-button"
+                    id="govuk-accordion-GENERATED_ID-heading"
+                    type="button"
+                  >
+                    <span
+                      class="govuk-accordion__section-heading-text"
+                    >
+                      <span
+                        class="govuk-accordion__section-heading-text-focus"
+                      >
+                         Courtroom 2 
+                      </span>
+                    </span>
+                    <span
+                      class="govuk-accordion__section-toggle"
+                      data-nosnippet=""
+                    >
+                      <span
+                        class="govuk-accordion__section-toggle-focus"
+                      >
+                        <span
+                          aria-hidden="true"
+                          class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"
+                        />
+                        <span
+                          class="govuk-accordion__section-toggle-text"
+                        >
+                           Show 
+                        </span>
+                      </span>
+                    </span>
+                  </button>
+                </h2>
+              </div>
+              <div
+                aria-labelledby="govuk-accordion-GENERATED_ID-heading"
+                class="govuk-accordion__section-content"
+                hidden="until-found"
+                id="govuk-accordion-GENERATED_ID-content"
+              >
+                <sessions-list>
+                   sessions: [object Object],[object Object] removableSessions:  ineligibleWithHearings:  ineligiblePastSessions:  isDeleteView: false isEditView: false 
+                </sessions-list>
+              </div>
+            </div>
+          </pdk-accordion-item>
+        </div>
+      </pdk-accordion>
+    </pdk-grid>
+  </div>
+</courtroom-list>
+`;

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectCourtContainer should create 1`] = `
+<select-court-container
+  errors={[Function Array]}
+  initialValues={[Function Function]}
+  jurisdiction={[Function Function]}
+  route={[Function Object]}
+  router={[Function _Router]}
+  store={[Function _MockStore]}
+>
+  <pdk-grid
+    class="govuk-grid-row"
+    container=""
+  >
+    <pdk-grid
+      class="govuk-grid-column-one-half"
+      one-half=""
+    >
+      <h1
+        class="govuk-heading-xl"
+        pdk-typography="heading-xlarge"
+      >
+        Create sessions
+      </h1>
+      <select-court-form>
+         courtCentre:  jurisdiction:  
+      </select-court-form>
+    </pdk-grid>
+  </pdk-grid>
+</select-court-container>
+`;

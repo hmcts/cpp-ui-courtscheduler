@@ -1,0 +1,21 @@
+<div>
+  <a pdk-back-link pdk-margin-top="0" (click)="handleBackLink()" href="javascript:void(0);">Back</a>
+</div>
+
+<pdk-grid container>
+  <pdk-grid full>
+    <h1 pdk-typography="heading-large">Remove judicial availability details</h1>
+
+    <remove-judiciary-itinerary-details
+      [itinerary]="store.selectedItinerary()"
+      [courtCentre]="store.searchParams().courtCentre"
+      [selectedJudiciary]="store.selectedJudiciary()"
+      [selectedType]="store.selectedType()"
+    />
+
+    <remove-judiciary-itinerary-form
+      (errors)="store.setFormErrors($event || [])"
+      (submitForm)="handleSubmitForm($event)"
+    />
+  </pdk-grid>
+</pdk-grid>

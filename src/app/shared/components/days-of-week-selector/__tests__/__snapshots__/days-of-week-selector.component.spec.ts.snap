@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DaysOfWeekSelectorComponent should render correctly 1`] = `
+<app-test-host
+  label={[Function String]}
+  labelType={[Function String]}
+  required={[Function Boolean]}
+>
+  <days-of-week-selector>
+    <pdk-form-field>
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        <fieldset
+          class="govuk-fieldset"
+          pdk-fieldset=""
+        >
+          <legend
+            class="govuk-fieldset__legend govuk-fieldset__legend--s"
+          >
+             Test Label 
+          </legend>
+          <pdk-checkbox-group
+            checkboxtype="small"
+            class="ng-untouched ng-pristine ng-invalid"
+            required=""
+          >
+            <div
+              class="govuk-checkboxes"
+            >
+              <pdk-checkbox
+                checkboxtype="small"
+                class="govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+                data-test-id="select-all-checkbox"
+                name="selectAll"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    name="selectAll"
+                    type="checkbox"
+                    value="true"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     Select all 
+                  </label>
+                </div>
+              </pdk-checkbox>
+              <pdk-checkbox
+                checkboxtype="small"
+                class="govuk-checkboxes govuk-checkboxes--small"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    name="pdk-checkbox-group-GENERATED_ID"
+                    type="checkbox"
+                    value="MON"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     Monday 
+                  </label>
+                </div>
+              </pdk-checkbox>
+              <pdk-checkbox
+                checkboxtype="small"
+                class="govuk-checkboxes govuk-checkboxes--small"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    name="pdk-checkbox-group-GENERATED_ID"
+                    type="checkbox"
+                    value="TUE"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     Tuesday 
+                  </label>
+                </div>
+              </pdk-checkbox>
+              <pdk-checkbox
+                checkboxtype="small"
+                class="govuk-checkboxes govuk-checkboxes--small"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    name="pdk-checkbox-group-GENERATED_ID"
+                    type="checkbox"
+                    value="WED"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     Wednesday 
+                  </label>
+                </div>
+              </pdk-checkbox>
+              <pdk-checkbox
+                checkboxtype="small"
+                class="govuk-checkboxes govuk-checkboxes--small"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    name="pdk-checkbox-group-GENERATED_ID"
+                    type="checkbox"
+                    value="THU"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     Thursday 
+                  </label>
+                </div>
+              </pdk-checkbox>
+              <pdk-checkbox
+                checkboxtype="small"
+                class="govuk-checkboxes govuk-checkboxes--small"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    name="pdk-checkbox-group-GENERATED_ID"
+                    type="checkbox"
+                    value="FRI"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     Friday 
+                  </label>
+                </div>
+              </pdk-checkbox>
+            </div>
+          </pdk-checkbox-group>
+        </fieldset>
+      </pdk-form-group>
+    </pdk-form-field>
+  </days-of-week-selector>
+</app-test-host>
+`;

@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SessionsFormContainer should create 1`] = `
+<sessions-form-container
+  actions$={[Function _Actions]}
+  actionsEnabled={[Function Boolean]}
+  addSessionComponent={[Function Function]}
+  banner={[Function Function]}
+  bannerMessage={[Function Object]}
+  businessType$={[Function _Store]}
+  courtCentre$={[Function _Store]}
+  destroy$={[Function Subject]}
+  errors={[Function Array]}
+  errors$={[Function _Store]}
+  jurisdiction="null"
+  repeatPattern="undefined"
+  route={[Function Object]}
+  router={[Function _Router]}
+  sessions={[Function Array]}
+  store={[Function _MockStore]}
+>
+  <div
+    class="govuk-!-margin-bottom-4"
+    pdk-margin-bottom="4"
+  >
+    <a
+      class="govuk-back-link"
+      href="javascript:void(0);"
+      pdk-back-link=""
+    >
+      Back
+    </a>
+  </div><pdk-grid
+    class="govuk-grid-row"
+    container=""
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h1
+        class="govuk-heading-xl"
+        pdk-typography="heading-xlarge"
+      >
+         Add sessions for Business Type 1 
+      </h1>
+      <journey-summary>
+         courtCentre: [object Object] businessType: Business Type 1 
+      </journey-summary>
+      <add-sessions-form>
+         courtCentre: [object Object] isSlot: false businessType: [object Object] initialValues:  
+      </add-sessions-form>
+      <div>
+        <div
+          class="govuk-!-margin-top-4 govuk-!-margin-bottom-4"
+          pdk-margin-vertical="4"
+        >
+          <pdk-alert
+            icon="true"
+          >
+            <div
+              class="pdk-alert pdk-alert--success"
+              role="alert"
+            >
+              <div
+                class="pdk-alert__container"
+              >
+                <i
+                  aria-hidden="true"
+                  class="pdk-alert__icon pdk-alert__icon--tick"
+                  role="presentation"
+                />
+                <div
+                  class="pdk-alert__message"
+                >
+                  <div>
+                    Session added successfully
+                  </div>
+                </div>
+              </div>
+            </div>
+          </pdk-alert>
+        </div>
+      </div>
+      <session-details>
+         sessions: [object Object],[object Object] isSlot: false isSummary: false actionsEnabled: true 
+      </session-details>
+      <button
+        class="govuk-!-margin-top-2 govuk-button"
+        pdk-button=""
+        pdk-margin-top="2"
+        type="submit"
+      >
+         Continue 
+      </button>
+    </pdk-grid>
+  </pdk-grid>
+</sessions-form-container>
+`;

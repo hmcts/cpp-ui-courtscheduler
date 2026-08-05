@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RemoveSessionsFormComponent should create 1`] = `
+<remove-sessions-form
+  cancelForm={[Function OutputEmitterRef]}
+  errors={[Function OutputEmitterRef]}
+  removeConfirmationOptions={[Function Array]}
+  sessionsToRemoveTotal={[Function Function]}
+  submitForm={[Function OutputEmitterRef]}
+>
+  <div
+    class="actions"
+  >
+    <button
+      class="govuk-!-margin-bottom-0 govuk-button"
+      data-test-id="cancel-remove-sessions-button"
+      pdk-button=""
+      pdk-margin-bottom="0"
+    >
+       Continue 
+    </button>
+  </div>
+</remove-sessions-form>
+`;

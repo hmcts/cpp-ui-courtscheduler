@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ManageJudiciaryItineraryAlertContainer should display error summary when formErrors exist 1`] = `
+<app-test-host>
+  <manage-judiciary-itinerary-alert-container>
+    <pdk-error-summary
+      class="govuk-!-margin-top-4"
+      focusonchange=""
+      pdk-margin-top="4"
+    >
+      <div
+        class="govuk-error-summary"
+        tabindex="-1"
+      >
+        <div
+          aria-labelledby="pdk-error-sumamry-GENERATED_ID"
+          role="alert"
+        >
+          <h2
+            class="govuk-error-summary__title"
+            id="pdk-error-sumamry-GENERATED_ID"
+          >
+            There is a problem
+          </h2>
+          <div
+            class="govuk-error-summary__body"
+          >
+            <ul
+              class="govuk-list govuk-error-summary__list"
+            >
+              <li>
+                <a
+                  href="javascript:void(0)"
+                >
+                   Error message 1 
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                >
+                   Error message 2 
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </pdk-error-summary>
+    <router-outlet />
+  </manage-judiciary-itinerary-alert-container>
+</app-test-host>
+`;
+
+exports[`ManageJudiciaryItineraryAlertContainer should display server submission error panel when error exists and isSourceForm is false 1`] = `
+<app-test-host>
+  <manage-judiciary-itinerary-alert-container>
+    <div
+      class="govuk-!-margin-bottom-4"
+      pdk-margin-bottom="4"
+    >
+      <pdk-context-panel
+        icon="warn"
+        tabindex="-1"
+        type="invalid"
+      >
+        <div
+          class="pdk-context-panel pdk-context-panel--invalid"
+          role="alert"
+        >
+          <i
+            aria-hidden="true"
+            class="pdk-context-panel__icon pdk-context-panel__icon--warn"
+            role="presentation"
+          />
+          <div
+            class="pdk-context-panel__message"
+          >
+            <div>
+              <h3
+                class="govuk-heading-m"
+              >
+              </h3>
+              <p
+                class="govuk-body-l"
+              >
+                 Server error message 
+              </p>
+            </div>
+          </div>
+        </div>
+      </pdk-context-panel>
+    </div>
+    <router-outlet />
+  </manage-judiciary-itinerary-alert-container>
+</app-test-host>
+`;
+
+exports[`ManageJudiciaryItineraryAlertContainer should display specialism added success alert when specialismAddedSuccess is true 1`] = `
+<app-test-host>
+  <manage-judiciary-itinerary-alert-container>
+    <div
+      class="govuk-!-margin-bottom-4"
+      pdk-margin-bottom="4"
+    >
+      <pdk-alert
+        icon="true"
+        type="success"
+      >
+        <div
+          class="pdk-alert pdk-alert--success"
+          role="alert"
+        >
+          <div
+            class="pdk-alert__container"
+          >
+            <i
+              aria-hidden="true"
+              class="pdk-alert__icon pdk-alert__icon--tick"
+              role="presentation"
+            />
+            <div
+              class="pdk-alert__message"
+            >
+              <div>
+                 New specialism added 
+              </div>
+            </div>
+          </div>
+        </div>
+      </pdk-alert>
+    </div>
+    <router-outlet />
+  </manage-judiciary-itinerary-alert-container>
+</app-test-host>
+`;
+
+exports[`ManageJudiciaryItineraryAlertContainer should render correctly with no errors or alerts 1`] = `
+<app-test-host>
+  <manage-judiciary-itinerary-alert-container>
+    <router-outlet />
+  </manage-judiciary-itinerary-alert-container>
+</app-test-host>
+`;

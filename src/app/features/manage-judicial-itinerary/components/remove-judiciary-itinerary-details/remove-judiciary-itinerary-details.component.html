@@ -1,0 +1,62 @@
+@let currentItinerary = itinerary();
+
+<pdk-grid container pdk-margin-top="4">
+  <pdk-grid full>
+    <dl pdk-summary-list pdk-margin-top="2">
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Court</dt>
+        <dd pdk-summary-list-value>{{ courtCentre()?.oucodeL3Name || 'Not added' }}</dd>
+      </div>
+
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Start date</dt>
+        <dd pdk-summary-list-value>
+          @if (currentItinerary?.startDate) {
+            {{ currentItinerary.startDate | date: 'd MMMM yyyy' }}
+          } @else {
+            Not added
+          }
+        </dd>
+      </div>
+
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>End date</dt>
+        <dd pdk-summary-list-value>
+          @if (currentItinerary?.endDate) {
+            {{ currentItinerary.endDate | date: 'd MMMM yyyy' }}
+          } @else {
+            Not added
+          }
+        </dd>
+      </div>
+
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Type</dt>
+        <dd pdk-summary-list-value>{{ selectedType() || 'Not added' }}</dd>
+      </div>
+
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Name</dt>
+        <dd pdk-summary-list-value>
+          @if (selectedJudiciary()) {
+            {{ selectedJudiciary()! | judicialMemberName }}
+          } @else {
+            Not added
+          }
+        </dd>
+      </div>
+
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Session</dt>
+        <dd pdk-summary-list-value>{{ currentItinerary?.sessionType | sessionFormat }}</dd>
+      </div>
+
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Non-sitting days</dt>
+        <dd pdk-summary-list-value>
+          <non-sitting-days-display [unavailabilities]="currentItinerary?.unavailabilities" />
+        </dd>
+      </div>
+    </dl>
+  </pdk-grid>
+</pdk-grid>

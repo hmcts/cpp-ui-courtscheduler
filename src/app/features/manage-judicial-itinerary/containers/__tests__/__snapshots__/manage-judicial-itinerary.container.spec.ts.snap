@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ManageJudicialItineraryContainer should render correctly 1`] = `
+<manage-judicial-itinerary-container
+  handleAddJudiciary={[Function Function]}
+  handleEdit={[Function Function]}
+  handlePageChange={[Function Function]}
+  handleRemove={[Function Function]}
+  handleSort={[Function Function]}
+  router={[Function _Router]}
+  store={[Function MockManageJudicialItineraryStore]}
+>
+  <pdk-grid
+    class="govuk-grid-row"
+    container=""
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h1
+        class="govuk-heading-l"
+        pdk-typography="heading-large"
+      >
+        Manage Judicial itinerary
+      </h1>
+    </pdk-grid>
+    <pdk-grid
+      class="govuk-grid-column-two-thirds"
+      two-thirds=""
+    >
+      <judicial-itinerary-form>
+        <div>
+          {
+    "courtCentre": {
+      "id": "court-1",
+      "oucode": "OU001",
+      "oucodeL3Code": "L3-001",
+      "oucodeL3Name": "Test Court",
+      "oucodeL2Code": "L2-001",
+      "oucodeL2Name": "Test Region",
+      "oucodeL1Code": "L1-001",
+      "oucodeL1Name": "Test Area",
+      "region": "Test Region",
+      "emailAddress": "test@example.com"
+    },
+    "availability": {
+      "startDate": "2026-01-01",
+      "endDate": "2026-01-31"
+    }
+  }
+        </div>
+      </judicial-itinerary-form>
+    </pdk-grid>
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <judicial-itinerary-results>
+        <div>
+          []
+        </div>
+      </judicial-itinerary-results>
+    </pdk-grid>
+  </pdk-grid>
+</manage-judicial-itinerary-container>
+`;

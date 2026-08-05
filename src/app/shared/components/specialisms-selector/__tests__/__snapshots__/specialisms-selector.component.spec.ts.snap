@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SpecialismsSelectorComponent should render correctly 1`] = `
+<app-test-host
+  filterOptionsBy={[Function Function]}
+  label={[Function String]}
+  labelType={[Function String]}
+  minCount={[Function Number]}
+  required={[Function Boolean]}
+>
+  <specialisms-selector>
+    <pdk-form-field>
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        <fieldset
+          class="govuk-fieldset"
+          pdk-fieldset=""
+        >
+          <legend
+            class="govuk-fieldset__legend govuk-fieldset__legend--s"
+          >
+             Test Label 
+          </legend>
+          <pdk-checkbox-group
+            checkboxtype="small"
+            class="ng-untouched ng-pristine ng-invalid"
+            pdkmincountvalidatordirective=""
+            required=""
+          >
+            <div
+              class="govuk-checkboxes"
+            >
+              <pdk-checkbox
+                class="govuk-checkboxes govuk-checkboxes--small"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    name="pdk-checkbox-group-GENERATED_ID"
+                    type="checkbox"
+                    value="MURDER"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                    <span>
+                      Murder
+                    </span>
+                  </label>
+                </div>
+              </pdk-checkbox>
+              <pdk-checkbox
+                class="govuk-checkboxes govuk-checkboxes--small"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    name="pdk-checkbox-group-GENERATED_ID"
+                    type="checkbox"
+                    value="ATTEMPTED_MURDER"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                    <span>
+                      Attempted murder
+                    </span>
+                  </label>
+                </div>
+              </pdk-checkbox>
+              <pdk-checkbox
+                class="govuk-checkboxes govuk-checkboxes--small"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    name="pdk-checkbox-group-GENERATED_ID"
+                    type="checkbox"
+                    value="SEXUAL_OFFENCE"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                    <span>
+                      Serious Sexual offence
+                    </span>
+                  </label>
+                </div>
+              </pdk-checkbox>
+              <pdk-checkbox
+                class="govuk-checkboxes govuk-checkboxes--small"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    name="pdk-checkbox-group-GENERATED_ID"
+                    type="checkbox"
+                    value="TERRORISM"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                    <span>
+                      Terrorism
+                    </span>
+                  </label>
+                </div>
+              </pdk-checkbox>
+            </div>
+          </pdk-checkbox-group>
+        </fieldset>
+      </pdk-form-group>
+    </pdk-form-field>
+  </specialisms-selector>
+</app-test-host>
+`;

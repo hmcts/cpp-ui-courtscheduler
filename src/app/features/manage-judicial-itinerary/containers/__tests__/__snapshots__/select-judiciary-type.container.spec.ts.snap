@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectJudiciaryTypeContainer should render correctly 1`] = `
+<app-test-host>
+  <select-judiciary-type-container>
+    <div>
+      <a
+        class="govuk-!-margin-top-0 govuk-back-link"
+        href="javascript:void(0);"
+        pdk-back-link=""
+        pdk-margin-top="0"
+      >
+        Back
+      </a>
+    </div>
+    <pdk-grid
+      class="govuk-grid-row"
+      container=""
+    >
+      <pdk-grid
+        class="govuk-grid-column-full"
+        full=""
+      >
+        <select-judiciary-type-form>
+          <div>
+            <div>
+              Initial Values: {
+    "judiciaryType": "Judge",
+    "judiciary": {
+      "id": "judge-1",
+      "seqId": 1,
+      "surname": "Smith",
+      "forenames": "John",
+      "judiciaryType": "Circuit Judge",
+      "emailAddress": "john.smith@example.com",
+      "specialisms": [
+        "MURDER"
+      ]
+    }
+  }
+            </div>
+          </div>
+        </select-judiciary-type-form>
+      </pdk-grid>
+    </pdk-grid>
+  </select-judiciary-type-container>
+</app-test-host>
+`;

@@ -1,0 +1,250 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectJurisdictionComponent should create 1`] = `
+<select-jurisdiction
+  JurisdictionType={[Function Object]}
+  isCrownCourt={[Function Function]}
+  jurisdiction={[Function Function]}
+>
+  <pdk-form-field
+    label="Select jurisdiction"
+    labeltype="small"
+  >
+    <pdk-form-group
+      class="pdk-form-group"
+    >
+      <fieldset
+        class="govuk-fieldset"
+        pdk-fieldset=""
+      >
+        <legend
+          class="govuk-fieldset__legend govuk-fieldset__legend--s"
+        >
+           Select jurisdiction 
+        </legend>
+        <pdk-radio-group
+          class="ng-untouched ng-pristine ng-invalid"
+          name="jurisdictionType"
+          required=""
+        >
+          <div
+            class="govuk-radios"
+          >
+            <pdk-radio-button>
+              <div
+                class="govuk-radios__item"
+              >
+                <input
+                  class="govuk-radios__input"
+                  id="pdk-radio-GENERATED_ID"
+                  name="pdk-radio-group-GENERATED_ID"
+                  type="radio"
+                  value="MAGISTRATES"
+                />
+                <label
+                  class="govuk-radios__label govuk-label"
+                  for="pdk-radio-GENERATED_ID"
+                  pdk-label=""
+                >
+                  Magistrates' Court 
+                </label>
+              </div>
+            </pdk-radio-button>
+            <pdk-radio-conditional>
+              <div
+                class="govuk-radios__conditional"
+              />
+            </pdk-radio-conditional>
+            <pdk-radio-button>
+              <div
+                class="govuk-radios__item"
+              >
+                <input
+                  class="govuk-radios__input"
+                  id="pdk-radio-GENERATED_ID"
+                  name="pdk-radio-group-GENERATED_ID"
+                  type="radio"
+                  value="CROWN"
+                />
+                <label
+                  class="govuk-radios__label govuk-label"
+                  for="pdk-radio-GENERATED_ID"
+                  pdk-label=""
+                >
+                  Crown Court 
+                </label>
+              </div>
+            </pdk-radio-button>
+          </div>
+        </pdk-radio-group>
+      </fieldset>
+    </pdk-form-group>
+  </pdk-form-field>
+</select-jurisdiction>
+`;
+
+exports[`SelectJurisdictionComponent should render crown jurisdiction when selected 1`] = `
+<select-jurisdiction
+  JurisdictionType={[Function Object]}
+  isCrownCourt={[Function Function]}
+  jurisdiction={[Function Function]}
+>
+  <pdk-form-field
+    label="Select jurisdiction"
+    labeltype="small"
+  >
+    <pdk-form-group
+      class="pdk-form-group"
+    >
+      <fieldset
+        class="govuk-fieldset"
+        pdk-fieldset=""
+      >
+        <legend
+          class="govuk-fieldset__legend govuk-fieldset__legend--s"
+        >
+           Select jurisdiction 
+        </legend>
+        <pdk-radio-group
+          class="ng-untouched ng-pristine ng-invalid"
+          name="jurisdictionType"
+          required=""
+        >
+          <div
+            class="govuk-radios"
+          >
+            <pdk-radio-button>
+              <div
+                class="govuk-radios__item"
+              >
+                <input
+                  class="govuk-radios__input"
+                  id="pdk-radio-GENERATED_ID"
+                  name="pdk-radio-group-GENERATED_ID"
+                  type="radio"
+                  value="MAGISTRATES"
+                />
+                <label
+                  class="govuk-radios__label govuk-label"
+                  for="pdk-radio-GENERATED_ID"
+                  pdk-label=""
+                >
+                  Magistrates' Court 
+                </label>
+              </div>
+            </pdk-radio-button>
+            <pdk-radio-button>
+              <div
+                class="govuk-radios__item"
+              >
+                <input
+                  class="govuk-radios__input"
+                  id="pdk-radio-GENERATED_ID"
+                  name="pdk-radio-group-GENERATED_ID"
+                  type="radio"
+                  value="CROWN"
+                />
+                <label
+                  class="govuk-radios__label govuk-label"
+                  for="pdk-radio-GENERATED_ID"
+                  pdk-label=""
+                >
+                  Crown Court 
+                </label>
+              </div>
+            </pdk-radio-button>
+            <pdk-radio-conditional>
+              <div
+                class="govuk-radios__conditional"
+              />
+            </pdk-radio-conditional>
+          </div>
+        </pdk-radio-group>
+      </fieldset>
+    </pdk-form-group>
+  </pdk-form-field>
+</select-jurisdiction>
+`;
+
+exports[`SelectJurisdictionComponent should render magistrates jurisdiction when selected 1`] = `
+<select-jurisdiction
+  JurisdictionType={[Function Object]}
+  isCrownCourt={[Function Function]}
+  jurisdiction={[Function Function]}
+>
+  <pdk-form-field
+    label="Select jurisdiction"
+    labeltype="small"
+  >
+    <pdk-form-group
+      class="pdk-form-group"
+    >
+      <fieldset
+        class="govuk-fieldset"
+        pdk-fieldset=""
+      >
+        <legend
+          class="govuk-fieldset__legend govuk-fieldset__legend--s"
+        >
+           Select jurisdiction 
+        </legend>
+        <pdk-radio-group
+          class="ng-untouched ng-pristine ng-invalid"
+          name="jurisdictionType"
+          required=""
+        >
+          <div
+            class="govuk-radios"
+          >
+            <pdk-radio-button>
+              <div
+                class="govuk-radios__item"
+              >
+                <input
+                  class="govuk-radios__input"
+                  id="pdk-radio-GENERATED_ID"
+                  name="pdk-radio-group-GENERATED_ID"
+                  type="radio"
+                  value="MAGISTRATES"
+                />
+                <label
+                  class="govuk-radios__label govuk-label"
+                  for="pdk-radio-GENERATED_ID"
+                  pdk-label=""
+                >
+                  Magistrates' Court 
+                </label>
+              </div>
+            </pdk-radio-button>
+            <pdk-radio-conditional>
+              <div
+                class="govuk-radios__conditional"
+              />
+            </pdk-radio-conditional>
+            <pdk-radio-button>
+              <div
+                class="govuk-radios__item"
+              >
+                <input
+                  class="govuk-radios__input"
+                  id="pdk-radio-GENERATED_ID"
+                  name="pdk-radio-group-GENERATED_ID"
+                  type="radio"
+                  value="CROWN"
+                />
+                <label
+                  class="govuk-radios__label govuk-label"
+                  for="pdk-radio-GENERATED_ID"
+                  pdk-label=""
+                >
+                  Crown Court 
+                </label>
+              </div>
+            </pdk-radio-button>
+          </div>
+        </pdk-radio-group>
+      </fieldset>
+    </pdk-form-group>
+  </pdk-form-field>
+</select-jurisdiction>
+`;

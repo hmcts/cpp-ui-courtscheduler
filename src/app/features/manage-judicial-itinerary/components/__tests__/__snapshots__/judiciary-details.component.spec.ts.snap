@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JudiciaryDetailsComponent should render correctly 1`] = `
+<app-test-host
+  existingSpecialisms={[Function Array]}
+  hideSpecialismsAction="false"
+  selectedJudiciary={[Function Object]}
+  selectedType={[Function String]}
+>
+  <judiciary-details>
+    <pdk-grid
+      class="govuk-!-margin-top-4 govuk-grid-row"
+      container=""
+      pdk-margin-top="4"
+    >
+      <pdk-grid
+        class="govuk-grid-column-full"
+        full=""
+      >
+        <h2
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+          Selected Judiciary and specialism
+        </h2>
+        <dl
+          class="govuk-!-margin-top-2 pdk-summary-list"
+          pdk-margin-top="2"
+          pdk-summary-list=""
+        >
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Judiciary type
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              Judge
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Name
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              SMITH
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Current specialism
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              <pdk-tag
+                class="govuk-!-margin-right-2 govuk-!-margin-bottom-2"
+                pdk-margin-bottom="2"
+                pdk-margin-right="2"
+              >
+                <div
+                  class="govuk-tag govuk-tag--default"
+                >
+                   Murder 
+                </div>
+              </pdk-tag>
+            </dd>
+            <dd
+              class="pdk-summary-list__actions"
+              pdk-summary-list-action=""
+            >
+              <a
+                class="govuk-link govuk-link--no-visited-state"
+                data-test-id="add-new-specialism-link"
+                href="javascript:void(0);"
+                pdk-link=""
+                unvisited=""
+              >
+                 Add new specialism 
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </pdk-grid>
+    </pdk-grid>
+  </judiciary-details>
+</app-test-host>
+`;
+
+exports[`JudiciaryDetailsComponent should render correctly with hideSpecialismsAction true 1`] = `
+<app-test-host
+  existingSpecialisms={[Function Array]}
+  hideSpecialismsAction={[Function Boolean]}
+  selectedJudiciary={[Function Object]}
+  selectedType={[Function String]}
+>
+  <judiciary-details>
+    <pdk-grid
+      class="govuk-!-margin-top-4 govuk-grid-row"
+      container=""
+      pdk-margin-top="4"
+    >
+      <pdk-grid
+        class="govuk-grid-column-full"
+        full=""
+      >
+        <h2
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+          Selected Judiciary and specialism
+        </h2>
+        <dl
+          class="govuk-!-margin-top-2 pdk-summary-list"
+          pdk-margin-top="2"
+          pdk-summary-list=""
+        >
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Judiciary type
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              Judge
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Name
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              SMITH
+            </dd>
+          </div>
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              Current specialism
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+              <pdk-tag
+                class="govuk-!-margin-right-2 govuk-!-margin-bottom-2"
+                pdk-margin-bottom="2"
+                pdk-margin-right="2"
+              >
+                <div
+                  class="govuk-tag govuk-tag--default"
+                >
+                   Murder 
+                </div>
+              </pdk-tag>
+            </dd>
+          </div>
+        </dl>
+      </pdk-grid>
+    </pdk-grid>
+  </judiciary-details>
+</app-test-host>
+`;

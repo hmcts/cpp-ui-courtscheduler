@@ -1,0 +1,25 @@
+<div [formGroup]="formGroup" pdk-padding-vertical="2">
+  <div pdk-margin-bottom="2">
+    <span pdk-typography="body-small"> Total days: {{ value() | unavailabilityDaysCount }}</span>
+  </div>
+  @for (reasonEntry of reasonEntries; track reasonEntry) {
+    @let formGroupValue = formGroup.get(reasonEntry | camelisedReason)?.value;
+    @let unavailabilityDaysCount = formGroupValue | unavailabilityDaysCount;
+    <details pdk-details [attr.open]="formGroupValue?.length > 0 ? true : null">
+      <summary #reasonSummary>
+        {{ reasonEntry | unavailabilityReasonFormat }} ({{ unavailabilityDaysCount
+        }}<span pdk-visually-hidden>{{ unavailabilityDaysCount !== 1 ? 'days' : 'day' }}</span
+        >)
+      </summary>
+      <pdk-details-text>
+        <unavailability-dates-input
+          [minStartDate]="availabilityDateRange().startDate"
+          [maxEndDate]="availabilityDateRange().endDate"
+          [reason]="reasonEntry"
+          [formControlName]="reasonEntry | camelisedReason"
+          (errors)="errors.emit($event)"
+        ></unavailability-dates-input>
+      </pdk-details-text>
+    </details>
+  }
+</div>

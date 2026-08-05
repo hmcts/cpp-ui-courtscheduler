@@ -1,0 +1,305 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JudicialItineraryResultsComponent should render correctly 1`] = `
+<app-test-host
+  addJudiciaryCalled="false"
+  editItinerary="undefined"
+  itineraries={[Function Array]}
+  page={[Function Number]}
+  pageSize={[Function Number]}
+  removeItinerary="undefined"
+  sortEvent="undefined"
+  sortField={[Function String]}
+  sortOrder={[Function String]}
+  totalResults={[Function Number]}
+>
+  <judicial-itinerary-results>
+    <div>
+      <div
+        class="summary-container govuk-!-margin-bottom-6"
+        pdk-margin-bottom="6"
+      >
+        <pdk-inset-text
+          class="govuk-!-margin-top-0 govuk-!-margin-bottom-0"
+          pdk-margin-vertical="0"
+        >
+          <div
+            class="govuk-inset-text"
+          >
+             25 results found 
+          </div>
+        </pdk-inset-text>
+        <button
+          class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+          data-test-id="add-judiciary"
+          pdk-button="secondary"
+          pdk-margin-bottom="0"
+          type="button"
+        >
+           Add Judiciary 
+        </button>
+      </div>
+      <table
+        class="govuk-table"
+        data-test-id="judiciary-list"
+        pdk-table=""
+      >
+        <caption
+          class="govuk-table__caption"
+          pdk-table-caption=""
+        >
+          <h2
+            class="govuk-heading-m"
+            pdk-typography="heading-medium"
+          >
+            List of Judiciary itineraries
+          </h2>
+        </caption>
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Type 
+              </button>
+            </th>
+            <th
+              aria-sort="ascending"
+              class="pdk-sortable pdk-sortable_order__asc govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Name 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Availability
+            </th>
+            <th
+              class="width-25 govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Non-sitting days
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Specialism 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Session
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              pdk-table-cell=""
+            >
+              Judge
+            </td>
+            <td
+              class="govuk-table__cell"
+              pdk-table-cell=""
+            >
+               SMITH 
+            </td>
+            <td
+              class="govuk-table__cell"
+              pdk-table-cell=""
+            >
+              1 January 2026 - 31 January 2026
+            </td>
+            <td
+              class="width-25 govuk-table__cell"
+              pdk-table-cell=""
+            >
+              <non-sitting-days-display>
+                 Not added 
+              </non-sitting-days-display>
+            </td>
+            <td
+              class="govuk-table__cell"
+              pdk-table-cell=""
+            >
+              <div
+                class="specialism-container"
+              >
+                <pdk-tag
+                  class="govuk-!-margin-bottom-0"
+                  condensed=""
+                >
+                  <div
+                    class="govuk-tag govuk-tag--default pdk-tag--condensed"
+                  >
+                    Murder
+                  </div>
+                </pdk-tag>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              pdk-table-cell=""
+            >
+              All day
+            </td>
+            <td
+              class="govuk-table__cell"
+              pdk-table-cell=""
+            >
+              <div
+                class="actions-container"
+              >
+                <a
+                  class="govuk-link"
+                  data-test-id="edit-rule-1"
+                  href="javascript:void(0);"
+                  pdk-link=""
+                >
+                   Edit 
+                </a>
+                <a
+                  class="govuk-link"
+                  data-test-id="remove-rule-1"
+                  href="javascript:void(0);"
+                  pdk-link=""
+                >
+                   Remove 
+                </a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <pdk-pagination
+        class="govuk-!-margin-top-4"
+        data-current-page="1"
+        data-page-size="20"
+        data-total-results="25"
+        pdk-margin-top="4"
+      >
+        <div
+          class="pdk-pagination"
+        >
+          <nav
+            aria-label="Pagination"
+            class="govuk-pagination"
+          >
+            <div
+              class="pdk-pagination__arrow-placeholder"
+            />
+            <div
+              class="govuk-pagination__list govuk-!-margin-left-1 govuk-!-margin-right-1"
+              pdk-margin-horizontal="1"
+            >
+              <div
+                class="govuk-pagination__item govuk-!-margin-left-1 govuk-!-margin-right-1 govuk-pagination__item--current"
+                pdk-margin-horizontal="1"
+              >
+                <span
+                  aria-label="Current page, page 1"
+                  class="pdk-pagination__item__active"
+                  role="link"
+                  tabindex="0"
+                >
+                  1
+                </span>
+              </div>
+              <div
+                class="govuk-pagination__item govuk-!-margin-left-1 govuk-!-margin-right-1"
+                pdk-margin-horizontal="1"
+              >
+                <a
+                  aria-label="Go to page 2"
+                  class="govuk-pagination__link govuk-link"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                   2 
+                </a>
+              </div>
+            </div>
+            <div
+              class="govuk-pagination__next"
+            >
+              <a
+                aria-label="Go to next page of results"
+                class="govuk-link govuk-pagination__link"
+                href="javascript:void(0)"
+                rel="Next"
+              >
+                <span
+                  class="govuk-pagination__link-title"
+                >
+                   Next 
+                </span>
+                <svg
+                  aria-hidden="true"
+                  class="govuk-pagination__icon govuk-pagination__icon--next"
+                  focusable="false"
+                  height="13"
+                  viewBox="0 0 15 13"
+                  width="15"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </pdk-pagination>
+    </div>
+  </judicial-itinerary-results>
+</app-test-host>
+`;

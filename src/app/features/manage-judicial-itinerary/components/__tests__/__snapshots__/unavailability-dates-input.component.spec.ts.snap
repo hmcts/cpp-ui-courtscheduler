@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UnavailabilityDatesInputComponent should render correctly 1`] = `
+<app-test-host
+  maxEndDate={[Function String]}
+  minStartDate={[Function String]}
+  reason={[Function String]}
+  unavailabilities={[Function Array]}
+>
+  <unavailability-dates-input
+    class="ng-untouched ng-pristine ng-valid"
+  >
+    <div
+      class="ng-untouched ng-pristine ng-valid"
+      pdk-form=""
+    >
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+          <div
+            class="govuk-!-padding-left-0 govuk-!-padding-right-0 govuk-grid-column-full"
+            full=""
+            pdk-grid=""
+            pdk-padding-horizontal="0"
+          >
+            <date-range
+              class="ng-untouched ng-pristine ng-valid"
+              disableweekend=""
+              formcontrolname="unavailability"
+              requiredstartdate=""
+            >
+              <div>
+                Mock Date Range
+              </div>
+            </date-range>
+          </div>
+        </pdk-grid>
+        <pdk-grid
+          class="govuk-!-margin-top-4 govuk-grid-column-one-third"
+          one-third=""
+          pdk-margin-top="4"
+        >
+          <button
+            class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+            pdk-button="secondary"
+            pdk-margin-bottom="0"
+            type="button"
+          >
+             Add date 
+          </button>
+        </pdk-grid>
+      </pdk-grid>
+    </div>
+  </unavailability-dates-input>
+</app-test-host>
+`;

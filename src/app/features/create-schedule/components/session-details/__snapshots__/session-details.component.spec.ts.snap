@@ -1,0 +1,3572 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SessionDetailsComponent Actions Display should display action links when actionsEnabled is true 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Panel 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Adult 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  1 hour
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Monday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+            <td
+              class="govuk-table__cell"
+              pdk-table-cell=""
+            >
+              <div
+                class="link-container"
+              >
+                <a
+                  class="govuk-link govuk-link--no-visited-state"
+                  data-test-id="copy-session"
+                  href="javascript:void(0);"
+                  pdk-link=""
+                  unvisited=""
+                >
+                  Copy
+                </a>
+                <a
+                  class="govuk-link govuk-link--no-visited-state"
+                  data-test-id="remove-session"
+                  href="javascript:void(0);"
+                  pdk-link=""
+                  unvisited=""
+                >
+                  Remove
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 2 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               2:00pm to 5:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                PM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Youth 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 2 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  1 hour 30 minutes
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Tuesday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+            <td
+              class="govuk-table__cell"
+              pdk-table-cell=""
+            >
+              <div
+                class="link-container"
+              >
+                <a
+                  class="govuk-link govuk-link--no-visited-state"
+                  data-test-id="copy-session"
+                  href="javascript:void(0);"
+                  pdk-link=""
+                  unvisited=""
+                >
+                  Copy
+                </a>
+                <a
+                  class="govuk-link govuk-link--no-visited-state"
+                  data-test-id="remove-session"
+                  href="javascript:void(0);"
+                  pdk-link=""
+                  unvisited=""
+                >
+                  Remove
+                </a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent Actions Display should not display action links when actionsEnabled is false 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Panel 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Adult 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  1 hour
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Monday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 2 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               2:00pm to 5:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                PM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Youth 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 2 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  1 hour 30 minutes
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Tuesday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent Crown Court related functionality should render with courtroom assignment column when jurisdiction is CROWN 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Status 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroomAssignment"
+              pdk-table-cell=""
+            >
+               Assigned 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  1 hour
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Monday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent Daily display for repeat days should render with Daily label when all days are selected for Crown 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Status 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroomAssignment"
+              pdk-table-cell=""
+            >
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  1 hour
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Daily 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent Daily display for repeat days should render with Daily label when all days are selected for Magistrates 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Panel 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Adult 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  1 hour
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Daily 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent Label Display should display "Duration" when isSlot is false 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Panel 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Adult 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  2 hours
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Monday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent Label Display should display "Slots" when isSlot is true 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Panel 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Adult 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Slots - 
+                </span>
+                <span>
+                  5
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Monday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent Overbooking Display should display "No" when isOverbookingAllowed is false 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Panel 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Adult 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  1 hour
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Monday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent Overbooking Display should display "No" when isOverbookingAllowed is undefined 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Panel 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Adult 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  1 hour
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Monday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent Overbooking Display should display "Yes" when isOverbookingAllowed is true 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Panel 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Adult 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  1 hour
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Monday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               Yes 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent Session Duration Display should display AM/PM durations when session.allDaySplit is true 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Panel 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Adult 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  AM: 
+                </span>
+                <br />
+                <span>
+                  PM: 
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Monday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent Session Duration Display should display AM/PM durations when session.duration is null 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Panel 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Adult 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  AM: 
+                </span>
+                <br />
+                <span>
+                  PM: 
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Monday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent Session Duration Display should display duration when session.duration is 0 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Panel 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Adult 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  0 minutes
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Monday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent Session Type Display should display "All day" for AD session type 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Panel 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 5:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                All day
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Adult 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  1 hour
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Monday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent Session Type Display should display session type as-is for non-AD types 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Panel 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Adult 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  1 hour
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Monday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;
+
+exports[`SessionDetailsComponent should create 1`] = `
+<session-details
+  actionsEnabled={[Function Function]}
+  currentSortField={[Function Function]}
+  currentSortOrder={[Function Function]}
+  defaultStartTime={[Function Function]}
+  getSessionTimeRange={[Function Function]}
+  isCrownCourt={[Function Function]}
+  isSlot={[Function Function]}
+  isSummary={[Function Function]}
+  jurisdiction={[Function Function]}
+  onNavigate={[Function OutputEmitterRef]}
+  routes={[Function Object]}
+  sessionToCopy={[Function OutputEmitterRef]}
+  sessionToRemove={[Function OutputEmitterRef]}
+  sessions={[Function Function]}
+  sortedSessions={[Function Function]}
+>
+  <div
+    class="govuk-!-margin-bottom-8 govuk-grid-row"
+    container=""
+    data-test-id="sessionDetails"
+    pdk-grid=""
+    pdk-margin-bottom="8"
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h2
+        class="govuk-!-margin-bottom-0 govuk-heading-m"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-medium"
+      >
+        Session details
+      </h2>
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Courtroom 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Time
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Session 
+              </button>
+            </th>
+            <th
+              aria-sort="none"
+              class="pdk-sortable pdk-sortable_order govuk-table__cell"
+              pdk-sortable-header=""
+              pdk-table-header=""
+              scope="col"
+            >
+              <button
+                type="button"
+              >
+                 Panel 
+              </button>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Type
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Total capacity
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Repeat on
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              Overbooking
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               10:30am to 1:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                AM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Adult 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 1 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  1 hour
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Monday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+          <tr
+            class="govuk-table__row"
+            data-test-id="sessionDetailsTableItem"
+            pdk-table-row=""
+          >
+            <td
+              class="govuk-table__cell"
+              data-test-id="courtroom"
+              pdk-table-cell=""
+            >
+               Courtroom 2 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="time"
+              pdk-table-cell=""
+            >
+               2:00pm to 5:00pm 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="sessionType"
+              pdk-table-cell=""
+            >
+              <span>
+                PM
+              </span>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="panelType"
+              pdk-table-cell=""
+            >
+               Youth 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="businessType"
+              pdk-table-cell=""
+            >
+               Business Type 2 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="duration"
+              pdk-table-cell=""
+            >
+              <div>
+                <span>
+                  Duration - 
+                </span>
+                <span>
+                  1 hour 30 minutes
+                </span>
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="repeatDays"
+              pdk-table-cell=""
+            >
+               Tuesday 
+            </td>
+            <td
+              class="govuk-table__cell"
+              data-test-id="overbooking"
+              pdk-table-cell=""
+            >
+               No 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </pdk-grid>
+  </div>
+</session-details>
+`;

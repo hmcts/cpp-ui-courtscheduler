@@ -1,0 +1,16 @@
+.bold {
+  font-weight: 700 !important;
+}
+
+.vector-icon {
+  font-style: normal;
+  display: inline-block;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+
+  &__large {
+    width: 35px;
+    height: 35px;
+  }
+}

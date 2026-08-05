@@ -1,0 +1,124 @@
+<div pdk-margin-bottom="8">
+  <form
+    #form="ngForm"
+    data-test-id="searchForm"
+    pdk-form
+    (errors)="errors.emit($event)"
+    (validSubmit)="handleSubmitForm(formValues)"
+  >
+    <select-jurisdiction
+      [(jurisdiction)]="jurisdiction"
+      (jurisdictionChange)="jurisdictionChange.emit($event)"
+    >
+      @if (jurisdiction() === JurisdictionType.MAGISTRATES) {
+        <div magistrates-court>
+          <ng-container [ngTemplateOutlet]="viewOrEditCourtSessionsTemplate" />
+        </div>
+      }
+      @if (jurisdiction() === JurisdictionType.CROWN) {
+        <div crown-court>
+          <ng-container [ngTemplateOutlet]="viewOrEditCourtSessionsTemplate" />
+        </div>
+      }
+    </select-jurisdiction>
+
+    <ng-template #viewOrEditCourtSessionsTemplate>
+      <pdk-grid container>
+        <pdk-grid one-third>
+          <pdk-form-field
+            label="Select court"
+            labelType="small"
+            [errorMessages]="[
+              {
+                rule: 'required',
+                message: 'Select a court from the list'
+              }
+            ]"
+          >
+            <cpp-organisation-unit-autosuggest
+              [id]="'courtCentre'"
+              name="courtCentre"
+              [ngModel]="formValues.courtCentre"
+              (ngModelChange)="handleCourtCentreChange($event)"
+              [jurisdictionCode]="jurisdictionCode()"
+              required
+              data-role="allocate-court-centre-input"
+            >
+            </cpp-organisation-unit-autosuggest>
+          </pdk-form-field>
+          <pdk-form-field label="Select business type (optional)" labelType="small">
+            <cpp-rota-business-type-select
+              [(ngModel)]="formValues.businessType"
+              [name]="'businessType'"
+              [jurisdiction]="jurisdiction()"
+              justified
+            />
+          </pdk-form-field>
+        </pdk-grid>
+        <pdk-grid one-third>
+          <pdk-form-field label="Select courtroom (optional)" labelType="small">
+            <pdk-select
+              [(ngModel)]="formValues.courtroomId"
+              [name]="'courtroomId'"
+              [options]="courtroomOptions"
+              justified
+              placeholder="Any"
+            >
+            </pdk-select>
+          </pdk-form-field>
+        </pdk-grid>
+      </pdk-grid>
+      <h2 pdk-typography="heading-medium" pdk-padding-top="8">Select date range</h2>
+      <pdk-grid container>
+        <pdk-grid one-third>
+          <pdk-form-field label="Start date" labelType="small">
+            <pdk-date-picker-input
+              name="startDate"
+              required
+              [isDateDisabled]="isDateNotMonday"
+              [ngModel]="formValues.startDate"
+              (ngModelChange)="handleStartDateChange($event)"
+            >
+            </pdk-date-picker-input>
+
+            @if (startDateLabel) {
+              <pdk-inset-text>
+                {{ startDateLabel }}
+              </pdk-inset-text>
+            }
+          </pdk-form-field>
+        </pdk-grid>
+        <pdk-grid one-third>
+          <pdk-form-field label="End date" labelType="small">
+            <pdk-date-picker-input
+              name="endDate"
+              required
+              [isDateDisabled]="isDateDisabled"
+              [minDate]="formValues.minEndDate"
+              [ngModel]="formValues.endDate"
+              (ngModelChange)="handleEndDateChange($event)"
+            >
+            </pdk-date-picker-input>
+
+            @if (endDateLabel) {
+              <pdk-inset-text>
+                {{ endDateLabel }}
+              </pdk-inset-text>
+            }
+          </pdk-form-field>
+        </pdk-grid>
+      </pdk-grid>
+    </ng-template>
+
+    <div class="actions" pdk-padding-top="4">
+      <pdk-form-group>
+        <button type="submit" pdk-button pdk-margin-bottom="0">View sessions</button>
+      </pdk-form-group>
+      <div pdk-margin-left="4">
+        <a data-test-id="clear-court" href="javascript:void(0)" pdk-link (click)="clearForm()"
+          >Clear</a
+        >
+      </div>
+    </div>
+  </form>
+</div>

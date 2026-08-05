@@ -1,0 +1,561 @@
+<pdk-grid container>
+  <pdk-grid full>
+    <div class="add-session" pdk-border-colour="mid-grey" pdk-margin-bottom="8">
+      <h2 pdk-typography="heading-medium">
+        {{ initialValues() ? 'Session details' : 'Add sessions' }}
+      </h2>
+
+      <form
+        #form="ngForm"
+        data-test-id="addSessionsForm"
+        pdk-form
+        (errors)="handleFormErrors($event)"
+        (validSubmit)="handleSubmitForm(form.value)"
+      >
+        <pdk-grid container>
+          <pdk-grid full>
+            <h3 pdk-typography="heading-small">Courtroom details</h3>
+          </pdk-grid>
+          <pdk-grid one-half>
+            <pdk-form-field
+              label="Courtroom"
+              labelType="small"
+              [errorMessages]="[
+                {
+                  rule: 'required',
+                  message: VALIDATION.courtroom
+                }
+              ]"
+            >
+              <pdk-select
+                [ngModel]="formModel.courtroomId"
+                [name]="'courtroomId'"
+                [options]="courtroomOptions"
+                justified
+                required
+              >
+              </pdk-select>
+            </pdk-form-field>
+          </pdk-grid>
+          @if (isCrownCourt()) {
+            <pdk-grid one-half>
+              <div class="courtroom-assignment-wrapper">
+                <pdk-form-field
+                  label="Courtroom assignment"
+                  labelType="small"
+                  [errorMessages]="[
+                    {
+                      rule: 'required',
+                      message: VALIDATION.courtroomAssignment
+                    }
+                  ]"
+                >
+                  <pdk-radio-group
+                    name="courtroomAssignment"
+                    [ngModel]="formModel.courtroomAssignment"
+                    [options]="courtroomAssignmentOptions"
+                    small
+                    inline
+                    required
+                  />
+                </pdk-form-field>
+              </div>
+            </pdk-grid>
+          }
+
+          <pdk-grid full></pdk-grid>
+
+          <pdk-grid one-half>
+            <pdk-form-field
+              label="Session and duration"
+              labelType="small"
+              [errorMessages]="[
+                {
+                  rule: 'required',
+                  message: VALIDATION.sessionType
+                }
+              ]"
+            >
+              <details pdk-details pdk-margin-bottom="2">
+                <summary>National standard times</summary>
+                <pdk-details-text>
+                  <p>
+                    AM:
+                    {{
+                      NATIONAL_STANDARD_TIMES.AM.sessionStartTime | formatTime: { format24h: true }
+                    }}
+                    to
+                    {{
+                      NATIONAL_STANDARD_TIMES.AM.sessionEndTime | formatTime: { format24h: true }
+                    }}
+                  </p>
+                  <p>
+                    PM:
+                    {{
+                      NATIONAL_STANDARD_TIMES.PM.sessionStartTime | formatTime: { format24h: true }
+                    }}
+                    to
+                    {{
+                      NATIONAL_STANDARD_TIMES.PM.sessionEndTime | formatTime: { format24h: true }
+                    }}
+                  </p>
+                  <p>
+                    All day:
+                    {{
+                      NATIONAL_STANDARD_TIMES.AD.sessionStartTime | formatTime: { format24h: true }
+                    }}
+                    to
+                    {{
+                      NATIONAL_STANDARD_TIMES.AD.sessionEndTime | formatTime: { format24h: true }
+                    }}
+                  </p>
+                </pdk-details-text>
+              </details>
+              <pdk-radio-group
+                [(ngModel)]="formModel.sessionType"
+                (ngModelChange)="onSessionTypeChange($event)"
+                name="sessionType"
+                required
+              >
+                <!-- AM Radio -->
+                <pdk-radio-button value="AM">AM</pdk-radio-button>
+                @if (formModel.sessionType === 'AM') {
+                  <pdk-radio-conditional>
+                    <ng-container *ngTemplateOutlet="durationField"></ng-container>
+                  </pdk-radio-conditional>
+                }
+
+                <!-- PM Radio -->
+                <pdk-radio-button value="PM">PM</pdk-radio-button>
+                @if (formModel.sessionType === 'PM') {
+                  <pdk-radio-conditional>
+                    <ng-container *ngTemplateOutlet="durationField"></ng-container>
+                  </pdk-radio-conditional>
+                }
+
+                <!-- All day Radio -->
+                <pdk-radio-button value="AD">All day</pdk-radio-button>
+                @if (formModel.sessionType === 'AD') {
+                  <pdk-radio-conditional>
+                    <!-- If isSlot = true -->
+                    @if (isSlot()) {
+                      <pdk-form-field
+                        label="{{
+                          isSlot() ? 'Enter number of slots' : 'Enter session duration in minutes'
+                        }}"
+                        labelType="small"
+                        [errorMessages]="[
+                          {
+                            rule: 'required',
+                            message: VALIDATION.duration
+                          }
+                        ]"
+                      >
+                        <input
+                          pdk-text-input
+                          [(ngModel)]="formModel.duration"
+                          [pdk-input]="3"
+                          type="number"
+                          name="duration"
+                          pattern="[0-9]*"
+                          required
+                          data-test-id="duration"
+                        />
+                      </pdk-form-field>
+                    }
+                    <!-- If isSlot = false, allow splitting -->
+                    @if (!isSlot()) {
+                      <pdk-form-field
+                        label="Do you want to split the session?"
+                        labelType="small"
+                        [errorMessages]="[
+                          {
+                            rule: 'required',
+                            message: VALIDATION.allDaySplit
+                          }
+                        ]"
+                      >
+                        <pdk-radio-group
+                          [(ngModel)]="formModel.allDaySplit"
+                          name="allDaySplit"
+                          required
+                        >
+                          <pdk-radio-button [value]="true">Yes</pdk-radio-button>
+                          @if (formModel.allDaySplit === true) {
+                            <pdk-radio-conditional>
+                              <pdk-form-field
+                                label="AM"
+                                hintText="Enter session duration in minutes"
+                                labelType="small"
+                                [errorMessages]="[
+                                  {
+                                    rule: 'required',
+                                    message: VALIDATION.morningDuration
+                                  }
+                                ]"
+                              >
+                                <input
+                                  pdk-text-input
+                                  [(ngModel)]="formModel.maxDurationForMorning"
+                                  [pdk-input]="3"
+                                  type="number"
+                                  name="maxDurationForMorning"
+                                  pattern="[0-9]*"
+                                  required
+                                  data-test-id="maxDurationForMorning"
+                                />
+                              </pdk-form-field>
+                              <pdk-form-field
+                                label="PM"
+                                hintText="Enter session duration in minutes"
+                                labelType="small"
+                                [errorMessages]="[
+                                  {
+                                    rule: 'required',
+                                    message: VALIDATION.afternoonDuration
+                                  }
+                                ]"
+                              >
+                                <input
+                                  pdk-text-input
+                                  [(ngModel)]="formModel.maxDurationForAfternoon"
+                                  [pdk-input]="3"
+                                  type="number"
+                                  name="maxDurationForAfternoon"
+                                  pattern="[0-9]*"
+                                  required
+                                  data-test-id="maxDurationForAfternoon"
+                                />
+                              </pdk-form-field>
+                            </pdk-radio-conditional>
+                          }
+                          <pdk-radio-button [value]="false">No</pdk-radio-button>
+                          @if (formModel.allDaySplit === false) {
+                            <pdk-radio-conditional>
+                              <ng-container *ngTemplateOutlet="durationField"></ng-container>
+                            </pdk-radio-conditional>
+                          }
+                        </pdk-radio-group>
+                      </pdk-form-field>
+                    }
+                  </pdk-radio-conditional>
+                }
+              </pdk-radio-group>
+            </pdk-form-field>
+          </pdk-grid>
+
+          @if (!isCrownCourt()) {
+            <pdk-grid one-half>
+              <pdk-form-field
+                label="Panel"
+                labelType="small"
+                [errorMessages]="[
+                  {
+                    rule: 'required',
+                    message: VALIDATION.panel
+                  }
+                ]"
+              >
+                <pdk-radio-group
+                  [ngModel]="formModel.panelType"
+                  name="panelType"
+                  [options]="panelOptions"
+                  required
+                >
+                </pdk-radio-group>
+              </pdk-form-field>
+            </pdk-grid>
+          }
+
+          <pdk-grid full>
+            <pdk-divider />
+          </pdk-grid>
+
+          <pdk-grid full pdk-padding-left="3">
+            <pdk-form-field label="Additional session options" labelType="small">
+              <pdk-checkbox-group name="additionalSessionOptions" ngModel>
+                <pdk-checkbox
+                  [(ngModel)]="formModel.customTimes"
+                  (ngModelChange)="handleCustomTimesChange($event)"
+                  name="customTimes"
+                  checkboxType="small"
+                  pdk-padding-top="2"
+                >
+                  Set custom session timings
+                </pdk-checkbox>
+                @if (formModel.customTimes) {
+                  <pdk-checkbox-conditional>
+                    <pdk-grid pdk-padding-top="2">
+                      <details pdk-details pdk-margin-bottom="2">
+                        <summary>Custom session timings limit</summary>
+                        <pdk-details-text>
+                          <div>
+                            @switch (formModel.sessionType) {
+                              @case ('AM') {
+                                <p>
+                                  AM:
+                                  {{
+                                    CUSTOM_SESSION_TIME_LIMITS.AM.min
+                                      | formatTime: { format24h: true }
+                                  }}
+                                  to
+                                  {{
+                                    CUSTOM_SESSION_TIME_LIMITS.AM.max
+                                      | formatTime: { format24h: true }
+                                  }}
+                                </p>
+                              }
+                              @case ('PM') {
+                                <p>
+                                  PM:
+                                  {{
+                                    CUSTOM_SESSION_TIME_LIMITS.PM.min
+                                      | formatTime: { format24h: true }
+                                  }}
+                                  to
+                                  {{
+                                    CUSTOM_SESSION_TIME_LIMITS.PM.max
+                                      | formatTime: { format24h: true }
+                                  }}
+                                </p>
+                              }
+                              @case ('AD') {
+                                <p>
+                                  All day:
+                                  {{
+                                    CUSTOM_SESSION_TIME_LIMITS.AD.min
+                                      | formatTime: { format24h: true }
+                                  }}
+                                  to
+                                  {{
+                                    CUSTOM_SESSION_TIME_LIMITS.AD.max
+                                      | formatTime: { format24h: true }
+                                  }}
+                                </p>
+                              }
+                              @default {
+                                <p>
+                                  AM:
+                                  {{
+                                    CUSTOM_SESSION_TIME_LIMITS.AM.min
+                                      | formatTime: { format24h: true }
+                                  }}
+                                  to
+                                  {{
+                                    CUSTOM_SESSION_TIME_LIMITS.AM.max
+                                      | formatTime: { format24h: true }
+                                  }}
+                                </p>
+                                <p>
+                                  PM:
+                                  {{
+                                    CUSTOM_SESSION_TIME_LIMITS.PM.min
+                                      | formatTime: { format24h: true }
+                                  }}
+                                  to
+                                  {{
+                                    CUSTOM_SESSION_TIME_LIMITS.PM.max
+                                      | formatTime: { format24h: true }
+                                  }}
+                                </p>
+                                <p>
+                                  All day:
+                                  {{
+                                    CUSTOM_SESSION_TIME_LIMITS.AD.min
+                                      | formatTime: { format24h: true }
+                                  }}
+                                  to
+                                  {{
+                                    CUSTOM_SESSION_TIME_LIMITS.AD.max
+                                      | formatTime: { format24h: true }
+                                  }}
+                                </p>
+                              }
+                            }
+                          </div>
+                        </pdk-details-text>
+                      </details>
+                    </pdk-grid>
+                    <pdk-grid style="display: flex" pdk-padding-top="2">
+                      <pdk-form-field
+                        label="Start time"
+                        labelType="small"
+                        pdk-padding-right="6"
+                        [errorMessages]="startTimeErrorMessages"
+                      >
+                        <pdk-time-input
+                          name="sessionStartTime"
+                          [(ngModel)]="formModel.sessionStartTime"
+                          [ngModelOptions]="{ updateOn: 'change' }"
+                          [autoShift]="false"
+                          labelHidden="false"
+                          timeRangeValidator
+                          [timeRange]="timeRange"
+                          [required]="formModel.customTimes && formModel.sessionType"
+                        >
+                        </pdk-time-input>
+                      </pdk-form-field>
+                      <pdk-form-field
+                        label="End time"
+                        labelType="small"
+                        [errorMessages]="endTimeErrorMessages"
+                      >
+                        <pdk-time-input
+                          name="sessionEndTime"
+                          [(ngModel)]="formModel.sessionEndTime"
+                          [ngModelOptions]="{ updateOn: 'change' }"
+                          [autoShift]="false"
+                          labelHidden="false"
+                          timeRangeValidator
+                          [timeRange]="timeRange"
+                          [startTime]="formModel.sessionStartTime"
+                          [required]="formModel.customTimes && formModel.sessionType"
+                        >
+                        </pdk-time-input>
+                      </pdk-form-field>
+                    </pdk-grid>
+                  </pdk-checkbox-conditional>
+                }
+                <pdk-checkbox
+                  [(ngModel)]="formModel.isOverbookingAllowed"
+                  checkboxType="small"
+                  name="isOverbookingAllowed"
+                  pdk-padding-top="2"
+                >
+                  Overbooking is allowed for this session
+                </pdk-checkbox>
+              </pdk-checkbox-group>
+            </pdk-form-field>
+          </pdk-grid>
+
+          <pdk-grid full>
+            <pdk-divider />
+          </pdk-grid>
+
+          <pdk-grid full pdk-padding-left="3">
+            <h3 pdk-typography="heading-small">Repeat sessions</h3>
+            @if (isMonthlyFrequency()) {
+              <div class="monthly-selects-wrapper">
+                <pdk-form-field
+                  label="Every"
+                  labelType="small"
+                  [errorMessages]="[
+                    {
+                      rule: 'required',
+                      message: VALIDATION.repeatDays
+                    }
+                  ]"
+                >
+                  <pdk-select
+                    name="index"
+                    [ngModel]="formModel.index"
+                    [options]="indexOptions"
+                    required
+                    data-test-id="index"
+                  />
+                </pdk-form-field>
+
+                <div pdk-margin-left="5">
+                  <pdk-form-field
+                    label="Day"
+                    labelType="small"
+                    [errorMessages]="[
+                      {
+                        rule: 'required',
+                        message: VALIDATION.repeatDay
+                      }
+                    ]"
+                  >
+                    <pdk-select
+                      name="repeatDay"
+                      [ngModel]="formModel.repeatDay"
+                      [options]="monthlyDayOptions()"
+                      justified
+                      required
+                      data-test-id="repeatDay"
+                    />
+                  </pdk-form-field>
+                </div>
+              </div>
+            } @else {
+              <pdk-form-field
+                label="Every"
+                labelType="small"
+                [errorMessages]="[
+                  {
+                    rule: 'required',
+                    message: VALIDATION.repeatDays
+                  }
+                ]"
+              >
+                <pdk-checkbox-group
+                  name="repeatDays"
+                  checkboxType="small"
+                  [(ngModel)]="formModel.repeatDays"
+                  required
+                >
+                  <pdk-checkbox
+                    name="selectAll"
+                    [ngModel]="isAllDaysSelected()"
+                    (change)="selectAllDays($event.checked)"
+                    [ngModelOptions]="{ standalone: true }"
+                    checkboxType="small"
+                  >
+                    <span class="bold">Select all</span>
+                  </pdk-checkbox>
+                  @for (repeatDayOption of repeatedDaysOptions(); track repeatDayOption.value) {
+                    <pdk-checkbox [value]="repeatDayOption.value">
+                      <span>{{ repeatDayOption.label }}</span>
+                    </pdk-checkbox>
+                  }
+                </pdk-checkbox-group>
+              </pdk-form-field>
+            }
+          </pdk-grid>
+
+          <pdk-grid full>
+            <pdk-divider />
+          </pdk-grid>
+
+          <pdk-grid full>
+            <button
+              data-test-id="submit-sessions-form"
+              [pdk-button]="initialValues() ? 'primary' : 'secondary'"
+              pdk-margin-bottom="0"
+            >
+              Add session
+            </button>
+          </pdk-grid>
+        </pdk-grid>
+
+        <!--
+Shared template for the duration field. It gets used for AM, PM, and the no-split "All day" scenario.
+-->
+        <ng-template #durationField>
+          <pdk-form-field
+            label="{{ isSlot() ? 'Enter number of slots' : 'Enter session duration in minutes' }}"
+            hintText="{{ isSlot() ? 'For example, 10' : 'For example, 360' }}"
+            labelType="small"
+            [errorMessages]="[
+              {
+                rule: 'required',
+                message: isSlot() ? VALIDATION.slot : VALIDATION.duration
+              }
+            ]"
+          >
+            <input
+              pdk-text-input
+              [(ngModel)]="formModel.duration"
+              [pdk-input]="3"
+              type="number"
+              name="duration"
+              pattern="[0-9]*"
+              required
+              data-test-id="duration"
+            />
+          </pdk-form-field>
+        </ng-template>
+      </form>
+    </div>
+  </pdk-grid>
+</pdk-grid>

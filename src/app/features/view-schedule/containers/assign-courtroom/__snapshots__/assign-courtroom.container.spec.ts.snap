@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssignCourtroomContainer should create 1`] = `
+<assign-courtroom-container
+  assignableSessions={[Function Array]}
+  courtCentres$={[Function _Store]}
+  courtrooms={[Function Array]}
+  destroy$={[Function Subject]}
+  errors={[Function Array]}
+  errors$={[Function _Store]}
+  ineligibleAssigned={[Function Array]}
+  ineligiblePastSessions={[Function Array]}
+  ineligibleWithHearings={[Function Array]}
+  jurisdiction={[Function Function]}
+  route={[Function Object]}
+  router={[Function Object]}
+  searchValues$={[Function _Store]}
+  sessionsToAssign={[Function Array]}
+  sessionsToAssign$={[Function _Store]}
+  viewScheduleStore={[Function _MockStore]}
+>
+  <div
+    class="govuk-!-margin-bottom-4"
+    pdk-margin-bottom="4"
+  >
+    <a
+      class="govuk-back-link"
+      href="javascript:void(0);"
+      pdk-back-link=""
+    >
+      Back
+    </a>
+  </div><pdk-grid
+    class="govuk-grid-row"
+    container=""
+  >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <h1
+        class="govuk-heading-xl"
+        pdk-typography="heading-xlarge"
+      >
+        Assign courtroom
+      </h1>
+      <sessions-list>
+         sessions: [object Object] removableSessions:  ineligibleWithHearings: [object Object] ineligiblePastSessions:  ineligibleAssigned:  isAssignView: true 
+      </sessions-list>
+      <assign-courtroom-form>
+         sessionsToAssignTotal: 0 courtrooms:  
+      </assign-courtroom-form>
+    </pdk-grid>
+  </pdk-grid>
+</assign-courtroom-container>
+`;

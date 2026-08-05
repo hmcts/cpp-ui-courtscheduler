@@ -1,0 +1,15 @@
+<pdk-form-field [label]="label()" [labelType]="labelType()" [errorMessages]="errorMessages()">
+  <pdk-checkbox-group
+    [formControl]="formControl"
+    checkboxType="small"
+    [required]="required()"
+    [minCount]="minCount()"
+    pdkMinCountValidatorDirective
+  >
+    @for (specialism of availableSpecialisms(); track specialism) {
+      <pdk-checkbox [value]="specialism">
+        <span>{{ specialism | specialismFormat }}</span>
+      </pdk-checkbox>
+    }
+  </pdk-checkbox-group>
+</pdk-form-field>

@@ -1,0 +1,71 @@
+<pdk-grid container pdk-margin-top="4">
+  <pdk-grid full>
+    <h2 pdk-typography="heading-medium">Selected court and judiciary</h2>
+    <dl pdk-summary-list pdk-margin-top="2">
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Court name</dt>
+        <dd pdk-summary-list-value>{{ courtCentre()?.oucodeL3Name || 'Not selected' }}</dd>
+        <dd pdk-summary-list-action>
+          <a
+            href="javascript:void(0);"
+            pdk-link
+            unvisited
+            (click)="handleCourtChange()"
+            data-test-id="change-court-link"
+          >
+            Change
+          </a>
+        </dd>
+      </div>
+
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Judiciary type</dt>
+        <dd pdk-summary-list-value>{{ selectedType() || 'Not selected' }}</dd>
+        <dd pdk-summary-list-action>
+          <a
+            href="javascript:void(0);"
+            pdk-link
+            unvisited
+            (click)="handleJudiciaryTypeChange()"
+            data-test-id="change-judiciary-type-link"
+          >
+            Change
+          </a>
+        </dd>
+      </div>
+
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Name</dt>
+        <dd pdk-summary-list-value>{{ selectedJudiciary() | judicialMemberName }}</dd>
+      </div>
+
+      <div pdk-summary-list-item>
+        <dt pdk-summary-list-key>Specialisms</dt>
+        <dd pdk-summary-list-value>
+          @if (existingSpecialisms().length > 0) {
+            @for (specialism of existingSpecialisms(); track specialism) {
+              <pdk-tag pdk-margin-right="2" pdk-margin-bottom="2">
+                {{ specialism | specialismFormat }}
+              </pdk-tag>
+            }
+          } @else {
+            <span>Not added</span>
+          }
+        </dd>
+        @if (!allSpecialismsSelected()) {
+          <dd pdk-summary-list-action>
+            <a
+              href="javascript:void(0);"
+              pdk-link
+              unvisited
+              (click)="handleAddSpecialism()"
+              data-test-id="add-new-specialism-link"
+            >
+              Add new specialism
+            </a>
+          </dd>
+        }
+      </div>
+    </dl>
+  </pdk-grid>
+</pdk-grid>

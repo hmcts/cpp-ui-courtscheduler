@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SpecialismAddedConfirmationFormComponent should render correctly 1`] = `
+<app-test-host
+  changeCalled="false"
+  draftSpecialisms={[Function Array]}
+  errors="undefined"
+  initialValues="null"
+  submittedValues="undefined"
+>
+  <specialism-added-confirmation-form>
+    <pdk-grid
+      class="govuk-!-margin-top-4 govuk-grid-row"
+      container=""
+      pdk-margin-top="4"
+    >
+      <pdk-grid
+        class="govuk-grid-column-full"
+        full=""
+      >
+        <h2
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+          Specialism added
+        </h2>
+        <dl
+          class="govuk-!-margin-top-2 pdk-summary-list"
+          pdk-margin-top="2"
+          pdk-summary-list=""
+        >
+          <div
+            class="pdk-summary-list__row"
+            pdk-summary-list-item=""
+          >
+            <dt
+              class="pdk-summary-list__key"
+              pdk-summary-list-key=""
+            >
+              New specialisms
+            </dt>
+            <dd
+              class="pdk-summary-list__value"
+              pdk-summary-list-value=""
+            >
+               Murder, Attempted murder 
+            </dd>
+            <dd
+              class="pdk-summary-list__actions"
+              pdk-summary-list-action=""
+            >
+              <a
+                class="govuk-link govuk-link--no-visited-state"
+                data-test-id="change-specialisms-link"
+                href="javascript:void(0);"
+                pdk-link=""
+                unvisited=""
+              >
+                 Change 
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </pdk-grid>
+    </pdk-grid>
+    <form
+      class="ng-untouched ng-pristine ng-invalid"
+      novalidate=""
+      pdk-form=""
+    >
+      <pdk-grid
+        class="govuk-!-margin-top-6 govuk-grid-row"
+        container=""
+        pdk-margin-top="6"
+      >
+        <pdk-grid
+          class="govuk-grid-column-two-thirds"
+          two-thirds=""
+        >
+          <pdk-form-field
+            label="Are you sure you want to add these specialisms?"
+            labeltype="small"
+          >
+            <pdk-form-group
+              class="pdk-form-group"
+            >
+              <fieldset
+                class="govuk-fieldset"
+                pdk-fieldset=""
+              >
+                <legend
+                  class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                >
+                   Are you sure you want to add these specialisms? 
+                </legend>
+                <pdk-radio-group
+                  class="ng-untouched ng-pristine ng-invalid"
+                  data-test-id="confirmation-radio"
+                  name="confirmation"
+                  required=""
+                >
+                  <div
+                    class="govuk-radios"
+                  >
+                    <pdk-radio-button>
+                      <div
+                        class="govuk-radios__item"
+                      >
+                        <input
+                          class="govuk-radios__input"
+                          id="pdk-radio-GENERATED_ID"
+                          name="pdk-radio-group-GENERATED_ID"
+                          type="radio"
+                          value="true"
+                        />
+                        <label
+                          class="govuk-radios__label govuk-label"
+                          for="pdk-radio-GENERATED_ID"
+                          pdk-label=""
+                        >
+                          Yes
+                        </label>
+                      </div>
+                    </pdk-radio-button>
+                    <pdk-radio-button>
+                      <div
+                        class="govuk-radios__item"
+                      >
+                        <input
+                          class="govuk-radios__input"
+                          id="pdk-radio-GENERATED_ID"
+                          name="pdk-radio-group-GENERATED_ID"
+                          type="radio"
+                          value="false"
+                        />
+                        <label
+                          class="govuk-radios__label govuk-label"
+                          for="pdk-radio-GENERATED_ID"
+                          pdk-label=""
+                        >
+                          No
+                        </label>
+                      </div>
+                    </pdk-radio-button>
+                  </div>
+                </pdk-radio-group>
+              </fieldset>
+            </pdk-form-group>
+          </pdk-form-field>
+        </pdk-grid>
+        <pdk-grid
+          class="govuk-grid-column-two-thirds"
+          two-thirds=""
+        >
+          <pdk-form-group
+            class="govuk-!-margin-top-4 pdk-form-group"
+            pdk-margin-top="4"
+          >
+            <button
+              class="govuk-button"
+              data-test-id="continue-and-add-specialism-button"
+              pdk-button=""
+              type="submit"
+            >
+               Confirm and continue 
+            </button>
+          </pdk-form-group>
+        </pdk-grid>
+      </pdk-grid>
+    </form>
+  </specialism-added-confirmation-form>
+</app-test-host>
+`;

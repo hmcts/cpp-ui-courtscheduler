@@ -1,0 +1,126 @@
+@let itinerariesList = itineraries();
+@let resultsFound = totalResults();
+
+<div>
+  @if (itinerariesList !== null && itinerariesList.length >= 0) {
+    <div pdk-margin-bottom="6" class="summary-container">
+      <pdk-inset-text pdk-margin-vertical="0">
+        {{ resultsFound }} result{{ resultsFound !== 1 ? 's' : '' }} found
+      </pdk-inset-text>
+      <button
+        pdk-margin-bottom="0"
+        pdk-button="secondary"
+        type="button"
+        (click)="handleAddJudiciary()"
+        data-test-id="add-judiciary"
+      >
+        Add Judiciary
+      </button>
+    </div>
+  }
+  @if (itinerariesList?.length > 0) {
+    <table pdk-table data-test-id="judiciary-list">
+      <caption pdk-table-caption>
+        <h2 pdk-typography="heading-medium">List of Judiciary itineraries</h2>
+      </caption>
+      <thead pdk-table-head>
+        <tr pdk-table-row>
+          <th
+            pdk-table-header
+            pdk-sortable-header
+            [direction]="typeSortDirection()"
+            (directionChange)="handleSort('type', $event)"
+          >
+            Type
+          </th>
+          <th
+            pdk-table-header
+            pdk-sortable-header
+            [direction]="nameSortDirection()"
+            (directionChange)="handleSort('name', $event)"
+          >
+            Name
+          </th>
+          <th pdk-table-header>Availability</th>
+          <th pdk-table-header class="width-25">Non-sitting days</th>
+          <th
+            pdk-table-header
+            pdk-sortable-header
+            [direction]="specialismSortDirection()"
+            (directionChange)="handleSort('specialism', $event)"
+          >
+            Specialism
+          </th>
+          <th pdk-table-header>Session</th>
+          <th pdk-table-header>Actions</th>
+        </tr>
+      </thead>
+      <tbody pdk-table-body>
+        @for (itinerary of itinerariesList; track itinerary.id) {
+          <tr pdk-table-row>
+            <td pdk-table-cell>{{ itinerary | itineraryType }}</td>
+            <td pdk-table-cell>
+              @if (itinerary.judiciaryMember) {
+                {{ itinerary.judiciaryMember | judicialMemberName }}
+              } @else {
+                Name not found
+              }
+            </td>
+            <td pdk-table-cell>{{ itinerary | dateRangeFormat: ' - ' }}</td>
+            <td pdk-table-cell class="width-25">
+              <non-sitting-days-display [unavailabilities]="itinerary.unavailabilities" />
+            </td>
+            <td pdk-table-cell>
+              @if ((itinerary.judiciaryMember?.specialisms ?? []).length > 0) {
+                <div class="specialism-container">
+                  @for (
+                    spec of itinerary.judiciaryMember?.specialisms;
+                    track spec;
+                    let last = $last
+                  ) {
+                    <pdk-tag condensed [pdk-margin-bottom]="last ? '0' : '2'">{{
+                      spec | specialismFormat
+                    }}</pdk-tag>
+                  }
+                </div>
+              } @else {
+                Not added
+              }
+            </td>
+            <td pdk-table-cell>{{ itinerary.sessionType | sessionFormat }}</td>
+            <td pdk-table-cell>
+              <div class="actions-container">
+                <a
+                  href="javascript:void(0);"
+                  pdk-link
+                  (click)="handleEdit(itinerary)"
+                  [attr.data-test-id]="'edit-' + itinerary.id"
+                >
+                  Edit
+                </a>
+                <a
+                  href="javascript:void(0);"
+                  pdk-link
+                  (click)="handleRemove(itinerary)"
+                  [attr.data-test-id]="'remove-' + itinerary.id"
+                >
+                  Remove
+                </a>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    @if (hasPagination()) {
+      <pdk-pagination
+        pdk-margin-top="4"
+        [currentPage]="page()"
+        [pageSize]="pageSize()"
+        [totalResults]="resultsFound"
+        (pageChange)="page.set($event)"
+      ></pdk-pagination>
+    }
+  }
+</div>

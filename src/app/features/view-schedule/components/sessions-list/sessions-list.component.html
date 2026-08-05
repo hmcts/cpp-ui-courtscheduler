@@ -1,0 +1,90 @@
+@if (!isDeleteView() && !isEditView() && !isAssignView()) {
+  <form
+    #form="ngForm"
+    pdk-form
+    data-test-id="sessionsSelectionForm"
+    (validSubmit)="handleFormSubmit(form.value)"
+    (errors)="handleFormErrors($event)"
+    novalidate
+  >
+    <pdk-form-field
+      label=""
+      labelType="small"
+      [errorMessages]="[
+        {
+          rule: 'ineligibleAssigned',
+          message: 'One or more selected sessions are already assigned to a courtroom'
+        }
+      ]"
+    >
+      <pdk-checkbox-group
+        name="sessionsSelection"
+        [ngModel]="selectedSessionIds()"
+        (ngModelChange)="onSessionSelectionChange($event)"
+        #sessionsModel="ngModel"
+        checkboxType="small"
+        [ineligibleSessionsValidator]="sessions()"
+        [validatorAction]="selectedAction()"
+      >
+        <session-table
+          [sessions]="sessions()"
+          [allSelectedSessionIds]="sessionsModel.value || []"
+          [config]="tableConfig()"
+          [selectionContext]="isAssignView() ? 'assign' : 'remove'"
+          [ineligibleSessionIds]="ineligibleSessionIds()"
+          (onAction)="handleTableAction($event)"
+          (onSelectAllChange)="handleSelectAllSessions($event)"
+        />
+      </pdk-checkbox-group>
+    </pdk-form-field>
+
+    <div class="action-wrapper" pdk-margin-top="3">
+      <div>
+        <pdk-form-field label="Select" labelType="small">
+          <pdk-select
+            [ngModel]="selectedAction()"
+            (ngModelChange)="onActionChange($event)"
+            name="selectedAction"
+            [options]="actionOptions()"
+            placeholder="Select action"
+            justified
+            required
+          ></pdk-select>
+        </pdk-form-field>
+      </div>
+      <div>
+        <button
+          pdk-button="secondary"
+          pdk-margin-left="2"
+          type="submit"
+          [disabled]="selectedSessions().length === 0"
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  </form>
+}
+
+@if (isDeleteView() || isEditView() || isAssignView()) {
+  <div>
+    <ineligible-sessions
+      [ineligiblePastSessions]="ineligiblePastSessions()"
+      [ineligibleWithHearings]="ineligibleWithHearings()"
+      [ineligibleAssigned]="ineligibleAssigned()"
+      [isEditView]="isEditView()"
+      [isAssignView]="isAssignView()"
+      [isCrownCourt]="isCrownCourt()"
+    />
+    @if (removableSessions().length > 0) {
+      <h2 pdk-typography="heading-medium" pdk-margin-vertical="4">
+        Sessions that can be {{ isAssignView() ? 'assigned' : isEditView() ? 'edited' : 'removed' }}
+      </h2>
+    }
+    @if (removableSessions().length > 0) {
+      <div>
+        <session-table [sessions]="removableSessions()" [config]="removableSessionsTableConfig()" />
+      </div>
+    }
+  </div>
+}
