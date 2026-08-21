@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { CppHttpConfig } from '@cpp/core';
+import { CppHttpConfig, GtmService } from '@cpp/core';
 import { Store } from '@ngrx/store';
 import { tap } from 'rxjs/operators';
 import { setAppConfiguration } from '../actions/config.actions';
@@ -11,6 +11,7 @@ import { AppConfig } from '../interfaces';
 export class AppConfigService implements CppHttpConfig {
   private http = inject(HttpClient);
   private store = inject<Store<AppState>>(Store);
+  private gtmService = inject(GtmService);
 
   baseUrl!: string;
   appUrl!: string;
@@ -30,6 +31,9 @@ export class AppConfigService implements CppHttpConfig {
               this.cppHomeUrl = appConfig.cppHomeUrl;
               this.accountUrl = appConfig.idamProfilePage;
               this.logoutUrl = appConfig.idamLogoutPage;
+              if (appConfig.gtmId) {
+                this.gtmService.configure({ containerId: appConfig.gtmId });
+              }
               this.store.dispatch(setAppConfiguration({ appConfig }));
             }
           })
