@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClient } from '@angular/common/http';
 import { cold } from 'jasmine-marbles';
+import { of } from 'rxjs';
 import { AppConfigService } from '../config.service';
-import { CppHttp } from '@cpp/core';
+import { CppHttp, GtmService } from '@cpp/core';
 import { provideMockStore } from '@ngrx/store/testing';
 
 describe('ConfigService', () => {
@@ -43,5 +44,20 @@ describe('ConfigService', () => {
     service.load().then(() => {
       expect(service.baseUrl).toBe(apiRoot);
     });
+  });
+
+  it('should configure GTM when a gtmId is present in the loaded config', async () => {
+    const gtmService: GtmService = TestBed.inject(GtmService);
+    gtmService.configure = jest.fn();
+
+    get.mockReturnValue(
+      of({
+        gtmId: 'GTM-123TEST'
+      })
+    );
+
+    await service.load();
+
+    expect(gtmService.configure).toHaveBeenCalledWith({ containerId: 'GTM-123TEST' });
   });
 });

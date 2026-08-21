@@ -1,6 +1,5 @@
 {
   "apiRoot": "http://localhost:8080",
-  "googleAnalyticsCode": "UA-74319648-1",
   "idamProfilePage": "http://localhost:81/idam/manageaccount",
   "idamLogoutPage": "/gateway/SPInitiatedSLO",
   "proxy": false
