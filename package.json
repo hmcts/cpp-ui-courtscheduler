@@ -42,7 +42,7 @@
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular-builders/jest": "^19.0.1",
+    "@angular-builders/jest": "^22.0.1",
     "@angular-eslint/builder": "19.8.1",
     "@angular-eslint/eslint-plugin": "19.8.1",
     "@angular-eslint/eslint-plugin-template": "19.8.1",
