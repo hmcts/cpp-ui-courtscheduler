@@ -8,7 +8,12 @@ import { provideRouterStore, RouterState } from '@ngrx/router-store';
 import { environment } from '../environments/environment';
 import { AppConfigService } from './config';
 import { provideEffects } from '@ngrx/effects';
-import { GENERATE_UNIQUE_KEY, provideCppCoreHttpServices, withCppHttpOverrides } from '@cpp/core';
+import {
+  GENERATE_UNIQUE_KEY,
+  GTM_CONFIG,
+  provideCppCoreHttpServices,
+  withCppHttpOverrides
+} from '@cpp/core';
 import { CPPMonitorHttp } from './core/services/http/http';
 import { provideUserGroupsEnvironmentContext } from '@cpp/users-groups';
 import { provideCPPApplicationEnvironment } from '@cpp/application';
@@ -37,6 +42,13 @@ export const appBootstrapConfig: ApplicationConfig = {
       })
     ),
     provideAppInitializer(async () => await inject(AppConfigService).load()),
+    {
+      provide: GTM_CONFIG,
+      useFactory: () => {
+        const { gtmId } = inject(AppConfigService);
+        return gtmId ? { containerId: gtmId } : null;
+      }
+    },
     provideStore(reducers, {
       runtimeChecks: {
         strictActionImmutability: true,
