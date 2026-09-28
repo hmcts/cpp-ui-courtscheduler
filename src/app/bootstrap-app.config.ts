@@ -45,7 +45,8 @@ export const appBootstrapConfig: ApplicationConfig = {
     {
       provide: GTM_CONFIG,
       useFactory: () => {
-        const { gtmId } = inject(AppConfigService);
+        // TODO: GA spike: hardcoded fallback for testing only
+        const gtmId = inject(AppConfigService).gtmId || 'GTM-TJFSJV5L';
         return gtmId ? { containerId: gtmId } : null;
       }
     },
