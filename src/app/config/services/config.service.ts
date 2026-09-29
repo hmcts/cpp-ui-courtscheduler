@@ -17,6 +17,7 @@ export class AppConfigService implements CppHttpConfig {
   accountUrl!: string;
   logoutUrl!: string;
   cppHomeUrl?: string;
+  gtmId?: string;
 
   load() {
     return new Promise((resolve, reject) => {
@@ -30,6 +31,7 @@ export class AppConfigService implements CppHttpConfig {
               this.cppHomeUrl = appConfig.cppHomeUrl;
               this.accountUrl = appConfig.idamProfilePage;
               this.logoutUrl = appConfig.idamLogoutPage;
+              this.gtmId = appConfig.gtmId;
               this.store.dispatch(setAppConfiguration({ appConfig }));
             }
           })

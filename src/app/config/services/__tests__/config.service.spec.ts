@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClient } from '@angular/common/http';
 import { cold } from 'jasmine-marbles';
+import { of } from 'rxjs';
 import { AppConfigService } from '../config.service';
 import { CppHttp } from '@cpp/core';
 import { provideMockStore } from '@ngrx/store/testing';
@@ -43,5 +44,17 @@ describe('ConfigService', () => {
     service.load().then(() => {
       expect(service.baseUrl).toBe(apiRoot);
     });
+  });
+
+  it('should store the gtmId when present in the loaded config', async () => {
+    get.mockReturnValue(
+      of({
+        gtmId: 'GTM-123TEST'
+      })
+    );
+
+    await service.load();
+
+    expect(service.gtmId).toBe('GTM-123TEST');
   });
 });

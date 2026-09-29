@@ -5,4 +5,5 @@ export interface AppConfig {
   idamLogoutPage: string;
   idamProfilePage: string;
   idamServicesPage: string;
+  gtmId?: string;
 }
