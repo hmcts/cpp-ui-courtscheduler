@@ -76,10 +76,10 @@ export class ViewScheduleService {
   };
 
   searchCourtSchedulesById = (courtScheduleId: string): Observable<CourtSchedule[]> => {
-    const params = new HttpParams().set('courtScheduleIds', courtScheduleId);
+    const params = new HttpParams().set('ids', courtScheduleId);
     return this.api
       .query<{ courtSchedules: CourtSchedule[] }>({
-        url: '/listingcourtscheduler-api/rest/courtscheduler/courtschedule/search.court-schedules-by-id',
+        url: '/listingcourtscheduler-api/rest/courtscheduler/sessions',
         requestType: 'application/vnd.courtscheduler.search.court-schedules-by-id+json',
         params
       })
