@@ -11,14 +11,14 @@ export class JudiciarySessionAssignmentService {
 
   assignJudiciaries(payload: JudiciaryAssignmentPayload): Observable<unknown> {
     return this.api.command({
-      url: '/listingcourtscheduler-api/rest/courtscheduler/session/assign-judiciary-to-sessions',
+      url: '/listingcourtscheduler-api/rest/courtscheduler/sessions/assign-judiciaries',
       requestType: 'application/vnd.courtscheduler.assign-judiciary-to-sessions+json',
       body: payload
     });
   }
   removeAllJudiciaries(courtScheduleIds: string[]): Observable<unknown> {
     return this.api.command({
-      url: '/listingcourtscheduler-api/rest/courtscheduler/session/remove-all-judiciary',
+      url: '/listingcourtscheduler-api/rest/courtscheduler/sessions/remove-all-judiciaries',
       requestType: 'application/vnd.courtscheduler.remove-all-judiciary+json',
       body: {
         courtScheduleIds
@@ -30,7 +30,7 @@ export class JudiciarySessionAssignmentService {
     params: JudiciarySearchParams
   ): Observable<{ judiciaries: ExtendedJudicialMember[] }> {
     return this.api.query<{ judiciaries: ExtendedJudicialMember[] }>({
-      url: '/listingcourtscheduler-api/rest/courtscheduler/judiciaries/search-available',
+      url: '/listingcourtscheduler-api/rest/courtscheduler/judiciaries',
       requestType: 'application/vnd.courtscheduler.search.available.judiciaries+json',
       params: mapObjectToHttpParams(params)
     });

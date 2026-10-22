@@ -29,7 +29,7 @@ describe('JudiciarySessionAssignmentService', () => {
     };
     service.assignJudiciaries(payload).subscribe();
     expect(cppHttp.command).toHaveBeenCalledWith({
-      url: '/listingcourtscheduler-api/rest/courtscheduler/session/assign-judiciary-to-sessions',
+      url: '/listingcourtscheduler-api/rest/courtscheduler/sessions/assign-judiciaries',
       requestType: 'application/vnd.courtscheduler.assign-judiciary-to-sessions+json',
       body: payload
     });
@@ -41,7 +41,7 @@ describe('JudiciarySessionAssignmentService', () => {
     const courtScheduleIds = ['court-schedule-1', 'court-schedule-2'];
     service.removeAllJudiciaries(courtScheduleIds).subscribe();
     expect(cppHttp.command).toHaveBeenCalledWith({
-      url: '/listingcourtscheduler-api/rest/courtscheduler/session/remove-all-judiciary',
+      url: '/listingcourtscheduler-api/rest/courtscheduler/sessions/remove-all-judiciaries',
       requestType: 'application/vnd.courtscheduler.remove-all-judiciary+json',
       body: { courtScheduleIds }
     });
@@ -61,7 +61,7 @@ describe('JudiciarySessionAssignmentService', () => {
     expect(cppHttp.query).toHaveBeenCalled();
     expect(cppHttp.query).toHaveBeenCalledWith(
       expect.objectContaining({
-        url: '/listingcourtscheduler-api/rest/courtscheduler/judiciaries/search-available',
+        url: '/listingcourtscheduler-api/rest/courtscheduler/judiciaries',
         requestType: 'application/vnd.courtscheduler.search.available.judiciaries+json'
       })
     );
