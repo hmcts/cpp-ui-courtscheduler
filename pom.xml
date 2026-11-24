@@ -8,7 +8,7 @@
   </parent>
   <groupId>uk.gov.moj.cpp.ui</groupId>
   <artifactId>ui-courtscheduler</artifactId>
-  <version>19.0.11-GASPIKE-SNAPSHOT</version>
+  <version>19.0.12-GASPIKE-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
     <protractor.baseUrl>http://localhost:4900</protractor.baseUrl>
@@ -23,8 +23,8 @@
     <skip.prime>false</skip.prime>
     <skip.report.pack>true</skip.report.pack>
     <skip.dist.pack>false</skip.dist.pack>
-    <node.version>v18.20.4</node.version>
-    <npm.version>10.7.0</npm.version>
+    <node.version>v22.23.4</node.version>
+    <npm.version>10.9.9</npm.version>
     <npm.test.options />
     <npm.lint.options />
     <npm.build.options />
